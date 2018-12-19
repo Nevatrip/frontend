@@ -13,7 +13,7 @@ const render = ( req, res, data = {}, context ) => {
     return res.json( data );
   }
 
-  const user = req.isAuthenticated() ? req.user : false;
+  const user =/* req.isAuthenticated() ? req.user : */false;
   const cacheKey = req.originalUrl + ( context ? JSON.stringify( context ) : '' ) + ( user ? JSON.stringify( user ) : '' );
 
   const cached = cache[cacheKey];
@@ -36,7 +36,7 @@ const render = ( req, res, data = {}, context ) => {
     config,
     data: {
       ...data,
-      user,
+      // user,
       url: req._parsedUrl,
     },
     context,
@@ -91,11 +91,11 @@ function evalFile(filename) {
 }
 
 function getTemplates( bundleName = 'index', level ) {
-  const pathToBundle = path.resolve( 'bundles', bundleName );
+  const pathToBundle = path.resolve( 'bundles', bundleName + '.' + level );
 
   return {
-    BEMTREE: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ level }.bemtree.js` ) ).BEMTREE,
-    BEMHTML: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ level }.bemhtml.js` ) ).BEMHTML
+    BEMTREE: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ level }.ru.bemtree.js` ) ).BEMTREE,
+    BEMHTML: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ level }.ru.bemhtml.js` ) ).BEMHTML
   };
 }
 

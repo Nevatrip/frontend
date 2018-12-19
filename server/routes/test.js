@@ -2,7 +2,7 @@
 
 const action = async( context, params ) => {
   return {
-    page: 'login',
+    page: 'test',
     params
   }
 };

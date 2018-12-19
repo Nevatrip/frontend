@@ -10,7 +10,7 @@ const action = async( context, params ) => {
     page: 'index',
     params,
     todo: todo,
-    redirect: todo.id === 1 ? '/login' : null
+    redirect: todo.id === 1 ? '/test' : null
   }
 };
 

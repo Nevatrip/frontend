@@ -73,7 +73,7 @@ app.all( '*', async( req, res, next ) => {
 
     if( route.page ) {
       console.time( 'Render' );
-      const html = await render( req, res, route, route. );
+      const html = await render( req, res, route );
       console.timeEnd( 'Render' );
 
       return res.send( html );
