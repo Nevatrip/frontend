@@ -57,6 +57,7 @@
     "express-pino-logger": "^4.0.0",
     "express-session": "^1.15.6",
     "lost": "^8.3.0",
+    "mobile-detect": "^1.4.3",
     "nodemon": "^1.18.9",
     "pobem": "^1.1.2",
     "postcss-cssnext": "^3.1.0",
