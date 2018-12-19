@@ -1,0 +1,18 @@
+::root{
+  --default-color: #000;
+  --default-background: #fff;
+}
+
+
+/* JUNK */
+/*
+*[class*="_theme_"] {
+  color: #000;
+  background-color: #fff;
+}
+
+*[class*="__"] {
+  color: inherit;
+  background-color: inherit;
+}
+*/
