@@ -10,7 +10,7 @@ const debugHTTP = require( 'debug-http' );
 const config = require( './config.js' );
 const router = require( './router.js' );
 const render = require( './render' ).render;
-// const rebuild = require( './rebuild' );
+const rebuild = require( './rebuild' );
 
 const isSocket = isNaN( config.port );
 const skip = ( req, res, next ) => next();
@@ -107,9 +107,9 @@ app.use( ( err, req, res, next ) => {
   next();
 } );
 
-// if( config.__DEV__ ) {
-//   rebuild( app );
-// }
+if( config.__DEV__ ) {
+  rebuild( app );
+}
 
 /*
  * Start server

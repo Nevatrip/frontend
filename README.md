@@ -1,10 +1,10 @@
-# stazh-mikhailov
+# nevatrip-mvp-server
 
 ## Install
 
 ```bash
-git clone git@github.com/realetive/stazh-mikhailov.git
-cd stazh-mikhailov
+git clone git@github.com/realetive/nevatrip-mvp-server.git
+cd nevatrip-mvp-server
 cp .env.example .env
 npm install
 ```
