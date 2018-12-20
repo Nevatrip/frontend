@@ -1,9 +1,9 @@
 module.exports = {
   fileProvider: require('enb/techs/file-provider'),
   // fileMerge: require('enb/techs/file-merge'),
-  // fileCopy: require('enb/techs/file-copy'),
+  fileCopy: require('enb/techs/file-copy'),
   // fileWrite: require('enb/techs/write-file'),
-  // borschik: require('enb-borschik/techs/borschik'),
+  borschik: require('enb-borschik/techs/borschik'),
   postcss: require('enb-postcss/techs/enb-postcss'),
   postcssPlugins: [
     require('postcss-import')(),

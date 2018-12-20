@@ -71,13 +71,21 @@ module.exports = async (config) => {
             plugins: techs.postcssPlugins,
           },
         ],
+
+        // borschik
+        [techs.borschik, { source: '?.css', target: '?.min.css', minify: !__DEV__ }],
+
+        [techs.fileCopy, { source: '?.min.css', target: '../../static/assets/css/?.min.css' }]
       ]);
 
-      nodeConfig.addTargets(['?.{lang}.bemtree.js', '?.{lang}.bemhtml.js', '?.css']);
+      nodeConfig.addTargets([
+        '?.{lang}.bemtree.js',
+        '?.{lang}.bemhtml.js',
+        '?.min.css',
+        '../../static/assets/css/?.min.css'
+      ]);
     });
   });
-  console.log( levels );
-
 
   /*
   console.log( levels );

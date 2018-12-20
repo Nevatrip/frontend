@@ -12,8 +12,8 @@ block( 'root' ).replace()( ( node, ctx ) => {
     block: 'page',
     title: data.title || config.appName,
     favicon: '/favicon.ico',
-    styles: { elem: 'css', url: `/assets/css/${ level }.min.css` },
-    scripts: { elem: 'js', url: `/assets/js/${ level }.min.js` },
+    styles: { elem: 'css', url: `/assets/css/${ data.page }.${ level }.min.css` },
+    // scripts: { elem: 'js', url: `/assets/js/${ level }.min.js` },
     head: [
       { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
 
