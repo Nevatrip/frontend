@@ -1,0 +1,12 @@
+.filter__header-top {
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  text-align: center;
+  color: #fff;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #676767;
+}

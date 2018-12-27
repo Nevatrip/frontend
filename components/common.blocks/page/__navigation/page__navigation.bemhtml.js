@@ -1,0 +1,2 @@
+block( 'navigation' )
+  .tag()('navigation');

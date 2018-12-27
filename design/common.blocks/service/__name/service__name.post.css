@@ -1,0 +1,19 @@
+.service__name .link {
+  box-sizing: border-box;
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+
+.service__name .link,
+.service__name .link:hover,
+.service__name .link:active,
+.service__name .link:focus,
+.service__name .link:visited,
+.service__name .link.active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.service__name .link:hover {
+  opacity: .7;
+}

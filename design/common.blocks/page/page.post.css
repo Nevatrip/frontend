@@ -1,25 +1,53 @@
 html {
+  box-sizing: border-box;
   height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+::selection {
+  background: #3399cc;
+  color: white;
 }
 
 .page {
-  /* display: flex; */
-  /* flex-direction: column; */
-  /* justify-content: space-between; */
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   height: 100%;
   padding: 0;
   margin: 0;
   font-size: 14px;
+  font-family:  -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-display: swap;
   line-height: 1.5;
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
 
-  @media (min-width: 769px) {
-    font-size: 15px;
-  }
+a,
+a:hover,
+a:focus,
+a:active {
+  color: #377eb4;
+}
 
-  @media (min-width: 1201px) {
-    font-size: 16px;
-  }
+a:visited {
+  color: #73b1d7;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }

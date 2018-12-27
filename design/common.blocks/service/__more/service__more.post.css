@@ -1,0 +1,20 @@
+.service__more {
+  box-sizing: border-box;
+  display: inline-block;
+  opacity: 1;
+  transition: opacity .3s ease;
+}
+
+.service__more,
+.service__more:hover,
+.service__more:active,
+.service__more:focus,
+.service__more:visited,
+.service__more.active {
+  color: inherit;
+  text-decoration: none;
+}
+
+.service__more:hover {
+  opacity: .7;
+}

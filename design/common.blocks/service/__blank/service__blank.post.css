@@ -1,0 +1,6 @@
+.service__blank {
+  box-sizing: border-box;
+  padding: 10px 20px;
+  margin-left: 30%;
+  background: rgba(255, 255, 255, 0.6);
+}

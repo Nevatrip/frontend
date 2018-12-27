@@ -1,0 +1,8 @@
+.logo {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  max-width: 215px;
+}

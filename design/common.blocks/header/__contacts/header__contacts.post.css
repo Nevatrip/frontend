@@ -1,0 +1,9 @@
+.header__contacts{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding-left: 15px;
+  white-space: nowrap;
+}

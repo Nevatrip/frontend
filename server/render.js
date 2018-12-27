@@ -39,7 +39,6 @@ const render = ( req, res, data = {}, context ) => {
       // user,
       url: req._parsedUrl,
     },
-    context,
   };
 
   const templates = getTemplates( data.page, level );

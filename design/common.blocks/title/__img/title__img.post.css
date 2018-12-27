@@ -1,0 +1,17 @@
+.title__img {
+  position: absolute;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+  vertical-align: middle;
+  border: 0;
+  outline: none;
+  border-image-width: 0;
+  user-select: none;
+}

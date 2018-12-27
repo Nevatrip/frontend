@@ -1,0 +1,12 @@
+.header {
+  box-sizing: border-box;
+  position: relative;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.header__content{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

@@ -1,0 +1,11 @@
+.header__langs{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+.header__lang{
+  box-sizing: border-box;
+  display: inline-block;
+  margin: 2px 5px;
+  text-transform: uppercase;
+}

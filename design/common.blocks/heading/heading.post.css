@@ -1,0 +1,25 @@
+.heading {
+  box-sizing: border-box;
+  display: block;
+  font-family: inherit;
+  font-style: inherit;
+  color: inherit;
+  width: 100%;
+  margin: 0;
+}
+
+.heading_caps {
+  text-transform: uppercase
+}
+
+.heading_left {
+  text-align: left;
+}
+
+.heading_center {
+  text-align: center;
+}
+
+.heading_right {
+  text-align: right;
+}

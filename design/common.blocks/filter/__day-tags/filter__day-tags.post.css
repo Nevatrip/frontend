@@ -1,0 +1,56 @@
+.filter__day-tags {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  margin-bottom: 40px;
+}
+
+.filter__day-tags .radio {
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 100%;
+  margin: 0 5px 5px;
+  font-weight: normal;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  background-image: none;
+  border: 1px solid #fff;
+  white-space: nowrap;
+  font-size: 18px;
+  line-height: 1.42857143;
+  user-select: none;
+  color: #fff;
+  background-color: transparent;
+  border-radius: 3px;
+  padding: 14px 26px;
+  width: 90px;
+}
+
+.filter__day-tags .radio__text {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 23px;
+  letter-spacing: 0.4px;
+}
+
+.filter__day-tags .radio__box {
+  box-sizing: border-box;
+  display: none;
+}
+
+.filter__day-tags .radio.radio_hovered {
+  box-sizing: border-box;
+  background-color: rgba(41, 41, 41, 0.3);
+  border: solid 1px #8e8e8e;
+  color: #fff;
+}
+
+.filter__day-tags .radio.radio_checked {
+  box-sizing: border-box;
+  background-image: linear-gradient(rgba(50, 50, 50, 0.3), rgba(50, 50, 50, 0.3));
+  border: solid 1px #ffd84a;
+}

@@ -1,0 +1,36 @@
+.list_colored-check {
+  list-style: none;
+  font-size: 21px;
+}
+
+.list_colored-check .list__item {
+  box-sizing: border-box;
+  position: relative;
+  padding-left: 39px;
+  margin-bottom: 10px;
+}
+
+.list_colored-check .list__item:before {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: 0;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  background-color: #ffd84a;
+}
+
+.list_colored-check .list__item:after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  width: 10px;
+  height: 10px;
+  border-left: 3px solid #312d2d;
+  border-bottom: 3px solid #312d2d;
+  transform: rotate(-45deg);
+}

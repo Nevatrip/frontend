@@ -1,12 +1,15 @@
 [
   {
     shouldDeps: [
+      'features',
+      'filter',
       {
-        block: 'page',
-        elem: 'section',
-        mods: {
-          view: [ 'header', 'features', 'form' ]
-        }
+        block: 'service',
+        mods: {view: 'banner'}
+      },
+      {
+        block: 'service',
+        mods: {view: 'list-item-lg'}
       },
     ],
   },

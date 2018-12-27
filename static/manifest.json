@@ -1,19 +1,19 @@
 {
-    "name": "Стаж Михайлов",
-    "short_name": "Стаж Михайлов",
-    "icons": [
-        {
-            "src": "/android-chrome-192x192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/android-chrome-512x512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
-    ],
-    "theme_color": "#7a47c2",
-    "background_color": "#7a47c2",
-    "display": "standalone"
+  "name": "Neva Trip",
+  "short_name": "Neva Trip",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#309acd",
+  "background_color": "#309acd",
+  "display": "standalone"
 }

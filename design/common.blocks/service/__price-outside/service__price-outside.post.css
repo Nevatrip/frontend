@@ -1,0 +1,5 @@
+.service__price {
+  box-sizing: border-box;
+  display: inline-block;
+  font-size: 48px;
+}

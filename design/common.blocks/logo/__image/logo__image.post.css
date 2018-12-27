@@ -1,0 +1,5 @@
+.logo__image{
+  box-sizing: border-box;
+  display: inline-block;
+  max-width: 100%;
+}

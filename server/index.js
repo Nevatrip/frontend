@@ -73,10 +73,12 @@ app.all( '*', async( req, res, next ) => {
 
     if( route.page ) {
       console.time( 'Render' );
-      const html = await render( req, res, route );
+      const html = await render( req, res, route);
+
+      // const html = await render( req, res, route.page );
       console.timeEnd( 'Render' );
 
-      return res.send( html );
+      return res.send( html );//ERROR IS HERE
     }
 
     return res.json( route );

@@ -4,7 +4,8 @@ const UniversalRouter = require( 'universal-router' );
 const generateUrls = require( 'universal-router/generateUrls' );
 
 const home = require( './routes/home' );
-const test = require( './routes/test' );
+const service = require( './routes/service' );
+const dev = require( './routes/dev' );
 const error404 = require( './routes/404' );
 
 const router = new UniversalRouter(
@@ -18,15 +19,15 @@ const router = new UniversalRouter(
         load: async() => await home
       },
       {
-        path: '/test',
-        name: 'test',
-        load: async() => await test
+        path: '/service',
+        name: 'service',
+        load: async() => await service
       },
       {
-        path: '/:hello',
-        action: () => { foo: 'bar' }
+        path: '/dev',
+        name: 'dev',
+        load: async() => await dev
       },
-
       {
         path: '(.*)',
         name: '404',
