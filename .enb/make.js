@@ -18,10 +18,10 @@ module.exports = async (config) => {
   const platforms = Object.keys(SETS);
   config.setLanguages( langs );
 
-  // ['css', 'js'].forEach((catalog) => {
-  //   pathToStatic = path.resolve('static', 'assets', catalog);
-  //   fs.existsSync(pathToStatic) || mkdirp(pathToStatic);
-  // });
+  ['css', 'js'].forEach((catalog) => {
+    pathToStatic = path.resolve('static', 'assets', catalog);
+    fs.existsSync(pathToStatic) || mkdirp(pathToStatic);
+  });
 
   await asyncForEach( platforms, async (platform) => {
     levels[platform] = getLevels(platform);
