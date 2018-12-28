@@ -3,7 +3,7 @@ block( 'page' )(
     return [
       {
         block: 'header',
-        mods: { inverse: node.ctx.foo === 'bar' },
+        mods: {inverse: node.ctx.foo === 'bar'},
         logo: 'logo_md.png',
         logoDescription: 'Водные экскурсии по рекам и каналам Петербурга, прогулки по Неве на теплоходе NevaTrip',
         slogan: 'Лучшие водные экскурсии по Петербургу',
@@ -36,7 +36,7 @@ block( 'page' )(
           }
         ]
       },
-      { block: node.data.view || `page-${ node.data.page }`, js: true },
+      apply('mods'),
       {
         block: 'page',
         elem: 'spreader'
@@ -170,6 +170,6 @@ block( 'page' )(
       },
     ]
   }),
-  addMix()( node => ( { block: node.data.view || `page-${ node.data.page }`, js: true } ) )
+  addMods()( node => ( { route: node.data.view || node.data.page } ) )
 );
 

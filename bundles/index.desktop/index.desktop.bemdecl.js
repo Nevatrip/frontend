@@ -1,4 +1,14 @@
 exports.blocks = [
-  { name: 'root' },
-  { name: 'page-index' }
+  {name: 'root'},
+  {
+    name: 'page',
+    mods: [
+      {
+        name: 'route',
+        vals: [
+          { name: 'index' }
+        ]
+      }
+    ]
+  }
 ];

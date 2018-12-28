@@ -5,11 +5,11 @@
       'filter',
       {
         block: 'service',
-        mods: {view: 'banner'}
+        mods: {view: 'banner'},
       },
       {
         block: 'service',
-        mods: {view: 'list-item-lg'}
+        mods: {view: 'list-item-lg'},
       },
     ],
   },

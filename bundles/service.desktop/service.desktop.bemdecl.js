@@ -1,12 +1,14 @@
 exports.blocks = [
-  { name: 'root' },
-  { name: 'page-service' }
+  {name: 'root'},
+  {
+    name: 'page',
+    mods: [
+      {
+        name: 'route',
+        vals: [
+          { name: 'service' }
+        ]
+      }
+    ]
+  }
 ];
-
-// exports.blocks = [
-//   { name: 'root' },
-//   {
-//     name: 'page',
-//     mod: {route: 'service'}
-//   }
-// ];
