@@ -4,7 +4,7 @@ block( 'title' )(
       {
         elem: 'img',
         url: ctx.url,
-        alt: ctx.alt,
+        alt: ctx.title,
         title: ctx.title,
       },
       {
