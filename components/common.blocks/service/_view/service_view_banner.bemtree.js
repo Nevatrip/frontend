@@ -1,6 +1,5 @@
 block('service').mod('view', 'banner')(
   // tag()('article'),
-  addAttrs()((node, ctx) => ({style: "background-image: url(" + ctx.service.img + ")"})),
   replace()((node, ctx) => {
     return [
       {
@@ -19,8 +18,12 @@ block('service').mod('view', 'banner')(
                 price: ctx.service.price,
               },
               {
-                elem: 'buy',
-                urlBuy: ctx.service.urlBuy,
+                block: 'button',
+                mods: {
+                  type: 'link',
+                },
+                text: 'Купить',
+                url: ctx.service.urlBuy,
               },
               {
                 elem: 'more',

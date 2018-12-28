@@ -51,6 +51,14 @@ block('service').mod('view', 'detail')(
                     discount: ctx.service.discount,
                     time: ctx.service.time,
                   },
+                  {
+                    block: 'button',
+                    mods: {
+                      type: 'link',
+                    },
+                    text: 'Купить',
+                    url: ctx.service.urlBuy,
+                  }
                 ],
               },
             ]

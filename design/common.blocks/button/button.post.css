@@ -1,4 +1,4 @@
-.service__buy {
+.button {
   box-sizing: border-box;
   display: inline-block;
   margin-bottom: 0;
@@ -21,16 +21,16 @@
   transition: opacity .3s ease;
 }
 
-.service__buy,
-.service__buy:hover,
-.service__buy:active,
-.service__buy:focus,
-.service__buy:visited,
-.service__buy.active {
+.button,
+.button:hover,
+.button:active,
+.button:focus,
+.button:visited,
+.button.active {
   color: inherit;
   text-decoration: none;
 }
 
-.service__buy:hover {
+.button:hover {
   opacity: .7;
 }

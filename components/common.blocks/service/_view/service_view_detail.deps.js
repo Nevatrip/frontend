@@ -1,6 +1,10 @@
 [{
   shouldDeps: [
     {
+      block: 'button',
+      mods: {type: 'link'}
+    },
+    {
       elems: [
         'row',
         {elem: 'col', mods: {'aside': true}},
@@ -10,7 +14,6 @@
         'description',
         'price-info',
         'price',
-        'buy',
         'price-outside',
       ]
     },

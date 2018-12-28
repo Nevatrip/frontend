@@ -38,8 +38,12 @@ block('outside').mod('view', 'list-item-sm')(
                     price: ctx.service.price,
                   },
                   {
-                    elem: 'buy',
-                    urlBuy: ctx.service.urlBuy,
+                    block: 'button',
+                    mods: {
+                      type: 'link',
+                    },
+                    text: 'Купить',
+                    url: ctx.service.urlBuy,
                   },
                   {
                     elem: 'price-outside',

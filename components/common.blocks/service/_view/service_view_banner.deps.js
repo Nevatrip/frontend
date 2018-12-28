@@ -1,21 +1,17 @@
 [{
   shouldDeps: [
     {
+      block: 'button',
+      mods: { type: 'link' },
+    },
+    {
       elems: [
         'blank',
         'features',
         'price',
-        'buy',
         'more',
         'price-outside',
       ]
     },
-  ],
-  noDeps: [
-    {
-      elems: [
-        'title',
-      ]
-    }
   ]
 }]

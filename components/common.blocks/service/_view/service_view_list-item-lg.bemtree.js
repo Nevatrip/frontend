@@ -1,10 +1,5 @@
-block('outside').mod('view', 'list-item-lg')(
-  tag()('article'),
-  def()((node, ctx) => {
-    node._img = ctx.img;
-    node._name = ctx.name;
-    return applyNext()
-  }),
+block('service').mod('view', 'list-item-lg')(
+  // tag()('article'),
   content()((node, ctx) => {
     return [
       {
@@ -18,32 +13,52 @@ block('outside').mod('view', 'list-item-lg')(
                 elem: 'col',
                 content: [
                   {
-                    elem: 'image',
-                  }
+                    block: 'link',
+                    url: ctx.service.url,
+                    content: {
+                      block: 'image',
+                      mix: {block: node.block, elem: 'image'},
+                      url: ctx.service.img,
+                      alt: ctx.service.title,
+                      title: ctx.service.title,
+                    }
+                  },
+
                 ]
               },
               {
                 elem: 'col',
                 content: [
                   {
-                    elem: 'title',
-                    title: ctx.service.title,
+                    block: 'heading',
+                    mods: {size: 'l'},
+                    content: {
+                      block: 'link',
+                      url: ctx.service.url,
+                      title: ctx.service.title,
+                      content: ctx.service.title,
+                    },
                   },
                   {
-                    elem: 'features',
-                    features: ctx.service.features,
+                    block: 'list',
+                    mods: {colored: true},
+                    items: ctx.service.features
                   },
                   {
                     elem: 'price',
                     price: ctx.service.price,
                   },
                   {
-                    elem: 'buy',
-                    urlBuy: ctx.service.urlBuy,
+                    block: 'button',
+                    mods: {
+                      type: 'link',
+                    },
+                    text: 'Купить',
+                    url: ctx.service.urlBuy,
                   },
                   {
                     elem: 'price-outside',
-                    pricePierce: ctx.service.priceOutside,
+                    priceOutside: ctx.service.priceOutside,
                   }
                 ]
               },

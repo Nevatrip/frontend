@@ -1,16 +1,26 @@
 [{
   shouldDeps: [
     {
+      block: 'button',
+      mods: { type: 'link' },
+    },
+    {
       elems: [
         'col',
         'row',
         'image',
         'title',
-        'features',
         'price',
-        'buy',
         'price-outside',
       ]
+    },
+    {
+      block: 'list',
+      mods: { colored: true }
+    },
+    {
+      block: 'heading',
+      mods: { size: 'l' }
     },
   ]
 }]
