@@ -6,12 +6,17 @@
     },
     {
       elems: [
-        'col',
-        'row',
         'image',
         'title',
         'price',
         'price-outside',
+      ]
+    },
+    {
+      block: 'page',
+      elems: [
+        'row',
+        'col'
       ]
     },
     {

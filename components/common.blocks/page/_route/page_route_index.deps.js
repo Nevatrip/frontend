@@ -6,6 +6,10 @@
       'article',
       'title',
       {
+        block: 'page',
+        elem: 'article'
+      },
+      {
         block: 'service',
         mods: {view: 'banner'},
       },

@@ -1,0 +1,23 @@
+.page__iframe-container{
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  clear: both;
+}
+.page__iframe-container iframe,
+.page__iframe-container frame{
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  min-width: 100%;
+  margin: 0;
+  padding: 0;
+  max-height: 100vh;
+}

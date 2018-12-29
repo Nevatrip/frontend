@@ -59,7 +59,8 @@ block('page').mod('route', 'index')(
         service: node._service,
       },
       {
-        block: 'article',
+        block: 'page',
+        elem: 'article',
         content: [
           {
             block: 'title',

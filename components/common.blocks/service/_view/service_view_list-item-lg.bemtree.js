@@ -7,9 +7,11 @@ block('service').mod('view', 'list-item-lg')(
         mix: {block: 'page', elem: 'content'},
         content: [
           {
+            block: 'page',
             elem: 'row',
             content: [
               {
+                block: 'page',
                 elem: 'col',
                 content: [
                   {
@@ -27,6 +29,7 @@ block('service').mod('view', 'list-item-lg')(
                 ]
               },
               {
+                block: 'page',
                 elem: 'col',
                 content: [
                   {
@@ -45,8 +48,9 @@ block('service').mod('view', 'list-item-lg')(
                     items: ctx.service.features
                   },
                   {
+                    block: 'service',
                     elem: 'price',
-                    price: ctx.service.price,
+                    content: ctx.service.price,
                   },
                   {
                     block: 'button',
@@ -57,8 +61,9 @@ block('service').mod('view', 'list-item-lg')(
                     url: ctx.service.urlBuy,
                   },
                   {
+                    block: 'service',
                     elem: 'price-outside',
-                    priceOutside: ctx.service.priceOutside,
+                    content: ctx.service.priceOutside,
                   }
                 ]
               },

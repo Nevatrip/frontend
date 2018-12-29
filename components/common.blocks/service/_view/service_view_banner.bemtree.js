@@ -35,7 +35,7 @@ block('service').mod('view', 'banner')(
               },
               {
                 elem: 'price',
-                price: ctx.service.price,
+                content: ctx.service.price,
               },
               {
                 block: 'button',
@@ -51,7 +51,7 @@ block('service').mod('view', 'banner')(
               },
               {
                 elem: 'price-outside',
-                priceOutside: ctx.service.priceOutside,
+                content: ctx.service.priceOutside,
               }
             ]
           }
