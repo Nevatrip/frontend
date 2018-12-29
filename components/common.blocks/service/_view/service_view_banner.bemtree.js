@@ -1,7 +1,14 @@
 block('service').mod('view', 'banner')(
   // tag()('article'),
-  replace()((node, ctx) => {
+  content()((node, ctx) => {
     return [
+      {
+        block: 'image',
+        mods: {view: 'bg'},
+        url: ctx.service.img,
+        alt: ctx.service.title,
+        title: ctx.service.title,
+      },
       {
         elem: 'content',
         mix: {block: 'page', elem: 'content'},
@@ -10,8 +17,21 @@ block('service').mod('view', 'banner')(
             elem: 'blank',
             content: [
               {
-                elem: 'features',
-                features: ctx.service.features,
+                block: 'heading',
+                mods: {size: 'l'},
+                content: [
+                  {
+                    block: 'link',
+                    url: ctx.service.url,
+                    title: ctx.service.title,
+                    content: ctx.service.title
+                  }
+                ]
+              },
+              {
+                block: 'list',
+                mods: {colored: true},
+                items: ctx.service.features
               },
               {
                 elem: 'price',
@@ -31,7 +51,7 @@ block('service').mod('view', 'banner')(
               },
               {
                 elem: 'price-outside',
-                pricePierce: ctx.service.priceOutside,
+                priceOutside: ctx.service.priceOutside,
               }
             ]
           }

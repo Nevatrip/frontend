@@ -1,9 +1,7 @@
 .service_view_banner {
-  background-color: green;
+  position: relative;
   box-sizing: border-box;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  padding: 48px 0;
+  margin-top: -20px;
+  min-height: 400px;
 }
