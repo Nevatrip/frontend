@@ -3,6 +3,8 @@
     shouldDeps: [
       'features',
       'filter',
+      'article',
+      'title',
       {
         block: 'service',
         mods: {view: 'banner'},
