@@ -104,6 +104,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
     favicon: '/favicon.ico',
     itemtype: 'http://schema.org/LocalBusiness',
     prefix: 'og: http://ogp.me/ns#',
+
     styles: { elem: 'css', url: `/assets/css/${ data.page }.${ level }.min.css` },
     // scripts: { elem: 'js', url: `/assets/js/${ data.page }.${ level }.min.js` },
     head: [
