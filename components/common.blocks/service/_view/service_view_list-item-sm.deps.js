@@ -1,19 +1,20 @@
 [{
   shouldDeps: [
     {
-      block: 'button',
-      mods: { type: 'link' }
+      block: 'link',
+      mods: {
+        display: 'block',
+        view: 'inherit'
+      }
+    },
+    'image',
+    {
+      block: 'service',
+      elem: 'image'
     },
     {
-      elems: [
-        'col',
-        'row',
-        'image',
-        'title',
-        'features',
-        'price',
-        'price-outside',
-      ]
-    },
+      block: 'heading',
+      mods: {size: 'm'}
+    }
   ]
 }]

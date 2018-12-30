@@ -183,7 +183,9 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     mods: {view: 'list-item-sm'},
-                    // content: ctx.service
+                    url: ctx.service.url,
+                    image: ctx.service.img,
+                    title: ctx.service.title,
                   }
                 ]
               },

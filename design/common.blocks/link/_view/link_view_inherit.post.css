@@ -1,0 +1,11 @@
+.link_view_inherit,
+.link_view_inherit:hover,
+.link_view_inherit:focus,
+.link_view_inherit:active {
+  color: inherit;
+}
+
+.link_view_inherit:visited {
+  color: inherit;
+  opacity: .9;
+}
