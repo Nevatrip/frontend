@@ -1,0 +1,5 @@
+.page__row_view_service-banner {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}

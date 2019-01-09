@@ -4,7 +4,7 @@ block('service').elem('more')(
       block: 'link',
       mix: {block: node.block, elem: node.elem},
       content: {
-        html: 'Подробнее об&nbsp;экскурсии&nbsp;→'
+        html: 'Подробнее об&nbsp;экскурсии&nbsp;&rarr;'
       },
       url: ctx.content,
     }

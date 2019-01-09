@@ -1,5 +1,4 @@
 block('service').mod('view', 'banner')(
-  // tag()('article'),
   content()((node, ctx) => {
     return [
       {
@@ -19,9 +18,11 @@ block('service').mod('view', 'banner')(
               {
                 block: 'heading',
                 mods: {size: 'l'},
+                mix: {block: 'service', elem: 'title', elemMods: {view: 'banner'},},
                 content: [
                   {
                     block: 'link',
+                    mods: {view: 'inherit'},
                     url: ctx.service.url,
                     title: ctx.service.title,
                     content: ctx.service.title
@@ -30,24 +31,33 @@ block('service').mod('view', 'banner')(
               },
               {
                 block: 'list',
-                mods: {colored: true},
+                mods: {view: 'colored-check'},
                 items: ctx.service.features
               },
               {
-                elem: 'price',
-                content: ctx.service.price,
-              },
-              {
-                block: 'button',
-                mods: {
-                  type: 'link',
-                },
-                text: 'Купить',
-                url: ctx.service.urlBuy,
-              },
-              {
-                elem: 'more',
-                url: ctx.service.url,
+                block: 'page',
+                elem: 'row',
+                elemMods: {view: 'service-banner'},
+                content: [
+                  {
+                    block: 'service',
+                    elem: 'price',
+                    content: ctx.service.price,
+                  },
+                  {
+                    block: 'button',
+                    mods: {
+                      type: 'link',
+                    },
+                    text: 'Купить',
+                    url: ctx.service.urlBuy,
+                  },
+                  {
+                    block: 'service',
+                    elem: 'more',
+                    url: ctx.service.url,
+                  },
+                ]
               },
               {
                 elem: 'price-outside',

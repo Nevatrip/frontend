@@ -1,5 +1,6 @@
-.service__price {
+.service__price-outside {
   box-sizing: border-box;
   display: inline-block;
-  font-size: 48px;
+  font-size: 13.25px;
+  font-weight: 300;
 }
