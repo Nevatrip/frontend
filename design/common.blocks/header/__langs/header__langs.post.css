@@ -4,8 +4,20 @@
   justify-content: space-between;
 }
 .header__lang{
+  position: relative;
   box-sizing: border-box;
   display: inline-block;
   margin: 2px 5px;
   text-transform: uppercase;
+  font-weight: 300;
+}
+.header__lang+.header__lang{
+  margin-left: 10px;
+}
+.header__lang+.header__lang:before{
+  content: '/';
+  position: absolute;
+  top: 0;
+  left: -9px;
+  color: #777
 }
