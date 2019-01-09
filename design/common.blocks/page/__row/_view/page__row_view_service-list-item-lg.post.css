@@ -1,0 +1,6 @@
+.page__row_view_service-list-item-lg{
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: -8px;
+}

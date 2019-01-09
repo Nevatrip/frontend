@@ -27,12 +27,15 @@
       elems: [
         'blank',
         'features',
-        'price',
         'more',
         'price-outside',
         {
           elem: 'title',
-          mods: {view: 'banner'}
+          mods: {view: 'md'}
+        },
+        {
+          elem: 'price',
+          mods: {view: 'md'}
         }
       ]
     },

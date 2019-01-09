@@ -1,5 +1,4 @@
 block('service').mod('view', 'list-item-lg')(
-  // tag()('article'),
   content()((node, ctx) => {
     return [
       {
@@ -11,15 +10,16 @@ block('service').mod('view', 'list-item-lg')(
             elem: 'row',
             content: [
               {
-                block: 'page',
-                elem: 'col',
+                block: 'service',
+                elem: 'image',
+                mix: {block: 'page', elem: 'col'},
                 content: [
                   {
                     block: 'link',
                     url: ctx.service.url,
                     content: {
                       block: 'image',
-                      mix: {block: node.block, elem: 'image'},
+                      mods: {view: 'bg'},
                       url: ctx.service.img,
                       alt: ctx.service.title,
                       title: ctx.service.title,
@@ -29,36 +29,49 @@ block('service').mod('view', 'list-item-lg')(
                 ]
               },
               {
-                block: 'page',
-                elem: 'col',
+                block: 'service',
+                elem: 'aside-content',
+                mix: {block: 'page', elem: 'col'},
                 content: [
                   {
                     block: 'heading',
                     mods: {size: 'l'},
-                    content: {
-                      block: 'link',
-                      url: ctx.service.url,
-                      title: ctx.service.title,
-                      content: ctx.service.title,
-                    },
+                    mix: {block: 'service', elem: 'title', elemMods: {view: 'sm'},},
+                    content: [
+                      {
+                        block: 'link',
+                        mods: {view: 'inherit'},
+                        url: ctx.service.url,
+                        title: ctx.service.title,
+                        content: ctx.service.title
+                      }
+                    ]
                   },
                   {
                     block: 'list',
-                    mods: {colored: true},
+                    mods: {view: 'check'},
                     items: ctx.service.features
                   },
                   {
-                    block: 'service',
-                    elem: 'price',
-                    content: ctx.service.price,
-                  },
-                  {
-                    block: 'button',
-                    mods: {
-                      type: 'link',
-                    },
-                    text: 'Купить',
-                    url: ctx.service.urlBuy,
+                    block: 'page',
+                    elem: 'row',
+                    elemMods: {view: 'service-list-item-lg'},
+                    content: [
+                      {
+                        block: 'service',
+                        elem: 'price',
+                        elemMods: {view: 'sm'},
+                        content: ctx.service.price,
+                      },
+                      {
+                        block: 'button',
+                        mods: {
+                          type: 'link',
+                        },
+                        text: {html:'Подробнее&nbsp;&rarr;'},
+                        url: ctx.service.urlBuy,
+                      },
+                    ]
                   },
                   {
                     block: 'service',

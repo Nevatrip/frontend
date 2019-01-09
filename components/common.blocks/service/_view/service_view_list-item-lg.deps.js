@@ -7,21 +7,32 @@
     {
       elems: [
         'image',
-        'title',
-        'price',
         'price-outside',
+        'aside-content',
+        {
+          elem: 'title',
+          mods: {view: 'sm'}
+        },
+        {
+          elem: 'price',
+          mods: {view: 'sm'}
+        }
       ]
     },
     {
       block: 'page',
       elems: [
-        'row',
-        'col'
+        {
+          elem: 'row',
+          mods: {view: 'service-list-item-lg'}
+        },
+        'col',
+        'row'
       ]
     },
     {
       block: 'list',
-      mods: { colored: true }
+      mods: { view: 'check' }
     },
     {
       block: 'heading',

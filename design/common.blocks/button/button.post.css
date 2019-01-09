@@ -16,9 +16,7 @@
   border-radius: 30px;
   color: #312d2d;
   background-color: #ffd84a;
-  border-color: #dcbe00;
-  opacity: 1;
-  transition: opacity .3s ease;
+  border: 1px solid #dcbe00;
 }
 
 .button,
@@ -27,10 +25,17 @@
 .button:focus,
 .button:visited,
 .button.active {
-  color: inherit;
+  color: #312d2d;
   text-decoration: none;
 }
 
+.button:focus,
+.button:active{
+  background-color: #c2a800;
+  border-color: #9e8900;
+}
+
 .button:hover {
-  opacity: .7;
+  background-color: #e8b705;
+  border-color: #e8b705;
 }

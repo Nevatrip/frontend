@@ -1,0 +1,27 @@
+.list_view_check {
+  list-style: none;
+  font-size: 21px;
+  margin-bottom: 13px;
+}
+
+.list_view_check .list__item {
+  box-sizing: border-box;
+  position: relative;
+  padding-left: 20px;
+  margin-bottom: 8px;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.list_view_check .list__item:after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 2px;
+  width: 9px;
+  height: 9px;
+  border-left: 3px solid #ffd84a;
+  border-bottom: 3px solid #ffd84a;
+  transform: rotate(-45deg);
+}

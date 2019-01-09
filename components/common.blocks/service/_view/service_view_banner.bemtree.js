@@ -18,7 +18,7 @@ block('service').mod('view', 'banner')(
               {
                 block: 'heading',
                 mods: {size: 'l'},
-                mix: {block: 'service', elem: 'title', elemMods: {view: 'banner'},},
+                mix: {block: 'service', elem: 'title', elemMods: {view: 'md'},},
                 content: [
                   {
                     block: 'link',
@@ -42,6 +42,7 @@ block('service').mod('view', 'banner')(
                   {
                     block: 'service',
                     elem: 'price',
+                    elemMods: {view: 'md'},
                     content: ctx.service.price,
                   },
                   {
