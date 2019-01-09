@@ -7,8 +7,6 @@ block( 'page' )(
         logo: 'logo_md.png',
         logoDescription: 'Водные экскурсии по рекам и каналам Петербурга, прогулки по Неве на теплоходе NevaTrip',
         slogan: 'Лучшие водные экскурсии по Петербургу',
-        email: 'info@nevatrip.ru',
-        phone: '+7 812 244 98 24',
         langs: ['ru', 'en', 'zh']
       },
       {

@@ -1,8 +1,8 @@
 .logo {
   box-sizing: border-box;
   position: relative;
-  display: flex;
-  align-items: center;
+  flex: 0 0 200px;
   height: 100%;
-  max-width: 215px;
+  width: 200px;
+  padding-top: 5px;
 }

@@ -5,6 +5,22 @@ block( 'root' ).replace()( ( node, ctx ) => {
   const config = node.config = ctx.config;
 
   const data = node.data = ctx.data;
+
+  const contacts = node._contacts = {
+    tel: '8 812 244 98 24',
+    email: 'info@nevatrip.ru',
+    social: [
+      {
+        name: 'Vk',
+        url: 'https://vk.com/neva.trip'
+      },
+      {
+        name: 'Instagram',
+        url: 'https://www.instagram.com/nevatrip.ru/'
+      }
+    ],
+  };
+
   const service = node._service = {
     img: 'https://nevatrip.ru/assets/img/e/night/nochnaya-ekskursiya-pod-razvod-mostov_bg.jpg',
     url: 'https://nevatrip.ru/night/nochnaya-ekskursiya-pod-razvod-mostov',

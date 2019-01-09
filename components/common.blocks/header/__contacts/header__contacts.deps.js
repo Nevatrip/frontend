@@ -1,5 +1,8 @@
 [{
   shouldDeps: [
-    'link',
+    {
+      block: 'contacts',
+      mods: {view: 'header'}
+    }
   ]
 }]

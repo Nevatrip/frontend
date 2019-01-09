@@ -1,0 +1,10 @@
+[{
+  shouldDeps: [
+    {
+      elems: [
+        'email',
+        'tel'
+      ]
+    },
+  ]
+}]

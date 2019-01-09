@@ -1,7 +1,5 @@
 [{
   shouldDeps: [
-    'link',
-    'logo',
     {
       elems: [
         { elem: 'logo'},

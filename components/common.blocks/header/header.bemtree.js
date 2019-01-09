@@ -2,8 +2,6 @@ block('header')(
   def()( ( node, ctx ) => {
       node._logo = ctx.logo;
       node._description = ctx.description;
-      node._phone = ctx.phone;
-      node._email = ctx.email;
       node._langs = ctx.langs;
       node._slogan = ctx.slogan;
       return applyNext()
