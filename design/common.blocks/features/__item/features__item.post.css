@@ -1,0 +1,10 @@
+.features__item {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 23%;
+  line-height: 1.3;
+}

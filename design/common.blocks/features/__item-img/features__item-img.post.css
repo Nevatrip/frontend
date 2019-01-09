@@ -1,0 +1,8 @@
+.features__item-img {
+  position: relative;
+  box-sizing: border-box;
+  display: inline-block;
+  width: 80px;
+  height: 100px;
+  margin-bottom: 4px;
+}

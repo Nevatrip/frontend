@@ -5,7 +5,7 @@ block('filter').elem('sorting')(
             mix: {block: 'page', elem: 'content'},
             content: [
                 {
-                    html: '<b>Сортировка:&nbsp;</b>'
+                    html: 'Сортировка:&nbsp;'
                 },
                 {
                     block: 'select',

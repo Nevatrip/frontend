@@ -1,0 +1,11 @@
+.features__content {
+  box-sizing: border-box;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  list-style: none;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+}
