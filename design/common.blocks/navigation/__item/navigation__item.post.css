@@ -1,0 +1,15 @@
+.navigation__item {
+  box-sizing: border-box;
+  position: relative;
+  display: table-cell;
+}
+
+.navigation__item + .navigation__item:before {
+  background: #e7e7e7;
+  content: '';
+  width: 1px;
+  height: 70%;
+  position: absolute;
+  top: 15%;
+  left: 0;
+}

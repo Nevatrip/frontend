@@ -14,7 +14,7 @@ block( 'page' )(
         navigation: [
           {
             title: 'Дневные&nbsp;экскурсии',
-            subtitle: 'по рекам и каналам',
+            subtitle: 'по рекам и каналам Петербурга',
             url: '/day'
           },
           {

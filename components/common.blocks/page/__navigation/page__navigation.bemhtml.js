@@ -1,2 +1,2 @@
 block( 'navigation' )
-  .tag()('navigation');
+  .tag()('nav');

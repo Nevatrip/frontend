@@ -1,0 +1,4 @@
+.navigation__content {
+  display: table;
+  table-layout: fixed;
+}
