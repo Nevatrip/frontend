@@ -10,6 +10,16 @@
         elem: 'article'
       },
       {
+        block: 'page',
+        elem: 'content',
+        mods: {view: 'narrow'}
+      },
+      {
+        block: 'page',
+        elem: 'hr',
+        mods: {view: 'short'}
+      },
+      {
         block: 'service',
         mods: {view: 'banner'},
       },
