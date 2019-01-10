@@ -89,7 +89,7 @@ block('page').mod('route', 'index')(
           {
             block: 'page',
             elem: 'hr',
-            elemMods: {view: 'short'}
+            elemMods: {size: 'md'}
           },
           {
             block: 'page',
@@ -102,7 +102,7 @@ block('page').mod('route', 'index')(
           {
             block: 'page',
             elem: 'hr',
-            elemMods: {view: 'short'}
+            elemMods: {size: 'md'}
           },
         ]
       },

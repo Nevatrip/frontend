@@ -1,5 +1,8 @@
 [{
   shouldDeps: [
     'link',
+    {
+      elem: 'image'
+    }
   ]
 }]

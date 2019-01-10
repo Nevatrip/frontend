@@ -1,0 +1,12 @@
+.footer__awards-item {
+  box-sizing: border-box;
+  position: relative;
+  padding-left: 74px;
+  font-size: 13px;
+  letter-spacing: 0.05px;
+  line-height: 1.55;
+  color: #d2d1d1;
+  width: 365px;
+  max-width: 50%;
+  margin-right: 29px;
+}

@@ -1,14 +1,14 @@
 block('footer').elem('header')(
-    tag()('header'),
-    content()((node, ctx) => ({
-        elem: 'content',
-        content: [
-            {
-                elem: 'awards'
-            },
-            {
-                elem: 'address'
-            }
-        ]
-    }))
+  content()((node, ctx) => ({
+    elem: 'content',
+    content: [
+      {
+        elem: 'awards'
+      },
+      {
+        block: 'contacts',
+        mods: { view: 'footer' }
+      }
+    ]
+  }))
 );

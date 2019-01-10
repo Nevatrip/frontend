@@ -1,0 +1,3 @@
+block('contacts')(
+  tag()('address'),
+);

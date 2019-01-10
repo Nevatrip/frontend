@@ -1,0 +1,12 @@
+.contacts_view_footer {
+  margin-top: 13px;
+}
+.contacts_view_footer .contacts__email{
+  color: #fff;
+  font-size: 14px;
+}
+.contacts_view_footer .contacts__tel{
+  color: #fff;
+  font-size: 16px;
+  margin-bottom: 4px;
+}

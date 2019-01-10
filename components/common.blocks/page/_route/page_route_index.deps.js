@@ -17,7 +17,7 @@
       {
         block: 'page',
         elem: 'hr',
-        mods: {view: 'short'}
+        mods: {size: 'md'}
       },
       {
         block: 'service',

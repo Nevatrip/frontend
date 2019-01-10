@@ -1,19 +1,20 @@
 .footer__main-nav {
   box-sizing: border-box;
   position: relative;
-  margin: 0;
+  margin: 0 0 18px;
   padding: 0;
   list-style: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   width: 100%;
+  font-size: 15.5px;
 }
 
 .footer__main-nav-item {
   box-sizing: border-box;
   width: 33.333333%;
-  margin-bottom: 10px;
+  margin-bottom: 9px;
 }
 
 .footer__main-nav-link {

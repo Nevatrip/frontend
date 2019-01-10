@@ -14,8 +14,8 @@ block('header')(
         mix: { block: 'page', elem: 'content' },
         content: [
           {
-            elem: 'logo',
-            elemMods: {'is-link': node.data.page !== "index"}
+            block: 'logo',
+            mods: {'is-link': node.data.page !== "index"},
           },
           {
             elem: 'slogan',
