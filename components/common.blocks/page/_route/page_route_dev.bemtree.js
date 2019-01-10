@@ -3,11 +3,15 @@ block('page').mod('route', 'dev')(
     return [
       {
         block: 'page',
+        elem: 'hr'
+      },
+      {
+        block: 'page',
         elem: 'content',
         content: [
           {
             block: 'list',
-            mods: {'colored': true},
+            mods: {view: 'colored'},
             items: [
               ['/', 'Главная'],
               ['/service', 'Услуга'],

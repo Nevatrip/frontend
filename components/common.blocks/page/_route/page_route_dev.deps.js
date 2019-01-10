@@ -3,11 +3,11 @@
     'link',
     {
       block: 'list',
-      mods: {'colored': true}
+      mods: {view: 'colored'}
     },
     {
       block: 'page',
-      elem: 'content'
+      elems: ['content', 'hr']
     }
   ]
 }]
