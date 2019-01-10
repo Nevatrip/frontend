@@ -6,7 +6,8 @@ block('service').elem('more')(
       content: {
         html: 'Подробнее об&nbsp;экскурсии&nbsp;&rarr;'
       },
-      url: ctx.content,
+      url: ctx.url,
+      title: ctx.title
     }
   })
 );

@@ -20,12 +20,9 @@
 .footer__main-nav-link {
   box-sizing: border-box;
   display: inline-block;
-  opacity: 1;
-  transition: opacity .3s ease;
 }
 
 .footer__main-nav-link,
-.footer__main-nav-link:hover,
 .footer__main-nav-link:focus,
 .footer__main-nav-link:active,
 .footer__main-nav-link:visited {
@@ -34,5 +31,6 @@
 }
 
 .footer__main-nav-link:hover {
-  opacity: .7;
+  color: inherit;
+  text-decoration: underline;
 }

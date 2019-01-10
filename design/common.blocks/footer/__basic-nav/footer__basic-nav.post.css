@@ -18,12 +18,9 @@
 .footer__basic-nav-link {
   box-sizing: border-box;
   display: inline-block;
-  opacity: 1;
-  transition: opacity .3s ease;
 }
 
 .footer__basic-nav-link,
-.footer__basic-nav-link:hover,
 .footer__basic-nav-link:focus,
 .footer__basic-nav-link:active,
 .footer__basic-nav-link:visited {
@@ -32,5 +29,6 @@
 }
 
 .footer__basic-nav-link:hover {
-  opacity: .7;
+  color: inherit;
+  text-decoration: underline;
 }

@@ -70,6 +70,7 @@ block('service').mod('view', 'list-item-lg')(
                         },
                         text: {html:'Подробнее&nbsp;&rarr;'},
                         url: ctx.service.urlBuy,
+                        title: ctx.service.title,
                       },
                     ]
                   },

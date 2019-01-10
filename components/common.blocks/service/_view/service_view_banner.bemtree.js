@@ -52,11 +52,13 @@ block('service').mod('view', 'banner')(
                     },
                     text: 'Купить',
                     url: ctx.service.urlBuy,
+                    title: 'Купить ' + ctx.service.title,
                   },
                   {
                     block: 'service',
                     elem: 'more',
                     url: ctx.service.url,
+                    title: ctx.service.title,
                   },
                 ]
               },
