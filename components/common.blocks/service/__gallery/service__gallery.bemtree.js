@@ -6,15 +6,17 @@ block('service').elem('gallery')(
         block: 'list',
         mods: {type: 'gallery'},
         items:
-          (ctx.content).map(item => {
+          (ctx.content.photos).map(item => {
             return {
               block: 'link',
+              title: ctx.content.title,
               mods: {
                 display: 'block'
               },
               content: {
                 block: 'image',
-                url: item
+                url: item,
+                alt: ctx.content.title,
               }
             }
           })

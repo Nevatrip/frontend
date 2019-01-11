@@ -122,7 +122,10 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'gallery',
-                    content: ctx.service.photos
+                    content: {
+                      photos: ctx.service.photos,
+                      title: ctx.service.title
+                    }
                   },
                   {
                     block: 'heading',
