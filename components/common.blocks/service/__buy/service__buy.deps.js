@@ -4,6 +4,7 @@
       block: 'service',
       elems: [
         'price',
+        'price-outside',
       ]
     },
     {

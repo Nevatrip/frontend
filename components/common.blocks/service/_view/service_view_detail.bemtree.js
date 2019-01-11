@@ -3,14 +3,14 @@ block('service').mod('view', 'detail')(
     return [
       {
         block: 'title',
-        mods: { view: 'xl' },
+        mods: {view: 'xl'},
         url: ctx.service.img,
         title: ctx.service.title,
       },
       {
         block: 'page',
         elem: 'content',
-        elemMods: { view: 'narrow' },
+        elemMods: {view: 'narrow'},
         content: [
           {
             block: 'page',
@@ -63,7 +63,7 @@ block('service').mod('view', 'detail')(
               {
                 block: 'page',
                 elem: 'col',
-                elemMods: { view: 'main' },
+                elemMods: {view: 'main'},
                 content: [
                   {
                     block: 'heading',
@@ -110,7 +110,7 @@ block('service').mod('view', 'detail')(
               {
                 block: 'page',
                 elem: 'col',
-                elemMods: { view: 'aside' },
+                elemMods: {view: 'aside'},
                 content: [
                   {
                     block: 'heading',
@@ -122,7 +122,7 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'gallery',
-                    content: 'изображения'
+                    content: ctx.service.photos
                   },
                   {
                     block: 'heading',
@@ -145,16 +145,7 @@ block('service').mod('view', 'detail')(
                   },
                   {
                     block: 'service',
-                    elem: 'price',
-                    content: ctx.service.price
-                  },
-                  {
-                    block: 'button',
-                    mods: {
-                      type: 'link',
-                    },
-                    text: 'Купить',
-                    url: ctx.service.urlBuy,
+                    elem: 'buy',
                   },
                   {
                     block: 'page',

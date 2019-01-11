@@ -1,0 +1,15 @@
+.list_type_gallery {
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.list_type_gallery .list__item {
+  box-sizing: border-box;
+  position: relative;
+  height: 131px;
+  width: 131px;
+  margin-bottom: 26px;
+}

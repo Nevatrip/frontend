@@ -22,6 +22,7 @@
     },
     {
       elems: [
+        'gallery',
         'image',
         'title',
         'description',

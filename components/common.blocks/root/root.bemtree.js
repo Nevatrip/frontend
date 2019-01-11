@@ -64,7 +64,11 @@ block( 'root' ).replace()( ( node, ctx ) => {
       '<p><br /><br /><a href="http://nevatrip.ru/">Все водные прогулки и экскурсии по рекам и каналам СПб.</a></p>\n' +
       '<p>&nbsp;</p></div>',
     features: ['Лучшие виды на салют', 'Музыка военных лет', 'Однопалубный теплоход с открытой и закрытой палубой', '1,5 часа прогулки'],//['6 остановок у главных достопримечательностей', 'Неограниченное число катаний', 'Билет на целый день', 'Идеальный способ изучить город'],
-    photos: ['https://nevatrip.ru/assets/components/gallery/connector.php?action=web/phpthumb&ctx=web&w=940&h=940&zc=0&far=&q=90&src=%2Fassets%2Fgallery%2F1%2F567.jpg', 'https://nevatrip.ru/assets/components/gallery/connector.php?action=web/phpthumb&ctx=web&w=940&h=940&zc=0&far=&q=90&src=%2Fassets%2Fgallery%2F1%2F566.jpg'],
+    photos: [
+      'gallery-sm.jpg',
+      'gallery-sm.jpg',
+      'gallery-sm.jpg',
+    ],
     fromPhoto: 'https://nevatrip.ru/connectors/system/phpthumb.php?w=400&h=400&aoe=0&far=0&src=./astra.jpg&source=2',
     remarkPositionTop: 'инфо сверху',
     remarkPositionBottom: 'инфо снизу',
@@ -85,7 +89,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
     priceChild: '600',
     priceTwo: '1000',
     priceBackForth:'1100',
-    priceOutside: 'не реализуется',//'1050',
+    priceOutside: '1500',//'1050',
     priceInfo: 'Описание стоимости',
     startDate: '04.05.2019',
     dateDisabled: '',
