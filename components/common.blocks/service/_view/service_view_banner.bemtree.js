@@ -31,7 +31,7 @@ block('service').mod('view', 'banner')(
               },
               {
                 block: 'list',
-                mods: {view: 'colored-check'},
+                mods: {type: 'check-in-disk ', size: 'xl'},
                 items: ctx.service.features
               },
               {
@@ -41,18 +41,7 @@ block('service').mod('view', 'banner')(
                 content: [
                   {
                     block: 'service',
-                    elem: 'price',
-                    elemMods: {view: 'md'},
-                    content: ctx.service.price,
-                  },
-                  {
-                    block: 'button',
-                    mods: {
-                      type: 'link',
-                    },
-                    text: 'Купить',
-                    url: ctx.service.urlBuy,
-                    title: 'Купить ' + ctx.service.title,
+                    elem: 'buy',
                   },
                   {
                     block: 'service',
@@ -62,10 +51,6 @@ block('service').mod('view', 'banner')(
                   },
                 ]
               },
-              {
-                elem: 'price-outside',
-                content: ctx.service.priceOutside,
-              }
             ]
           }
         ],

@@ -3,7 +3,7 @@
     'link',
     {
       block: 'list',
-      mods: {view: 'colored'}
+      mods: {type: 'disk'},
     },
     {
       block: 'page',

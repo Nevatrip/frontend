@@ -11,7 +11,7 @@ block('page').mod('route', 'dev')(
         content: [
           {
             block: 'list',
-            mods: {view: 'colored'},
+            mods: {type: 'disk'},
             items: [
               ['/', 'Главная'],
               ['/service', 'Услуга'],

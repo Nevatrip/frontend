@@ -1,7 +1,8 @@
 .service__more {
   box-sizing: border-box;
   display: inline-block;
-  margin-left: 22px;
+  margin-left: 18px;
+  margin-top: 7px;
   font-size: 22.6px;
   font-weight: 300;
   vertical-align: middle;

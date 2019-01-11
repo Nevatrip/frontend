@@ -6,7 +6,10 @@
     },
     {
       elems: [
-        'image',
+        {
+          elem:'image',
+          mods: {size: 'third'},
+        },
         'price-outside',
         'aside-content',
         {
@@ -32,7 +35,7 @@
     },
     {
       block: 'list',
-      mods: { view: 'check' }
+      mods: {type: 'check', size: 'sm'}
     },
     {
       block: 'heading',

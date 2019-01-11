@@ -1,0 +1,35 @@
+.list_type_check-in-disk {
+  list-style: none;
+}
+
+.list_type_check-in-disk .list__item {
+  box-sizing: border-box;
+  position: relative;
+  padding-left: 1.99em;
+  margin-bottom: 0.562em;
+}
+
+.list_type_check-in-disk .list__item:before {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0.052em;
+  height: 1.327em;
+  width: 1.327em;
+  border-radius: 50%;
+  background-color: #ffd84a;
+}
+
+.list_type_check-in-disk .list__item:after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: 0.358em;
+  left: 0.46em;
+  width: 0.46em;
+  height: 0.46em;
+  border-left: 0.154em solid #312d2d;
+  border-bottom: 0.154em solid #312d2d;
+  transform: rotate(-45deg);
+}

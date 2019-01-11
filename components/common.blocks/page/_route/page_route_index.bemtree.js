@@ -64,6 +64,7 @@ block('page').mod('route', 'index')(
         content: [
           {
             block: 'title',
+            mods: { view: 'sm' },
             url: 'why-nevatrip.jpg',
             title: 'Почему NevaTrip?'
           },

@@ -1,0 +1,22 @@
+.list_type_disk {
+  list-style: none;
+}
+
+.list_type_disk .list__item {
+  box-sizing: border-box;
+  position: relative;
+  padding-left: 1.778em;
+  margin-bottom: 0.556em;
+}
+
+.list_type_disk .list__item:before {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: 0.278em;
+  left: 0.5em;
+  height: 0.834em;
+  width: 0.834em;
+  border-radius: 50%;
+  background-color: #ffd84a;
+}

@@ -12,6 +12,7 @@ block('service').mod('view', 'list-item-lg')(
               {
                 block: 'service',
                 elem: 'image',
+                elemMods: {size: 'third'},
                 mix: {block: 'page', elem: 'col'},
                 content: [
                   {
@@ -49,7 +50,7 @@ block('service').mod('view', 'list-item-lg')(
                   },
                   {
                     block: 'list',
-                    mods: {view: 'check'},
+                    mods: {type: 'check', size: 'sm'},
                     items: ctx.service.features
                   },
                   {

@@ -5,10 +5,6 @@
       mods: {view: 'list-item-sm'}
     },
     {
-      block: 'button',
-      mods: {type: 'link'}
-    },
-    {
       block: 'page',
       elems: [
         'row',
@@ -17,6 +13,7 @@
         {elem: 'hr', mods: {view: 'short'}},
         {elem: 'col', mods: {view: 'aside'}},
         {elem: 'col', mods: {view: 'main'}},
+        {elem: 'content', mods: {view: 'narrow'}},
       ]
     },
     {
@@ -29,17 +26,13 @@
         'title',
         'description',
         'price-info',
-        'price',
-        'price-outside',
+        'buy',
         'gallery'
       ]
     },
     {
       block: 'title',
-      elems: [
-        'img',
-        'title'
-      ]
+      mods: { view: 'xl' }
     },
   ]
 }]

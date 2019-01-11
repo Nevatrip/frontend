@@ -27,7 +27,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
     img: 'https://nevatrip.ru/assets/img/e/night/nochnaya-ekskursiya-pod-razvod-mostov_bg.jpg',
     url: 'https://nevatrip.ru/night/nochnaya-ekskursiya-pod-razvod-mostov',
     urlBuy:  '#buy',
-    title: 'День ВМФ 2019 - экскурсия на теплоходе',//'АКЦИЯ - Обзорная экскурсия по рекам и каналам с остановками Hop on Hop Off 2019',
+    title: 'Метеор в Петергоф 2019',//'АКЦИЯ - Обзорная экскурсия по рекам и каналам с остановками Hop on Hop Off 2019',
     longTitle: 'Обзорная экскурсия по рекам и каналам с остановками в формате Hop on Hop Off - Купить билет онлайн',
     description: '&#9875; Обзорная экскурсия по рекам и каналам Петербурга &#9875; 6 остановок у главных достопримечательностей. Неограниченное число поездок в течение дня ',
     introText: '',

@@ -1,0 +1,9 @@
+.title_view_xl{
+  padding: 78px 0;
+  margin: 0 0 28px;
+  min-height: 383px;
+}
+.title_view_xl .title__name{
+  padding: 31px 21px 37px;
+  font-size: 40.55px;
+}

@@ -1,12 +1,9 @@
 .title{
   box-sizing: border-box;
   position: relative;
-  padding: 130px 0 135px;
-  margin: 0 0 50px;
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-color: #2d5f77;
   overflow: hidden;
-  /*min-height: 400px;*/
 }

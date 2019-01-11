@@ -3,7 +3,7 @@ block('service').elem('description')(
     return [
       {
         block: 'list',
-        mods: {'colored': true},
+        mods: {type: 'disk', size: 'md'},
         items: [
           ['Длительность: ', ctx.duration],
           ['Расписание: ', ctx.time],

@@ -2,7 +2,7 @@
   shouldDeps: [
     {
       block: 'list',
-      mods: {'colored': true}
+      mods: {type: 'disk', size: 'md'}
     }
   ],
 }];

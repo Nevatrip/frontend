@@ -3,7 +3,7 @@ block('page').mod('route', 'error')(
     return [
       {
         block: 'title',
-        url: '',
+        url: 'error.jpg',
         title: 'Ой, ошибка 404! Страница не нашлась:(',
       },
       {

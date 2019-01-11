@@ -13,7 +13,7 @@
     },
     {
       block: 'list',
-      mods: {view: 'colored-check'}
+      mods: {type: 'check-in-disk ', size: 'xl'}
     },
     {
       block: 'image',
@@ -28,15 +28,11 @@
         'blank',
         'features',
         'more',
-        'price-outside',
+        'buy',
         {
           elem: 'title',
           mods: {view: 'md'}
         },
-        {
-          elem: 'price',
-          mods: {view: 'md'}
-        }
       ]
     },
     {
