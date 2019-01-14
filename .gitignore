@@ -17,3 +17,5 @@ bundles/*/*
 dist/
 
 static/assets/
+
+server/request/_request.js
