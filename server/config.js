@@ -10,5 +10,7 @@ module.exports = {
   api: process.env.API,
   automake: !!process.env.AUTOMAKE,
   livereload: !!process.env.LIVERELOAD,
-  logLevel: process.env.LOG_LEVEL.toLowerCase()
+  logLevel: process.env.LOG_LEVEL.toLowerCase(),
+  apiID: process.env.API_ID,
+  apiDataset: process.env.API_DATASET,
 };
