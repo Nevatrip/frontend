@@ -11,28 +11,7 @@ block('page')(
       },
       {
         block: 'navigation',
-        navigation: [
-          {
-            title: 'Дневные&nbsp;экскурсии',
-            subtitle: 'по рекам и каналам Петербурга',
-            url: '/day'
-          },
-          {
-            title: 'Ночные прогулки',
-            subtitle: 'под развод мостов',
-            url: '/night'
-          },
-          {
-            title: 'Метеор',
-            subtitle: 'в Петергоф и пригороды',
-            url: '/meteors'
-          },
-          {
-            title: 'Аренда теплохода',
-            subtitle: 'на свадьбу, корпоратив',
-            url: '/arenda-teplokhoda'
-          }
-        ]
+        content: (node.data.api.navigation[0] || {})
       },
       apply('mods'),
       {

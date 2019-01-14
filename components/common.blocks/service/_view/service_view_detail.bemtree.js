@@ -1,5 +1,7 @@
 block('service').mod('view', 'detail')(
   content()((node, ctx) => {
+    const service = node.data.api.tour;
+
     return [
       {
         block: 'title',
