@@ -4,9 +4,9 @@ block('service').mod('view', 'banner')(
       {
         block: 'image',
         mods: {view: 'bg'},
-        url: ctx.service.img,
-        alt: ctx.service.title,
-        title: ctx.service.title,
+        url: ctx.content.img || '',
+        alt: ctx.content.title,
+        title: ctx.content.title,
       },
       {
         elem: 'content',
@@ -15,7 +15,7 @@ block('service').mod('view', 'banner')(
           {
             elem: 'blank',
             content: [
-              {
+              ctx.content.title && {
                 block: 'heading',
                 mods: {size: 'l'},
                 mix: {block: 'service', elem: 'title', elemMods: {view: 'md'},},
@@ -23,16 +23,16 @@ block('service').mod('view', 'banner')(
                   {
                     block: 'link',
                     mods: {view: 'inherit'},
-                    url: ctx.service.url,
-                    title: ctx.service.title,
-                    content: ctx.service.title
+                    url: ctx.content.key.current,
+                    title: ctx.content.title,
+                    content: ctx.content.title,
                   }
                 ]
               },
-              {
+              ctx.content.features && {
                 block: 'list',
                 mods: {type: 'check-in-disk ', size: 'xl'},
-                items: ctx.service.features
+                items: ctx.content.features.split('\n'),
               },
               {
                 block: 'page',
@@ -42,12 +42,18 @@ block('service').mod('view', 'banner')(
                   {
                     block: 'service',
                     elem: 'buy',
+                    content: {
+                      price: ctx.content.price,
+                      priceOutside: ctx.content.priceOld,
+                      title: ctx.content.title,
+                      urlBuy: ctx.content.key.current + '#buy',
+                    }
                   },
                   {
                     block: 'service',
                     elem: 'more',
-                    url: ctx.service.url,
-                    title: ctx.service.title,
+                    url: ctx.content.key.current,
+                    title: ctx.content.title,
                   },
                 ]
               },

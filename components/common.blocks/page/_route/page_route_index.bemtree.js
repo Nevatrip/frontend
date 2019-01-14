@@ -4,6 +4,7 @@ block('page').mod('route', 'index')(
       {
         block: 'service',
         mods: {view: 'banner'},
+        content: node.data.api.tour[0]
       },
       {
         block: 'features',
