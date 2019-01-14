@@ -4,7 +4,7 @@ block('page').mod('route', 'index')(
       {
         block: 'service',
         mods: {view: 'banner'},
-        service: node._service,
+        service: node._service,//node.data.api.tours[1]
       },
       {
         block: 'features',

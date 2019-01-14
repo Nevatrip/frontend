@@ -1,9 +1,26 @@
 [{
   shouldDeps: [
-    'title',
+    {
+      block: 'title',
+      mods: {view: 'xl'},
+    },
     {
       block: 'page',
-      elem: 'content'
+      elems: [
+        'content',
+        'row',
+      ],
+    },
+    {
+      block: 'page',
+      elem: 'col',
+      mods: {
+        view: ['main', 'aside']
+      }
+    },
+    {
+      block: 'service',
+      mods: {view: 'list-item-sm'}
     }
   ]
 }]
