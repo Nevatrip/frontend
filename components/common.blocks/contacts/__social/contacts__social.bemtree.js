@@ -1,6 +1,6 @@
 block('contacts').elem('social')(
   replace()((node, ctx) => {
-    return ctx.social.map(item => ({
+    return ctx.social && ctx.social.map(item => ({
       block: 'link',
       content: {html: item.img},
       title: item.name,
