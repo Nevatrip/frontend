@@ -1,6 +1,6 @@
 const client = require("./_request");
 
-const query = '*[_id == "988d8385-873f-4632-b995-2e8ea00e3077"]';
+const query = '*[_type=="tour" && _id=="d9b95826-7fd6-46b8-99d6-9bca0d2c1c47"]{..., "point": point->,..., "place": place->,..., "attractions": attractions[]->}';
 const params = {};
 
 module.exports = async () => {

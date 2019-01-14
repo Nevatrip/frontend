@@ -1,13 +1,11 @@
 block('service').mod('view', 'detail')(
   content()((node, ctx) => {
-    const service = node.data.api.tour;
-
     return [
       {
         block: 'title',
         mods: {view: 'xl'},
-        url: ctx.service.img,
-        title: ctx.service.title,
+        url: ctx.content.img || '',
+        title: ctx.content.title || '',
       },
       {
         block: 'page',
@@ -26,12 +24,12 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'description',
-                    duration: ctx.service.duration,
-                    time: ctx.service.time,
-                    fromPoint: ctx.service.fromPoint,
-                    vehicle: ctx.service.vehicle,
-                    excursion: ctx.service.excursion,
-                    onBoat: ctx.service.onBoat
+                    duration: ctx.content.duration || '',
+                    time: ctx.content.schedule || '',
+                    fromPoint: ctx.content.point.title || '',
+                    vehicle: ctx.content.place.title || '',
+                    excursion: ctx.content.language || '',
+                    onBoat: ctx.content.placeFeatures || '',
                   },
                 ],
               },
@@ -43,12 +41,18 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'price-info',
-                    discount: ctx.service.discount,
-                    time: ctx.service.time,
+                    discount: ctx.content.discount || '',
+                    time: ctx.content.time || '',
                   },
                   {
                     block: 'service',
-                    elem: 'buy'
+                    elem: 'buy',
+                    content: {
+                      price: ctx.content.price || '',
+                      priceOutside: ctx.content.priceOld || '',
+                      title: ctx.content.title || '',
+                      urlBuy: ctx.content.key.current ? (ctx.content.key.current + '#buy') : '',
+                    }
                   },
                 ],
               },
@@ -74,11 +78,11 @@ block('service').mod('view', 'detail')(
                       html: 'Об&nbsp;экскурсии'
                     }
                   },
-                  {
+                  ctx.content.description && {
                     block: 'page',
                     elem: 'text',
                     content: {
-                      html: ctx.service.content
+                      html: ctx.content.description || ''
                     }
                   },
                   {
@@ -91,7 +95,7 @@ block('service').mod('view', 'detail')(
                     mods: {size: 'xl'},
                     content: {
                       html: 'Карта маршрута'
-                    }
+                    },
                   },
                   {
                     block: 'service',
@@ -101,10 +105,10 @@ block('service').mod('view', 'detail')(
                       elem: 'iframe-container'
                     },
                     attrs: {
-                      id: '#map'
+                      id: 'map'
                     },
                     content: {
-                      html: ctx.service.map
+                      html: ctx.content.routeMap || '',
                     }
                   }
                 ]
@@ -125,8 +129,8 @@ block('service').mod('view', 'detail')(
                     block: 'service',
                     elem: 'gallery',
                     content: {
-                      photos: ctx.service.photos,
-                      title: ctx.service.title
+                      photos: ctx.content.photos || [],
+                      title: ctx.content.title || '',
                     }
                   },
                   {
@@ -138,19 +142,25 @@ block('service').mod('view', 'detail')(
                   },
                   {
                     block: 'list',
-                    items: ctx.service.showplaces,
+                    items: (ctx.content.attractions.map(item=>(item.title))) || [],
                     mods: {type: 'disk', size: 'md'}
                   },
                   {
                     block: 'heading',
                     mods: {size: 'xl'},
                     content: {
-                      html: ctx.service.textBeforeFinalPrice
+                      html: ctx.content.priceDescription || '',
                     },
                   },
                   {
                     block: 'service',
                     elem: 'buy',
+                    content: {
+                      price: ctx.content.price || '',
+                      priceOutside: ctx.content.priceOld || '',
+                      title: ctx.content.title || '',
+                      urlBuy: ctx.content.key.current ? (ctx.content.key.current + '#buy') : '',
+                    }
                   },
                   {
                     block: 'page',
@@ -166,9 +176,9 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     mods: {view: 'list-item-sm'},
-                    url: ctx.service.url,
-                    image: ctx.service.img,
-                    title: ctx.service.title,
+                    url: ctx.content.url,
+                    image: ctx.content.img,
+                    title: ctx.content.title,
                   }
                 ]
               },
