@@ -8,6 +8,7 @@
   padding: 1px 2px 6px;
   margin: 0 -1px;
   background-color: transparent;
+  min-height: 53px;
 }
 
 .navigation__link,

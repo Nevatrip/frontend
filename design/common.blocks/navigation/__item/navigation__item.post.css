@@ -2,6 +2,8 @@
   box-sizing: border-box;
   position: relative;
   display: table-cell;
+  height: 100%;
+  vertical-align: middle;
 }
 
 .navigation__item + .navigation__item:before {
