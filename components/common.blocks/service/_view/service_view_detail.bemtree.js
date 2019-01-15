@@ -98,18 +98,20 @@ block('service').mod('view', 'detail')(
                     },
                   },
                   {
-                    block: 'service',
-                    elem: 'map',
-                    mix: {
-                      block: 'page',
-                      elem: 'iframe-container'
+                    block: 'page',
+                    elem: 'iframe-container',
+                    content: {
+                      iframe: ctx.content.routeMap,
+                      height: '400',
+                      width: '100%',
                     },
                     attrs: {
                       id: 'map'
                     },
-                    content: {
-                      html: ctx.content.routeMap || '',
-                    }
+                    mix: {
+                      block: 'service',
+                      elem: 'map',
+                    },
                   }
                 ]
               },
