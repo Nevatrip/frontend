@@ -10,13 +10,13 @@ block('service').elem('description')(
           ['Отправление: ', ctx.fromPoint],
           ['Теплоход: ', ctx.vehicle],
           ['Язык экскурсии: ', ctx.excursion],
-          ['На борту: ', ctx.onBoat],
+          ['На борту: ', ctx.placeFeatures],
           ['[Посмотреть маршрут прогулки](#map)'],//markdown????
-        ].map( item => ( {
+        ].map(item => ({
           content: {
-            html: '<b>' + item[0] + '</b>' + (item[1]?item[1]:'')
+            html: '<b>' + item[0] + '</b>' + (item[1] ? item[1] : '')
           }
-        } ) ),
+        })),
       }
     ]
   })

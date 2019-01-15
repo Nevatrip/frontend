@@ -8,7 +8,7 @@ block('footer').elem('awards')(
                 elem: 'awards-img',
                 content: {
                   block: 'image',
-                  url: 'footer__awards-item.png',
+                  url: '/assets/img/footer__awards-item.png',
                   mods: { view: 'bg-transparent' },
                   alt: 'Премия'
                 }

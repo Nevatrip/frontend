@@ -4,7 +4,7 @@ block('page')(
       {
         block: 'header',
         //mods: {inverse: node.ctx.foo === 'bar'},
-        logo: 'logo_md.png',
+        logo: '/assets/img/logo_md.png',
         logoDescription: 'Водные экскурсии по рекам и каналам Петербурга, прогулки по Неве на теплоходе NevaTrip',
         slogan: 'Лучшие водные экскурсии по Петербургу',
         langs: ['ru', 'en', 'zh']

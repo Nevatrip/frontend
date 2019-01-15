@@ -29,7 +29,7 @@ block('service').mod('view', 'detail')(
                     fromPoint: ctx.content.point.title || '',
                     vehicle: ctx.content.place.title || '',
                     excursion: ctx.content.language || '',
-                    onBoat: ctx.content.placeFeatures || '',
+                    placeFeatures: ctx.content.placeFeatures.title || '',
                   },
                 ],
               },

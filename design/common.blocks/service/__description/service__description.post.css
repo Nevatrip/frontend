@@ -1,0 +1,11 @@
+.service__description-item{
+  position: relative;
+  display: inline-flex;
+  background-color: #ffd84a;
+  border-radius: 4px;
+  height: 24px;
+  width: 24px;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
