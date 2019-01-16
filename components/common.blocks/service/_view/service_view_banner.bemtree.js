@@ -1,11 +1,14 @@
 block('service').mod('view', 'banner')(
-  content()(( node, { titleImage, title, key, features, price, priceOld, } ) => {
-    // return [
-    //   {
-    //     tag: 'pre',
-    //     content: JSON.stringify( ctx )
-    //   }
-    // ];
+  content()(( node, { service } ) => {
+
+    const {
+      titleImage,
+      title,
+      key,
+      features,
+      price,
+      priceOld
+    } = service;
 
     return [
       {

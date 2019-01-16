@@ -4,7 +4,7 @@ block('service').mod('view', 'detail')(
       {
         block: 'title',
         mods: {view: 'xl'},
-        url: ctx.content.img || '',
+        url: ctx.content.titleImage || '',
         title: ctx.content.title || '',
       },
       {

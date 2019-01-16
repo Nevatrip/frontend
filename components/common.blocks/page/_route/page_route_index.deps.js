@@ -6,6 +6,10 @@
       'article',
       'title',
       {
+        block: 'list',
+        mods: {view: 'no-style'},
+      },
+      {
         block: 'title',
         mods: { view: 'sm' }
       },

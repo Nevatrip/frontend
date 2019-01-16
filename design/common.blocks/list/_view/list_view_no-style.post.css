@@ -1,0 +1,9 @@
+.list_view_no-style {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.list_view_no-style .list__item {
+  margin: 0;
+}

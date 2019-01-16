@@ -1,5 +1,17 @@
 block('service').mod('view', 'list-item-lg')(
-  content()((node, ctx) => {
+  content()((node, { service } ) => {
+
+    const {
+      key,
+      titleImage,
+      title,
+      features,
+      price,
+      priceOld,
+      category
+    } = service;
+
+
     return [
       {
         elem: 'content',
@@ -17,16 +29,15 @@ block('service').mod('view', 'list-item-lg')(
                 content: [
                   {
                     block: 'link',
-                    url: ctx.service.url,
+                    url: category.key.current + '/' +  key.current,
                     content: {
                       block: 'image',
                       mods: {view: 'bg'},
-                      url: ctx.service.img,
-                      alt: ctx.service.title,
-                      title: ctx.service.title,
+                      url: titleImage || '',
+                      alt: title || '',
+                      title: title || '',
                     }
                   },
-
                 ]
               },
               {
@@ -42,27 +53,27 @@ block('service').mod('view', 'list-item-lg')(
                       {
                         block: 'link',
                         mods: {view: 'inherit'},
-                        url: ctx.service.url,
-                        title: ctx.service.title,
-                        content: ctx.service.title
+                        url: category.key.current + '/' +  key.current,
+                        title: title || '',
+                        content: title || ''
                       }
                     ]
                   },
-                  {
+                  features && {
                     block: 'list',
                     mods: {type: 'check', size: 'sm'},
-                    items: ctx.service.features
+                    items: features.split('\n'),
                   },
                   {
                     block: 'page',
                     elem: 'row',
                     elemMods: {view: 'service-list-item-lg'},
                     content: [
-                      {
+                      price && {
                         block: 'service',
                         elem: 'price',
                         elemMods: {view: 'sm'},
-                        content: ctx.service.price,
+                        content: price,
                       },
                       {
                         block: 'button',
@@ -70,15 +81,15 @@ block('service').mod('view', 'list-item-lg')(
                           type: 'link',
                         },
                         text: {html:'Подробнее&nbsp;&rarr;'},
-                        url: ctx.service.urlBuy,
-                        title: ctx.service.title,
+                        url: category.key.current + '/' +  key.current + '#buy',
+                        title: title || '',
                       },
                     ]
                   },
-                  {
+                  priceOld && {
                     block: 'service',
                     elem: 'price-outside',
-                    content: ctx.service.priceOutside,
+                    content: priceOld,
                   }
                 ]
               },

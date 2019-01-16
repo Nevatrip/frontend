@@ -1,6 +1,9 @@
 const client = require("./_request");
 
-const query = '*[_type == "tour"]';
+const query = `*[_type == "tour"]{
+...,  
+"category": category->,
+"titleImage": titleImage.asset->{url}.url}`;
 const params = {};
 
 module.exports = async () => {

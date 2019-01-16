@@ -7,13 +7,15 @@ const getNav = require('../request/getNav');
 const action = async( context, params ) => {
 
   const services = await getServices();
-  const serviceBanner = (await getService('mitior'))[0];
+  const servicesFilter = (await getServices());
+  const serviceBanner = (await getService('mitiorr'))[0];
   const navigation = await getNav();
 
   return {
     page: 'index',
     params,
     api: {
+      servicesFilter,
       services,
       serviceBanner,
       navigation
