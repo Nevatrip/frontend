@@ -6,16 +6,16 @@ const getNav = require('../request/getNav');
 
 const action = async( context, params ) => {
 
-  const tours = await getServices();
-  const tour = await getService();
+  const services = await getServices();
+  const serviceBanner = (await getService('mitior'))[0];
   const navigation = await getNav();
 
   return {
     page: 'index',
     params,
     api: {
-      tours,
-      tour,
+      services,
+      serviceBanner,
       navigation
     }
   }

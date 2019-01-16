@@ -1,6 +1,12 @@
 const client = require("./_request");
 
-const query = ( alias ) => `*[key.current == "${ alias }" ]{..., "point": point->,..., "place": place->,..., "attractions": attractions[]->,..., "placeFeatures":placeFeatures[]->}`;
+const query = ( alias ) => `*[key.current == "${ alias }" ]{
+  ...,
+  "point": point->,
+  "place": place->,
+  "attractions": attractions[]->,
+  "placeFeatures": placeFeatures[]->,
+  "titleImage": titleImage.asset->{url}.url}`;
 const params = {};
 
 module.exports = async ( alias ) => {

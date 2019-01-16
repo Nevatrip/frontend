@@ -1,12 +1,19 @@
 block('service').mod('view', 'banner')(
-  content()((node, ctx) => {
+  content()(( node, { titleImage, title, key, features, price, priceOld, } ) => {
+    // return [
+    //   {
+    //     tag: 'pre',
+    //     content: JSON.stringify( ctx )
+    //   }
+    // ];
+
     return [
       {
         block: 'image',
         mods: {view: 'bg'},
-        url: ctx.content.img || '',
-        alt: ctx.content.title,
-        title: ctx.content.title,
+        url: titleImage || '',
+        alt: title,
+        title: title,
       },
       {
         elem: 'content',
@@ -15,7 +22,7 @@ block('service').mod('view', 'banner')(
           {
             elem: 'blank',
             content: [
-              ctx.content.title && {
+              title && {
                 block: 'heading',
                 mods: {size: 'l'},
                 mix: {block: 'service', elem: 'title', elemMods: {view: 'md'},},
@@ -23,16 +30,16 @@ block('service').mod('view', 'banner')(
                   {
                     block: 'link',
                     mods: {view: 'inherit'},
-                    url: ctx.content.key.current,
-                    title: ctx.content.title,
-                    content: ctx.content.title,
+                    url: key.current,
+                    title: title,
+                    content: title,
                   }
                 ]
               },
-              ctx.content.features && {
+              features && {
                 block: 'list',
                 mods: {type: 'check-in-disk ', size: 'xl'},
-                items: ctx.content.features.split('\n'),
+                items: features.split('\n'),
               },
               {
                 block: 'page',
@@ -43,17 +50,17 @@ block('service').mod('view', 'banner')(
                     block: 'service',
                     elem: 'buy',
                     content: {
-                      price: ctx.content.price,
-                      priceOutside: ctx.content.priceOld,
-                      title: ctx.content.title,
-                      urlBuy: ctx.content.key.current + '#buy',
+                      price: price,
+                      priceOutside: priceOld,
+                      title: title,
+                      urlBuy: key.current + '#buy',
                     }
                   },
                   {
                     block: 'service',
                     elem: 'more',
-                    url: ctx.content.key.current,
-                    title: ctx.content.title,
+                    url: key.current,
+                    title: title,
                   },
                 ]
               },
