@@ -12,8 +12,8 @@ block('service').elem('description')(
           ctx.excursion && ['Язык экскурсии: ', ctx.excursion],
           ctx.placeFeatures && ['На борту: ', ctx.placeFeatures],
           ['<a href="#map">Посмотреть маршрут прогулки</a>'],
-        ].map(item => ({
-          content: item && {
+        ].map(item => (item && {
+          content: {
             html: '<b>' + item[0] + '</b>' + (item[1] ? item[1] : '')
           }
         })),
