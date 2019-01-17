@@ -26,10 +26,10 @@ block('service').mod('view', 'detail')(
                     elem: 'description',
                     duration: ctx.content.duration || '',
                     time: ctx.content.schedule || '',
-                    fromPoint: ctx.content.point.title || '',
-                    vehicle: ctx.content.place.title || '',
+                    fromPoint: ctx.content.point ? (ctx.content.point.title || '') : '',
+                    vehicle: ctx.content.place ? (ctx.content.place.title || '') : '',
                     excursion: ctx.content.language || '',
-                    placeFeatures: ctx.content.placeFeatures.title || '',
+                    placeFeatures: ctx.content.placeFeatures ? (ctx.content.placeFeatures.title || '') : '',
                   },
                 ],
               },
@@ -142,7 +142,7 @@ block('service').mod('view', 'detail')(
                       html: 'Вы&nbsp;увидите'
                     },
                   },
-                  {
+                  ctx.content.attractions && {
                     block: 'list',
                     items: (ctx.content.attractions.map(item=>(item.title))) || [],
                     mods: {type: 'disk', size: 'md'}

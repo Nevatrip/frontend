@@ -11,9 +11,9 @@ block('service').elem('description')(
           ctx.vehicle && ['Теплоход: ', ctx.vehicle],
           ctx.excursion && ['Язык экскурсии: ', ctx.excursion],
           ctx.placeFeatures && ['На борту: ', ctx.placeFeatures],
-          ['[Посмотреть маршрут прогулки](#map)'],//markdown????
+          ['<a href="#map">Посмотреть маршрут прогулки</a>'],
         ].map(item => ({
-          content: {
+          content: item && {
             html: '<b>' + item[0] + '</b>' + (item[1] ? item[1] : '')
           }
         })),
