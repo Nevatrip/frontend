@@ -17,6 +17,7 @@ bundles/*/*
 dist/
 
 static/assets/
+!static/assets/img
 
 .floo
 .flooignore
