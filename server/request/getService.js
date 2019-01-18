@@ -4,6 +4,7 @@ const query = ( alias ) => `*[key.current == "${ alias }" ]{
 ...,
 "point": point->,
 "place": place->,
+"category": category->,
 "attractions": attractions[]->,
 "placeFeatures": placeFeatures[]->,
 "titleImage": titleImage.asset->{url}.url}`;

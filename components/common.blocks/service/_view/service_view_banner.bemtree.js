@@ -7,7 +7,8 @@ block('service').mod('view', 'banner')(
       key,
       features,
       price,
-      priceOld
+      priceOld,
+      category
     } = service;
 
     return [
@@ -33,7 +34,7 @@ block('service').mod('view', 'banner')(
                   {
                     block: 'link',
                     mods: {view: 'inherit'},
-                    url: key.current,
+                    url: category.key.current + '/' +  key.current,
                     title: title,
                     content: title,
                   }
@@ -56,13 +57,13 @@ block('service').mod('view', 'banner')(
                       price: price,
                       priceOutside: priceOld,
                       title: title,
-                      urlBuy: key.current + '#buy',
+                      urlBuy: category.key.current + '/' +  key.current + '#buy',
                     }
                   },
                   {
                     block: 'service',
                     elem: 'more',
-                    url: key.current,
+                    url: category.key.current + '/' +  key.current,
                     title: title,
                   },
                 ]
