@@ -9,7 +9,7 @@ const action = async( context, params ) => {
   const alias = params.service;
 
   const tours = await getServices();
-  const tour = await getService( alias );
+  const service = await getService( alias );
   const navigation = await getNav();
 
   return {
@@ -17,7 +17,7 @@ const action = async( context, params ) => {
     params,
     api: {
       tours,
-      tour,
+      service,
       navigation
     }
   }

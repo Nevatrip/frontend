@@ -4,7 +4,7 @@ block('page').mod('route', 'service')(
       {
         block: 'service',
         mods: {view: 'detail'},
-        content: node.data.api.tour[0]
+        content: node.data.api.service[0]
       },
     ];
   }),
