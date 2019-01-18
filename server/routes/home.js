@@ -8,7 +8,7 @@ const action = async( context, params ) => {
 
   const services = await getServices();
   const servicesFilter = (await getServices());
-  const serviceBanner = (await getService('mitiorr'))[0];
+  const serviceBanner = (await getService('testovaya-ekskursiya-1'))[0];
   const navigation = await getNav();
 
   return {
