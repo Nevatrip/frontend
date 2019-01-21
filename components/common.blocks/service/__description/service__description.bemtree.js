@@ -20,7 +20,7 @@ block('service').elem('description')(
             alt: placeFeature.name,
             title: placeFeature.name,
           }) )],
-          [{ block: 'link', url: '#map', content: 'Посмотреть маршрут прогулки' }],
+          ctx.routeMap && [{ block: 'link', url: '#map', content: 'Посмотреть маршрут прогулки' }],
         ].map(item => (item && {
           elem: 'item',
           content: [
