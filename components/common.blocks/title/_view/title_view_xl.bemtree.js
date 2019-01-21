@@ -4,7 +4,7 @@ block('title').mod('view','xl')(
       {
         elem: 'img',
         url: ctx.url,
-        alt: ctx.title,
+        title: ctx.title,
       },
       {
         block: 'page',
