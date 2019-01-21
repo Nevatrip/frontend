@@ -4,7 +4,7 @@ block('title').mod('view','sm')(
       {
         elem: 'img',
         url: ctx.url,
-        title: ctx.title,
+        alt: ctx.title,
       },
       {
         block: 'page',

@@ -10,7 +10,7 @@ block('navigation')(
             {
               block: 'link',
               mix: {block: 'navigation', elem: 'link'},
-              url: '/' + item.alias,
+              url: (item.alias || '/'),
               content: [
                 item.title &&{
                   block: 'navigation',

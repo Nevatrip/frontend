@@ -4,7 +4,6 @@ const UniversalRouter = require( 'universal-router' );
 const generateUrls = require( 'universal-router/generateUrls' );
 
 const getServiceCategory = require('./request/getServiceCategory' );
-const servicesByCategory = require( './routes/servicesByCategory' );
 const home = require( './routes/home' );
 const service = require( './routes/service' );
 const dev = require( './routes/dev' );
@@ -25,29 +24,28 @@ const router = new UniversalRouter(
         children: [
           {
             path: '',
-            name: 'servicesByCategory',
-            load: async() => await servicesByCategory
-            // action: async ( ctx, params ) => {
-            //   console.log( '---------------------------------', params.category );
-            //
-            //   const tourCategory = ( await getServiceCategory() ).map( category => category.key.current );
-            //
-            //   if ( tourCategory.indexOf( params.category ) === -1 ) {
-            //     console.log( 'is not tour' );
-            //     // const tourTag;
-            //
-            //     if ( true ) {
-            //
-            //     } else {
-            //       // const rentCategory
-            //     }
-            //
-            //   } else {
-            //     console.log( 'is tour' );
-            //   }
-            //
-            //   return await home
-            // },
+            name: 'category',
+            action: async ( ctx, params ) => {
+              console.log( '---------------------------------', params.category );
+
+              const tourCategory = ( await getServiceCategory() ).map( category => category.key.current );
+
+              if ( tourCategory.indexOf( params.category ) === -1 ) {
+                console.log( 'is not tour' );
+                // const tourTag;
+
+                if ( true ) {
+
+                } else {
+                  // const rentCategory
+                }
+
+              } else {
+                console.log( 'is tour' );
+              }
+
+              return await home
+            },
           },
           {
             path: '/:service',

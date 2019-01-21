@@ -55,6 +55,7 @@
     "enb-bemxjst": "^8.10.4",
     "enb-bemxjst-i18n": "github:tadatuta/enb-bemxjst-i18n#bemtree-nextgen",
     "enb-borschik": "^2.8.0",
+    "enb-js": "^1.1.1",
     "enb-postcss": "^2.0.0",
     "express": "^4.16.4",
     "express-pino-logger": "^4.0.0",

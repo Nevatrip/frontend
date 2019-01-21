@@ -11,6 +11,7 @@ block('service').mod('view', 'list-item-lg')(
       category
     } = service;
 
+
     return [
       {
         elem: 'content',

@@ -15,12 +15,11 @@ block('service').elem('description')(
           ctx.excursion && ['Язык экскурсии: ', ctx.excursion],
           ctx.placeFeatures && ['На борту: ', ctx.placeFeatures.map( placeFeature => ({
             block: 'image',
-            mods: {view: 'colored-icon'},
             url: placeFeature.url,
             alt: placeFeature.name,
             title: placeFeature.name,
           }) )],
-          ctx.routeMap && [{ block: 'link', url: '#map', content: 'Посмотреть маршрут прогулки' }],
+          [{ block: 'link', url: '#map', content: 'Посмотреть маршрут прогулки' }],
         ].map(item => (item && {
           elem: 'item',
           content: [

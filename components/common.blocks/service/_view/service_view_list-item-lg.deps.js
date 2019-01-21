@@ -41,9 +41,5 @@
       block: 'heading',
       mods: { size: 'l' }
     },
-    {
-      block: 'image',
-      mods: {view: 'bg'}
-    }
   ]
 }]
