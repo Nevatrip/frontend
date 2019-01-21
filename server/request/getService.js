@@ -6,7 +6,7 @@ const query = ( alias ) => `*[key.current == "${ alias }" ]{
 "place": place->,
 "category": category->,
 "attractions": attractions[]->,
-"placeFeatures": placeFeatures[]->,
+"placeFeatures": placeFeatures[]->{title, "icon": icon.asset->},
 "titleImage": titleImage.asset->{url}.url}`;
 const params = {};
 

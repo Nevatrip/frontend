@@ -1,0 +1,10 @@
+.image_view_colored-icon{
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0 4px;
+  background-color: #ffd84a;
+  padding: 5px;
+  border-radius: 5px;
+}

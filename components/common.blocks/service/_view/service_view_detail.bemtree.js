@@ -29,7 +29,10 @@ block('service').mod('view', 'detail')(
                     fromPoint: ctx.content.point ? (ctx.content.point.title || '') : '',
                     vehicle: ctx.content.place ? (ctx.content.place.title || '') : '',
                     excursion: ctx.content.language || '',
-                    placeFeatures: ctx.content.placeFeatures ? (ctx.content.placeFeatures.title || '') : '',
+                    placeFeatures: ctx.content.placeFeatures.map( item => ( item && {
+                      url: item.icon.url,
+                      name: item.title,
+                    }))
                   },
                 ],
               },

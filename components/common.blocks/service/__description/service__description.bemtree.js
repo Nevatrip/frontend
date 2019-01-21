@@ -3,22 +3,36 @@ block('service').elem('description')(
     return [
       {
         block: 'list',
-        mods: {type: 'disk', size: 'md'},
-        items: [
+        mods: {
+          type: 'disk',
+          size: 'md'
+        },
+        content: [
           ctx.duration && ['Длительность: ', ctx.duration],
           ctx.time && ['Расписание: ', ctx.time],
           ctx.fromPoint && ['Отправление: ', ctx.fromPoint],
           ctx.vehicle && ['Теплоход: ', ctx.vehicle],
           ctx.excursion && ['Язык экскурсии: ', ctx.excursion],
-          ctx.placeFeatures && ['На борту: ', ctx.placeFeatures],
-          ['<a href="#map">Посмотреть маршрут прогулки</a>'],
+          ctx.placeFeatures && ['На борту: ', ctx.placeFeatures.map( placeFeature => ({
+            block: 'image',
+            mods: {view: 'colored-icon'},
+            url: placeFeature.url,
+            alt: placeFeature.name,
+            title: placeFeature.name,
+          }) )],
+          [{ block: 'link', url: '#map', content: 'Посмотреть маршрут прогулки' }],
         ].map(item => (item && {
-          content: {
-            html: '<b>' + item[0] + '</b>' + (item[1] ? item[1] : '')
-          }
+          elem: 'item',
+          content: [
+            {
+              block: 'text',
+              mods: { weight: 'bold' },
+              content: item[0]
+            },
+            item[1] || ''
+          ]
         })),
       }
     ]
   })
 );
-
