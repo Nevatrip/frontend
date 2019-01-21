@@ -1,11 +1,14 @@
 'use strict';
 
+const getServiceCategoryByCategoryAlias = require('../request/getServiceCategoryByCategoryAlias');
 const getServicesByCategory = require('../request/getServicesByCategory');
 const getNav = require('../request/getNav');
 
 const action = async( context, params ) => {
 
   const serviceCategory = params.category;
+
+  const serviceCategoryFull = await getServiceCategoryByCategoryAlias( serviceCategory );
 
   const services = await getServicesByCategory( serviceCategory );
   const navigation = await getNav();
@@ -15,7 +18,9 @@ const action = async( context, params ) => {
     params,
     api: {
       services,
-      navigation
+      navigation,
+      serviceCategory,
+      serviceCategoryFull
     }
   }
 };

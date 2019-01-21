@@ -1,7 +1,9 @@
 const client = require("./_request");
 
-const query = ( categoryName ) => `*[_type == "tour" && category._ref in *[key.current=="${ categoryName }"]._id ]{..., "category": category->}`;
-
+const query = ( categoryName ) => `*[_type == "tour" && category._ref in *[key.current=="${ categoryName }"]._id ]{
+..., 
+"category": category->,
+"titleImage": titleImage.asset->{url}.url}`;
 const params = {};
 
 module.exports = async ( categoryName ) => {
