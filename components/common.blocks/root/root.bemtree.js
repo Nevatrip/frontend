@@ -128,7 +128,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
     prefix: 'og: http://ogp.me/ns#',
 
     styles: { elem: 'css', url: `/assets/css/${ data.page }.${ level }.min.css` },
-    scripts: { elem: 'js', url: `/assets/js/${ data.page }.${ level }.ru.min.js` },
+    scripts: { elem: 'js', url: `/assets/js/${ data.page }.${ level }.min.js` },
     head: [
       { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
 

@@ -1,11 +1,36 @@
 block('service').mod('view', 'detail')(
-  content()((node, ctx) => {
+  content()((node, { service }) => {
+
+    const {
+      titleImage,
+      title,
+      key,
+      price,
+      priceOld,
+      duration,
+      schedule,
+      point,
+      place,
+      language,
+      placeFeatures,
+      discount,
+      time,
+      description,
+      routeMap,
+      photos,
+      attractions,
+      priceDescription
+
+
+    } = service;
+
+
     return [
       {
         block: 'title',
         mods: {view: 'xl'},
-        url: ctx.content.titleImage || '',
-        title: ctx.content.title || '',
+        url: titleImage || '',
+        title: title || '',
       },
       {
         block: 'page',
@@ -24,15 +49,13 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'description',
-                    duration: ctx.content.duration || '',
-                    time: ctx.content.schedule || '',
-                    fromPoint: ctx.content.point ? (ctx.content.point.title || '') : '',
-                    vehicle: ctx.content.place ? (ctx.content.place.title || '') : '',
-                    excursion: ctx.content.language || '',
-                    placeFeatures: ctx.content.placeFeatures.map( item => ( item && {
-                      url: item.icon.url,
-                      name: item.title,
-                    }))
+                    duration: duration || '',
+                    time: schedule || '',
+                    fromPoint: point ? (point.title || '') : '',
+                    vehicle: place ? (place.title || '') : '',
+                    excursion: language || '',
+                    routeMap: routeMap || '',
+                    placeFeatures:  placeFeatures ? placeFeatures.map( item => ( item && {url: item.icon.url, name: item.title})) : '',
                   },
                 ],
               },
@@ -44,17 +67,17 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'price-info',
-                    discount: ctx.content.discount || '',
-                    time: ctx.content.time || '',
+                    discount: discount || '',
+                    time: time || '',
                   },
                   {
                     block: 'service',
                     elem: 'buy',
                     content: {
-                      price: ctx.content.price || '',
-                      priceOutside: ctx.content.priceOld || '',
-                      title: ctx.content.title || '',
-                      urlBuy: ctx.content.key.current ? (ctx.content.key.current + '#buy') : '',
+                      price: price || '',
+                      priceOutside: priceOld || '',
+                      title: title || '',
+                      urlBuy: key.current ? (key.current + '#buy') : '',
                     }
                   },
                 ],
@@ -81,11 +104,11 @@ block('service').mod('view', 'detail')(
                       html: 'Об&nbsp;экскурсии'
                     }
                   },
-                  ctx.content.description && {
+                  description && {
                     block: 'page',
                     elem: 'text',
                     content: {
-                      html: ctx.content.description || ''
+                      html: description || ''
                     }
                   },
                   {
@@ -93,29 +116,31 @@ block('service').mod('view', 'detail')(
                     elem: 'hr',
                     elemMods: {view: 'short'}
                   },
-                  {
-                    block: 'heading',
-                    mods: {size: 'xl'},
-                    content: {
-                      html: 'Карта маршрута'
+                  routeMap && [
+                    {
+                      block: 'heading',
+                      mods: {size: 'xl'},
+                      content: {
+                        html: 'Карта маршрута'
+                      },
                     },
-                  },
-                  {
-                    block: 'page',
-                    elem: 'iframe-container',
-                    content: {
-                      iframe: ctx.content.routeMap,
-                      height: '400',
-                      width: '100%',
-                    },
-                    attrs: {
-                      id: 'map'
-                    },
-                    mix: {
-                      block: 'service',
-                      elem: 'map',
-                    },
-                  }
+                    {
+                      block: 'page',
+                      elem: 'iframe-container',
+                      content: {
+                        iframe: routeMap,
+                        height: '400',
+                        width: '100%',
+                      },
+                      attrs: {
+                        id: 'map'
+                      },
+                      mix: {
+                        block: 'service',
+                        elem: 'map',
+                      },
+                    }
+                  ],
                 ]
               },
               {
@@ -134,8 +159,8 @@ block('service').mod('view', 'detail')(
                     block: 'service',
                     elem: 'gallery',
                     content: {
-                      photos: ctx.content.photos || [],
-                      title: ctx.content.title || '',
+                      photos: photos || [],
+                      title: title || '',
                     }
                   },
                   {
@@ -145,26 +170,26 @@ block('service').mod('view', 'detail')(
                       html: 'Вы&nbsp;увидите'
                     },
                   },
-                  ctx.content.attractions && {
+                  attractions && {
                     block: 'list',
-                    items: (ctx.content.attractions.map(item=>(item.title))) || [],
+                    items: (attractions.map(item=>(item.title))) || [],
                     mods: {type: 'disk', size: 'md'}
                   },
                   {
                     block: 'heading',
                     mods: {size: 'xl'},
                     content: {
-                      html: ctx.content.priceDescription || '',
+                      html: priceDescription || '',
                     },
                   },
                   {
                     block: 'service',
                     elem: 'buy',
                     content: {
-                      price: ctx.content.price || '',
-                      priceOutside: ctx.content.priceOld || '',
-                      title: ctx.content.title || '',
-                      urlBuy: ctx.content.key.current ? (ctx.content.key.current + '#buy') : '',
+                      price: price || '',
+                      priceOutside: priceOld || '',
+                      title: title || '',
+                      urlBuy: key.current ? (key.current + '#buy') : '',
                     }
                   },
                   {
@@ -181,9 +206,9 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     mods: {view: 'list-item-sm'},
-                    url: ctx.content.url,
-                    image: ctx.content.img,
-                    title: ctx.content.title,
+                    // url: ctx.content.url,
+                    // image: ctx.content.img,
+                    // title: ctx.content.title,
                   }
                 ]
               },
