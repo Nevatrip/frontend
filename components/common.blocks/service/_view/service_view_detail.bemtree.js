@@ -19,8 +19,8 @@ block('service').mod('view', 'detail')(
       routeMap,
       photos,
       attractions,
-      priceDescription
-
+      priceDescription,
+      tourLanguage,
 
     } = service;
 
@@ -53,7 +53,7 @@ block('service').mod('view', 'detail')(
                     time: schedule || '',
                     fromPoint: point ? (point.title || '') : '',
                     vehicle: place ? (place.title || '') : '',
-                    excursion: language || '',
+                    excursion: tourLanguage ? tourLanguage.map( item => ( item && {url: item.icon.url, name: item.title})) : '',
                     routeMap: routeMap || '',
                     placeFeatures:  placeFeatures ? placeFeatures.map( item => ( item && {url: item.icon.url, name: item.title})) : '',
                   },

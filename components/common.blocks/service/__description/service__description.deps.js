@@ -6,7 +6,7 @@
     },
     {
       block: 'image',
-      mods: {view: 'colored-icon'}
+      mods: {view: ['colored-icon', 'icon']}
     },
     {
       block: 'text',

@@ -12,7 +12,13 @@ block('service').elem('description')(
           ctx.time && ['Расписание: ', ctx.time],
           ctx.fromPoint && ['Отправление: ', ctx.fromPoint],
           ctx.vehicle && ['Теплоход: ', ctx.vehicle],
-          ctx.excursion && ['Язык экскурсии: ', ctx.excursion],
+          ctx.excursion && ['Язык экскурсии: ', ctx.excursion.map( lang => ({
+            block: 'image',
+            mods: {view: 'icon'},
+            url: lang.url,
+            alt: lang.name,
+            title: lang.name,
+          }) )],
           ctx.placeFeatures && ['На борту: ', ctx.placeFeatures.map( placeFeature => ({
             block: 'image',
             mods: {view: 'colored-icon'},

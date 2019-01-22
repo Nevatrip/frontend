@@ -6,6 +6,7 @@ const query = ( alias ) => `*[key.current == "${ alias }" ]{
 "place": place->,
 "category": category->,
 "attractions": attractions[]->,
+"tourLanguage": tourLanguage[]->{title, "icon": icon.asset->},
 "placeFeatures": placeFeatures[]->{title, "icon": icon.asset->},
 "titleImage": titleImage.asset->{url}.url}`;
 const params = {};
@@ -15,4 +16,4 @@ module.exports = async ( alias ) => {
     // console.log(query( alias ));
     return tour;
   });
-}
+};
