@@ -1,6 +1,6 @@
 module.exports = {
   fileProvider: require('enb/techs/file-provider'),
-  // fileMerge: require('enb/techs/file-merge'),
+  fileMerge: require('enb/techs/file-merge'),
   fileCopy: require('enb/techs/file-copy'),
   // fileWrite: require('enb/techs/write-file'),
   borschik: require('enb-borschik/techs/borschik'),
@@ -25,7 +25,7 @@ module.exports = {
     }),
     require('postcss-reporter')(),
   ],
-  // browserJs: require('enb-js/techs/browser-js'),
+  browserJs: require('enb-js/techs/browser-js'),
   // babel: require('enb-babelify/techs/babel-browser-js'),
   // babelPolyfill: require('../tech/enb-babel-polyfill'),
   // prependYm: require('enb-modules/techs/prepend-modules'),
