@@ -35,5 +35,16 @@
       block: 'title',
       mods: { view: 'xl' }
     },
+    {
+      block: 'popup',
+      mods: {
+        theme: 'islands',
+        target: 'anchor'
+      },
+    },
+    {
+      block: 'link',
+      mods: {pseudo: true},
+    }
   ]
 }]

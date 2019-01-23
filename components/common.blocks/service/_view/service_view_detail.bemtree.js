@@ -11,9 +11,8 @@ block('service').mod('view', 'detail')(
       schedule,
       point,
       place,
-      language,
       placeFeatures,
-      discount,
+      sale,
       time,
       description,
       routeMap,
@@ -67,7 +66,7 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'price-info',
-                    discount: discount || '',
+                    discount: sale || '',
                     time: time || '',
                   },
                   {
