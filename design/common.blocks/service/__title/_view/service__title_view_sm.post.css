@@ -4,3 +4,9 @@
   font-size: 29.2px;
   line-height: 1.2;
 }
+@media (max-width: 991px) {
+  .service__title_view_sm,
+  .heading.service__title_view_sm {
+    font-size: 22px;
+  }
+}

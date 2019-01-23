@@ -4,3 +4,9 @@
   position: relative;
   padding: 17px 0;
 }
+
+@media (max-width: 991px) {
+  .footer__footer .footer__content{
+    flex-direction: column;
+  }
+}

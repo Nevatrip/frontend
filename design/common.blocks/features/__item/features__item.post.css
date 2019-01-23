@@ -8,3 +8,8 @@
   width: 23%;
   line-height: 1.3;
 }
+@media (max-width: 991px) {
+  .features__item {
+    width: 45%;
+  }
+}

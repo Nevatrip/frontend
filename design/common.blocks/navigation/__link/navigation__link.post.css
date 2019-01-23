@@ -25,3 +25,8 @@
   background-color: #2c6590;
   z-index: 2;
 }
+@media (max-width: 991px){
+  .navigation__link {
+    min-height: 36px;
+  }
+}

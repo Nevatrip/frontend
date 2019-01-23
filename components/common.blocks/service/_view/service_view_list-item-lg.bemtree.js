@@ -94,7 +94,18 @@ block('service').mod('view', 'list-item-lg')(
                 ]
               },
             ],
-          }
+          },
+          {
+            block: 'page',
+            elem: 'row',
+            content: [
+              {
+                block: 'page',
+                elem: 'hr',
+                mods: {size: 'md'}
+              },
+            ]
+          },
         ],
       }
     ]

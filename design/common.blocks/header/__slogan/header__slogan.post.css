@@ -1,4 +1,4 @@
-.header__slogan{
+.header__slogan {
   box-sizing: border-box;
   margin-top: 0;
   margin-bottom: 0;
@@ -10,6 +10,14 @@
   color: #777;
 }
 
-.heading.header__slogan{
+.heading.header__slogan {
   margin-bottom: 0;
+}
+
+@media (max-width: 991px) {
+  .heading.header__slogan{
+    font-size: 0;
+    color: transparent;
+    user-select: none;
+  }
 }

@@ -2,3 +2,8 @@
   box-sizing: border-box;
   font-weight: 300;
 }
+@media (max-width: 991px){
+  .navigation__subtitle{
+    display: none;
+  }
+}

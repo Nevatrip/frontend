@@ -10,3 +10,8 @@
   max-width: 50%;
   margin-right: 29px;
 }
+@media (max-width: 991px) {
+  .footer__awards-item{
+    width: 250px;
+  }
+}

@@ -3,3 +3,10 @@
   height: 277px;
   margin-top: 6px;
 }
+@media (max-width: 991px){
+  .service__image_size_third {
+    width: 39%;
+    height: 200px;
+    margin-top: 2px;
+  }
+}

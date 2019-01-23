@@ -9,3 +9,8 @@
   align-items: start;
   justify-content: space-between;
 }
+@media (max-width: 991px) {
+  .features__content{
+    flex-wrap: wrap;
+  }
+}

@@ -6,3 +6,9 @@
   font-weight: 500;
   color: #e2b44e;
 }
+
+@media (max-width: 991px) {
+  .footer__heading{
+    font-size: 24px;
+  }
+}

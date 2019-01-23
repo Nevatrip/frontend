@@ -30,7 +30,11 @@
           mods: {view: 'service-list-item-lg'}
         },
         'col',
-        'row'
+        'row',
+        {
+          elem: 'hr',
+          mods: {view: 'md'}
+        }
       ]
     },
     {

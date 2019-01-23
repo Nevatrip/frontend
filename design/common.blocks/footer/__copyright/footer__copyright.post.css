@@ -1,3 +1,5 @@
 .footer__copyright{
-  font-size: 12.7px
+  font-size: 12.7px;
+  white-space: nowrap;
+  margin-top: 20px;
 }
