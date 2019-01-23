@@ -1,9 +1,9 @@
 block('test')(
+  addJs()(true),
   content()((node, ctx) => {
     return [
       {
-        elem: 'test',
-        js: true,
+        elem: 'elem',
         content: [
           {
             block: 'link',
@@ -15,7 +15,9 @@ block('test')(
             mods: {
               theme: 'islands',
               target: 'anchor',
+              autoclosable: true
             },
+            directions : ['left-center'],
             content: 'Содержимое окна',
           }
         ]

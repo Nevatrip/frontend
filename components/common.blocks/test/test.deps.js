@@ -1,6 +1,9 @@
 [{
   shouldDeps: [
     {
+      elem: 'elem'
+    },
+    {
       block: 'link',
       mods: {pseudo: true}
     },
@@ -9,6 +12,7 @@
       mods: {
         theme: 'islands',
         target: 'anchor',
+        autoclosable: true
       }
     }
   ],
