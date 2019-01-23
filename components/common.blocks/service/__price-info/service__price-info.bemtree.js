@@ -1,23 +1,53 @@
 block('service').elem('price-info')(
   content()((node, ctx) => {
+    let infoArr = (ctx.discount).split('||');
+    let infoNewArr = [];
+
+    for (var i = 0; i < infoArr.length; i++) {
+      if (infoArr[i].startsWith('$')){
+        var info = infoArr[i].slice(1, this.length);
+        switch (info) {
+          case 'льготный':
+            info = {
+              block: 'popup-tip',
+              title: 'льготный',
+              text: 'Школьники, пенсионеры, инвалиды. Необходимо предъявить подтверждающие документы в кассе.'
+            }
+            break;
+          case 'детский':
+            info = {
+              block: 'popup-tip',
+              title: 'детский',
+              text: 'Дети 3-12 лет или 5-12 лет (см. конкр.экск.). До 3 или 5 - бесплатно без представления отдельного места. Необходимо предъявить подтверждающие документы в кассе.'
+            }
+            break;
+        }
+      } else {
+        var info = infoArr[i];
+      }
+      infoNewArr.push(info);
+    }
+
     return [
       {
         block: 'list',
         mods: {type: 'disk', size: 'md'},
-        items: [
+        content: [
           [
             'Скидка: ',
-            ctx.discount
+            infoNewArr
           ],
           ['', 'Пассажиры до 18 лет допускаются на борт в присутствии старших сопровождающих.'],
         ].map( item => ( {
-          content: {
-            html: '<b>' + item[0] + '</b>' + (item[1]?item[1]:'')
-          }
+          content: [
+            {
+              block: 'text',
+              mods: { weight: 'bold' },
+              content: item[0]
+            },
+            item[1] || ''
+          ]
         } ) ),
-      },
-      {
-        block: 'popup-tip',
       },
     ]
   })

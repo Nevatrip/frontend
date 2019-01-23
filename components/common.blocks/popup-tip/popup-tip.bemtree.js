@@ -8,7 +8,7 @@ block('popup-tip')(
           {
             block: 'link',
             mods: {pseudo: true},
-            content: 'ПОКАЗАТЬ ОКНО',
+            content: ctx.title,
           },
           {
             block: 'popup',
@@ -17,7 +17,7 @@ block('popup-tip')(
               autoclosable: true
             },
             directions : ['top-center'],
-            content: 'Содержимое окна',
+            content: ctx.text,
           }
         ]
       },

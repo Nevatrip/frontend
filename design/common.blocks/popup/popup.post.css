@@ -7,11 +7,10 @@
   z-index: 99;
   position: absolute;
   display: none;
-  visibility: hidden;
-  animation-duration: .1s;
-  animation-timing-function: ease-out;
+  visibility: hidden;;
   box-shadow: 0 0 0 1px rgba(0,0,0,.1),0 10px 20px -5px rgba(0,0,0,.4);
-  animation-fill-mode: forwards
+  max-width: 200px;
+  text-align: center;
 }
 .popup.popup_js_inited {
   display: block

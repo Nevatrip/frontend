@@ -1,0 +1,9 @@
+.popup-tip{
+  color: #377eb4;
+  display: inline-block;
+  white-space: nowrap;
+  border-bottom: 1px dashed #377eb4;
+}
+.popup-tip:hover{
+  border-bottom-color: transparent;
+}
