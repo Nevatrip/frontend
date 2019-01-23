@@ -1,4 +1,4 @@
-block('test')(
+block('popup-tip')(
   addJs()(true),
   content()((node, ctx) => {
     return [
@@ -13,11 +13,10 @@ block('test')(
           {
             block: 'popup',
             mods: {
-              theme: 'islands',
               target: 'anchor',
               autoclosable: true
             },
-            directions : ['left-center'],
+            directions : ['top-center'],
             content: 'Содержимое окна',
           }
         ]

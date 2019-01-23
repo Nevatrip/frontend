@@ -10,7 +10,6 @@
     {
       block: 'popup',
       mods: {
-        theme: 'islands',
         target: 'anchor',
         autoclosable: true
       }
