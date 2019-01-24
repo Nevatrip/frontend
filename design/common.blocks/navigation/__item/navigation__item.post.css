@@ -15,3 +15,16 @@
   top: 15%;
   left: 0;
 }
+
+@media (max-width: 767px) {
+  .navigation__item + .navigation__item:before{
+    display: none;
+  }
+  .navigation__item{
+    border-top: 1px solid #4d4848;
+    display: block;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: left;
+  }
+}

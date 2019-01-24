@@ -7,7 +7,8 @@
         'item',
         'link',
         'subtitle',
-        'title'
+        'title',
+        {elem: 'toggle', mods: {position: ['left', 'right']}}
       ]
     },
   ]

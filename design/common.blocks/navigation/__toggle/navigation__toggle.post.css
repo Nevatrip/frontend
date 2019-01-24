@@ -1,0 +1,5 @@
+.navigation__toggle{
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
