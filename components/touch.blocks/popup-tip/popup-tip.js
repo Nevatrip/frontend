@@ -7,18 +7,11 @@ provide(bemDom.declBlock(this.name, {
         this._popup = this.findChildBlock(Popup);
         this._link = this.findChildBlock(Link);
 
-        this._domEvents().on('mouseover', event => {
+        this._domEvents().on('click', event => {
           this._popup
             .setAnchor(this._link)
             .setMod('visible', true)
         } );
-
-        this._domEvents().on('mouseleave', event => {
-          this._popup
-            .setAnchor(this._link)
-            .setMod('visible', false)
-        } );
-
       }
     }
   }

@@ -1,9 +1,12 @@
 .popup-tip{
+  position: relative;
   color: #377eb4;
   display: inline-block;
-  white-space: nowrap;
-  border-bottom: 1px dashed #377eb4;
+  background-image: linear-gradient(to right, #377eb4 40%, transparent 40%);
+  background-position: 0 1.2em;
+  background-repeat: repeat-x;
+  background-size: 8px 1px;
 }
 .popup-tip:hover{
-  border-bottom-color: transparent;
+  background-image: linear-gradient(to right, transparent 40%, transparent 40%);
 }

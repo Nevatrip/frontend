@@ -3,7 +3,7 @@ block('service').elem('price-info')(
     let infoArr = (ctx.discount).split('||');
     let infoNewArr = [];
 
-    for (var i = 0; i < infoArr.length; i++) {
+    for (let i = 0; i < infoArr.length; i++) {
       if (infoArr[i].startsWith('$')){
         var info = infoArr[i].slice(1, this.length);
         switch (info) {
@@ -59,7 +59,8 @@ block('service').elem('price-info')(
             infoNewArr
           ],
           ['', 'Пассажиры до 18 лет допускаются на борт в присутствии старших сопровождающих.'],
-        ].map( item => ( {
+        ].map(item => (item && {
+          elem: 'item',
           content: [
             {
               block: 'text',
