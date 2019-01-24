@@ -9,9 +9,24 @@
   width: 365px;
   max-width: 50%;
   margin-right: 29px;
+  min-height: 59px
 }
 @media (max-width: 991px) {
   .footer__awards-item{
     width: 250px;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer__awards-item{
+    width: 100%;
+    max-width: 100%;
+    padding-left: 40px;
+    padding-top: 6px;
+    font-size: 12px;
+    line-height: 1.2;
+    min-height: 29.5px;
+    margin-bottom: 12px;
+    margin-right: 0;
   }
 }

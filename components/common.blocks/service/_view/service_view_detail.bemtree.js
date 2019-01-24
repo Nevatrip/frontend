@@ -39,6 +39,7 @@ block('service').mod('view', 'detail')(
           {
             block: 'page',
             elem: 'row',
+            elemMods: {sm: 'column'},
             content: [
               {
                 block: 'page',
@@ -90,6 +91,7 @@ block('service').mod('view', 'detail')(
           {
             block: 'page',
             elem: 'row',
+            elemMods: {sm: 'column'},
             content: [
               {
                 block: 'page',

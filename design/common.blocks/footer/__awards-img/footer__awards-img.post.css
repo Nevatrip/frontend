@@ -5,3 +5,10 @@
   width: 64px;
   height: 59px;
 }
+
+@media (max-width: 767px) {
+  .footer__awards-img{
+    width: 32px;
+    height: 29.5px;
+  }
+}

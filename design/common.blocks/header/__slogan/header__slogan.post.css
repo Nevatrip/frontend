@@ -21,3 +21,9 @@
     user-select: none;
   }
 }
+
+@media (max-width: 767px) {
+  .heading.header__slogan{
+    display: none;
+  }
+}

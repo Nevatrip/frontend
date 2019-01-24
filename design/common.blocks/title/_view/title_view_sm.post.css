@@ -2,3 +2,14 @@
   padding: 130px 0 135px;
   margin: 0 0 50px;
 }
+@media (max-width: 767px) {
+  .title_view_sm {
+    padding: 35px 0;
+    min-height: 0;
+    margin-bottom: 30px;
+  }
+  .title_view_sm .title__name{
+    padding: 22px 15px 28px;
+    font-size: 32px;
+  }
+}

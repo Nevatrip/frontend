@@ -1,3 +1,15 @@
 .page__col_view_aside {
   width: 30%;
 }
+
+@media (max-width: 991px) {
+  .page__col_view_aside {
+    width: 35%;
+  }
+}
+
+@media (max-width: 767px) {
+  .page__col_view_aside {
+    width: 100%;
+  }
+}

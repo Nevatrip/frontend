@@ -16,3 +16,8 @@
     margin-top: 6px;
   }
 }
+@media (max-width: 767px) {
+  .contacts_view_footer {
+    align-self: flex-end;
+  }
+}

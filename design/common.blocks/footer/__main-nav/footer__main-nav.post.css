@@ -26,6 +26,12 @@
   }
 }
 
+@media (max-width: 767px) {
+  .footer__main-nav-item {
+    width: 46%;
+  }
+}
+
 .footer__main-nav-link {
   box-sizing: border-box;
   display: inline-block;

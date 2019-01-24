@@ -3,3 +3,9 @@
   display: flex;
   width: 100%;
 }
+
+@media (max-width: 767px) {
+  .footer__awards{
+    flex-direction: column;
+  }
+}

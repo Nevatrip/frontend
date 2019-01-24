@@ -12,3 +12,8 @@
     font-size: 24px;
   }
 }
+@media (max-width: 767px) {
+  .footer__heading{
+    font-size: 18px;
+  }
+}

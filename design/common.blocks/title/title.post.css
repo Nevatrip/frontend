@@ -6,4 +6,6 @@
   background-position: center center;
   background-color: #dedede;
   overflow: hidden;
+  display: table;
+  width: 100%;
 }

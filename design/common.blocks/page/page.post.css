@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&subset=cyrillic-ext');
 
 html {
+  position: relative;
   box-sizing: border-box;
   height: 100%;
   margin: 0;
@@ -11,6 +12,8 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  max-width: 100%;/*because of popup scrolls*/
+  overflow-x: hidden;/*because of popup scrolls*/
 }
 
 ::selection {

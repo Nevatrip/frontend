@@ -1,0 +1,5 @@
+@media (max-width: 767px) {
+  .page__row_sm_column{
+    flex-direction: column;
+  }
+}

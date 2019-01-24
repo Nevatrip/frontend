@@ -7,7 +7,7 @@
     {
       block: 'page',
       elems: [
-        'row',
+        {elem: 'row', mods: {sm: 'column'}},
         'hr',
         'iframe-container',
         {elem: 'hr', mods: {view: 'short'}},
