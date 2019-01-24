@@ -1,10 +1,16 @@
 .contacts__email{
   font-weight: 300;
   font-size: 15px;
+  white-space: nowrap;
 }
 
 @media (max-width: 767px) {
   .contacts__email{
     font-size: 13px;
+  }
+}
+@media (max-width: 575px) {
+  .contacts__email{
+    font-size: 13.6px;
   }
 }

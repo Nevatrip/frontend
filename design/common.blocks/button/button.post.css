@@ -39,3 +39,10 @@
   background-color: #e8b705;
   border-color: #e8b705;
 }
+
+@media (max-width: 575px) {
+  .button{
+    padding: 5px 18px;
+    font-size: 16px;
+  }
+}

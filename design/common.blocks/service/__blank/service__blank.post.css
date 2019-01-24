@@ -10,3 +10,9 @@
     margin-left: 0;
   }
 }
+
+@media (max-width: 767px) {
+  .service__blank{
+    padding: 22px 15px 28px;
+  }
+}

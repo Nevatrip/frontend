@@ -1,3 +1,9 @@
 .list_size_xl{
   font-size: 19.6px;
 }
+
+@media (max-width: 575px) {
+  .list_size_xl{
+    font-size: 16px;
+  }
+}

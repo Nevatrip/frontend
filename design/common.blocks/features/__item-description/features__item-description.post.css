@@ -4,3 +4,9 @@
   font-weight: 300;
   text-align: center;
 }
+
+@media (max-width: 575px) {
+  .features__item-description{
+    font-size: 14px;
+  }
+}

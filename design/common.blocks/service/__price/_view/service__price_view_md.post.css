@@ -7,3 +7,9 @@
   letter-spacing: -3px;
   margin-right: 14px;
 }
+
+@media (max-width: 575px) {
+  .service__price_view_md{
+    font-size: 35px;
+  }
+}

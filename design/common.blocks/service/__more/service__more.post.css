@@ -9,3 +9,15 @@
   user-select: none;
   cursor: pointer;
 }
+
+@media (max-width: 767px) {
+  .service__more{
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .service__more{
+    font-size: 17px;
+  }
+}

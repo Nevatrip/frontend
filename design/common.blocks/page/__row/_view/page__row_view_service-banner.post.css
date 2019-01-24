@@ -3,3 +3,9 @@
   justify-content: flex-start;
   align-items: start;
 }
+
+@media (max-width: 767px) {
+  .page__row_view_service-banner{
+    flex-direction: column;
+  }
+}

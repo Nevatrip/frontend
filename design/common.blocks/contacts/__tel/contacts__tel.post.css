@@ -1,10 +1,17 @@
 .contacts__tel{
   font-weight: 300;
   font-size: 18px;
+  white-space: nowrap;
 }
 
 @media (max-width: 767px) {
   .contacts__tel{
-    font-size: 15px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 575px) {
+  .contacts__tel{
+    font-size: 13px;
   }
 }

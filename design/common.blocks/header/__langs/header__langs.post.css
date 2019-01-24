@@ -21,3 +21,15 @@
   left: -9px;
   color: #777
 }
+
+@media (max-width: 575px) {
+  .header__langs{
+    font-size: 12px;
+  }
+  .header__lang{
+    margin: 0;
+  }
+  .header__lang+.header__lang:before {
+    left: -7.5px;
+  }
+}

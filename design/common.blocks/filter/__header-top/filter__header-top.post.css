@@ -10,3 +10,10 @@
   background-size: cover;
   background-color: #676767;
 }
+
+@media (max-width: 767px) {
+  .filter__header-top{
+    padding-top: 20px;
+    padding-bottom: 25px;
+  }
+}

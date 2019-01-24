@@ -1,0 +1,5 @@
+@media (max-width: 575px) {
+  .contacts_view_header{
+    margin-left: 0;
+  }
+}

@@ -3,5 +3,10 @@
   box-sizing: border-box;
   padding: 31px 0 48px;
   margin: 0 0 28px;
-  /*min-height: 400px;*/
+}
+
+@media (max-width: 767px) {
+  .service_view_banner{
+    padding: 35px 0 45px;
+  }
 }

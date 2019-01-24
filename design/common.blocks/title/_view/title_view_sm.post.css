@@ -4,7 +4,7 @@
 }
 @media (max-width: 767px) {
   .title_view_sm {
-    padding: 35px 0;
+    padding: 35px 0 45px;
     min-height: 0;
     margin-bottom: 30px;
   }
