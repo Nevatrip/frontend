@@ -9,14 +9,8 @@ function getLevels(platform) {
   platformNames.forEach((name) => {
     [ 'bem-core', 'bem-components', /*'bem-forms'*/ ].forEach( lib => {
       levels.push({ path: path.join('node_modules', lib, name + '.blocks'), check: false, });
+      levels.push({ path: path.join('node_modules', lib, 'design', name + '.blocks'), check: false, });
     } );
-
-    levels.push({ path: path.join('node_modules/bem-core/common.blocks'), check: false, });
-    levels.push({ path: path.join('node_modules/bem-core/desktop.blocks'), check: false, });
-    levels.push({ path: path.join('node_modules/bem-components/common.blocks'), check: false, });
-    levels.push({ path: path.join('node_modules/bem-components/desktop.blocks'), check: false, });
-    levels.push({ path: path.join('node_modules/bem-components/design/common.blocks'), check: false, });
-    levels.push({ path: path.join('node_modules/bem-components/design/desktop.blocks'), check: false, });
 
     levels.push({ path: path.join('components', name + '.blocks'), check: true, });
     levels.push({ path: path.join('design', name + '.blocks'), check: true, });
