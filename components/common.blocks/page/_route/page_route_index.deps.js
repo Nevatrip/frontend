@@ -1,7 +1,6 @@
 [
   {
     shouldDeps: [
-      /*
       'features',
       'filter',
       'article',
@@ -36,7 +35,6 @@
         block: 'service',
         mods: {view: 'list-item-lg'},
       },
-      */
     ],
   },
 ];

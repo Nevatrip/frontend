@@ -1,0 +1,1 @@
+// block('page').addJs()(true)

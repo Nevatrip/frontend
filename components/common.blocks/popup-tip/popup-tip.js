@@ -7,8 +7,6 @@ modules.define('popup-tip', ['i-bem-dom', 'popup', 'link'], function (provide, b
           this._popup = this.findChildBlock(Popup);
           this._link = this.findChildBlock(Link);
 
-          alert('inited COMMON');
-
           this._domEvents().on('mouseover', event => {
             this._popup
               .setAnchor(this._link)
