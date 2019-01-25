@@ -1,12 +1,20 @@
-.service__title_view_sm{
+.service__title_view_sm {
   margin-bottom: 19px;
   color: inherit;
   font-size: 29.2px;
   line-height: 1.2;
 }
+
 @media (max-width: 991px) {
   .service__title_view_sm,
   .heading.service__title_view_sm {
     font-size: 22px;
+  }
+}
+
+@media (max-width: 575px) {
+  .service__title_view_sm, .heading.service__title_view_sm {
+    font-size: 19px;
+    margin-bottom: 4px;
   }
 }

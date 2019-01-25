@@ -32,3 +32,10 @@
   color: inherit;
   text-decoration: underline;
 }
+
+@media (max-width: 575px) {
+  .footer__basic-nav{
+    font-size: 12px;
+    justify-content: flex-start;
+  }
+}

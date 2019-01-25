@@ -20,6 +20,7 @@ block('service').mod('view', 'list-item-lg')(
           {
             block: 'page',
             elem: 'row',
+            elemMods: {xs: 'column'},
             content: [
               {
                 block: 'service',

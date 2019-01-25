@@ -1,3 +1,9 @@
 .service__aside-content{
   width: 57.3%;
 }
+
+@media (max-width: 575px) {
+  .service__aside-content{
+    width: 100%;
+  }
+}

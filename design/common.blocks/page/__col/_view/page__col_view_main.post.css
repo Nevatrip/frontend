@@ -4,5 +4,6 @@
 @media (max-width: 767px) {
   .page__col_view_main {
     width: 100%;
+    margin-bottom: 18px;
   }
 }

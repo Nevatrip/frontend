@@ -32,6 +32,12 @@
   }
 }
 
+@media (max-width: 575px) {
+  .footer__main-nav-item {
+    width: 100%;
+  }
+}
+
 .footer__main-nav-link {
   box-sizing: border-box;
   display: inline-block;

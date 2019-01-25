@@ -2,12 +2,12 @@
   shouldDeps: [
     {
       block: 'button',
-      mods: { type: 'link' },
+      mods: {type: 'link'},
     },
     {
       elems: [
         {
-          elem:'image',
+          elem: 'image',
           mods: {size: 'third'},
         },
         'price-outside',
@@ -27,7 +27,10 @@
       elems: [
         {
           elem: 'row',
-          mods: {view: 'service-list-item-lg'}
+          mods: {
+            view: 'service-list-item-lg',
+            xs: 'column',
+          }
         },
         'col',
         'row',
@@ -43,7 +46,7 @@
     },
     {
       block: 'heading',
-      mods: { size: 'l' }
+      mods: {size: 'l'}
     },
     {
       block: 'image',

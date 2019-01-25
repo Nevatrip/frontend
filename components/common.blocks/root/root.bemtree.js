@@ -130,7 +130,8 @@ block( 'root' ).replace()( ( node, ctx ) => {
     styles: { elem: 'css', url: `/assets/css/${ data.page }.${ level }.min.css` },
     scripts: { elem: 'js', url: `/assets/js/${ data.page }.${ level }.min.js` },
     head: [
-      { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1' } },
+      { elem: 'meta', attrs: { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' } },
+      { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' } },
 
       // favicons
       { elem: 'link', attrs: { rel: 'apple-touch-icon', sizes: '180x180', href:'/apple-touch-icon.png' } },

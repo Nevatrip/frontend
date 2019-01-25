@@ -54,3 +54,11 @@
   background-image: linear-gradient(rgba(50, 50, 50, 0.3), rgba(50, 50, 50, 0.3));
   border: solid 1px #ffd84a;
 }
+
+@media (max-width: 575px) {
+  .filter__day-tags .radio{
+    font-size: 14px;
+    width: 81px;
+    padding: 7px 14px;
+  }
+}
