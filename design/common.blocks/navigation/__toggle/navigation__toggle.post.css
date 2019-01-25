@@ -1,5 +1,11 @@
 .navigation__toggle{
   position: relative;
-  display: inline-block;
+  display: none;
   cursor: pointer;
+}
+
+@media (max-width: 767px) {
+  .navigation__toggle{
+    display: inline-block;
+  }
 }

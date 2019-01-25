@@ -1,6 +1,8 @@
 .navigation {
   box-sizing: border-box;
-  position: relative;
+  position: sticky;
+  top: 0;
   color: #d6d2cf;
   background-color: #363232;
+  z-index: 9999;
 }

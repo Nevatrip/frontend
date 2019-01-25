@@ -1,6 +1,7 @@
 .navigation__content {
   display: table;
   table-layout: fixed;
+  width: 100%;
 }
 
 @media (max-width: 767px) {
