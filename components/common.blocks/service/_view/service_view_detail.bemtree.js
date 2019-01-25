@@ -115,6 +115,9 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'page',
                     elem: 'hr',
+                    attrs: {
+                      id: 'map'
+                    },
                     elemMods: {view: 'short'}
                   },
                   routeMap && [
@@ -132,9 +135,6 @@ block('service').mod('view', 'detail')(
                         iframe: routeMap,
                         height: '400',
                         width: '100%',
-                      },
-                      attrs: {
-                        id: 'map'
                       },
                       mix: {
                         block: 'service',
