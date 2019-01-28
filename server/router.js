@@ -57,11 +57,6 @@ const router = new UniversalRouter(
         ]
       },
       {
-        path: '/oferta',
-        name: 'dev',
-        load: async() => await dev
-      },
-      {
         path: '(.*)',
         name: '404',
         load: async() => await error404
