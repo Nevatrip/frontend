@@ -13,3 +13,11 @@
   width: 131px;
   margin-bottom: 26px;
 }
+.list_type_gallery .link,
+.list_type_gallery .image{
+  box-sizing: border-box;
+  position: relative;
+  height: 131px;
+  width: 131px;
+  background-color: #dedede;
+}

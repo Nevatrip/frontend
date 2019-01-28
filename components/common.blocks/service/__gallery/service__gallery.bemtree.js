@@ -6,17 +6,18 @@ block('service').elem('gallery')(
         block: 'list',
         mods: {type: 'gallery'},
         items:
-          (ctx.content.photos).map(item => {
+          (ctx.photos).map(item => {
             return {
               block: 'link',
-              title: ctx.content.title,
+              title: item.description,
+              url: urlFor(item.asset._ref).url(),
               mods: {
                 display: 'block'
               },
               content: {
                 block: 'image',
-                url: item,
-                alt: ctx.content.title,
+                url: urlFor(item.asset._ref).fit('crop').width(133).height(133).url(),
+                alt: item.description,
               }
             }
           })

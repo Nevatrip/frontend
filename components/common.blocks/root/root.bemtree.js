@@ -1,3 +1,16 @@
+const imageUrlBuilder = require('@sanity/image-url');
+const marked = require('marked');
+const builder = imageUrlBuilder(
+  {
+    "projectId": "39dycnz5",
+    "dataset": "develop"
+  }
+);
+
+function urlFor(source) {
+  return builder.image(source)
+}
+
 block( 'root' ).replace()( ( node, ctx ) => {
   const level = ctx.level || 'desktop';
   const config = node.config = ctx.config;

@@ -1,15 +1,3 @@
-const imageUrlBuilder = require('@sanity/image-url');
-const builder = imageUrlBuilder(
-  {
-    "projectId": "39dycnz5",
-    "dataset": "develop"
-  }
-);
-
-function urlFor(source) {
-  return builder.image(source)
-}
-
 block('service').mod('view', 'list-item-lg')(
   content()((node, {service}) => {
 

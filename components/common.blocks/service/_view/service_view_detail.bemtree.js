@@ -20,6 +20,7 @@ block('service').mod('view', 'detail')(
       attractions,
       priceDescription,
       tourLanguage,
+      gallery
 
     } = service;
 
@@ -109,7 +110,7 @@ block('service').mod('view', 'detail')(
                     block: 'page',
                     elem: 'text',
                     content: {
-                      html: description || ''
+                      html: marked(description) || ''
                     }
                   },
                   {
@@ -149,21 +150,20 @@ block('service').mod('view', 'detail')(
                 elem: 'col',
                 elemMods: {view: 'aside'},
                 content: [
-                  {
-                    block: 'heading',
-                    mods: {size: 'xl'},
-                    content: {
-                      html: 'Галерея'
+                  gallery && [
+                    {
+                      block: 'heading',
+                      mods: {size: 'xl'},
+                      content: {
+                        html: 'Галерея'
+                      },
                     },
-                  },
-                  {
-                    block: 'service',
-                    elem: 'gallery',
-                    content: {
-                      photos: photos || [],
-                      title: title || '',
-                    }
-                  },
+                    {
+                      block: 'service',
+                      elem: 'gallery',
+                      photos: gallery,
+                    },
+                  ],
                   {
                     block: 'heading',
                     mods: {size: 'xl'},
