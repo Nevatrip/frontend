@@ -35,6 +35,7 @@
   ],
   "dependencies": {
     "@sanity/client": "^0.139.0",
+    "@sanity/image-url": "^0.140.0",
     "bem-components": "^6.0.1",
     "bem-core": "^4.3.1"
   },

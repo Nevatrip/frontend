@@ -1,5 +1,17 @@
+const imageUrlBuilder = require('@sanity/image-url');
+const builder = imageUrlBuilder(
+  {
+    "projectId": "39dycnz5",
+    "dataset": "develop"
+  }
+);
+
+function urlFor(source) {
+  return builder.image(source)
+}
+
 block('service').mod('view', 'list-item-lg')(
-  content()((node, { service } ) => {
+  content()((node, {service}) => {
 
     const {
       key,
@@ -11,6 +23,24 @@ block('service').mod('view', 'list-item-lg')(
       category
     } = service;
 
+    let titleImageCropped = '';
+
+    if (titleImage){
+      if (titleImage.hotspot) {
+        titleImageCropped = urlFor(titleImage)
+          .focalPoint(titleImage.hotspot.x.toFixed(2), titleImage.hotspot.y.toFixed(2))
+          .fit('crop')
+          .width(404)
+          .height(277)
+          .url();
+      } else if (titleImage) {
+        titleImageCropped = urlFor(titleImage)
+          .fit('crop')
+          .width(404)
+          .height(277)
+          .url();
+      }
+    }
 
     return [
       {
@@ -30,11 +60,11 @@ block('service').mod('view', 'list-item-lg')(
                 content: [
                   {
                     block: 'link',
-                    url: category.key.current + '/' +  key.current,
+                    url: category.key.current + '/' + key.current,
                     content: {
                       block: 'image',
                       mods: {view: 'bg'},
-                      url: titleImage || '',
+                      url: titleImageCropped || '',
                       alt: title || '',
                       title: title || '',
                     }
@@ -54,7 +84,7 @@ block('service').mod('view', 'list-item-lg')(
                       {
                         block: 'link',
                         mods: {view: 'inherit'},
-                        url: category.key.current + '/' +  key.current,
+                        url: category.key.current + '/' + key.current,
                         title: title || '',
                         content: title || ''
                       }
@@ -81,8 +111,8 @@ block('service').mod('view', 'list-item-lg')(
                         mods: {
                           type: 'link',
                         },
-                        text: {html:'Подробнее&nbsp;&rarr;'},
-                        url: category.key.current + '/' +  key.current + '#buy',
+                        text: {html: 'Подробнее&nbsp;&rarr;'},
+                        url: category.key.current + '/' + key.current + '#buy',
                         title: title || '',
                       },
                     ]
