@@ -7,7 +7,6 @@ const getServiceCategory = require('./request/getServiceCategory' );
 const servicesByCategory = require( './routes/servicesByCategory' );
 const home = require( './routes/home' );
 const service = require( './routes/service' );
-const dev = require( './routes/dev' );
 const error404 = require( './routes/404' );
 
 const router = new UniversalRouter(
