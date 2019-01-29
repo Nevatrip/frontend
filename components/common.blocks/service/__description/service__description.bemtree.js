@@ -12,30 +12,32 @@ block('service').elem('description')(
           ctx.time && ['Расписание: ', ctx.time],
           ctx.fromPoint && ['Отправление: ', ctx.fromPoint],
           ctx.vehicle && ['Теплоход: ', ctx.vehicle],
-          ctx.excursion && ['Язык экскурсии: ', ctx.excursion.map( lang => ({
+          ctx.excursion && ['Язык экскурсии: ', ctx.excursion.map(lang => ({
             block: 'image',
             mods: {view: 'icon'},
             url: lang.url,
             alt: lang.name,
             title: lang.name,
-          }) )],
-          ctx.placeFeatures && ['На борту: ', ctx.placeFeatures.map( placeFeature => ({
+          }))],
+          ctx.placeFeatures && ['На борту: ', ctx.placeFeatures.map(placeFeature => ({
             block: 'image',
             mods: {view: 'colored-icon'},
             url: placeFeature.url,
             alt: placeFeature.name,
             title: placeFeature.name,
-          }) )],
-          ctx.routeMap && [{ block: 'link', url: '#map', content: 'Посмотреть маршрут прогулки' }],
+          }))],
+          ctx.routeMap && [{block: 'link', url: '#map', content: 'Посмотреть маршрут прогулки'}],
         ].map(item => (item && {
           elem: 'item',
           content: [
             {
               block: 'text',
-              mods: { weight: 'bold' },
+              mods: {weight: 'bold'},
               content: item[0]
             },
-            item[1] || ''
+            (typeof item[1] === 'string' || item[1] instanceof String)
+              ? {html: marked(item[1] || '')}
+              : (item[1] || '')
           ]
         })),
       }

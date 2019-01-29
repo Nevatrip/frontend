@@ -180,7 +180,7 @@ block('service').mod('view', 'detail')(
                     block: 'heading',
                     mods: {size: 'xl'},
                     content: {
-                      html: priceDescription || '',
+                      html: marked(priceDescription) || '',
                     },
                   },
                   {

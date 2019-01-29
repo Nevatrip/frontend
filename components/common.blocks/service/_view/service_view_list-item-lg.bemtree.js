@@ -81,7 +81,11 @@ block('service').mod('view', 'list-item-lg')(
                   features && {
                     block: 'list',
                     mods: {type: 'check', size: 'sm'},
-                    items: features.split('\n'),
+                    items: features.split('\n').map( item => {
+                      return {
+                        html: marked(item)
+                      }
+                    }),
                   },
                   {
                     block: 'page',
