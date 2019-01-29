@@ -8,6 +8,15 @@
     {
       block: 'list',
       mods: {type: 'gallery'}
+    },
+    'gallery',
+    {
+      block: 'gallery',
+      elem: 'item'
+    },
+    {
+      block: 'gallery',
+      elem: 'description'
     }
   ],
 }];
