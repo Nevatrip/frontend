@@ -43,7 +43,11 @@ block('service').mod('view', 'banner')(
               features && {
                 block: 'list',
                 mods: {type: 'check-in-disk ', size: 'xl'},
-                items: features.split('\n'),
+                items: features.split('\n').map( item => {
+                  return {
+                    html: marked(item)
+                  }
+                }),
               },
               {
                 block: 'page',
@@ -53,12 +57,10 @@ block('service').mod('view', 'banner')(
                   {
                     block: 'service',
                     elem: 'buy',
-                    content: {
-                      price: price,
-                      priceOutside: priceOld,
-                      title: title,
-                      urlBuy: category.key.current + '/' +  key.current + '#buy',
-                    }
+                    price: price,
+                    priceOutside: priceOld,
+                    title: title,
+                    urlBuy: category.key.current + '/' +  key.current + '#buy',
                   },
                   {
                     block: 'service',

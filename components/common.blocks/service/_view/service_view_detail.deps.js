@@ -45,6 +45,13 @@
     {
       block: 'link',
       mods: {pseudo: true},
+    },
+    {
+      block: 'list',
+      mods: {
+        view: 'no-style',
+        sm: 'inline'
+      },
     }
   ]
 }]

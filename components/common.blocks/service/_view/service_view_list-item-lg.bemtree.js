@@ -48,7 +48,7 @@ block('service').mod('view', 'list-item-lg')(
                 content: [
                   {
                     block: 'link',
-                    url: category.key.current + '/' + key.current,
+                    url: '/' + category.key.current + '/' + key.current,
                     content: {
                       block: 'image',
                       mods: {view: 'bg'},

@@ -1,0 +1,9 @@
+@media (max-width: 767px) {
+  .list_sm_inline.list_view_no-style  .list__item,
+  .list_sm_inline .list__item{
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 25px;
+  }
+}
+

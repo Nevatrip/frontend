@@ -3,3 +3,33 @@
   position: relative;
   margin-bottom: 30px;
 }
+
+.service_view_list-item-sm .image {
+  box-sizing: border-box;
+  position: relative;
+  display: block;
+  height: 153px;
+  width: 100%;
+  background-color: #dedede;
+}
+
+.service_view_list-item-sm .heading {
+  line-height: 1.2;
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.service_view_list-item-sm .link {
+  display: block;
+}
+
+@media (max-width: 991px) {
+  .service_view_list-item-sm {
+    width: 243px;
+  }
+
+  .service_view_list-item-sm .image {
+    height: 130px;
+    width: 243px;
+  }
+}

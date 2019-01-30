@@ -16,14 +16,11 @@ block('service').mod('view', 'detail')(
       time,
       description,
       routeMap,
-      photos,
       attractions,
       priceDescription,
       tourLanguage,
       gallery
-
     } = service;
-
 
     return [
       {
@@ -74,12 +71,10 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'buy',
-                    content: {
-                      price: price || '',
-                      priceOutside: priceOld || '',
-                      title: title || '',
-                      urlBuy: key.current ? (key.current + '#buy') : '',
-                    }
+                    price: price || '',
+                    priceOutside: priceOld || '',
+                    title: title || '',
+                    urlBuy: key.current ? (key.current + '#buy') : '',
                   },
                 ],
               },
@@ -99,20 +94,22 @@ block('service').mod('view', 'detail')(
                 elem: 'col',
                 elemMods: {view: 'main'},
                 content: [
-                  {
-                    block: 'heading',
-                    mods: {size: 'xl'},
-                    content: {
-                      html: 'Об&nbsp;экскурсии'
-                    }
-                  },
-                  description && {
-                    block: 'page',
-                    elem: 'text',
-                    content: {
-                      html: marked(description) || ''
-                    }
-                  },
+                  description &&[
+                    {
+                      block: 'heading',
+                      mods: {size: 'xl'},
+                      content: {
+                        html: 'Об&nbsp;экскурсии'
+                      }
+                    },
+                    {
+                      block: 'page',
+                      elem: 'text',
+                      content: {
+                        html: marked(description) || ''
+                      }
+                    },
+                  ],
                   {
                     block: 'page',
                     elem: 'hr',
@@ -164,19 +161,21 @@ block('service').mod('view', 'detail')(
                       photos: gallery,
                     },
                   ],
-                  {
-                    block: 'heading',
-                    mods: {size: 'xl'},
-                    content: {
-                      html: 'Вы&nbsp;увидите'
+                  attractions.length>0 && [
+                    {
+                      block: 'heading',
+                      mods: {size: 'xl'},
+                      content: {
+                        html: 'Вы&nbsp;увидите'
+                      },
                     },
-                  },
-                  attractions && {
-                    block: 'list',
-                    items: (attractions.map(item=>(item.title))) || [],
-                    mods: {type: 'disk', size: 'md'}
-                  },
-                  {
+                    {
+                      block: 'list',
+                      items: (attractions.map(item=>(item.title))) || [],
+                      mods: {type: 'disk', size: 'md'}
+                    },
+                  ],
+                  priceDescription && {
                     block: 'heading',
                     mods: {size: 'xl'},
                     content: {
@@ -186,37 +185,44 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'buy',
-                    content: {
-                      price: price || '',
-                      priceOutside: priceOld || '',
-                      title: title || '',
-                      urlBuy: key.current ? (key.current + '#buy') : '',
-                    }
+                    price: price || '',
+                    priceOutside: priceOld || '',
+                    title: title || '',
+                    urlBuy: key.current ? (key.current + '#buy') : '',
                   },
                   {
                     block: 'page',
                     elem: 'hr'
                   },
-                  {
-                    block: 'heading',
-                    mods: {size: 'xl'},
-                    content: {
-                      html: 'Другие наши экскурсии'
+                  node.data.api.servicesRandom.length>0 && [
+                    {
+                      block: 'heading',
+                      mods: {size: 'xl'},
+                      content: {
+                        html: 'Похожие экскурсии:'
+                      },
                     },
-                  },
-                  {
-                    block: 'service',
-                    mods: {view: 'list-item-sm'},
-                    // url: ctx.content.url,
-                    // image: ctx.content.img,
-                    // title: ctx.content.title,
-                  }
+                    {
+                      block: 'list',
+                      mods: { view: 'no-style', sm: 'inline' },
+                      content: node.data.api.servicesRandom.map( item => {
+                        return {
+                          elem: 'item',
+                          content: {
+                            block: 'service',
+                            mods: {view: 'list-item-sm'},
+                            service: item
+                          }
+                        }
+                      } )
+                    }
+                  ],
                 ]
-              },
+              }
             ]
-          },
+          }
         ]
-      },
+      }
     ]
   })
 );

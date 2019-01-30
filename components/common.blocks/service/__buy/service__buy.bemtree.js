@@ -5,11 +5,11 @@ block('service').elem('buy')(
         block: 'page',
         elem: 'row',
         content: [
-          ctx.content.price && {
+          ctx.price && {
             block: 'service',
             elem: 'price',
             elemMods: {view: 'md'},
-            content: ctx.content.price,
+            content: ctx.price,
           },
           {
             block: 'button',
@@ -17,14 +17,14 @@ block('service').elem('buy')(
               type: 'link',
             },
             text: 'Купить',
-            url: ctx.content.urlBuy || '',
-            title: 'Купить ' + (ctx.content.title || ''),
+            url: ctx.urlBuy || '',
+            title: 'Купить ' + (ctx.title || ''),
           },
         ]
       },
-      ctx.content.priceOutside && {
+      ctx.priceOutside && {
         elem: 'price-outside',
-        content: ctx.content.priceOutside,
+        content: ctx.priceOutside,
       }
     ]
   }),

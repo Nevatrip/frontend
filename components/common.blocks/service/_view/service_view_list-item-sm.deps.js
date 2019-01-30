@@ -15,6 +15,6 @@
     {
       block: 'heading',
       mods: {size: 'm'}
-    }
+    },
   ]
 }]
