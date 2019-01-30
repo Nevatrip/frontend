@@ -1,5 +1,5 @@
 block('service').mod('view', 'detail')(
-  content()((node, { service }) => {
+  content()((node, {service}) => {
 
     const {
       titleImage,
@@ -19,7 +19,9 @@ block('service').mod('view', 'detail')(
       attractions,
       priceDescription,
       tourLanguage,
-      gallery
+      gallery,
+      descriptionAppend,
+      descriptionPrepend,
     } = service;
 
     return [
@@ -51,9 +53,15 @@ block('service').mod('view', 'detail')(
                     time: schedule || '',
                     fromPoint: point ? (point.title || '') : '',
                     vehicle: place ? (place.title || '') : '',
-                    excursion: tourLanguage ? tourLanguage.map( item => ( item && {url: item.icon.url, name: item.title})) : '',
+                    excursion: tourLanguage ? tourLanguage.map(item => (item && {
+                      url: item.icon.url,
+                      name: item.title
+                    })) : '',
                     routeMap: routeMap || '',
-                    placeFeatures:  placeFeatures ? placeFeatures.map( item => ( item && {url: item.icon.url, name: item.title})) : '',
+                    placeFeatures: placeFeatures ? placeFeatures.map(item => (item && {
+                      url: item.icon.url,
+                      name: item.title
+                    })) : '',
                   },
                 ],
               },
@@ -94,22 +102,34 @@ block('service').mod('view', 'detail')(
                 elem: 'col',
                 elemMods: {view: 'main'},
                 content: [
-                  description &&[
-                    {
-                      block: 'heading',
-                      mods: {size: 'xl'},
-                      content: {
-                        html: 'Об&nbsp;экскурсии'
-                      }
-                    },
-                    {
-                      block: 'page',
-                      elem: 'text',
-                      content: {
-                        html: marked(description) || ''
-                      }
-                    },
-                  ],
+                  description && {
+                    block: 'heading',
+                    mods: {size: 'xl'},
+                    content: {
+                      html: 'Об&nbsp;экскурсии'
+                    }
+                  },
+                  descriptionPrepend && {
+                    block: 'service',
+                    elem: 'remark',
+                    content: {
+                      html: marked(descriptionPrepend) || ''
+                    }
+                  },
+                  {
+                    block: 'page',
+                    elem: 'text',
+                    content: {
+                      html: marked(description) || ''
+                    }
+                  },
+                  descriptionAppend && {
+                    block: 'service',
+                    elem: 'remark',
+                    content: {
+                      html: marked(descriptionAppend) || ''
+                    }
+                  },
                   {
                     block: 'page',
                     elem: 'hr',
@@ -161,7 +181,7 @@ block('service').mod('view', 'detail')(
                       photos: gallery,
                     },
                   ],
-                  attractions.length>0 && [
+                  attractions.length > 0 && [
                     {
                       block: 'heading',
                       mods: {size: 'xl'},
@@ -171,7 +191,7 @@ block('service').mod('view', 'detail')(
                     },
                     {
                       block: 'list',
-                      items: (attractions.map(item=>(item.title))) || [],
+                      items: (attractions.map(item => (item.title))) || [],
                       mods: {type: 'disk', size: 'md'}
                     },
                   ],
@@ -194,7 +214,7 @@ block('service').mod('view', 'detail')(
                     block: 'page',
                     elem: 'hr'
                   },
-                  node.data.api.servicesRandom.length>0 && [
+                  node.data.api.servicesRandom.length > 0 && [
                     {
                       block: 'heading',
                       mods: {size: 'xl'},
@@ -204,8 +224,8 @@ block('service').mod('view', 'detail')(
                     },
                     {
                       block: 'list',
-                      mods: { view: 'no-style', sm: 'inline' },
-                      content: node.data.api.servicesRandom.map( item => {
+                      mods: {view: 'no-style', sm: 'inline'},
+                      content: node.data.api.servicesRandom.map(item => {
                         return {
                           elem: 'item',
                           content: {
@@ -214,7 +234,7 @@ block('service').mod('view', 'detail')(
                             service: item
                           }
                         }
-                      } )
+                      })
                     }
                   ],
                 ]

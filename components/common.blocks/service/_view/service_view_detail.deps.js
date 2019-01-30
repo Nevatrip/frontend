@@ -52,6 +52,10 @@
         view: 'no-style',
         sm: 'inline'
       },
+    },
+    {
+      block: 'service',
+      elem: 'remark'
     }
   ]
 }]
