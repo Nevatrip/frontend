@@ -7,8 +7,7 @@ const getTags = require('../request/getSettingServiceTags');
 
 const action = async( context, params ) => {
 
-  const services = await getServices();
-  const servicesFilter = (await getServices());
+  const servicesFilter = await getServices();
   const serviceBanner = (await getService('testovaya-ekskursiya-1'))[0];
   const navigation = await getNav();
   const tags = await getTags();
@@ -18,7 +17,6 @@ const action = async( context, params ) => {
     params,
     api: {
       servicesFilter,
-      services,
       serviceBanner,
       navigation,
       tags

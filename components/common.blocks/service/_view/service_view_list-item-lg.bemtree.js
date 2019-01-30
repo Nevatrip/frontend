@@ -48,7 +48,7 @@ block('service').mod('view', 'list-item-lg')(
                 content: [
                   {
                     block: 'link',
-                    url: '/' + category.key.current + '/' + key.current,
+                    url: (category.key.current && key.current) ? ('/' + category.key.current + '/' + key.current) : '/',
                     content: {
                       block: 'image',
                       mods: {view: 'bg'},
@@ -72,7 +72,7 @@ block('service').mod('view', 'list-item-lg')(
                       {
                         block: 'link',
                         mods: {view: 'inherit'},
-                        url: category.key.current + '/' + key.current,
+                        url: (category.key.current && key.current) ? ('/' + category.key.current + '/' + key.current) : '/',
                         title: title || '',
                         content: title || ''
                       }
@@ -104,7 +104,7 @@ block('service').mod('view', 'list-item-lg')(
                           type: 'link',
                         },
                         text: {html: 'Подробнее&nbsp;&rarr;'},
-                        url: category.key.current + '/' + key.current + '#buy',
+                        url: (category.key.current && key.current) ? ('/' + category.key.current + '/' + key.current + '#buy') : '/',
                         title: title || '',
                       },
                     ]
