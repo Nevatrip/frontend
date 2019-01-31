@@ -1,0 +1,29 @@
+.button_color_neutral {
+  color: #333333;
+  background-color: #ffffff;
+  border-color: #cccccc;
+}
+
+.button_color_neutral,
+.button_color_neutral:hover,
+.button_color_neutral:active,
+.button_color_neutral:focus,
+.button_color_neutral:visited,
+.button_color_neutral.active {
+  color: #333333;
+  text-decoration: none;
+}
+
+.button_color_neutral:focus,
+.button_color_neutral:active{
+  color: #333333;
+  background-color: #eeeeee;
+  border-color: #adadad;
+}
+
+.button_color_neutral:hover {
+  color: #333333;
+  background-color: #e6e6e6;
+  border-color: #adadad;
+}
+

@@ -52,20 +52,7 @@ block('page').mod('route', 'index')(
         basicHeading: 'Параметры прогулки',
         basicTags: node.data.api.tags,
         sorting: ['По популярности', 'По цене от наименьшей', 'По цене от наибольшей'],
-      },
-      {
-        block: 'list',
-        mods: { view: 'no-style' },
-        content: node.data.api.servicesFilter.map( item => {
-          return {
-            elem: 'item',
-            content: {
-              block: 'service',
-              mods: {view: 'list-item-lg'},
-              service: item
-            },
-          }
-        } )
+        allServices: node.data.api.servicesFilter,
       },
       {
         block: 'page',

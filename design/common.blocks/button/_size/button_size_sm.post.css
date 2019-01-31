@@ -1,0 +1,11 @@
+.button_size_sm {
+  padding: 6px 18px 7px;
+  font-size: 17px;
+  border-radius: 30px;
+}
+@media (max-width: 575px) {
+  .button_size_sm{
+    padding: 5px 12px 6px;
+    font-size: 15px;
+  }
+}

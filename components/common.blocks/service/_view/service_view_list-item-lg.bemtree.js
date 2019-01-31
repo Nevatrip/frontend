@@ -33,7 +33,6 @@ block('service').mod('view', 'list-item-lg')(
     return [
       {
         elem: 'content',
-        mix: {block: 'page', elem: 'content'},
         content: [
           {
             block: 'page',

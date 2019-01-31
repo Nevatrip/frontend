@@ -13,8 +13,8 @@ body {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  max-width: 100%;/*because of popup scrolls*/
-  overflow-x: hidden;/*because of popup scrolls*/
+  max-width: 100%; /*because of popup scrolls*/
+  overflow-x: hidden; /*because of popup scrolls*/
 }
 
 ::selection {
@@ -70,6 +70,6 @@ p {
   margin: 0 0 10.5px;
 }
 
-img{
+img {
   max-width: 100%;
 }
