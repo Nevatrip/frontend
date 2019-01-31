@@ -54,11 +54,8 @@ block('service').elem('price-info')(
         block: 'list',
         mods: {type: 'disk', size: 'md'},
         content: [
-          [
-            'Скидка: ',
-            infoNewArr
-          ],
-          ['', 'Пассажиры до 18 лет допускаются на борт в присутствии старших сопровождающих.'],
+          (infoNewArr.length>0 && infoNewArr[0].length>0) ? ['Скидка: ', infoNewArr] : false,
+          ctx.prevention && ['', ctx.prevention],
         ].map(item => (item && {
           elem: 'item',
           content: [

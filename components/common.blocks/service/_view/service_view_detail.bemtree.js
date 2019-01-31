@@ -22,6 +22,7 @@ block('service').mod('view', 'detail')(
       gallery,
       descriptionAppend,
       descriptionPrepend,
+      prevention,
     } = service;
 
     return [
@@ -75,8 +76,9 @@ block('service').mod('view', 'detail')(
                     elem: 'price-info',
                     discount: sale || '',
                     time: time || '',
+                    prevention: prevention || ''
                   },
-                  {
+                  (price || priceOld) && {
                     block: 'service',
                     elem: 'buy',
                     price: price || '',
@@ -116,7 +118,7 @@ block('service').mod('view', 'detail')(
                       html: marked(descriptionPrepend) || ''
                     }
                   },
-                  {
+                  description && {
                     block: 'page',
                     elem: 'text',
                     content: {
@@ -181,7 +183,7 @@ block('service').mod('view', 'detail')(
                       photos: gallery,
                     },
                   ],
-                  attractions.length > 0 && [
+                  (attractions && attractions.length > 0) && [
                     {
                       block: 'heading',
                       mods: {size: 'xl'},
@@ -202,7 +204,7 @@ block('service').mod('view', 'detail')(
                       html: marked(priceDescription) || '',
                     },
                   },
-                  {
+                  (price || priceOld) && {
                     block: 'service',
                     elem: 'buy',
                     price: price || '',

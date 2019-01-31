@@ -6,3 +6,12 @@
   margin-bottom: 30px;
   color: #fff;
 }
+
+.service__remark a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.service__remark a:hover {
+  text-decoration: none;
+}
