@@ -1,6 +1,6 @@
 const client = require("./_request");
 
-const query = ( categoryName ) => `*[_type == "tour" && category._ref in *[key.current=="${ categoryName }"]._id ]{
+const query = ( categoryName ) => `*[_type == "tour"&&category._ref in *[key.current=="${ categoryName }"]._id &&!("deleted" in status)&&!("hidden" in status)]{
 ..., 
 "category": category->}`;
 const params = {};

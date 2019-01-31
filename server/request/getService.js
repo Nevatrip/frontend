@@ -1,6 +1,6 @@
 const client = require("./_request");
 
-const query = ( alias ) => `*[key.current == "${ alias }" ]{
+const query = ( alias ) => `*[key.current == "${ alias }" &&!("deleted" in status)]{
 ...,
 "point": point->,
 "place": place->,
