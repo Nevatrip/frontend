@@ -4,8 +4,9 @@ block('logo').elem('image')(
       {
         block: 'image',
         mix: { block: node.block, elem: node.elem },
-        url: node._logo,
-        alt: node._description,
+        url: ctx.logo,
+        alt: ctx.logoTitle,
+        title: ctx.logoTitle,
       },
     ]
   })

@@ -1,6 +1,6 @@
 block('header').elem('langs')(
   content()( (node, ctx) => {
-    return node._langs.map( item => ( item !== ctx.currentLang && {
+    return ctx.langs.map( item => ( item !== ctx.currentLang && {
       block: 'link',
       mix:  { block: 'header', elem: 'lang' },
       content: item,

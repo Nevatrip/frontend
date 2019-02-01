@@ -3,6 +3,7 @@
 const getServiceCategoryByCategoryAlias = require('../request/getServiceCategoryByCategoryAlias');
 const getServicesByCategory = require('../request/getServicesByCategory');
 const getNav = require('../request/getNav');
+const getServiceBasedData = require('../request/getServiceBasedData');
 
 const action = async( context, params ) => {
 
@@ -13,6 +14,8 @@ const action = async( context, params ) => {
   const services = await getServicesByCategory( serviceCategory );
   const navigation = await getNav();
 
+  const serviceBasedData = await getServiceBasedData();
+
   return {
     page: 'servicesByCategory',
     params,
@@ -20,7 +23,8 @@ const action = async( context, params ) => {
       services,
       navigation,
       serviceCategory,
-      serviceCategoryFull
+      serviceCategoryFull,
+      serviceBasedData,
     }
   }
 };

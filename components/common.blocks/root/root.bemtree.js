@@ -15,9 +15,10 @@ block( 'root' ).replace()( ( node, ctx ) => {
   const level = ctx.level || 'desktop';
   const config = node.config = ctx.config;
   const data = node.data = ctx.data;
+  const serviceBasedData = node.data.api.serviceBasedData;
   const contacts = node._contacts = {
-    tel: '8 812 244 98 24',
-    email: 'info@nevatrip.ru',
+    tel: serviceBasedData.tel || '',
+    email: serviceBasedData.email || '',
     social: [
       {
         name: 'vk',

@@ -4,6 +4,7 @@ const getServices = require('../request/getServices');
 const getService = require('../request/getService');
 const getNav = require('../request/getNav');
 const getServicesRandom = require('../request/getServicesRandomByCategoryExcludeID');
+const getServiceBasedData = require('../request/getServiceBasedData');
 
 const action = async (context, params) => {
   const alias = params.service;
@@ -16,6 +17,8 @@ const action = async (context, params) => {
   const excludeID = service[0]._id;
   const servicesRandom = await getServicesRandom(categoryName, excludeID);
 
+  const serviceBasedData = await getServiceBasedData();
+
   return {
     page: 'service',
     params,
@@ -23,7 +26,8 @@ const action = async (context, params) => {
       tours,
       service,
       navigation,
-      servicesRandom
+      servicesRandom,
+      serviceBasedData,
     }
   }
 };

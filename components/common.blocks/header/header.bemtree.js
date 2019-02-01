@@ -1,12 +1,4 @@
 block('header')(
-  def()( ( node, ctx ) => {
-      node._logo = ctx.logo;
-      node._description = ctx.description;
-      node._langs = ctx.langs;
-      node._slogan = ctx.slogan;
-      return applyNext()
-    }
-  ),
   content()( ( node, ctx ) => {
     return [
       {
@@ -16,14 +8,18 @@ block('header')(
           {
             block: 'logo',
             mods: {'is-link': node.data.page !== "index"},
+            logo: ctx.logo,
+            logoTitle: ctx.logoTitle,
           },
           {
             elem: 'slogan',
-            elemMods: {'is-heading': node.data.page === "index"}
+            elemMods: {'is-heading': node.data.page === "index"},
+            slogan: ctx.slogan,
           },
           {
             elem: 'langs',
-            currentLang: 'ru'
+            currentLang: 'ru',
+            langs: ctx.langs
           },
           {
             elem: 'contacts'

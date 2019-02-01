@@ -4,7 +4,7 @@ block('header').elem('slogan')(
       {
         block: 'heading',
         mix: {block: node.block, elem: node.elem},
-        content: node._slogan
+        content: ctx.slogan
       }
     ]
   })

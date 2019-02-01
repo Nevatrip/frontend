@@ -7,7 +7,9 @@ block('logo').mod( 'is-link', true )(
       title: 'На главную',
       content: {
         block: 'logo',
-        elem: 'image'
+        elem: 'image',
+        logo: ctx.logo,
+        logoTitle: ctx.logoTitle,
       }
     }
   }),
