@@ -29,8 +29,6 @@ block('navigation')(
                   mix: {block: 'navigation', elem: 'link'},
                   to: 'servicesByCategory',
                   params: {
-                    project: node.data.params.project,
-                    lang: node.data.params.lang,
                     category: item.alias
                   },
                   content: [
