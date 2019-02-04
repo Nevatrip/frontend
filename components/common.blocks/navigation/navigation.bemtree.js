@@ -27,7 +27,12 @@ block('navigation')(
                 {
                   block: 'link',
                   mix: {block: 'navigation', elem: 'link'},
-                  url: item.alias,
+                  to: 'servicesByCategory',
+                  params: {
+                    project: node.data.params.project,
+                    lang: node.data.params.lang,
+                    category: item.alias
+                  },
                   content: [
                     item.title &&{
                       block: 'navigation',
