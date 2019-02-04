@@ -3,7 +3,7 @@ block('logo').mod( 'is-link', true )(
     return {
       mix: { block: node.block},
       block: 'link',
-      url: '/',
+      url: '/' + node.data.params.project + '/' + node.data.params.lang,
       title: 'На главную',
       content: {
         block: 'logo',

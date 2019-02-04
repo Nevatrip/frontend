@@ -10,7 +10,7 @@ const error404 = require( './routes/404' );
 
 const router = new UniversalRouter(
   {
-    path: '',
+    path: '/:project/:lang',
     name: 'root',
     children: [
       {
