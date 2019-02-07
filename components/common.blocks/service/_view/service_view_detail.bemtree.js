@@ -1,6 +1,8 @@
 block('service').mod('view', 'detail')(
   content()((node, {service}) => {
 
+    const currentLang = node.data.params.lang;
+
     const {
       titleImage,
       title,
@@ -30,7 +32,7 @@ block('service').mod('view', 'detail')(
         block: 'title',
         mods: {view: 'xl'},
         url: titleImage || '',
-        title: title || '',
+        title: title[currentLang] || '',
       },
       {
         block: 'page',
@@ -83,7 +85,7 @@ block('service').mod('view', 'detail')(
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
-                    title: title || '',
+                    title: title[currentLang] || '',
                     urlBuy: key.current ? (key.current + '#buy') : '',
                   },
                 ],
@@ -209,7 +211,7 @@ block('service').mod('view', 'detail')(
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
-                    title: title || '',
+                    title: title[currentLang] || '',
                     urlBuy: key.current ? (key.current + '#buy') : '',
                   },
                   {

@@ -8,6 +8,10 @@
       mods: {view: 'inherit'}
     },
     {
+      block: 'link',
+      mods: { view: 'button' },
+    },
+    {
       block: 'heading',
       mods: {size: 'l'}
     },
@@ -18,10 +22,6 @@
     {
       block: 'image',
       mods: {view: 'bg'}
-    },
-    {
-      block: 'button',
-      mods: { type: 'link' },
     },
     {
       elems: [

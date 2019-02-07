@@ -12,13 +12,13 @@ block('service').elem('buy')(
             content: ctx.price,
           },
           {
-            block: 'button',
-            mods: {
-              type: 'link',
-            },
-            text: 'Купить',
+            block: 'link',
+            mods: {view: 'button'},
+            content: 'Купить',
             url: ctx.urlBuy || '',
             title: 'Купить ' + (ctx.title || ''),
+            to: ctx.route,
+            params: ctx.params,
           },
         ]
       },

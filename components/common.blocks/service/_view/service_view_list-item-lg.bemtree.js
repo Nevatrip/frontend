@@ -1,6 +1,8 @@
 block('service').mod('view', 'list-item-lg')(
   content()((node, {service}) => {
 
+    const currentLang = node.data.params.lang;
+
     const {
       key,
       titleImage,
@@ -47,13 +49,17 @@ block('service').mod('view', 'list-item-lg')(
                 content: [
                   {
                     block: 'link',
-                    url: (category.key.current && key.current) ? ('/' + category.key.current + '/' + key.current) : '/',
+                    to : 'service',
+                    params: {
+                      category: category.key.current,
+                      service: key.current
+                    },
                     content: {
                       block: 'image',
                       mods: {view: 'bg'},
                       url: titleImageCropped || '',
-                      alt: title || '',
-                      title: title || '',
+                      alt: title[currentLang] || '',
+                      title: title[currentLang] || '',
                     }
                   },
                 ]
@@ -71,9 +77,13 @@ block('service').mod('view', 'list-item-lg')(
                       {
                         block: 'link',
                         mods: {view: 'inherit'},
-                        url: (category.key.current && key.current) ? ('/' + category.key.current + '/' + key.current) : '/',
-                        title: title || '',
-                        content: title || ''
+                        to : 'service',
+                        params: {
+                          category: category.key.current,
+                          service: key.current
+                        },
+                        title: title[currentLang] || '',
+                        content: title[currentLang] || ''
                       }
                     ]
                   },
@@ -98,13 +108,15 @@ block('service').mod('view', 'list-item-lg')(
                         content: price,
                       },
                       {
-                        block: 'button',
-                        mods: {
-                          type: 'link',
+                        block: 'link',
+                        mods: {view: 'button'},
+                        content: {html: 'Подробнее&nbsp;&rarr;'},
+                        to : 'service',
+                        params: {
+                          category: category.key.current,
+                          service: key.current
                         },
-                        text: {html: 'Подробнее&nbsp;&rarr;'},
-                        url: (category.key.current && key.current) ? ('/' + category.key.current + '/' + key.current + '#buy') : '/',
-                        title: title || '',
+                        title: title[currentLang] || '',
                       },
                     ]
                   },

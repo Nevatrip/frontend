@@ -12,12 +12,12 @@
       mods: {view: 'md'}
     },
     {
-      block: 'button',
-      mods: { type: 'link' },
-    },
-    {
       block: 'page',
       elem: 'row',
-    }
+    },
+    {
+      block: 'link',
+      mods: {view: 'button'}
+    },
   ]
 }]

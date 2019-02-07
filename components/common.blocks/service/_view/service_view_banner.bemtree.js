@@ -1,6 +1,8 @@
 block('service').mod('view', 'banner')(
   content()(( node, { service } ) => {
 
+    const currentLang = node.data.params.lang;
+
     const {
       titleImage,
       title,
@@ -16,8 +18,8 @@ block('service').mod('view', 'banner')(
         block: 'image',
         mods: {view: 'bg'},
         url: titleImage || '',
-        alt: title,
-        title: title,
+        alt: title[currentLang] || '',
+        title: title[currentLang] || '',
       },
       {
         elem: 'content',
@@ -34,9 +36,13 @@ block('service').mod('view', 'banner')(
                   {
                     block: 'link',
                     mods: {view: 'inherit'},
-                    url: category.key.current + '/' +  key.current,
-                    title: title,
-                    content: title,
+                    to: 'service',
+                    params: {
+                      category: category.key.current,
+                      service: key.current
+                    },
+                    title: title[currentLang],
+                    content: title[currentLang],
                   }
                 ]
               },
@@ -59,14 +65,22 @@ block('service').mod('view', 'banner')(
                     elem: 'buy',
                     price: price,
                     priceOutside: priceOld,
-                    title: title,
-                    urlBuy: category.key.current + '/' +  key.current + '#buy',
+                    title: title[currentLang],
+                    route: 'service',
+                    params: {
+                      category: category.key.current,
+                      service: key.current
+                    },
                   },
                   {
                     block: 'service',
                     elem: 'more',
-                    url: category.key.current + '/' +  key.current,
-                    title: title,
+                    route: 'service',
+                    params: {
+                      category: category.key.current,
+                      service: key.current
+                    },
+                    title: title[currentLang],
                   },
                 ]
               },

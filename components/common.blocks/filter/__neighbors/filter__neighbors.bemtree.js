@@ -15,13 +15,19 @@ block('filter').elem('neighbors')(
             block: 'link',
             content: {html: '<b>&larr;&nbsp;Все&nbsp;' + neighborPrev + '</b>'},
             title: 'Все ' + neighborPrev,
-            url: '/' + neighborPrevUrl,
+            to: 'servicesByCategory',
+            params: {
+              category: neighborPrevUrl
+            }
           },
           (typeof neighborNext !== "undefined")&&(typeof neighborNextUrl !== "undefined")&&{
             block: 'link',
             content: {html: '<b>Все&nbsp;' + neighborNext + '&nbsp;&rarr;' + '</b>'},
             title: 'Все ' + neighborNext,
-            url: '/' + neighborNextUrl,
+            to: 'servicesByCategory',
+            params: {
+              category: neighborNextUrl
+            }
           }
         ]
       }

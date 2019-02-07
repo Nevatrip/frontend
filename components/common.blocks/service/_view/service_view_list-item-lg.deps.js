@@ -1,8 +1,8 @@
 [{
   shouldDeps: [
     {
-      block: 'button',
-      mods: {type: 'link'},
+      block: 'link',
+      mods: {view: 'button'},
     },
     {
       elems: [
