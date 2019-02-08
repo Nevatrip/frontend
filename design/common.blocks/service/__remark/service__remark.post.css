@@ -1,17 +1,8 @@
 .service__remark {
   box-sizing: border-box;
   padding: 14px 14px 4px;
-  background-color: #489fcb;
-  border-radius: 5px;
   margin-bottom: 30px;
-  color: #fff;
-}
-
-.service__remark a {
-  color: #fff;
-  text-decoration: underline;
-}
-
-.service__remark a:hover {
-  text-decoration: none;
+  font-weight: 500;
+  font-size: 1.05em;
+  border: 1px dashed;
 }

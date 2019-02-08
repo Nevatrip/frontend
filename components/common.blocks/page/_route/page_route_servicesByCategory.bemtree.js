@@ -4,7 +4,7 @@ block('page').mod('route', 'servicesByCategory')(
       {
         block: 'title',
         mods: {view: 'xl'},
-        url: 'error.jpg',
+        // url: 'error.jpg',
         title: node.data.api.serviceCategoryFull[0].title,
       },
       {

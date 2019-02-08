@@ -18,7 +18,7 @@
     },
     {
       block: 'heading',
-      mods: { size: 'xl' }
+      mods: { size: ['xl', 'm'] }
     },
     {
       elems: [
@@ -28,7 +28,8 @@
         'description',
         'price-info',
         'buy',
-        'gallery'
+        'gallery',
+        'advice'
       ]
     },
     {

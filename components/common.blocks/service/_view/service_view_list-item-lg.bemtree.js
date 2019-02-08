@@ -86,10 +86,10 @@ block('service').mod('view', 'list-item-lg')(
                       }
                     ]
                   },
-                  features && {
+                  features && features[currentLang] && {
                     block: 'list',
                     mods: {type: 'check', size: 'sm'},
-                    items: features.split('\n').map( item => {
+                    items: features[currentLang].split('\n').map( item => {
                       return {
                         html: marked(item)
                       }

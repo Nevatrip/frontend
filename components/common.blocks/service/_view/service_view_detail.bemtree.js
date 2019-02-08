@@ -24,6 +24,7 @@ block('service').mod('view', 'detail')(
       descriptionAppend,
       descriptionPrepend,
       prevention,
+      advice,
     } = service;
 
     return [
@@ -51,8 +52,8 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'description',
-                    duration: duration || '',
-                    time: schedule || '',
+                    duration: duration && duration[currentLang] ? duration[currentLang] : '',
+                    time: schedule && schedule[currentLang] ? schedule[currentLang] : '',
                     fromPoint: point ? (point.title || '') : '',
                     vehicle: place ? (place.title || '') : '',
                     excursion: tourLanguage ? tourLanguage.map(item => (item && {
@@ -77,7 +78,7 @@ block('service').mod('view', 'detail')(
                     elem: 'price-info',
                     discount: sale || '',
                     time: time || '',
-                    prevention: prevention || ''
+                    prevention: prevention && prevention[currentLang] ? prevention[currentLang] : ''
                   },
                   (price || priceOld) && {
                     block: 'service',
@@ -105,32 +106,32 @@ block('service').mod('view', 'detail')(
                 elem: 'col',
                 elemMods: {view: 'main'},
                 content: [
-                  description && {
+                  description && description[currentLang] && {
                     block: 'heading',
                     mods: {size: 'xl'},
                     content: {
                       html: 'Об&nbsp;экскурсии'
                     }
                   },
-                  descriptionPrepend && {
+                  descriptionPrepend && descriptionPrepend[currentLang] && {
                     block: 'service',
                     elem: 'remark',
                     content: {
-                      html: marked(descriptionPrepend) || ''
+                      html: marked(descriptionPrepend[currentLang]) || ''
                     }
                   },
-                  description && {
+                  description && description[currentLang] && {
                     block: 'page',
                     elem: 'text',
                     content: {
-                      html: marked(description) || ''
+                      html: marked(description[currentLang]) || ''
                     }
                   },
-                  descriptionAppend && {
+                  descriptionAppend && descriptionAppend[currentLang] && {
                     block: 'service',
                     elem: 'remark',
                     content: {
-                      html: marked(descriptionAppend) || ''
+                      html: marked(descriptionAppend[currentLang]) || ''
                     }
                   },
                   {
@@ -163,6 +164,19 @@ block('service').mod('view', 'detail')(
                       },
                     }
                   ],
+                  advice && {
+                    block: 'service',
+                    elem: 'advice',
+                    content: [
+                      {
+                        block: 'heading',
+                        mods: {size: 'm'},
+                        content: {html:'Совет от&nbsp;организатора'},
+                      },
+                      {
+                        html: marked(advice[currentLang]) || ''
+                      }]
+                  },
                 ]
               },
               {
@@ -198,11 +212,11 @@ block('service').mod('view', 'detail')(
                       mods: {type: 'disk', size: 'md'}
                     },
                   ],
-                  priceDescription && {
+                  priceDescription && priceDescription[currentLang] && {
                     block: 'heading',
                     mods: {size: 'xl'},
                     content: {
-                      html: marked(priceDescription) || '',
+                      html: marked(priceDescription[currentLang]) || '',
                     },
                   },
                   (price || priceOld) && {
