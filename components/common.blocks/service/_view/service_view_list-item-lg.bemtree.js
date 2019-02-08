@@ -4,7 +4,6 @@ block('service').mod('view', 'list-item-lg')(
     const currentLang = node.data.params.lang;
 
     const {
-      key,
       titleImage,
       title,
       features,
@@ -52,14 +51,14 @@ block('service').mod('view', 'list-item-lg')(
                     to : 'service',
                     params: {
                       category: category.key.current,
-                      service: key.current
+                      service: title[currentLang].key.current || ''
                     },
                     content: {
                       block: 'image',
                       mods: {view: 'bg'},
                       url: titleImageCropped || '',
-                      alt: title[currentLang] || '',
-                      title: title[currentLang] || '',
+                      alt: title[currentLang].name || '',
+                      title: title[currentLang].name || '',
                     }
                   },
                 ]
@@ -80,10 +79,10 @@ block('service').mod('view', 'list-item-lg')(
                         to : 'service',
                         params: {
                           category: category.key.current,
-                          service: key.current
+                          service: title[currentLang].key.current || ''
                         },
-                        title: title[currentLang] || '',
-                        content: title[currentLang] || ''
+                        title: title[currentLang].name || '',
+                        content: title[currentLang].name || ''
                       }
                     ]
                   },
@@ -114,9 +113,9 @@ block('service').mod('view', 'list-item-lg')(
                         to : 'service',
                         params: {
                           category: category.key.current,
-                          service: key.current
+                          service: title[currentLang].key.current || ''
                         },
-                        title: title[currentLang] || '',
+                        title: title[currentLang].name || '',
                       },
                     ]
                   },

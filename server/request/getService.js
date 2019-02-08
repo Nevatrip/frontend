@@ -1,6 +1,6 @@
 const client = require("./_request");
 
-const query = ( alias ) => `*[key.current == "${ alias }" &&!("deleted" in status)]{
+const query = ( alias, lang ) => `*[title.${ lang }.key.current == "${ alias }" &&!("deleted" in status)]{
 ...,
 "point": point->,
 "place": place->,
@@ -11,8 +11,8 @@ const query = ( alias ) => `*[key.current == "${ alias }" &&!("deleted" in statu
 "titleImage": titleImage.asset->{url}.url}`;
 const params = {};
 
-module.exports = async ( alias ) => {
-  return await client.fetch(query( alias ), params).then(tour => {
+module.exports = async ( alias, lang ) => {
+  return await client.fetch(query( alias, lang ), params).then(tour => {
     // console.log(query( alias ));
     return tour;
   });

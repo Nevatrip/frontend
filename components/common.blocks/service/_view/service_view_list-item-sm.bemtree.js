@@ -4,7 +4,6 @@ block('service').mod('view', 'list-item-sm')(
     const currentLang = node.data.params.lang;
 
     const {
-      key,
       titleImage,
       title,
       category
@@ -36,21 +35,21 @@ block('service').mod('view', 'list-item-sm')(
         to: 'service',
         params: {
           category: category.key.current,
-          service: key.current
+          service: title[currentLang].key.current || ''
         },
-        title: title[currentLang] || '',
+        title: title[currentLang].name || '',
         content: [
           {
             block: 'image',
             mix: {block: 'service', elem: 'image'},
             url: titleImageCropped,
-            title: title[currentLang] || '',
-            alt: title[currentLang] || ''
+            title: title[currentLang].name || '',
+            alt: title[currentLang].name || ''
           },
           {
             block: 'heading',
             mods: {size: 'm'},
-            content: title[currentLang] || ''
+            content: title[currentLang].name || ''
           }
         ]
       }

@@ -6,7 +6,6 @@ block('service').mod('view', 'banner')(
     const {
       titleImage,
       title,
-      key,
       features,
       price,
       priceOld,
@@ -18,8 +17,8 @@ block('service').mod('view', 'banner')(
         block: 'image',
         mods: {view: 'bg'},
         url: titleImage || '',
-        alt: title[currentLang] || '',
-        title: title[currentLang] || '',
+        alt: title[currentLang].name || '',
+        title: title[currentLang].name || '',
       },
       {
         elem: 'content',
@@ -39,10 +38,10 @@ block('service').mod('view', 'banner')(
                     to: 'service',
                     params: {
                       category: category.key.current,
-                      service: key.current
+                      service: title[currentLang].key.current || ''
                     },
-                    title: title[currentLang],
-                    content: title[currentLang],
+                    title: title[currentLang].name,
+                    content: title[currentLang].name,
                   }
                 ]
               },
@@ -65,11 +64,11 @@ block('service').mod('view', 'banner')(
                     elem: 'buy',
                     price: price,
                     priceOutside: priceOld,
-                    title: title[currentLang],
+                    title: title[currentLang].name,
                     route: 'service',
                     params: {
                       category: category.key.current,
-                      service: key.current
+                      service: title[currentLang].key.current || ''
                     },
                   },
                   {
@@ -78,9 +77,9 @@ block('service').mod('view', 'banner')(
                     route: 'service',
                     params: {
                       category: category.key.current,
-                      service: key.current
+                      service: title[currentLang].key.current || ''
                     },
-                    title: title[currentLang],
+                    title: title[currentLang].name,
                   },
                 ]
               },

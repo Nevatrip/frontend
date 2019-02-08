@@ -6,7 +6,6 @@ block('service').mod('view', 'detail')(
     const {
       titleImage,
       title,
-      key,
       price,
       priceOld,
       duration,
@@ -32,7 +31,7 @@ block('service').mod('view', 'detail')(
         block: 'title',
         mods: {view: 'xl'},
         url: titleImage || '',
-        title: title[currentLang] || '',
+        title: title[currentLang].name || '',
       },
       {
         block: 'page',
@@ -85,8 +84,8 @@ block('service').mod('view', 'detail')(
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
-                    title: title[currentLang] || '',
-                    urlBuy: key.current ? (key.current + '#buy') : '',
+                    title: title[currentLang].name || '',
+                    urlBuy: title[currentLang].key.current ? (title[currentLang].key.current + '#buy') : '',
                   },
                 ],
               },
@@ -211,8 +210,8 @@ block('service').mod('view', 'detail')(
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
-                    title: title[currentLang] || '',
-                    urlBuy: key.current ? (key.current + '#buy') : '',
+                    title: title[currentLang].name || '',
+                    urlBuy: title[currentLang].key.current ? (title[currentLang].key.current + '#buy') : '',
                   },
                   {
                     block: 'page',

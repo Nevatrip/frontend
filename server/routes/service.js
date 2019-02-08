@@ -8,9 +8,10 @@ const getServiceBasedData = require('../request/getServiceBasedData');
 
 const action = async (context, params) => {
   const alias = params.service;
+  const lang = params.lang;
 
   const tours = await getServices();
-  const service = await getService(alias);
+  const service = await getService(alias, lang);
   const navigation = await getNav();
 
   const categoryName = service[0].category.key.current;
