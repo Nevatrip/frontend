@@ -11,15 +11,15 @@ const action = async (context, params) => {
   const lang = params.lang;
 
   const tours = await getServices();
-  const service = await getService(alias, lang);
+  const service = (await getService(alias, lang));
+  
   const navigation = await getNav();
 
-  const categoryName = service[0].category.key.current;
-  const excludeID = service[0]._id;
+  const categoryName = service.category.key.current;
+  const excludeID = service._id;
   const servicesRandom = await getServicesRandom(categoryName, excludeID);
 
   const serviceBasedData = await getServiceBasedData();
-
   return {
     page: 'service',
     params,

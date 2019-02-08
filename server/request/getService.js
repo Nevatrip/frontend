@@ -13,7 +13,6 @@ const params = {};
 
 module.exports = async ( alias, lang ) => {
   return await client.fetch(query( alias, lang ), params).then(tour => {
-    // console.log(query( alias ));
-    return tour;
+    return tour[0];
   });
 };
