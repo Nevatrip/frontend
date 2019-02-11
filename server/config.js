@@ -13,4 +13,5 @@ module.exports = {
   logLevel: process.env.LOG_LEVEL.toLowerCase(),
   apiID: process.env.API_ID,
   apiDataset: process.env.API_DATASET,
+  langs: JSON.parse( process.env.LANGS ),
 };
