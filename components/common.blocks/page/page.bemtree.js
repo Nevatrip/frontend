@@ -8,7 +8,6 @@ block('page')(
         logoDescription: serviceBasedData.shortDescription || '',
         logoTitle: serviceBasedData.title || '',
         slogan: serviceBasedData.Slogan || '',
-        langs: ['ru', 'en', 'zh'] || [],
       },
       {
         block: 'navigation',

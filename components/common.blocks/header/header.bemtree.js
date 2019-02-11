@@ -18,7 +18,6 @@ block('header')(
           },
           {
             elem: 'langs',
-            langs: ctx.langs
           },
           {
             elem: 'contacts'
