@@ -18,7 +18,6 @@ block('header')(
           },
           {
             elem: 'langs',
-            currentLang: 'ru',
             langs: ctx.langs
           },
           {

@@ -1,10 +1,16 @@
 block('header').elem('langs')(
   content()( (node, ctx) => {
-    return ctx.langs.map( item => ( item !== ctx.currentLang && {
+    const currentLang = node.data.params.lang;
+
+    return ctx.langs.map( item => ( item !== currentLang && {
       block: 'link',
       mix:  { block: 'header', elem: 'lang' },
       content: item,
-      url: node.data.page + '/' + item
+      to: node.data.page,
+      params: {
+        lang: item,
+        category: node.data.params.category || ''
+      },
     }) )
   } )
 );

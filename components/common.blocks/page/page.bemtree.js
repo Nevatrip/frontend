@@ -1,7 +1,6 @@
 block('page')(
   content()(node => {
     const serviceBasedData = node.data.api.serviceBasedData;
-
     return [
       {
         block: 'header',
