@@ -4,7 +4,7 @@ block('header').elem('langs')(
 
     const service = ( node.data.api || {} ).service || {};
 
-    if ( service ) {
+    if ( node.data.page === 'service' ) {
       const currentAlias = service.title[ currentLang ].key.current;
 
       const otherLangs = node.config.langs
@@ -21,8 +21,6 @@ block('header').elem('langs')(
               }
         });
 
-      console.log( otherLangs );
-
       return otherLangs.map( item => ( {
         block: 'link',
         mix:  { block: 'header', elem: 'lang' },
@@ -37,7 +35,7 @@ block('header').elem('langs')(
     }
 
 
-    return ctx.langs.map( item => ( item !== currentLang && {
+    return node.config.langs.map( item => ( item !== currentLang && {
       block: 'link',
       mix:  { block: 'header', elem: 'lang' },
       content: item,
