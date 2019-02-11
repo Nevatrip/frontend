@@ -1,6 +1,7 @@
 block('page').mod('route', 'index')(
   mods()((node) => {
     const serviceBasedData = node.data.api.serviceBasedData;
+    const currentLang = node.data.params.lang;
 
     return [
       {
@@ -64,7 +65,7 @@ block('page').mod('route', 'index')(
             block: 'title',
             mods: {view: 'sm'},
             url: urlFor(serviceBasedData.articleImage.asset._ref).url() || '',
-            title: serviceBasedData.articleTitle || '',
+            title: serviceBasedData.articleTitle[currentLang] || '',
           },
           {
             block: 'features',
@@ -97,7 +98,7 @@ block('page').mod('route', 'index')(
             elem: 'content',
             elemMods: {view: 'narrow'},
             content: {
-              html: serviceBasedData.articleContent || ''
+              html: serviceBasedData.articleContent[currentLang] || ''
             }
           },
           {

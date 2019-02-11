@@ -1,13 +1,14 @@
 block('page')(
   content()(node => {
     const serviceBasedData = node.data.api.serviceBasedData;
+    const currentLang = node.data.params.lang;
     return [
       {
         block: 'header',
         logo: urlFor(serviceBasedData.logo.asset._ref).url() || '',
-        logoDescription: serviceBasedData.shortDescription || '',
-        logoTitle: serviceBasedData.title || '',
-        slogan: serviceBasedData.Slogan || '',
+        logoDescription: serviceBasedData.shortDescription[currentLang] || '',
+        logoTitle: serviceBasedData.title[currentLang] || '',
+        slogan: serviceBasedData.Slogan[currentLang] || '',
       },
       {
         block: 'navigation',
@@ -20,8 +21,8 @@ block('page')(
       },
       {
         block: 'footer',
-        awards: serviceBasedData.awards.split('\n') || '',
-        mainNavHeading: serviceBasedData.footerCategoryTitle || '',
+        awards: serviceBasedData.awards[currentLang].split('\n') || '',
+        mainNavHeading: serviceBasedData.footerCategoryTitle[currentLang] || '',
         mainNav: [
           {
             name: 'Причалы Санкт-Петербурга',
@@ -126,7 +127,7 @@ block('page')(
             url: 'https://moskvatrip.ru/'
           },
         ],
-        copyright: serviceBasedData.copyright || ''
+        copyright: serviceBasedData.copyright[currentLang] || ''
       },
     ]
   }),
