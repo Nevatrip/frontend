@@ -13,7 +13,7 @@ block('service').mod('view', 'banner')(
     } = service;
 
     const linkParamsService = (title[currentLang] && title[currentLang].key && title[currentLang].key.current) ? title[currentLang].key.current : '//';
-    const linkParamsCategory = (category && category.key && category.key.current) ? category.key.current : '';
+    const linkParamsCategory = (category && category.title && category.title[currentLang] && category.title[currentLang].key.current) ? category.title[currentLang].key.current : '//';
     const serviceTitle = (title[currentLang] && title[currentLang].name) ? title[currentLang].name : '';
 
     if (linkParamsService !== '//'){

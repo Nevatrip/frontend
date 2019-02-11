@@ -1,11 +1,14 @@
 block('page').mod('route', 'servicesByCategory')(
   mods()((node) => {
+
+    const currentLang = node.data.params.lang;
+    
     return [
       {
         block: 'title',
         mods: {view: 'xl'},
         // url: 'error.jpg',
-        title: node.data.api.serviceCategoryFull[0].title,
+        title: node.data.api.serviceCategoryFull[0].title[currentLang].name,
       },
       {
         block: 'page',

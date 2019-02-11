@@ -210,7 +210,7 @@ block('service').mod('view', 'detail')(
                     },
                     {
                       block: 'list',
-                      items: (attractions.map(item => (item.title))) || [],
+                      items: (attractions.map(item => (item.title[currentLang]))) || [],
                       mods: {type: 'disk', size: 'md'}
                     },
                   ],

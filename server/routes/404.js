@@ -5,9 +5,10 @@ const getNav = require('../request/getNav');
 const getServiceBasedData = require('../request/getServiceBasedData');
 
 const action = async( context, params ) => {
+  const lang = params.lang;
 
   const tours = await getServices();
-  const navigation = await getNav();
+  const navigation = await getNav(lang);
   const serviceBasedData = await getServiceBasedData();
 
   return {

@@ -1,11 +1,10 @@
 const client = require("./_request");
 
-const query = '*[_type==\"settingMenu\" && key.current==\"header\"]{..., menu[]->{title,subTitle,\"alias\": key.current}}.menu';
+const query = ( lang ) => `*[_type=="settingMenu" && key.current=="header"]{...,menu[]->{"title": title.${ lang }.name,"subTitle": subTitle.${ lang },"alias": title.${ lang }.key.current}}.menu`;
 const params = {};
 
-module.exports = async () => {
-  return await client.fetch(query, params).then(navigation => {
-    // console.log(navigation);
+module.exports = async ( lang ) => {
+  return await client.fetch(query(lang), params).then(navigation => {
     return navigation;
   });
-}
+};

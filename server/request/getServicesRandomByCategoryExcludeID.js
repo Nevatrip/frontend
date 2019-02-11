@@ -1,9 +1,9 @@
 const client = require("./_request");
-const query = (categoryName, excludeID) => `*[_type =="tour" && category._ref in *[_type=="settingServiceCategory" && key.current=="${categoryName}"]._id  && _id!="${excludeID}"&&!("deleted" in status)&&!("hidden" in status)]{..., "category": category->}`;
+const query = (categoryName, excludeID, lang) => `*[_type =="tour" && category._ref in *[_type=="settingServiceCategory" && title.${lang}.key.current=="${categoryName}"]._id  && _id!="${excludeID}"&&!("deleted" in status)&&!("hidden" in status)]{..., "category": category->}`;
 const params = {};
 
-module.exports = async (categoryName, excludeID) => {
-  return await client.fetch(query(categoryName, excludeID), params).then(servicesRandom => {
+module.exports = async (categoryName, excludeID, lang) => {
+  return await client.fetch(query(categoryName, excludeID, lang), params).then(servicesRandom => {
     // console.log(query(categoryName, excludeID));
     return servicesRandom;
   });

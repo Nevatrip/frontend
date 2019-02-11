@@ -6,13 +6,14 @@ const getNav = require('../request/getNav');
 const getServiceBasedData = require('../request/getServiceBasedData');
 
 const action = async( context, params ) => {
+  const lang = params.lang;
 
   const serviceCategory = params.category;
 
-  const serviceCategoryFull = await getServiceCategoryByCategoryAlias( serviceCategory );
+  const serviceCategoryFull = await getServiceCategoryByCategoryAlias( serviceCategory, lang );
 
-  const services = await getServicesByCategory( serviceCategory );
-  const navigation = await getNav();
+  const services = await getServicesByCategory( serviceCategory, lang );
+  const navigation = await getNav(lang);
 
   const serviceBasedData = await getServiceBasedData();
 
