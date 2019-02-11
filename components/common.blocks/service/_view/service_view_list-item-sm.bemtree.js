@@ -11,7 +11,7 @@ block('service').mod('view', 'list-item-sm')(
 
     let titleImageCropped = '';
 
-    if (titleImage){
+    if (titleImage) {
       if (titleImage.hotspot) {
         titleImageCropped = urlFor(titleImage)
           .focalPoint(titleImage.hotspot.x.toFixed(2), titleImage.hotspot.y.toFixed(2))
@@ -28,31 +28,37 @@ block('service').mod('view', 'list-item-sm')(
       }
     }
 
-    return [
-      {
-        block: 'link',
-        mods: {display: 'block', view: 'inherit'},
-        to: 'service',
-        params: {
-          category: category.key.current,
-          service: title[currentLang].key.current || ''
-        },
-        title: title[currentLang].name || '',
-        content: [
-          {
-            block: 'image',
-            mix: {block: 'service', elem: 'image'},
-            url: titleImageCropped,
-            title: title[currentLang].name || '',
-            alt: title[currentLang].name || ''
+    const linkParamsService = (title[currentLang] && title[currentLang].key && title[currentLang].key.current) ? title[currentLang].key.current : '//';
+    const linkParamsCategory = (category && category.key && category.key.current) ? category.key.current : '';
+    const serviceTitle = (title[currentLang] && title[currentLang].name) ? title[currentLang].name : '';
+
+    if (linkParamsService !== '//') {
+      return [
+        {
+          block: 'link',
+          mods: {display: 'block', view: 'inherit'},
+          to: 'service',
+          params: {
+            category: linkParamsCategory,
+            service: linkParamsService
           },
-          {
-            block: 'heading',
-            mods: {size: 'm'},
-            content: title[currentLang].name || ''
-          }
-        ]
-      }
-    ]
+          title: title[currentLang].name || '',
+          content: [
+            {
+              block: 'image',
+              mix: {block: 'service', elem: 'image'},
+              url: titleImageCropped,
+              title: serviceTitle,
+              alt: serviceTitle
+            },
+            {
+              block: 'heading',
+              mods: {size: 'm'},
+              content: serviceTitle
+            }
+          ]
+        }
+      ]
+    }
   }),
 );

@@ -27,12 +27,14 @@ block('service').mod('view', 'detail')(
       advice,
     } = service;
 
+    const serviceTitle = (title[currentLang] && title[currentLang].name) ? title[currentLang].name : '';
+
     return [
       {
         block: 'title',
         mods: {view: 'xl'},
         url: titleImage || '',
-        title: title[currentLang].name || '',
+        title: serviceTitle,
       },
       {
         block: 'page',
@@ -85,8 +87,8 @@ block('service').mod('view', 'detail')(
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
-                    title: title[currentLang].name || '',
-                    urlBuy: title[currentLang].key.current ? (title[currentLang].key.current + '#buy') : '',
+                    title: serviceTitle,
+                    urlBuy: '#buy',
                   },
                 ],
               },
@@ -164,7 +166,7 @@ block('service').mod('view', 'detail')(
                       },
                     }
                   ],
-                  advice && {
+                  advice && advice[currentLang] && {
                     block: 'service',
                     elem: 'advice',
                     content: [
@@ -224,8 +226,8 @@ block('service').mod('view', 'detail')(
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
-                    title: title[currentLang].name || '',
-                    urlBuy: title[currentLang].key.current ? (title[currentLang].key.current + '#buy') : '',
+                    title: serviceTitle,
+                    urlBuy: '#buy',
                   },
                   {
                     block: 'page',

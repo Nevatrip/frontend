@@ -9,7 +9,8 @@ block('header').elem('langs')(
       to: node.data.page,
       params: {
         lang: item,
-        category: node.data.params.category || ''
+        category: node.data.params.category || '',
+        service: node.data.params.service || ''
       },
     }) )
   } )
