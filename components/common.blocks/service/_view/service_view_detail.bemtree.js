@@ -56,8 +56,8 @@ block('service').mod('view', 'detail')(
                     elem: 'description',
                     duration: duration && duration[currentLang] ? duration[currentLang] : '',
                     time: schedule && schedule[currentLang] ? schedule[currentLang] : '',
-                    fromPoint: point ? (point.title || '') : '',
-                    vehicle: place ? (place.title || '') : '',
+                    fromPoint: (point && point.title && point.title[currentLang]) ? (point.title[currentLang] || '') : '',
+                    vehicle: (place && place.title && place.title[currentLang]) ? (place.title[currentLang] || '') : '',
                     excursion: tourLanguage ? tourLanguage.map(item => (item && {
                       url: item.icon.url,
                       name: item.title
