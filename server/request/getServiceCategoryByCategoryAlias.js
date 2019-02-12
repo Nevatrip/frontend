@@ -6,6 +6,6 @@ const params = {};
 module.exports = async ( categoryName, lang ) => {
   return await client.fetch(query( categoryName, lang ), params).then(category => {
     // console.log(category);
-    return category;
+    return category[0];
   });
 };

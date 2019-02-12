@@ -8,7 +8,7 @@ block('page').mod('route', 'servicesByCategory')(
         block: 'title',
         mods: {view: 'xl'},
         // url: 'error.jpg',
-        title: node.data.api.serviceCategoryFull[0].title[currentLang].name,
+        title: (node.data.api && node.data.api.serviceCategoryFull && node.data.api.serviceCategoryFull.title && node.data.api.serviceCategoryFull.title[currentLang] && node.data.api.serviceCategoryFull.title[currentLang].name) ? node.data.api.serviceCategoryFull.title[currentLang].name : '',
       },
       {
         block: 'page',

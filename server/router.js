@@ -4,9 +4,9 @@ const UniversalRouter = require( 'universal-router' );
 const generateUrls = require( 'universal-router/generateUrls' );
 
 const servicesByCategory = require( './routes/servicesByCategory' );
-const home = require( './routes/home' );
-const service = require( './routes/service' );
-const error404 = require( './routes/404' );
+const home               = require( './routes/home' );
+const service            = require( './routes/service' );
+const error404           = require( './routes/404' );
 
 const router = new UniversalRouter(
   {
@@ -20,6 +20,13 @@ const router = new UniversalRouter(
       },
       {
         path: `/:category`,
+        // async action({ next }, context) {
+        //   console.log('middleware: start');
+        //   console.log(context);
+        //   const child = await next();
+        //   console.log('middleware: end');
+        //   return child
+        // },
         children: [
           {
             path: '',
