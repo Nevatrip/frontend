@@ -7,16 +7,21 @@ const getServicesRandom = require('../request/getServicesRandomByCategoryExclude
 const getServiceBasedData = require('../request/getServiceBasedData');
 
 const action = async (context, params) => {
-  const alias = params.service;
-  const lang = params.lang;
+  const {
+    service,
+    lang,
+    category
+  } = params;
 
   const tours = await getServices();
-  const service = (await getService(alias, lang));
-  
+  const serviceResponse = (await getService(service, lang, category));
+
+  console.log( 'serviceResponse', serviceResponse );
+
   const navigation = await getNav(lang);
 
-  const categoryName = service.category.title[lang].key.current;
-  const excludeID = service._id;
+  const categoryName = serviceResponse.category.title[lang].key.current;
+  const excludeID = serviceResponse._id;
   const servicesRandom = await getServicesRandom(categoryName, excludeID, lang);
 
   const serviceBasedData = await getServiceBasedData();
@@ -25,7 +30,7 @@ const action = async (context, params) => {
     params,
     api: {
       tours,
-      service,
+      service: serviceResponse,
       navigation,
       servicesRandom,
       serviceBasedData,
