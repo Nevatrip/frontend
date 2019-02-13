@@ -1,9 +1,9 @@
 block('header').elem('langs')(
   content()( (node, ctx) => {
-    console.log('↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓');
-    console.log(node.data.api.serviceCategories);
-    console.log('↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_');
-    
+    // console.log('↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓');
+    // console.log(node.data.api.serviceCategories);
+    // console.log('↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_');
+
     const currentLang = node.data.params.lang;
 
     const service = ( node.data.api || {} ).service || {};

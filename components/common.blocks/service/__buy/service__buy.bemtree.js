@@ -1,5 +1,7 @@
 block('service').elem('buy')(
   content()((node, ctx) => {
+    const currentLang = node.data.params.lang;
+
     return [
       {
         block: 'page',
@@ -14,9 +16,9 @@ block('service').elem('buy')(
           {
             block: 'link',
             mods: {view: 'button'},
-            content: 'Купить',
+            content: (node.data.api.settingService && node.data.api.settingService.serviceBuyLink && node.data.api.settingService.serviceBuyLink[currentLang]) ? node.data.api.settingService.serviceBuyLink[currentLang] : '',
             url: ctx.urlBuy || '',
-            title: 'Купить ' + (ctx.title || ''),
+            title: ((node.data.api.settingService && node.data.api.settingService.serviceBuyLink && node.data.api.settingService.serviceBuyLink[currentLang]) ? node.data.api.settingService.serviceBuyLink[currentLang] : '') + ' ' + (ctx.title || ''),
             to: ctx.route,
             params: ctx.params,
           },

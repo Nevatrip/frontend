@@ -115,7 +115,9 @@ block('service').mod('view', 'list-item-lg')(
                         {
                           block: 'link',
                           mods: {view: 'button'},
-                          content: {html: 'Подробнее&nbsp;&rarr;'},
+                          content: {
+                            html: ((node.data.api.settingService && node.data.api.settingService.serviceViewListItemLgMore && node.data.api.settingService.serviceViewListItemLgMore[currentLang]) ? node.data.api.settingService.serviceViewListItemLgMore[currentLang] : '') + '&nbsp;&rarr;'
+                          },
                           to: 'service',
                           params: {
                             category: linkParamsCategory,
