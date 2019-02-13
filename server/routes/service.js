@@ -17,7 +17,7 @@ const action = async (context, params) => {
   const tours = await getServices();
   const serviceResponse = (await getService(service, lang, category));
 
-  console.log( 'serviceResponse', serviceResponse );
+  // console.log( 'serviceResponse', serviceResponse );
 
   const navigation = await getNav(lang);
 

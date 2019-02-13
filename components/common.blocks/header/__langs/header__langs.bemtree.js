@@ -1,136 +1,56 @@
 block('header').elem('langs')(
-  content()( (node, ctx) => {
-    // console.log('↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓');
-    // console.log(node.data.page);
-    // console.log('↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_');
-
+  content()((node, ctx) => {
     const currentLang = node.data.params.lang;
 
-    /*
-    if ( node.data.page === 'service' ) {
-      const service = ( node.data.api || {} ).service;
-      const currentAlias = service.title[ currentLang ].key.current;
-
-      const otherLangs = node.config.langs
-        .filter( lang => lang !== currentLang )
-        .map( lang => {
-          return service.title.hasOwnProperty( lang )
-            ? {
-                alias: service.title[ lang ].key.current,
-                lang: lang
-              }
-            : {
-                root: true,
-                lang: lang
-              }
-        });
-
-      return otherLangs.map( item => ( {
-        block: 'link',
-        mix:  { block: 'header', elem: 'lang' },
-        content: item.lang,
-        to: item.root ? 'root' : 'service',
-        params: {
-          lang: item.lang,
-          category: node.data.params.category || '',
-          service: item.alias || ''
-        },
-      }) )
-    }
-
-    if ( node.data.page === 'servicesByCategory' ) {
-      const servicesByCategory = ( node.data.api || {} ).serviceCategoryFull;
-
-      const currentAlias = servicesByCategory.title[ currentLang ].key.current;
-
-      const otherLangs = node.config.langs
-        .filter( lang => lang !== currentLang )
-        .map( lang => {
-          return servicesByCategory.title.hasOwnProperty( lang )
-            ? {
-                alias: servicesByCategory.title[ lang ].key.current,
-                lang: lang
-              }
-            : {
-                root: true,
-                lang: lang
-              }
-        });
-
-      return otherLangs.map( item => ( {
-        block: 'link',
-        mix:  { block: 'header', elem: 'lang' },
-        content: item.lang,
-        to: item.root ? 'root' : 'servicesByCategory',
-        params: {
-          lang: item.lang,
-          category: item.alias || '',
-        },
-      }) )
-    }
-    */
-
-    const getRoute = ( page ) => {
+    const getRoute = (page) => {
       const routeKey = {
         servicesByCategory: 'serviceCategoryFull',
-        service: 'service'
-      }
+        service: 'service',
+        index: 'index'
+      };
 
-      const response = ( node.data.api || {} )[ routeKey[ page ] ];
+      const response = (node.data.api || {})[routeKey[page]];
 
-
-      const currentAlias = response.title[ currentLang ].key.current;
       const otherLangs = node.config.langs
-        .filter( lang => lang !== currentLang )
-        .map( lang => {
-          return response.title.hasOwnProperty( lang )
+        .filter(lang => lang !== currentLang)
+        .map(lang => {
+          return ((response || {}).title || {}).hasOwnProperty(lang)
             ? {
-                alias: response.title[ lang ].key.current,
-                lang: lang
-              }
+              alias: (response || {}).title[lang].key.current || null,
+              lang: lang
+            }
             : {
-                root: true,
-                lang: lang
-              }
+              root: true,
+              lang: lang
+            }
         });
 
 
-      return otherLangs.map( item => {
+      return otherLangs.map(item => {
         const routeParams = {
-          service: response.category && {
-            category: response.category.title[ item.lang ].key.current || '',
+          service: (response || {}).category && {
+            category: response.category.title[item.lang].key.current || '',
             service: item.alias || ''
           },
           servicesByCategory: {
             category: item.alias || '',
-          }
-        }
+          },
+          index: {}
+        };
 
         return {
           block: 'link',
-          mix:  { block: 'header', elem: 'lang' },
+          mix: {block: 'header', elem: 'lang'},
           content: item.lang,
           to: item.root ? 'root' : page,
           params: {
             lang: item.lang,
-            ...routeParams[ page ]
+            ...routeParams[page]
           },
         }
       })
-    }
+    };
 
-    return getRoute( node.data.page )
-
-    // return node.config.langs.map( item => ( item !== currentLang && {
-    //   block: 'link',
-    //   mix:  { block: 'header', elem: 'lang' },
-    //   content: item,
-    //   to: node.data.page,
-    //   params: {
-    //     lang: item,
-    //     category: node.data.params.category || '',
-    //     service: node.data.params.service || ''
-    //   },
-    // }) )
-  } )
+    return getRoute(node.data.page)
+  })
 );
