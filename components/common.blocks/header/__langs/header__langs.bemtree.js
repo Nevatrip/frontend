@@ -96,22 +96,13 @@ block('header').elem('langs')(
 
 
       return otherLangs.map( item => {
-        console.log('');
-        console.log( response.title[ lang ].key.current );
-        console.log('');
-        console.log('');
-
         const routeParams = {
-          service: {
+          service: response.category && {
             category: response.category.title[ item.lang ].key.current || '',
             service: item.alias || ''
           },
           servicesByCategory: {
             category: item.alias || '',
-          }
-
-          `${}`: {
-
           }
         }
 
