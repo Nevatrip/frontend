@@ -12,9 +12,9 @@ block('service').mod('view', 'banner')(
       category
     } = service;
 
-    const linkParamsService = (title[currentLang] && title[currentLang].key && title[currentLang].key.current) ? title[currentLang].key.current : '//';
-    const linkParamsCategory = (category && category.title && category.title[currentLang] && category.title[currentLang].key.current) ? category.title[currentLang].key.current : '//';
-    const serviceTitle = (title[currentLang] && title[currentLang].name) ? title[currentLang].name : '';
+    const linkParamsService = ((title[currentLang] || {}).key || {}).current || '//';
+    const linkParamsCategory = (((category || {}).title || {})[currentLang] || {}).key.current || '//';
+    const serviceTitle = (title[currentLang] || {}).name || '';
 
     if (linkParamsService !== '//'){
       return [
@@ -50,7 +50,7 @@ block('service').mod('view', 'banner')(
                     }
                   ]
                 },
-                features && features[currentLang] && {
+                (features || {})[currentLang] && {
                   block: 'list',
                   mods: {type: 'check-in-disk ', size: 'xl'},
                   items: features[currentLang].split('\n').map( item => {

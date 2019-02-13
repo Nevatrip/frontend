@@ -27,7 +27,7 @@ block('service').mod('view', 'detail')(
       advice,
     } = service;
 
-    const serviceTitle = (title[currentLang] && title[currentLang].name) ? title[currentLang].name : '';
+    const serviceTitle = ((title[currentLang] || {}).name) || '';
 
     return [
       {
@@ -54,10 +54,10 @@ block('service').mod('view', 'detail')(
                   {
                     block: 'service',
                     elem: 'description',
-                    duration: duration && duration[currentLang] ? duration[currentLang] : '',
-                    time: schedule && schedule[currentLang] ? schedule[currentLang] : '',
-                    fromPoint: (point && point.title && point.title[currentLang]) ? (point.title[currentLang] || '') : '',
-                    vehicle: (place && place.title && place.title[currentLang]) ? (place.title[currentLang] || '') : '',
+                    duration: (duration || {})[currentLang] || '',
+                    time: (schedule || {})[currentLang] || '',
+                    fromPoint: ((point || {}).title || {} )[currentLang] || '',
+                    vehicle: ((place || {}).title || {})[currentLang] || '',
                     excursion: tourLanguage ? tourLanguage.map(item => (item && {
                       url: item.icon.url,
                       name: item.title
@@ -80,7 +80,7 @@ block('service').mod('view', 'detail')(
                     elem: 'price-info',
                     discount: sale || '',
                     time: time || '',
-                    prevention: prevention && prevention[currentLang] ? prevention[currentLang] : ''
+                    prevention: (prevention || {})[currentLang] || ''
                   },
                   (price || priceOld) && {
                     block: 'service',
@@ -108,28 +108,28 @@ block('service').mod('view', 'detail')(
                 elem: 'col',
                 elemMods: {view: 'main'},
                 content: [
-                  description && description[currentLang] && {
+                  (description || {})[currentLang] && {
                     block: 'heading',
                     mods: {size: 'xl'},
                     content: {
-                      html: 'Об&nbsp;экскурсии'
+                      html: ((node.data.api.settingService || {}).serviceViewDetailDescription || {})[currentLang] || ''
                     }
                   },
-                  descriptionPrepend && descriptionPrepend[currentLang] && {
+                  (descriptionPrepend || {})[currentLang] && {
                     block: 'service',
                     elem: 'remark',
                     content: {
                       html: marked(descriptionPrepend[currentLang]) || ''
                     }
                   },
-                  description && description[currentLang] && {
+                  (description || {})[currentLang] && {
                     block: 'page',
                     elem: 'text',
                     content: {
                       html: marked(description[currentLang]) || ''
                     }
                   },
-                  descriptionAppend && descriptionAppend[currentLang] && {
+                  (descriptionAppend || {})[currentLang] && {
                     block: 'service',
                     elem: 'remark',
                     content: {
@@ -149,7 +149,7 @@ block('service').mod('view', 'detail')(
                       block: 'heading',
                       mods: {size: 'xl'},
                       content: {
-                        html: 'Карта маршрута'
+                        html: ((node.data.api.settingService || {}).serviceViewDetailRouteMap || {})[currentLang] || ''
                       },
                     },
                     {
@@ -166,14 +166,17 @@ block('service').mod('view', 'detail')(
                       },
                     }
                   ],
-                  advice && advice[currentLang] && {
+                  (advice || {})[currentLang] && {
                     block: 'service',
                     elem: 'advice',
                     content: [
                       {
                         block: 'heading',
                         mods: {size: 'm'},
-                        content: {html:'Совет от&nbsp;организатора'},
+                        content:
+                          {
+                            html: ((node.data.api.settingService || {}).serviceViewDetailAdvice || {})[currentLang] || ''
+                          },
                       },
                       {
                         html: marked(advice[currentLang]) || ''
@@ -191,7 +194,7 @@ block('service').mod('view', 'detail')(
                       block: 'heading',
                       mods: {size: 'xl'},
                       content: {
-                        html: 'Галерея'
+                        html: ((node.data.api.settingService || {}).serviceViewDetailGallery || {})[currentLang] || ''
                       },
                     },
                     {
@@ -200,12 +203,12 @@ block('service').mod('view', 'detail')(
                       photos: gallery,
                     },
                   ],
-                  (attractions && attractions.length > 0) && [
+                  ((attractions || {}).length > 0) && [
                     {
                       block: 'heading',
                       mods: {size: 'xl'},
                       content: {
-                        html: 'Вы&nbsp;увидите'
+                        html: ((node.data.api.settingService || {}).serviceViewDetailAttractions || {})[currentLang] || ''
                       },
                     },
                     {
@@ -214,7 +217,7 @@ block('service').mod('view', 'detail')(
                       mods: {type: 'disk', size: 'md'}
                     },
                   ],
-                  priceDescription && priceDescription[currentLang] && {
+                  (priceDescription || {})[currentLang] && {
                     block: 'heading',
                     mods: {size: 'xl'},
                     content: {
@@ -233,12 +236,12 @@ block('service').mod('view', 'detail')(
                     block: 'page',
                     elem: 'hr'
                   },
-                  node.data.api.servicesRandom.length > 0 && [
+                  (node.data.api.servicesRandom.filter( item => item.title[node.currentLang]).length) > 0 && [
                     {
                       block: 'heading',
                       mods: {size: 'xl'},
                       content: {
-                        html: 'Похожие экскурсии:'
+                        html: ((node.data.api.settingService || {}).serviceViewDetailSame || {})[currentLang] || ''
                       },
                     },
                     {

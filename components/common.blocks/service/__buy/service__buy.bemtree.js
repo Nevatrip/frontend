@@ -16,9 +16,9 @@ block('service').elem('buy')(
           {
             block: 'link',
             mods: {view: 'button'},
-            content: (node.data.api.settingService && node.data.api.settingService.serviceBuyLink && node.data.api.settingService.serviceBuyLink[currentLang]) ? node.data.api.settingService.serviceBuyLink[currentLang] : '',
+            content: ((node.data.api.settingService || {}).serviceBuyLink || {})[currentLang] || '',
             url: ctx.urlBuy || '',
-            title: ((node.data.api.settingService && node.data.api.settingService.serviceBuyLink && node.data.api.settingService.serviceBuyLink[currentLang]) ? node.data.api.settingService.serviceBuyLink[currentLang] : '') + ' ' + (ctx.title || ''),
+            title: (((node.data.api.settingService || {}).serviceBuyLink || {})[currentLang] || '') + ' ' + (ctx.title || ''),
             to: ctx.route,
             params: ctx.params,
           },

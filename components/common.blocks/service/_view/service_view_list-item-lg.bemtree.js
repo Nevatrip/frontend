@@ -31,9 +31,9 @@ block('service').mod('view', 'list-item-lg')(
       }
     }
 
-    const linkParamsService = (title[currentLang] && title[currentLang].key && title[currentLang].key.current) ? title[currentLang].key.current : '//';
-    const linkParamsCategory = (category && category.title && category.title[currentLang] && category.title[currentLang].key.current) ? category.title[currentLang].key.current : '//';
-    const serviceTitle = (title[currentLang] && title[currentLang].name) ? title[currentLang].name : '';
+    const linkParamsService = ((title[currentLang] || {}).key || {}).current || '//';
+    const linkParamsCategory = (((category || {}).title || {})[currentLang] || {}).key.current || '//';
+    const serviceTitle = (title[currentLang] || {}).name || '';
 
 
     if (linkParamsService !== '//') {
@@ -116,7 +116,7 @@ block('service').mod('view', 'list-item-lg')(
                           block: 'link',
                           mods: {view: 'button'},
                           content: {
-                            html: ((node.data.api.settingService && node.data.api.settingService.serviceViewListItemLgMore && node.data.api.settingService.serviceViewListItemLgMore[currentLang]) ? node.data.api.settingService.serviceViewListItemLgMore[currentLang] : '') + '&nbsp;&rarr;'
+                            html: (((node.data.api.settingService || {}).serviceViewListItemLgMore || {})[currentLang] || '') + '&nbsp;&rarr;'
                           },
                           to: 'service',
                           params: {

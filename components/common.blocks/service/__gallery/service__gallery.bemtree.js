@@ -29,7 +29,7 @@ block('service').elem('gallery').content()((node, ctx) => {
             content: [
               {
                 block: 'link',
-                title: item.description && item.description[currentLang] ? item.description[currentLang] : '',
+                title: (item.description || {})[currentLang] || '',
                 url: urlFor(item.asset._ref).url(),
                 mods: {pseudo: true, display: 'block'},
                 mix: {block: 'gallery', elem: 'link'},
@@ -44,13 +44,13 @@ block('service').elem('gallery').content()((node, ctx) => {
                 content: {
                   block: 'image',
                   url: urlFor(item.asset._ref).fit('crop').width(133).height(133).url(),
-                  alt:  item.description && item.description[currentLang] ? item.description[currentLang] : '',
+                  alt:  (item.description || {})[currentLang] || '',
                   mods: {width: 'available'},
                   mix: {block: 'gallery', elem: 'thumbnail'},
                   attrs: {
                     itemprop: 'thumbnail'
                   },
-                  title: item.description && item.description[currentLang] ? item.description[currentLang] : '',
+                  title: (item.description || {})[currentLang] || '',
                 }
               },
               {
@@ -60,7 +60,7 @@ block('service').elem('gallery').content()((node, ctx) => {
                 attrs: {
                   itemprop: 'caption description'
                 },
-                content: item.description && item.description[currentLang] ? item.description[currentLang] : '',
+                content: (item.description || {})[currentLang] || '',
               }
             ]
           };
