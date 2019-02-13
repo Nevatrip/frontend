@@ -36,34 +36,29 @@ module.exports = async (config) => {
         [techs.bem.files, { depsFile: `?.deps.js` }],
 
         // CSS
-        [
-          techs.postcss,
-          {
-            target: '?.css',
-            oneOfSourceSuffixes: ['post.css', 'css'],
-            plugins: techs.postcssPlugins,
-          },
-        ],
+        [techs.postcss, {
+          oneOfSourceSuffixes: ['post.css', 'css'],
+          plugins: techs.postcssPlugins,
+          target: '?.css',
+        }],
+        [techs.borschik, { source: '?.css', target: '?.min.css', minify: !__DEV__ }],
+        [techs.fileCopy, { source: '?.min.css', target: '../../static/assets/css/?.min.css' }],
 
         // i18n
-        [ techs.keysets, { lang: '{lang}' } ],
-        [ techs.i18n, {
+        [techs.keysets, { lang: '{lang}' } ],
+        [techs.i18n, {
           exports: { ym: true, commonJS: true },
           lang: '{lang}'
-        } ],
-        [
-          techs.bemtreeI18N,
-          {
-            sourceSuffixes: ['bemtree', 'bemtree.js'],
-            target: '?.{lang}.bemtree.js',
-            lang: '{lang}'
-          },
-        ],
+        }],
+        [techs.bemtreeI18N,{
+          sourceSuffixes: ['bemtree', 'bemtree.js'],
+          lang: '{lang}',
+          target: '?.{lang}.bemtree.js',
+        }],
 
         // templates
-        [ techs.bemhtml, {
+        [techs.bemhtml, {
           sourceSuffixes: [ 'bemhtml', 'bemhtml.js' ],
-          target: '?.{lang}.bemhtml.js',
           forceBaseTemplates: true,
           engineOptions: {
             elemJsInstances: true,
@@ -71,8 +66,10 @@ module.exports = async (config) => {
             omitOptionalEndTags: true,
             unquotedAttrs: true,
             runtimeLint: true
-          }
-        } ],
+          },
+          target: '?.{lang}.dev.bemhtml.js',
+        }],
+        [techs.borschik, { source: '?.{lang}.dev.bemhtml.js', target: '?.{lang}.bemhtml.js', minify: false, freeze : true }],
 
         // client templates
         [techs.bem.depsByTechToBemdecl, {
@@ -90,27 +87,19 @@ module.exports = async (config) => {
           dirsTarget: '?.tmpl.dirs'
         }],
         [techs.bemhtml, {
-          target: '?.browser.bemhtml.js',
           filesTarget: '?.tmpl.files',
           sourceSuffixes: ['bemhtml', 'bemhtml.js'],
-          engineOptions: { elemJsInstances: true }
+          engineOptions: { elemJsInstances: true },
+          target: '?.browser.bemhtml.js',
         }],
 
         // js
-        [techs.browserJs, {
-          includeYM: true,
-        }],
-
+        [techs.browserJs, { includeYM: true }],
         [techs.fileMerge, {
+          sources: ['?.browser.js', '?.browser.bemhtml.js'],
           target: '?.js',
-          sources: ['?.browser.js', '?.browser.bemhtml.js']
         }],
-
-        // borschik
-        [techs.borschik, { source: '?.css', target: '?.min.css', minify: !__DEV__ }],
         [techs.borschik, { source: '?.js', target: '?.min.js', minify: !__DEV__ }],
-
-        [techs.fileCopy, { source: '?.min.css', target: '../../static/assets/css/?.min.css' }],
         [techs.fileCopy, { source: '?.min.js', target: '../../static/assets/js/?.min.js' }]
       ]);
 
