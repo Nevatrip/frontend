@@ -1,7 +1,7 @@
 block('page')(
   content()(node => {
     const serviceBasedData = node.data.api.serviceBasedData;
-    const currentLang = node.data.params.lang;
+    const currentLang = node.currentLang = node.data.params.lang;
     return [
       {
         block: 'header',
