@@ -18,15 +18,15 @@ block('service').elem('description')(
             block: 'image',
             mods: {view: 'icon'},
             url: lang.url,
-            alt: lang.name,
-            title: lang.name,
+            alt: lang.name[node.currentLang] || '',
+            title: lang.name[node.currentLang] || '',
           }))],
           ctx.placeFeatures && [(((((node.data.api.settingService || {}).serviceDescriptionPlaceFeatures || {})[currentLang]) || '') +': '), ctx.placeFeatures.map(placeFeature => ({
             block: 'image',
             mods: {view: 'colored-icon'},
             url: placeFeature.url,
-            alt: placeFeature.name,
-            title: placeFeature.name,
+            alt: placeFeature.name[node.currentLang] || '',
+            title: placeFeature.name[node.currentLang] || '',
           }))],
           ctx.routeMap && [
             {

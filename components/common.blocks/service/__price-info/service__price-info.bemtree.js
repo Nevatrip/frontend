@@ -1,48 +1,22 @@
 block('service').elem('price-info')(
+  match(node => !node.ctx.discount[node.currentLang]).def()(''),
   content()((node, ctx) => {
-    let infoArr = (ctx.discount).split('||');
+
+    let infoArr =  ((ctx.discount || [])[node.currentLang]).split('||');
     let infoNewArr = [];
+
 
     for (let i = 0; i < infoArr.length; i++) {
       if (infoArr[i].startsWith('$')){
         var info = infoArr[i].slice(1, this.length);
-        switch (info) {
-          case 'иностранный':
-            info = {
-              block: 'popup-tip',
-              title: 'иностранный',
-              text: 'Не резиденты РФ'
-            };
-            break;
-          case 'льготный':
-            info = {
-              block: 'popup-tip',
-              title: 'льготный',
-              text: 'Школьники, пенсионеры, инвалиды. Необходимо предъявить подтверждающие документы в кассе.'
-            };
-            break;
-          case 'детский':
-            info = {
-              block: 'popup-tip',
-              title: 'детский',
-              text: 'Дети 3-12 лет или 5-12 лет (см. конкр.экск.). До 3 или 5 - бесплатно без представления отдельного места. Необходимо предъявить подтверждающие документы в кассе.'
-            };
-            break;
-          case 'детский3':
-            info = {
-              block: 'popup-tip',
-              title: 'детский',
-              text: 'Дети 3-12 лет. До 3 - бесплатно без представления отдельного места. Необходимо предъявить подтверждающие документы в кассе.'
-            };
-            break;
-          case 'детский5':
-            info = {
-              block: 'popup-tip',
-              title: 'детский',
-              text: 'Дети 5-12 лет. До 5 - бесплатно без представления отдельного места. Необходимо предъявить подтверждающие документы в кассе.'
-            };
-            break;
-        }
+        let settingArr = ((node.data.api.settingService || {}).popup).filter(key => key.popupAliasWrap.popupAlias===info);
+
+
+        info = {
+          block: 'popup-tip',
+          title: ((settingArr || [])[0].popupTitle || {})[node.currentLang],
+          text: ((settingArr || [])[0].popupContent || {})[node.currentLang]
+        };
       } else {
         var info = infoArr[i];
       }
@@ -50,7 +24,7 @@ block('service').elem('price-info')(
     }
 
     return [
-      {
+      ctx.discount[node.currentLang] && {
         block: 'list',
         mods: {type: 'disk', size: 'md'},
         content: [
