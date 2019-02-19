@@ -52,7 +52,8 @@
       block: 'list',
       mods: {
         view: 'no-style',
-        sm: 'inline'
+        sm: 'inline',
+        type: 'check'
       },
     },
     {
