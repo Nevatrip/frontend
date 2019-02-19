@@ -14,6 +14,7 @@
         {elem: 'col', mods: {view: 'aside'}},
         {elem: 'col', mods: {view: 'main'}},
         {elem: 'content', mods: {view: 'narrow'}},
+        'text',
       ]
     },
     {
