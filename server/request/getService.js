@@ -6,7 +6,7 @@ const query = ( alias, lang, category ) => {
 
   return `*[${ key } == "${ alias }" && !("deleted" in status) ${ category ? categoryQuery : '' }]{
     ...,
-    "point": point->,
+    "point": point[]->,
     "place": place->,
     "category": category->,
     "attractions": attractions[]->,

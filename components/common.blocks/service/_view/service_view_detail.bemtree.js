@@ -25,6 +25,7 @@ block('service').mod('view', 'detail')(
       descriptionPrepend,
       prevention,
       advice,
+      pricesDescription,
     } = service;
 
     const serviceTitle = ((title[currentLang] || {}).name) || '';
@@ -56,7 +57,7 @@ block('service').mod('view', 'detail')(
                     elem: 'description',
                     duration: (duration || {})[currentLang] || '',
                     time: (schedule || {})[currentLang] || '',
-                    fromPoint: ((point || {}).title || {} )[currentLang] || '',
+                    fromPoint: point,
                     vehicle: ((place || {}).title || {})[currentLang] || '',
                     excursion: tourLanguage ? tourLanguage.map(item => (item && {
                       url: item.icon.url,
@@ -79,8 +80,8 @@ block('service').mod('view', 'detail')(
                     block: 'service',
                     elem: 'price-info',
                     discount: sale || '',
-                    time: time || '',
-                    prevention: (prevention || {})[currentLang] || ''
+                    pricesDescription: (pricesDescription || {})[node.currentLang] || '',
+                    prevention: (prevention || {})[node.currentLang] || ''
                   },
                   (price || priceOld) && {
                     block: 'service',

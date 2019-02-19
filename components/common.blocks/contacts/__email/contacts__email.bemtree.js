@@ -3,8 +3,8 @@ block('contacts').elem('email')(
     return [
       ctx.email && {
         block: 'link',
-        content: ctx.email,
-        url: 'mailto:' + ctx.email,
+        content: ctx.email[node.currentLang],
+        url: 'mailto:' + ctx.email[node.currentLang],
         mix: { block: node.block, elem : node.elem },
       },
     ]

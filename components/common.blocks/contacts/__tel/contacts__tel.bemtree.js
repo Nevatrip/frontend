@@ -3,8 +3,8 @@ block('contacts').elem('tel')(
     return [
       ctx.tel && {
         block: 'link',
-        content: ctx.tel,
-        url: 'tel:' + ctx.tel,
+        content: ctx.tel[node.currentLang],
+        url: 'tel:' + ctx.tel[node.currentLang],
         mix: { block: node.block, elem : node.elem },
       },
     ]

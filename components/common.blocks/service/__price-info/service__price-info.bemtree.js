@@ -28,8 +28,9 @@ block('service').elem('price-info')(
         block: 'list',
         mods: {type: 'disk', size: 'md'},
         content: [
+          ctx.pricesDescription && ['', {html: marked(ctx.pricesDescription)}],
           (infoNewArr.length>0 && infoNewArr[0].length>0) ? [((((node.data.api.settingService || {}).servicePriceInfo || {})[node.currentLang] || '')+ ': '), infoNewArr] : false,
-          ctx.prevention && ['', ctx.prevention],
+          ctx.prevention && ['', {html: marked(ctx.prevention)}],
         ].map(item => (item && {
           elem: 'item',
           content: [

@@ -1,10 +1,10 @@
 block('service').elem('price-outside')(
   content()((node, ctx) => {
-    const currentLang = node.data.params.lang;
-    const servicePriceOutside = ( ( node.data.api.settingService || {} ).servicePriceOutside || {} )[currentLang] || '';
+    const servicePriceOutside = (( ( node.data.api.settingService || {} ).servicePriceOutside || {} )[node.currentLang]).toLowerCase() || '';
+    const price =  (ctx.content || {})[node.currentLang] || (ctx.content || {}).ru || '';
 
-    return ctx.content && {
-      html:  ctx.content.match(/\d{2,6}/) ? ctx.content + '&nbsp;₽ ' + servicePriceOutside : servicePriceOutside + '&nbsp;' + ctx.content,
+    return price && {
+      html:  price.match(/\d{2,6}/) ? price + '&nbsp;₽ ' + servicePriceOutside : price + '&nbsp;' + servicePriceOutside,
     }
   })
 );
