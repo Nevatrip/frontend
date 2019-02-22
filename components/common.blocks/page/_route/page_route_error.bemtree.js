@@ -4,7 +4,7 @@ block('page').mod('route', 'error')(
       {
         block: 'title',
         mods: {view: 'xl'},
-        url: 'error.jpg',
+        // url: 'error.jpg',
         title: 'Ой, ошибка 404! Страница не нашлась:(',
       },
       {
@@ -28,9 +28,18 @@ block('page').mod('route', 'error')(
                     block: 'page',
                     elem: 'row',
                     content: {
-                      block: 'service',
-                      mods: {view: 'list-item-sm'},
-                      // content: ctx.service
+                      block: 'list',
+                      mods: {view: 'no-style', sm: 'inline'},
+                      content: node.data.api.servicesRandom.map(item => {
+                        return {
+                          elem: 'item',
+                          content: {
+                            block: 'service',
+                            mods: {view: 'list-item-sm'},
+                            service: item
+                          }
+                        }
+                      })
                     }
                   }
                 ]
@@ -41,13 +50,11 @@ block('page').mod('route', 'error')(
                 elemMods: {view: 'aside'},
                 content: [
                   {
-                    block: 'article',
-                    mods: {type: 'info'},
-
-                    content: {
-                      heading: 'Что такое &laquo;Ошибка 404&raquo;?',
-                      text: '<p>Это означает, что ссылка, по&nbsp;которой вы&nbsp;перешли, адресует на&nbsp;несуществующую страницу. Или вы&nbsp;опечатались, когда самостоятельно набирали путь в&nbsp;адресной строке браузера.</p>',
-                    },
+                    block: 'page',
+                    elem: 'article',
+                    elemMods: {type: 'info'},
+                    heading: 'Что такое &laquo;Ошибка 404&raquo;?',
+                    text: '<p>Это означает, что ссылка, по&nbsp;которой вы&nbsp;перешли, адресует на&nbsp;несуществующую страницу. Или вы&nbsp;опечатались, когда самостоятельно набирали путь в&nbsp;адресной строке браузера.</p>',
                   }
                 ]
               }

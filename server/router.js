@@ -6,7 +6,7 @@ const generateUrls = require( 'universal-router/generateUrls' );
 const servicesByCategory = require( './routes/servicesByCategory' );
 const home               = require( './routes/home' );
 const service            = require( './routes/service' );
-const error404           = require( './routes/404' );
+const error              = require( './routes/error' );
 
 const router = new UniversalRouter(
   {
@@ -20,13 +20,6 @@ const router = new UniversalRouter(
       },
       {
         path: `/:category`,
-        // async action({ next }, context) {
-        //   console.log('middleware: start');
-        //   console.log(context);
-        //   const child = await next();
-        //   console.log('middleware: end');
-        //   return child
-        // },
         children: [
           {
             path: '',
@@ -42,14 +35,12 @@ const router = new UniversalRouter(
       },
       {
         path: '(.*)',
-        name: '404',
-        load: async() => await error404
+        name: 'error',
+        load: async() => await error
       },
     ],
-
     async action( { next } ) {
       const route = await next() || {};
-
       return route;
     }
   },
@@ -64,7 +55,15 @@ const router = new UniversalRouter(
         return context.route.action( context, params );
       }
       return undefined;
-    }
+    },
+
+    // errorHandler(error, context) {
+    //   // console.error(error);
+    //   // console.info(context);
+    //   return error.status === 404
+    //     ? 'Page Not Found'
+    //     : 'Oops! Something went wrong:  ' + error
+    // }
   },
 );
 

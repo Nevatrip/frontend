@@ -15,6 +15,7 @@ const action = async( context, params ) => {
 
   return {
     page: 'error',
+    params,
     reason: context.reason,
     api: {
       tours,
