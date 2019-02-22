@@ -1,10 +1,10 @@
-block('page').elem('article').mods('type', 'info')(
+block('page').elem('article').elemMod('type', 'info')(
   content()((node, ctx) => {
     return [
       {
         block: 'heading',
         mods: {size: 'l'},
-        content: ctx.heading
+        content: {html:ctx.heading}
       },
       {
         content: {html: ctx.text}

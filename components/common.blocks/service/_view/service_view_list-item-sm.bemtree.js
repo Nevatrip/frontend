@@ -16,13 +16,13 @@ block('service').mod('view', 'list-item-sm')(
         titleImageCropped = urlFor(titleImage)
           .focalPoint(titleImage.hotspot.x.toFixed(2), titleImage.hotspot.y.toFixed(2))
           .fit('crop')
-          .width(286)
+          .width(600)
           .height(153)
           .url();
       } else if (titleImage) {
         titleImageCropped = urlFor(titleImage)
           .fit('crop')
-          .width(286)
+          .width(600)
           .height(153)
           .url();
       }

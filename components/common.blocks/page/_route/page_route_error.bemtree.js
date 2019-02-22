@@ -1,11 +1,13 @@
 block('page').mod('route', 'error')(
   mods()((node) => {
+    const err = node.data.api.serviceBasedData.error;
+
     return [
       {
         block: 'title',
         mods: {view: 'xl'},
-        // url: 'error.jpg',
-        title: 'Ой, ошибка 404! Страница не нашлась:(',
+        url: urlFor(err.errorImage.asset._ref).url() || '',
+        title: (err.errorTitle || {})[node.currentLang],
       },
       {
         block: 'page',
@@ -22,9 +24,9 @@ block('page').mod('route', 'error')(
                 elemMods: {view: 'main'},
                 content: [
                   {
-                    html: '<p>Мы до сих пор не понимаем, как у вас это получилось, но, если честно, тут нет ничего интересного. Не расстраивайтесь, лучше посмотрите, какие классные экскурсии мы для вас подобрали:</p>'
+                    html: marked((err.errorContent || {})[node.currentLang])
                   },
-                  {
+                  (node.data.api.servicesRandom) && {
                     block: 'page',
                     elem: 'row',
                     content: {
@@ -41,6 +43,15 @@ block('page').mod('route', 'error')(
                         }
                       })
                     }
+                  },
+                  {
+                    block: 'page',
+                    elem: 'row',
+                    content: {
+                      block: 'link',
+                      content: {html: (err.errorMoreLink || {})[node.currentLang]},
+                      url: '/' + node.data.params.project + '/' + node.data.params.lang,
+                    }
                   }
                 ]
               },
@@ -53,8 +64,8 @@ block('page').mod('route', 'error')(
                     block: 'page',
                     elem: 'article',
                     elemMods: {type: 'info'},
-                    heading: 'Что такое &laquo;Ошибка 404&raquo;?',
-                    text: '<p>Это означает, что ссылка, по&nbsp;которой вы&nbsp;перешли, адресует на&nbsp;несуществующую страницу. Или вы&nbsp;опечатались, когда самостоятельно набирали путь в&nbsp;адресной строке браузера.</p>',
+                    heading: marked((err.errorInfoTitle || {})[node.currentLang]),
+                    text: marked((err.errorInfoText || {})[node.currentLang]),
                   }
                 ]
               }
