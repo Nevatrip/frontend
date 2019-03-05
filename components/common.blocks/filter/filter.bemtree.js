@@ -1,6 +1,6 @@
 block( 'filter' )(
   def()( ( node, ctx ) => {
-    basicTags = ctx.basicTags;
+    // TODO: remove from global node
     node._bg = ctx.bg;
     node._dayHeading = ctx.dayHeading;
     node._dayTags = ctx.dayTags;

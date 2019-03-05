@@ -1,6 +1,6 @@
 block( 'footer' ).elem( 'main-nav' )(
   tag()( 'ul' ),
-  content()( ( node, ctx ) => node._mainNav.map( item => ( {
+  content()( node => node._mainNav.map( item => ( {
     elem: 'main-nav-item',
     tag: 'li',
     content: [

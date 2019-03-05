@@ -1,5 +1,5 @@
 block( 'header' ).elem( 'langs' )(
-  content()( ( node, ctx ) => {
+  content()( node => {
     const currentLang = node.data.params.lang;
 
     const getRoute = page => {

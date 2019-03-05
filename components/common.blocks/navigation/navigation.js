@@ -4,7 +4,7 @@ modules.define( 'navigation', ['i-bem-dom'], function( provide, bemDom ) {
       js: {
         inited() {
           this._elems( 'toggle' ).forEach( btn => {
-            btn._domEvents().on( 'click', event => {
+            btn._domEvents().on( 'click', () => {
               this._elem( 'content' ).toggleMod( 'visible' )
             } );
           } )

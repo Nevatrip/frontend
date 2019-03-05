@@ -6,7 +6,8 @@ const getNav = require( '../request/getNav' );
 const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getServiceCategory = require( '../request/getServiceCategory' );
 const getSettingService = require( '../request/getSettingService' );
-const getServicesRandom = require( '../request/getServicesRandom' );
+
+// const getServicesRandom = require( '../request/getServicesRandom' );
 
 const action = async( context, params ) => {
   const lang = params.lang;

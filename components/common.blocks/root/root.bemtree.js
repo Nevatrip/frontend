@@ -8,16 +8,16 @@ const builder = imageUrlBuilder(
   }
 );
 
-function urlFor( source ) {
-  return builder.image( source )
-}
-
 block( 'root' ).replace()( ( node, ctx ) => {
   const level = ctx.level || 'desktop';
   const config = node.config = ctx.config;
   const data = node.data = ctx.data;
   const serviceBasedData = node.data.api.serviceBasedData;
-  const contacts = node._contacts = {
+
+  node._marked = marked;
+  node._urlFor = source => builder.image( source );
+
+  node._contacts = {
     tel: serviceBasedData.tel || '',
     email: serviceBasedData.email || '',
     social: [
@@ -34,8 +34,8 @@ block( 'root' ).replace()( ( node, ctx ) => {
     ]
   };
 
-  const meta = data.meta || {};
-  const og = meta.og || {};
+  // const meta = data.meta || {};
+  // const og = meta.og || {};
 
   if( ctx.context ) return ctx.context;
 

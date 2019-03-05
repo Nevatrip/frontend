@@ -6,7 +6,7 @@ block( 'page' )(
     return [
       {
         block: 'header',
-        logo: urlFor( serviceBasedData.logo.asset._ref ).url() || '',
+        logo: node._urlFor( serviceBasedData.logo.asset._ref ).url() || '',
         logoDescription: serviceBasedData.shortDescription[currentLang] || '',
         logoTitle: serviceBasedData.title[currentLang] || '',
         slogan: serviceBasedData.Slogan[currentLang] || ''

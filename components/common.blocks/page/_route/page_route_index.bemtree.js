@@ -64,7 +64,7 @@ block( 'page' ).mod( 'route', 'index' )(
           {
             block: 'title',
             mods: { view: 'sm' },
-            url: urlFor( serviceBasedData.articleImage.asset._ref ).url() || '',
+            url: node._urlFor( serviceBasedData.articleImage.asset._ref ).url() || '',
             title: serviceBasedData.articleTitle[currentLang] || ''
           },
           {

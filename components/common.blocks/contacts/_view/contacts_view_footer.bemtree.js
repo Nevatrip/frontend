@@ -1,5 +1,5 @@
 block( 'contacts' ).mod( 'view', 'footer' )(
-  content()( ( node, ctx ) => [
+  content()( node => [
     {
       elem: 'email',
       email: node._contacts.email

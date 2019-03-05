@@ -1,4 +1,3 @@
-const fs = require( 'fs' );
 const path = require( 'path' );
 
 const decache = require( 'decache' );
@@ -9,6 +8,26 @@ const config = require( './config' );
 const useCache = config.cacheTTL > 0;
 
 let cache = {};
+
+function evalFile( filename ) {
+  decache( filename );
+
+  // Fixes memory leak
+  // clean module from links to previous parsed files
+  module.children = module.children.filter( item => item.id !== filename );
+
+  // eslint-disable-next-line
+  return require( filename );
+}
+
+function getTemplates( project = 'nevatrip', bundleName = 'index', level ) {
+  const pathToBundle = path.resolve( 'bundles', `${ bundleName }.${ project }-${ level }` );
+
+  return {
+    BEMTREE: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ project }-${ level }.ru.bemtree.js` ) ).BEMTREE,
+    BEMHTML: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ project }-${ level }.ru.bemhtml.js` ) ).BEMHTML
+  };
+}
 
 const render = ( req, res, data = {}, context ) => {
   if( config.__DEV__ && req.query.json || req.xhr ) {
@@ -74,34 +93,16 @@ const render = ( req, res, data = {}, context ) => {
   }
 
   useCache &&
-  ( cache[cacheKey] = {
-    timestamp: new Date(),
-    html
-  } );
+    ( cache[cacheKey] = {
+      timestamp: new Date(),
+      html
+    } );
 
   return html;
 };
 
 function dropCache() {
   cache = {};
-}
-
-function evalFile( filename ) {
-  decache( filename );
-
-  // Fixes memory leak
-  // clean module from links to previous parsed files
-  module.children = module.children.filter( item => item.id !== filename );
-  return require( filename );
-}
-
-function getTemplates( project = 'nevatrip', bundleName = 'index', level ) {
-  const pathToBundle = path.resolve( 'bundles', `${ bundleName }.${ project }-${ level }` );
-
-  return {
-    BEMTREE: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ project }-${ level }.ru.bemtree.js` ) ).BEMTREE,
-    BEMHTML: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ project }-${ level }.ru.bemhtml.js` ) ).BEMHTML
-  };
 }
 
 module.exports = {

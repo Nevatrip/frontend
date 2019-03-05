@@ -53,7 +53,7 @@ block( 'service' ).mod( 'view', 'banner' )(
                   block: 'list',
                   mods: { type: 'check-in-disk ', size: 'xl' },
                   items: features[currentLang].split( '\n' ).map( item => ( {
-                    html: marked( item )
+                    html: node._marked( item )
                   } ) )
                 },
                 {

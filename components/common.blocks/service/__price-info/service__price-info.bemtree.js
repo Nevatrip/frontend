@@ -6,10 +6,11 @@ block( 'service' ).elem( 'price-info' )(
 
 
     for( let i = 0; i < infoArr.length; i++ ) {
-      if( infoArr[i].startsWith( '$' ) ) {
-        var info = infoArr[i].slice( 1, this.length );
-        const settingArr = ( node.data.api.settingService || {} ).popup.filter( key => key.popupAliasWrap.popupAlias===info );
+      let info;
 
+      if( infoArr[i].startsWith( '$' ) ) {
+        const infoString = infoArr[i].slice( 1, this.length );
+        const settingArr = ( node.data.api.settingService || {} ).popup.filter( key => key.popupAliasWrap.popupAlias===infoString );
 
         info = {
           block: 'popup-tip',
@@ -17,7 +18,7 @@ block( 'service' ).elem( 'price-info' )(
           text: ( ( settingArr || [] )[0].popupContent || {} )[node.currentLang]
         };
       } else {
-        var info = infoArr[i];
+        info = infoArr[i];
       }
       infoNewArr.push( info );
     }
@@ -27,9 +28,9 @@ block( 'service' ).elem( 'price-info' )(
         block: 'list',
         mods: { type: 'disk', size: 'md' },
         content: [
-          ctx.pricesDescription && ['', { html: marked( ctx.pricesDescription ) }],
+          ctx.pricesDescription && ['', { html: node._marked( ctx.pricesDescription ) }],
           infoNewArr.length>0 && infoNewArr[0].length>0 ? [`${ ( ( node.data.api.settingService || {} ).servicePriceInfo || {} )[node.currentLang] || '' }: `, infoNewArr] : false,
-          ctx.prevention && ['', { html: marked( ctx.prevention ) }]
+          ctx.prevention && ['', { html: node._marked( ctx.prevention ) }]
         ].map( item => item && {
           elem: 'item',
           content: [

@@ -1,5 +1,5 @@
 block( 'footer' ).elem( 'header' )(
-  content()( ( node, ctx ) => ( {
+  content()( () => ( {
     elem: 'content',
     mix: { block: 'page', elem: 'row', elemMods: { sm: 'column' } },
     content: [

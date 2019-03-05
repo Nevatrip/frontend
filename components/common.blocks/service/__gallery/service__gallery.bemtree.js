@@ -29,7 +29,7 @@ block( 'service' ).elem( 'gallery' ).content()( ( node, ctx ) => {
             {
               block: 'link',
               title: ( item.description || {} )[currentLang] || '',
-              url: urlFor( item.asset._ref ).url(),
+              url: node._urlFor( item.asset._ref ).url(),
               mods: { pseudo: true, display: 'block' },
               mix: { block: 'gallery', elem: 'link' },
               target: '_blank',
@@ -42,7 +42,7 @@ block( 'service' ).elem( 'gallery' ).content()( ( node, ctx ) => {
               },
               content: {
                 block: 'image',
-                url: urlFor( item.asset._ref ).fit( 'crop' ).width( 133 )
+                url: node._urlFor( item.asset._ref ).fit( 'crop' ).width( 133 )
                   .height( 133 )
                   .url(),
                 alt: ( item.description || {} )[currentLang] || '',

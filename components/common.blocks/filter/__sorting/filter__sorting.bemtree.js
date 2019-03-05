@@ -1,5 +1,5 @@
 block( 'filter' ).elem( 'sorting' )(
-  content()( ( node, ctx ) => ( {
+  content()( node => ( {
     elem: 'content',
     mix: { block: 'page', elem: 'content' },
     content: [

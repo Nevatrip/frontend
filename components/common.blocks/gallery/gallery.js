@@ -1,21 +1,19 @@
-modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], function( provide, bemDom, BEMHTML, PhotoSwipe, PhotoSwipeUI_Default ) {
-// modules.define( 'gallery', ['i-bem-dom', 'BEMHTML'], function( provide, bemDom, BEMHTML, PhotoSwipe, PhotoSwipeUI_Default ) {
-
+modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], function( provide, bemDom, BEMHTML, PhotoSwipe, photoSwipeUIDefault ) {
   provide( bemDom.declBlock( this.name, {
     onSetMod: {
       js: {
         inited() {
-          const newPswpElement = bemDom.append(
+          bemDom.append(
             bemDom.scope,
             BEMHTML.apply( { block: 'pswp' } )
           );
 
           // console.log( newPswpElement );
 
-          const initPhotoSwipe = function( gallerySelector ) {
+          const initPhotoSwipe = gallerySelector => {
             // parse slide data (url, title, size ...) from DOM elements
             // (children of gallerySelector)
-            const parseThumbnailElements = function( el ) {
+            const parseThumbnailElements = el => {
               const thumbElements = el.childNodes;
               const numNodes = thumbElements.length;
               const items = [];
@@ -62,20 +60,14 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
             };
 
             // find nearest parent element
-            const closest = function closest( el, fn ) {
-              return el && ( fn( el ) ? el : closest( el.parentNode, fn ) );
-            };
+            const closest = ( el, fn ) => el && ( fn( el ) ? el : closest( el.parentNode, fn ) );
 
-            const openPhotoSwipe = function( index, galleryElement, disableAnimation, fromURL ) {
+            const openPhotoSwipe = ( index, galleryElement, disableAnimation, fromURL ) => {
               const pswpElement = document.querySelectorAll( '.pswp' )[0];
-              let gallery;
-              let options;
-              let items;
-
-              items = parseThumbnailElements( galleryElement );
+              const items = parseThumbnailElements( galleryElement );
 
               // define options (if needed)
-              options = {
+              const options = {
 
                 // define gallery index (for URL)
                 galleryUID: galleryElement.getAttribute( 'data-pswp-uid' ),
@@ -97,7 +89,7 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
                   // parse real index when custom PIDs are used
                   // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
                   for( let j = 0; j < items.length; j++ ) {
-                    if( items[j].pid == index ) {
+                    if( items[j].pid === index ) {
                       options.index = j;
                       break;
                     }
@@ -120,12 +112,13 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
               }
 
               // Pass data to PhotoSwipe and initialize it
-              gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options );
+              const gallery = new PhotoSwipe( pswpElement, photoSwipeUIDefault, items, options );
+
               gallery.init();
             };
 
             // triggers when user clicks on thumbnail
-            const onThumbnailsClick = function( e ) {
+            const onThumbnailsClick = e => {
               e = e || window.event;
               e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
@@ -167,7 +160,7 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
             };
 
             // parse picture index and gallery index from URL (#&pid=1&gid=2)
-            const photoswipeParseHash = function() {
+            const photoswipeParseHash = () => {
               const hash = window.location.hash.substring( 1 );
               const params = {};
 

@@ -13,7 +13,6 @@ block( 'service' ).mod( 'view', 'detail' )(
       place,
       placeFeatures,
       sale,
-      time,
       description,
       routeMap,
       attractions,
@@ -25,6 +24,8 @@ block( 'service' ).mod( 'view', 'detail' )(
       prevention,
       advice,
       pricesDescription
+
+      // time,
     } = service;
 
     const serviceTitle = ( title[currentLang] || {} ).name || '';
@@ -119,21 +120,21 @@ block( 'service' ).mod( 'view', 'detail' )(
                     block: 'service',
                     elem: 'remark',
                     content: {
-                      html: marked( descriptionPrepend[currentLang] ) || ''
+                      html: node._marked( descriptionPrepend[currentLang] ) || ''
                     }
                   },
                   ( description || {} )[currentLang] && {
                     block: 'page',
                     elem: 'text',
                     content: {
-                      html: marked( description[currentLang] ) || ''
+                      html: node._marked( description[currentLang] ) || ''
                     }
                   },
                   ( descriptionAppend || {} )[currentLang] && {
                     block: 'service',
                     elem: 'remark',
                     content: {
-                      html: marked( descriptionAppend[currentLang] ) || ''
+                      html: node._marked( descriptionAppend[currentLang] ) || ''
                     }
                   },
                   {
@@ -179,7 +180,7 @@ block( 'service' ).mod( 'view', 'detail' )(
                           }
                       },
                       {
-                        html: marked( advice[currentLang] ) || ''
+                        html: node._marked( advice[currentLang] ) || ''
                       }]
                   }
                 ]
@@ -221,7 +222,7 @@ block( 'service' ).mod( 'view', 'detail' )(
                     block: 'heading',
                     mods: { size: 'xl' },
                     content: {
-                      html: marked( priceDescription[currentLang] ) || ''
+                      html: node._marked( priceDescription[currentLang] ) || ''
                     }
                   },
                   ( price || priceOld ) && {

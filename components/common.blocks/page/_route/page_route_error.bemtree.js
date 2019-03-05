@@ -6,7 +6,7 @@ block( 'page' ).mod( 'route', 'error' )(
       {
         block: 'title',
         mods: { view: 'xl' },
-        url: urlFor( err.errorImage.asset._ref ).url() || '',
+        url: node._urlFor( err.errorImage.asset._ref ).url() || '',
         title: ( err.errorTitle || {} )[node.currentLang]
       },
       {
@@ -24,7 +24,7 @@ block( 'page' ).mod( 'route', 'error' )(
                 elemMods: { view: 'main' },
                 content: [
                   {
-                    html: marked( ( err.errorContent || {} )[node.currentLang] )
+                    html: node._marked( ( err.errorContent || {} )[node.currentLang] )
                   },
                   node.data.api.servicesRandom && {
                     block: 'page',
@@ -62,8 +62,8 @@ block( 'page' ).mod( 'route', 'error' )(
                     block: 'page',
                     elem: 'article',
                     elemMods: { type: 'info' },
-                    heading: marked( ( err.errorInfoTitle || {} )[node.currentLang] ),
-                    text: marked( ( err.errorInfoText || {} )[node.currentLang] )
+                    heading: node._marked( ( err.errorInfoTitle || {} )[node.currentLang] ),
+                    text: node._marked( ( err.errorInfoText || {} )[node.currentLang] )
                   }
                 ]
               }

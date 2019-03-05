@@ -1,5 +1,5 @@
 block( 'filter' ).elem( 'neighbors' )(
-  content()( ( node, ctx ) => {
+  content()( () => {
     const neighborPrev = 'Метеоры в пригороды';
     const neighborPrevUrl = 'meteors';
     const neighborNext = 'дневные экскурсии';
@@ -21,7 +21,7 @@ block( 'filter' ).elem( 'neighbors' )(
           },
           typeof neighborNext !== 'undefined'&&typeof neighborNextUrl !== 'undefined'&&{
             block: 'link',
-            content: { html: `<b>Все&nbsp;${ neighborNext }&nbsp;&rarr;` + '</b>' },
+            content: { html: `<b>Все&nbsp;${ neighborNext }&nbsp;&rarr;</b>` },
             title: `Все ${ neighborNext }`,
             to: 'servicesByCategory',
             params: {

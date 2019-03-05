@@ -1,6 +1,6 @@
 block( 'footer' ).elem( 'main' )(
   tag()( 'section' ),
-  content()( ( node, ctx ) => ( {
+  content()( () => ( {
     elem: 'content',
     elemMods: { fdc: true }, //flex-direction:column
     content: [

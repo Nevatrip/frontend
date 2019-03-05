@@ -1,5 +1,5 @@
 block( 'footer' ).elem( 'heading' )(
-  replace()( ( node, ctx ) => [
+  replace()( node => [
     {
       block: 'heading',
       mods: { size: 'xl' },

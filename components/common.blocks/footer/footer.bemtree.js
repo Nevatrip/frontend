@@ -9,7 +9,7 @@ block( 'footer' )(
     return applyNext()
   }
   ),
-  content()( ( node, ctx ) => [
+  content()( [
     {
       elem: 'header'
     },

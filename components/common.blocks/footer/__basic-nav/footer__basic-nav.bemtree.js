@@ -1,5 +1,5 @@
 block( 'footer' ).elem( 'basic-nav' )(
-  content()( ( node, ctx ) => node._basicNav.map( item => ( {
+  content()( node => node._basicNav.map( item => ( {
     elem: 'basic-nav-item',
     content: [
       {

@@ -59,7 +59,7 @@ block( 'service' ).elem( 'description' )(
               content: item[0]
             },
             typeof item[1] === 'string' || item[1] instanceof String ?
-              { html: marked( item[1] || '' ) } :
+              { html: node._marked( item[1] || '' ) } :
               item[1] || ''
           ]
         } )

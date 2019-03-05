@@ -1,5 +1,5 @@
 block( 'footer' ).elem( 'awards' )(
-  content()( ( node, ctx ) => node._awards.map( item => ( {
+  content()( node => node._awards.map( item => ( {
     elem: 'awards-item',
     content: [
       {

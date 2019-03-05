@@ -1,6 +1,6 @@
 block( 'footer' ).elem( 'footer' )(
   tag()( 'footer' ),
-  content()( ( node, ctx ) => ( {
+  content()( () => ( {
     elem: 'content',
     content: [
       {

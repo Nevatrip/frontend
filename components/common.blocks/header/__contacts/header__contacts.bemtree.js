@@ -1,5 +1,5 @@
 block( 'header' ).elem( 'contacts' )(
-  replace()( ( node, ctx ) => [
+  replace()( [
     {
       block: 'contacts',
       mix: { block: 'header', elem: 'contacts' },

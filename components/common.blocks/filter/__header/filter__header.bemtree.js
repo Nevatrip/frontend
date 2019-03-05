@@ -1,5 +1,5 @@
 block( 'filter' ).elem( 'header' )(
-  content()( ( node, ctx ) => [
+  content()( node => [
     {
       elem: 'header-top',
       content: [

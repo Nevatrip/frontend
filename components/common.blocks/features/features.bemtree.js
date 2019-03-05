@@ -4,7 +4,7 @@ block( 'features' )(
     return applyNext()
   }
   ),
-  content()( ( node, ctx ) => [
+  content()( node => [
     {
       elem: 'content',
       tag: 'ul',

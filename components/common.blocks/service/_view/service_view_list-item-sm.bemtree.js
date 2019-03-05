@@ -12,14 +12,14 @@ block( 'service' ).mod( 'view', 'list-item-sm' )(
 
     if( titleImage ) {
       if( titleImage.hotspot ) {
-        titleImageCropped = urlFor( titleImage )
+        titleImageCropped = node._urlFor( titleImage )
           .focalPoint( titleImage.hotspot.x.toFixed( 2 ), titleImage.hotspot.y.toFixed( 2 ) )
           .fit( 'crop' )
           .width( 600 )
           .height( 153 )
           .url();
       } else if( titleImage ) {
-        titleImageCropped = urlFor( titleImage )
+        titleImageCropped = node._urlFor( titleImage )
           .fit( 'crop' )
           .width( 600 )
           .height( 153 )

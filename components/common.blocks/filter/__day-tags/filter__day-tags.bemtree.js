@@ -1,5 +1,5 @@
 block( 'filter' ).elem( 'day-tags' )(
-  replace()( ( node, ctx ) => ( {
+  replace()( node => ( {
     block: 'radio-group',
     mix: { block: node.block, elem: node.elem },
     mods: {
