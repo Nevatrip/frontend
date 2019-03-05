@@ -1,6 +1,5 @@
-block('service').mod('view', 'list-item-lg')(
-  content()((node, {service}) => {
-
+block( 'service' ).mod( 'view', 'list-item-lg' )(
+  content()( ( node, { service } ) => {
     const currentLang = node.data.params.lang;
 
     const {
@@ -14,29 +13,29 @@ block('service').mod('view', 'list-item-lg')(
 
     let titleImageCropped = '';
 
-    if (titleImage) {
-      if (titleImage.hotspot) {
-        titleImageCropped = urlFor(titleImage)
-          .focalPoint(titleImage.hotspot.x.toFixed(2), titleImage.hotspot.y.toFixed(2))
-          .fit('crop')
-          .width(404)
-          .height(277)
+    if( titleImage ) {
+      if( titleImage.hotspot ) {
+        titleImageCropped = urlFor( titleImage )
+          .focalPoint( titleImage.hotspot.x.toFixed( 2 ), titleImage.hotspot.y.toFixed( 2 ) )
+          .fit( 'crop' )
+          .width( 404 )
+          .height( 277 )
           .url();
-      } else if (titleImage) {
-        titleImageCropped = urlFor(titleImage)
-          .fit('crop')
-          .width(404)
-          .height(277)
+      } else if( titleImage ) {
+        titleImageCropped = urlFor( titleImage )
+          .fit( 'crop' )
+          .width( 404 )
+          .height( 277 )
           .url();
       }
     }
 
-    const linkParamsService = ((title[currentLang] || {}).key || {}).current || '//';
-    const linkParamsCategory = (((category || {}).title || {})[currentLang] || {}).key.current || '//';
-    const serviceTitle = (title[currentLang] || {}).name || '';
+    const linkParamsService = ( ( title[currentLang] || {} ).key || {} ).current || '//';
+    const linkParamsCategory = ( ( ( category || {} ).title || {} )[currentLang] || {} ).key.current || '//';
+    const serviceTitle = ( title[currentLang] || {} ).name || '';
 
 
-    if (linkParamsService !== '//') {
+    if( linkParamsService !== '//' ) {
       return [
         {
           elem: 'content',
@@ -44,13 +43,13 @@ block('service').mod('view', 'list-item-lg')(
             {
               block: 'page',
               elem: 'row',
-              elemMods: {xs: 'column'},
+              elemMods: { xs: 'column' },
               content: [
                 {
                   block: 'service',
                   elem: 'image',
-                  elemMods: {size: 'third'},
-                  mix: {block: 'page', elem: 'col'},
+                  elemMods: { size: 'third' },
+                  mix: { block: 'page', elem: 'col' },
                   content: [
                     {
                       block: 'link',
@@ -61,27 +60,27 @@ block('service').mod('view', 'list-item-lg')(
                       },
                       content: {
                         block: 'image',
-                        mods: {view: 'bg'},
+                        mods: { view: 'bg' },
                         url: titleImageCropped || '',
                         alt: serviceTitle,
-                        title: serviceTitle,
+                        title: serviceTitle
                       }
-                    },
+                    }
                   ]
                 },
                 {
                   block: 'service',
                   elem: 'aside-content',
-                  mix: {block: 'page', elem: 'col'},
+                  mix: { block: 'page', elem: 'col' },
                   content: [
                     {
                       block: 'heading',
-                      mods: {size: 'l'},
-                      mix: {block: 'service', elem: 'title', elemMods: {view: 'sm'},},
+                      mods: { size: 'l' },
+                      mix: { block: 'service', elem: 'title', elemMods: { view: 'sm' } },
                       content: [
                         {
                           block: 'link',
-                          mods: {view: 'inherit'},
+                          mods: { view: 'inherit' },
                           to: 'service',
                           params: {
                             category: linkParamsCategory,
@@ -94,47 +93,45 @@ block('service').mod('view', 'list-item-lg')(
                     },
                     features && features[currentLang] && {
                       block: 'list',
-                      mods: {type: 'check', size: 'sm'},
-                      items: features[currentLang].split('\n').map(item => {
-                        return {
-                          html: marked(item)
-                        }
-                      }),
+                      mods: { type: 'check', size: 'sm' },
+                      items: features[currentLang].split( '\n' ).map( item => ( {
+                        html: marked( item )
+                      } ) )
                     },
                     {
                       block: 'page',
                       elem: 'row',
-                      elemMods: {view: 'service-list-item-lg'},
+                      elemMods: { view: 'service-list-item-lg' },
                       content: [
                         price && {
                           block: 'service',
                           elem: 'price',
-                          elemMods: {view: 'sm'},
-                          content: price,
+                          elemMods: { view: 'sm' },
+                          content: price
                         },
                         {
                           block: 'link',
-                          mods: {view: 'button'},
+                          mods: { view: 'button' },
                           content: {
-                            html: (((node.data.api.settingService || {}).serviceViewListItemLgMore || {})[currentLang] || '') + '&nbsp;&rarr;'
+                            html: `${ ( ( node.data.api.settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }&nbsp;&rarr;`
                           },
                           to: 'service',
                           params: {
                             category: linkParamsCategory,
                             service: linkParamsService
                           },
-                          title: serviceTitle,
-                        },
+                          title: serviceTitle
+                        }
                       ]
                     },
                     priceOld && {
                       block: 'service',
                       elem: 'price-outside',
-                      content: priceOld,
+                      content: priceOld
                     }
                   ]
-                },
-              ],
+                }
+              ]
             },
             {
               block: 'page',
@@ -143,13 +140,13 @@ block('service').mod('view', 'list-item-lg')(
                 {
                   block: 'page',
                   elem: 'hr',
-                  mods: {size: 'md'}
-                },
+                  mods: { size: 'md' }
+                }
               ]
-            },
-          ],
+            }
+          ]
         }
       ]
     }
-  }),
+  } ),
 );

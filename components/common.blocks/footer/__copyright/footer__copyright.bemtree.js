@@ -1,11 +1,9 @@
-block('footer').elem('copyright')(
-  content()((node, ctx) => {
-    return [
-      {
-        content: {
-          html: node._copyright
-        },
-      },
-    ]
-  })
+block( 'footer' ).elem( 'copyright' )(
+  content()( ( node, ctx ) => [
+    {
+      content: {
+        html: node._copyright
+      }
+    }
+  ] )
 );

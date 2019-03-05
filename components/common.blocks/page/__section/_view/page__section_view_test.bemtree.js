@@ -3,6 +3,6 @@ block( 'page' ).elem( 'section' ).elemMod( 'view', 'test' )
     {
       elem: 'layout',
       elemMods: { width: 'tiny' },
-      content: `I'm test`
+      content: 'I\'m test'
     }
   ] );

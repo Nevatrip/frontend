@@ -1,7 +1,5 @@
-block('service').elem('price')(
-  content()((node, ctx) => {
-    return {
-      html: ctx.content + '&nbsp;₽'
-    }
-  })
+block( 'service' ).elem( 'price' )(
+  content()( ( node, ctx ) => ( {
+    html: `${ ctx.content }&nbsp;₽`
+  } ) )
 );

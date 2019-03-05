@@ -1,3 +1,3 @@
-block('contacts')(
-  tag()('address'),
+block( 'contacts' )(
+  tag()( 'address' ),
 );

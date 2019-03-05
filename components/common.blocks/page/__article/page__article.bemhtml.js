@@ -1,3 +1,3 @@
-block('page').elem('article')(
-  tag()('article'),
+block( 'page' ).elem( 'article' )(
+  tag()( 'article' ),
 );

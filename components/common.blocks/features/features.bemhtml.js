@@ -1,3 +1,3 @@
-block('features')(
-  tag()('section'),
+block( 'features' )(
+  tag()( 'section' ),
 );

@@ -1,5 +1,5 @@
-block('service').elem('buy')(
-  content()((node, ctx) => {
+block( 'service' ).elem( 'buy' )(
+  content()( ( node, ctx ) => {
     const currentLang = node.data.params.lang;
 
     return [
@@ -10,24 +10,24 @@ block('service').elem('buy')(
           ctx.price && {
             block: 'service',
             elem: 'price',
-            elemMods: {view: 'md'},
-            content: ctx.price,
+            elemMods: { view: 'md' },
+            content: ctx.price
           },
           {
             block: 'link',
-            mods: {view: 'button'},
-            content: ((node.data.api.settingService || {}).serviceBuyLink || {})[currentLang] || '',
+            mods: { view: 'button' },
+            content: ( ( node.data.api.settingService || {} ).serviceBuyLink || {} )[currentLang] || '',
             url: ctx.urlBuy || '',
-            title: (((node.data.api.settingService || {}).serviceBuyLink || {})[currentLang] || '') + ' ' + (ctx.title || ''),
+            title: `${ ( ( node.data.api.settingService || {} ).serviceBuyLink || {} )[currentLang] || '' } ${ ctx.title || '' }`,
             to: ctx.route,
-            params: ctx.params,
-          },
+            params: ctx.params
+          }
         ]
       },
       ctx.priceOutside && {
         elem: 'price-outside',
-        content: ctx.priceOutside,
+        content: ctx.priceOutside
       }
     ]
-  }),
+  } ),
 );

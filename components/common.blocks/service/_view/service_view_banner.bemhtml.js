@@ -1,3 +1,3 @@
-block('service').mod('view', 'banner')(
-  tag()('article'),
+block( 'service' ).mod( 'view', 'banner' )(
+  tag()( 'article' ),
 );

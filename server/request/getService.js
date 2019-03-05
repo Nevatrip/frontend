@@ -1,4 +1,4 @@
-const client = require("./_request");
+const client = require( './_request' );
 
 const query = ( alias, lang, category ) => {
   const key = `title.${ lang }.key.current`;
@@ -16,8 +16,4 @@ const query = ( alias, lang, category ) => {
 }
 const params = {};
 
-module.exports = async ( alias, lang, category ) => {
-  return await client.fetch(query( alias, lang, category ), params).then(tour => {
-    return tour[0];
-  });
-};
+module.exports = async( alias, lang, category ) => await client.fetch( query( alias, lang, category ), params ).then( tour => tour[0] );
