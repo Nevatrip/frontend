@@ -1,3 +1,3 @@
-block('text').mod('weight','bold')(
-  tag()('b')
+block( 'text' ).mod( 'weight', 'bold' )(
+  tag()( 'b' )
 );

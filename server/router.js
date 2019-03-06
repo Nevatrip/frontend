@@ -4,9 +4,9 @@ const UniversalRouter = require( 'universal-router' );
 const generateUrls = require( 'universal-router/generateUrls' );
 
 const servicesByCategory = require( './routes/servicesByCategory' );
-const home               = require( './routes/home' );
-const service            = require( './routes/service' );
-const error              = require( './routes/error' );
+const home = require( './routes/home' );
+const service = require( './routes/service' );
+const error = require( './routes/error' );
 
 const router = new UniversalRouter(
   {
@@ -19,7 +19,7 @@ const router = new UniversalRouter(
         load: async() => await home
       },
       {
-        path: `/:category`,
+        path: '/:category',
         children: [
           {
             path: '',
@@ -30,17 +30,18 @@ const router = new UniversalRouter(
             path: '/:service',
             name: 'service',
             load: async() => await service
-          },
+          }
         ]
       },
       {
         path: '(.*)',
         name: 'error',
         load: async() => await error
-      },
+      }
     ],
     async action( { next } ) {
       const route = await next() || {};
+
       return route;
     }
   },
@@ -55,7 +56,7 @@ const router = new UniversalRouter(
         return context.route.action( context, params );
       }
       return undefined;
-    },
+    }
 
     // errorHandler(error, context) {
     //   // console.error(error);

@@ -1,3 +1,3 @@
-block('page').elem('hr')(
-  tag()('hr'),
+block( 'page' ).elem( 'hr' )(
+  tag()( 'hr' ),
 );

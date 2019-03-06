@@ -1,18 +1,18 @@
-block('pswp')(
-  addAttrs()({
+block( 'pswp' )(
+  addAttrs()( {
     tabindex: -1,
     role: 'dialog',
     'aria-hidden': 'true'
-  }),
+  } ),
 
-  content()([
-    {elem: 'bg'},
+  content()( [
+    { elem: 'bg' },
     {
       elem: 'scroll-wrap',
       content: [
         {
           elem: 'container',
-          content: [...Array(3)].map(() => ({elem: 'item'}))
+          content: [...Array( 3 )].map( () => ( { elem: 'item' } ) )
         },
         {
           elem: 'ui',
@@ -20,37 +20,37 @@ block('pswp')(
             {
               elem: 'top-bar',
               content: [
-                {elem: 'counter'},
+                { elem: 'counter' },
                 {
                   elem: 'button',
-                  elemMods: {action: 'close'},
+                  elemMods: { action: 'close' }
                 },
                 {
                   elem: 'button',
-                  elemMods: {action: 'share'},
+                  elemMods: { action: 'share' }
                 },
                 {
                   elem: 'button',
-                  elemMods: {action: 'fs'},
+                  elemMods: { action: 'fs' }
                 },
                 {
                   elem: 'button',
-                  elemMods: {action: 'zoom'},
+                  elemMods: { action: 'zoom' }
                 },
-                {elem: 'preloader'}
+                { elem: 'preloader' }
               ]
             },
             {
               elem: 'share-modal',
-              content: {elem: 'share-tooltip'}
+              content: { elem: 'share-tooltip' }
             },
             {
               elem: 'button',
-              elemMods: {action: 'prev'},
+              elemMods: { action: 'prev' }
             },
             {
               elem: 'button',
-              elemMods: {action: 'next'},
+              elemMods: { action: 'next' }
             },
             {
               elem: 'caption',
@@ -62,60 +62,60 @@ block('pswp')(
         }
       ]
     }
-  ]),
+  ] ),
 
-  elem('ui')({cls: 'pswp__ui--hidden'}),
+  elem( 'ui' )( { cls: 'pswp__ui--hidden' } ),
 
-  elem('button')({tag: 'button'}),
+  elem( 'button' )( { tag: 'button' } ),
 
-  elem('button').elemMod('action', 'close')({
+  elem( 'button' ).elemMod( 'action', 'close' )( {
     cls: 'pswp__button--close',
     addAttrs: {
       title: 'Close (Esc)'
     }
-  }),
+  } ),
 
-  elem('button').elemMod('action', 'share')({
+  elem( 'button' ).elemMod( 'action', 'share' )( {
     cls: 'pswp__button--share',
     addAttrs: {
       title: 'Share'
     }
-  }),
+  } ),
 
-  elem('button').elemMod('action', 'fs')({
+  elem( 'button' ).elemMod( 'action', 'fs' )( {
     cls: 'pswp__button--fs',
     addAttrs: {
       title: 'Toggle fullscreen'
     }
-  }),
+  } ),
 
-  elem('button').elemMod('action', 'zoom')({
+  elem( 'button' ).elemMod( 'action', 'zoom' )( {
     cls: 'pswp__button--zoom',
     addAttrs: {
       title: 'Zoom in/out'
     }
-  }),
+  } ),
 
-  elem('button').elemMod('action', 'prev')({
+  elem( 'button' ).elemMod( 'action', 'prev' )( {
     cls: 'pswp__button--arrow--left',
     addAttrs: {
       title: 'Previous (arrow left)'
     }
-  }),
+  } ),
 
-  elem('button').elemMod('action', 'next')({
+  elem( 'button' ).elemMod( 'action', 'next' )( {
     cls: 'pswp__button--arrow--right',
     addAttrs: {
       title: 'Next (arrow right)'
     }
-  }),
+  } ),
 
-  elem('share-modal')({
+  elem( 'share-modal' )( {
     cls: 'pswp__share-modal--hidden',
-    addMix: {elem: 'single-tap'},
-  }),
+    addMix: { elem: 'single-tap' }
+  } ),
 
-  elem('preloader')({
+  elem( 'preloader' )( {
     content: {
       cls: 'pswp__preloader__icn',
       content: {
@@ -125,5 +125,5 @@ block('pswp')(
         }
       }
     }
-  }),
+  } ),
 );

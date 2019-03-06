@@ -1,32 +1,28 @@
-modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], function( provide, bemDom, BEMHTML, PhotoSwipe, PhotoSwipeUI_Default ) {
-// modules.define( 'gallery', ['i-bem-dom', 'BEMHTML'], function( provide, bemDom, BEMHTML, PhotoSwipe, PhotoSwipeUI_Default ) {
-
+modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], function( provide, bemDom, BEMHTML, PhotoSwipe, photoSwipeUIDefault ) {
   provide( bemDom.declBlock( this.name, {
     onSetMod: {
       js: {
-        inited: function() {
-          const newPswpElement = bemDom.append(
+        inited() {
+          bemDom.append(
             bemDom.scope,
             BEMHTML.apply( { block: 'pswp' } )
           );
 
           // console.log( newPswpElement );
 
-          const initPhotoSwipe = function( gallerySelector ) {
-
+          const initPhotoSwipe = gallerySelector => {
             // parse slide data (url, title, size ...) from DOM elements
             // (children of gallerySelector)
-            var parseThumbnailElements = function( el ) {
-              var thumbElements = el.childNodes,
-                numNodes = thumbElements.length,
-                items = [],
-                figureEl,
-                linkEl,
-                size,
-                item;
+            const parseThumbnailElements = el => {
+              const thumbElements = el.childNodes;
+              const numNodes = thumbElements.length;
+              const items = [];
+              let figureEl;
+              let linkEl;
+              let size;
+              let item;
 
-              for( var i = 0; i < numNodes; i++ ) {
-
+              for( let i = 0; i < numNodes; i++ ) {
                 figureEl = thumbElements[i]; // <figure> element
 
                 // include only element nodes
@@ -44,7 +40,6 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
                   w: parseInt( size[0], 10 ),
                   h: parseInt( size[1], 10 )
                 };
-
 
 
                 if( figureEl.children.length > 1 ) {
@@ -65,31 +60,25 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
             };
 
             // find nearest parent element
-            var closest = function closest( el, fn ) {
-              return el && ( fn( el ) ? el : closest( el.parentNode, fn ) );
-            };
+            const closest = ( el, fn ) => el && ( fn( el ) ? el : closest( el.parentNode, fn ) );
 
-            var openPhotoSwipe = function( index, galleryElement, disableAnimation, fromURL ) {
-              var pswpElement = document.querySelectorAll( '.pswp' )[0],
-                gallery,
-                options,
-                items;
-
-              items = parseThumbnailElements( galleryElement );
+            const openPhotoSwipe = ( index, galleryElement, disableAnimation, fromURL ) => {
+              const pswpElement = document.querySelectorAll( '.pswp' )[0];
+              const items = parseThumbnailElements( galleryElement );
 
               // define options (if needed)
-              options = {
+              const options = {
 
                 // define gallery index (for URL)
                 galleryUID: galleryElement.getAttribute( 'data-pswp-uid' ),
 
-                getThumbBoundsFn: function( indexThumb ) {
+                getThumbBoundsFn( indexThumb ) {
                   // See Options -> getThumbBoundsFn section of documentation for more info
-                  var thumbnail = items[indexThumb].el.getElementsByTagName( 'img' )[0], // find thumbnail
-                    pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
-                    rect = thumbnail.getBoundingClientRect();
+                  const thumbnail = items[indexThumb].el.getElementsByTagName( 'img' )[0]; // find thumbnail
+                  const pageYScroll = window.pageYOffset || document.documentElement.scrollTop;
+                  const rect = thumbnail.getBoundingClientRect();
 
-                  return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+                  return { x: rect.left, y: rect.top + pageYScroll, w: rect.width };
                 }
 
               };
@@ -99,8 +88,8 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
                 if( options.galleryPIDs ) {
                   // parse real index when custom PIDs are used
                   // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
-                  for( var j = 0; j < items.length; j++ ) {
-                    if( items[j].pid == index ) {
+                  for( let j = 0; j < items.length; j++ ) {
+                    if( items[j].pid === index ) {
                       options.index = j;
                       break;
                     }
@@ -123,21 +112,20 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
               }
 
               // Pass data to PhotoSwipe and initialize it
-              gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options );
+              const gallery = new PhotoSwipe( pswpElement, photoSwipeUIDefault, items, options );
+
               gallery.init();
             };
 
             // triggers when user clicks on thumbnail
-            var onThumbnailsClick = function( e ) {
+            const onThumbnailsClick = e => {
               e = e || window.event;
               e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
-              var eTarget = e.target || e.srcElement;
+              const eTarget = e.target || e.srcElement;
 
               // find root element of slide
-              var clickedListItem = closest( eTarget, function( el ) {
-                return ( el.tagName && el.tagName.toUpperCase() === 'FIGURE' );
-              } );
+              const clickedListItem = closest( eTarget, el => el.tagName && el.tagName.toUpperCase() === 'FIGURE' );
 
               if( !clickedListItem ) {
                 return;
@@ -145,13 +133,13 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
 
               // find index of clicked item by looping through all child nodes
               // alternatively, you may define index via data- attribute
-              var clickedGallery = clickedListItem.parentNode,
-                childNodes = clickedListItem.parentNode.childNodes,
-                numChildNodes = childNodes.length,
-                nodeIndex = 0,
-                index;
+              const clickedGallery = clickedListItem.parentNode;
+              const childNodes = clickedListItem.parentNode.childNodes;
+              const numChildNodes = childNodes.length;
+              let nodeIndex = 0;
+              let index;
 
-              for ( var i = 0; i < numChildNodes; i++ ) {
+              for( let i = 0; i < numChildNodes; i++ ) {
                 if( childNodes[i].nodeType !== 1 ) {
                   continue;
                 }
@@ -164,7 +152,6 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
               }
 
 
-
               if( index >= 0 ) {
                 // open PhotoSwipe if valid index found
                 openPhotoSwipe( index, clickedGallery );
@@ -173,20 +160,22 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
             };
 
             // parse picture index and gallery index from URL (#&pid=1&gid=2)
-            var photoswipeParseHash = function() {
-              var hash = window.location.hash.substring( 1 ),
-                params = {};
+            const photoswipeParseHash = () => {
+              const hash = window.location.hash.substring( 1 );
+              const params = {};
 
               if( hash.length < 5 ) {
                 return params;
               }
 
-              var vars = hash.split( '&' );
-              for ( var i = 0; i < vars.length; i++ ) {
+              const vars = hash.split( '&' );
+
+              for( let i = 0; i < vars.length; i++ ) {
                 if( !vars[i] ) {
                   continue;
                 }
-                var pair = vars[i].split( '=' );
+                const pair = vars[i].split( '=' );
+
                 if( pair.length < 2 ) {
                   continue;
                 }
@@ -201,17 +190,18 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
             };
 
             // loop through all gallery elements and bind events
-            var galleryElements = document.querySelectorAll( gallerySelector );
+            const galleryElements = document.querySelectorAll( gallerySelector );
 
-            for( var i = 0, l = galleryElements.length; i < l; i++ ) {
+            for( let i = 0, l = galleryElements.length; i < l; i++ ) {
               galleryElements[i].setAttribute( 'data-pswp-uid', i+1 );
               galleryElements[i].onclick = onThumbnailsClick;
             }
 
             // Parse URL and open gallery if it contains #&pid=3&gid=1
-            var hashData = photoswipeParseHash();
+            const hashData = photoswipeParseHash();
+
             if( hashData.pid && hashData.gid ) {
-              openPhotoSwipe( hashData.pid ,  galleryElements[ hashData.gid - 1 ], true, true );
+              openPhotoSwipe( hashData.pid, galleryElements[hashData.gid - 1], true, true );
             }
           };
 
@@ -220,5 +210,4 @@ modules.define( 'gallery', ['i-bem-dom', 'BEMHTML', 'pswp', 'pswp__ui'], functio
       }
     }
   } ) );
-
 } );

@@ -1,6 +1,5 @@
-block('service').mod('view', 'detail')(
-  content()((node, {service}) => {
-
+block( 'service' ).mod( 'view', 'detail' )(
+  content()( ( node, { service } ) => {
     const currentLang = node.data.params.lang;
 
     const {
@@ -14,7 +13,6 @@ block('service').mod('view', 'detail')(
       place,
       placeFeatures,
       sale,
-      time,
       description,
       routeMap,
       attractions,
@@ -25,74 +23,76 @@ block('service').mod('view', 'detail')(
       descriptionPrepend,
       prevention,
       advice,
-      pricesDescription,
+      pricesDescription
+
+      // time,
     } = service;
 
-    const serviceTitle = ((title[currentLang] || {}).name) || '';
+    const serviceTitle = ( title[currentLang] || {} ).name || '';
 
     return [
       {
         block: 'title',
-        mods: {view: 'xl'},
+        mods: { view: 'xl' },
         url: titleImage || '',
-        title: serviceTitle,
+        title: serviceTitle
       },
       {
         block: 'page',
         elem: 'content',
-        elemMods: {view: 'narrow'},
+        elemMods: { view: 'narrow' },
         content: [
           {
             block: 'page',
             elem: 'row',
-            elemMods: {sm: 'column'},
+            elemMods: { sm: 'column' },
             content: [
               {
                 block: 'page',
                 elem: 'col',
-                elemMods: {view: 'main'},
+                elemMods: { view: 'main' },
                 content: [
                   {
                     block: 'service',
                     elem: 'description',
-                    duration: (duration || {})[currentLang] || '',
-                    time: (schedule || {})[currentLang] || '',
+                    duration: ( duration || {} )[currentLang] || '',
+                    time: ( schedule || {} )[currentLang] || '',
                     fromPoint: point,
-                    vehicle: ((place || {}).title || {})[currentLang] || '',
-                    excursion: tourLanguage ? tourLanguage.map(item => (item && {
+                    vehicle: ( ( place || {} ).title || {} )[currentLang] || '',
+                    excursion: tourLanguage ? tourLanguage.map( item => item && {
                       url: item.icon.url,
                       name: item.title
-                    })) : '',
+                    } ) : '',
                     routeMap: routeMap || '',
-                    placeFeatures: placeFeatures ? placeFeatures.map(item => (item && {
+                    placeFeatures: placeFeatures ? placeFeatures.map( item => item && {
                       url: item.icon.url,
                       name: item.title
-                    })) : '',
-                  },
-                ],
+                    } ) : ''
+                  }
+                ]
               },
               {
                 block: 'page',
                 elem: 'col',
-                elemMods: {view: 'aside'},
+                elemMods: { view: 'aside' },
                 content: [
                   {
                     block: 'service',
                     elem: 'price-info',
                     discount: sale || '',
-                    pricesDescription: (pricesDescription || {})[node.currentLang] || '',
-                    prevention: (prevention || {})[node.currentLang] || ''
+                    pricesDescription: ( pricesDescription || {} )[node.currentLang] || '',
+                    prevention: ( prevention || {} )[node.currentLang] || ''
                   },
-                  (price || priceOld) && {
+                  ( price || priceOld ) && {
                     block: 'service',
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
                     title: serviceTitle,
-                    urlBuy: '#buy',
-                  },
-                ],
-              },
+                    urlBuy: '#buy'
+                  }
+                ]
+              }
             ]
           },
           {
@@ -102,39 +102,39 @@ block('service').mod('view', 'detail')(
           {
             block: 'page',
             elem: 'row',
-            elemMods: {sm: 'column'},
+            elemMods: { sm: 'column' },
             content: [
               {
                 block: 'page',
                 elem: 'col',
-                elemMods: {view: 'main'},
+                elemMods: { view: 'main' },
                 content: [
-                  (description || {})[currentLang] && {
+                  ( description || {} )[currentLang] && {
                     block: 'heading',
-                    mods: {size: 'xl'},
+                    mods: { size: 'xl' },
                     content: {
-                      html: ((node.data.api.settingService || {}).serviceViewDetailDescription || {})[currentLang] || ''
+                      html: ( ( node.data.api.settingService || {} ).serviceViewDetailDescription || {} )[currentLang] || ''
                     }
                   },
-                  (descriptionPrepend || {})[currentLang] && {
+                  ( descriptionPrepend || {} )[currentLang] && {
                     block: 'service',
                     elem: 'remark',
                     content: {
-                      html: marked(descriptionPrepend[currentLang]) || ''
+                      html: node._marked( descriptionPrepend[currentLang] ) || ''
                     }
                   },
-                  (description || {})[currentLang] && {
+                  ( description || {} )[currentLang] && {
                     block: 'page',
                     elem: 'text',
                     content: {
-                      html: marked(description[currentLang]) || ''
+                      html: node._marked( description[currentLang] ) || ''
                     }
                   },
-                  (descriptionAppend || {})[currentLang] && {
+                  ( descriptionAppend || {} )[currentLang] && {
                     block: 'service',
                     elem: 'remark',
                     content: {
-                      html: marked(descriptionAppend[currentLang]) || ''
+                      html: node._marked( descriptionAppend[currentLang] ) || ''
                     }
                   },
                   {
@@ -143,15 +143,15 @@ block('service').mod('view', 'detail')(
                     attrs: {
                       id: 'map'
                     },
-                    elemMods: {view: 'short'}
+                    elemMods: { view: 'short' }
                   },
                   routeMap && [
                     {
                       block: 'heading',
-                      mods: {size: 'xl'},
+                      mods: { size: 'xl' },
                       content: {
-                        html: ((node.data.api.settingService || {}).serviceViewDetailRouteMap || {})[currentLang] || ''
-                      },
+                        html: ( ( node.data.api.settingService || {} ).serviceViewDetailRouteMap || {} )[currentLang] || ''
+                      }
                     },
                     {
                       block: 'page',
@@ -159,107 +159,105 @@ block('service').mod('view', 'detail')(
                       content: {
                         iframe: routeMap,
                         height: '400',
-                        width: '100%',
+                        width: '100%'
                       },
                       mix: {
                         block: 'service',
-                        elem: 'map',
-                      },
+                        elem: 'map'
+                      }
                     }
                   ],
-                  (advice || {})[currentLang] && {
+                  ( advice || {} )[currentLang] && {
                     block: 'service',
                     elem: 'advice',
                     content: [
                       {
                         block: 'heading',
-                        mods: {size: 'm'},
+                        mods: { size: 'm' },
                         content:
                           {
-                            html: ((node.data.api.settingService || {}).serviceViewDetailAdvice || {})[currentLang] || ''
-                          },
+                            html: ( ( node.data.api.settingService || {} ).serviceViewDetailAdvice || {} )[currentLang] || ''
+                          }
                       },
                       {
-                        html: marked(advice[currentLang]) || ''
+                        html: node._marked( advice[currentLang] ) || ''
                       }]
-                  },
+                  }
                 ]
               },
               {
                 block: 'page',
                 elem: 'col',
-                elemMods: {view: 'aside'},
+                elemMods: { view: 'aside' },
                 content: [
                   gallery && [
                     {
                       block: 'heading',
-                      mods: {size: 'xl'},
+                      mods: { size: 'xl' },
                       content: {
-                        html: ((node.data.api.settingService || {}).serviceViewDetailGallery || {})[currentLang] || ''
-                      },
+                        html: ( ( node.data.api.settingService || {} ).serviceViewDetailGallery || {} )[currentLang] || ''
+                      }
                     },
                     {
                       block: 'service',
                       elem: 'gallery',
-                      photos: gallery,
-                    },
+                      photos: gallery
+                    }
                   ],
-                  ((attractions || {}).length > 0) && [
+                  ( attractions || {} ).length > 0 && [
                     {
                       block: 'heading',
-                      mods: {size: 'xl'},
+                      mods: { size: 'xl' },
                       content: {
-                        html: ((node.data.api.settingService || {}).serviceViewDetailAttractions || {})[currentLang] || ''
-                      },
+                        html: ( ( node.data.api.settingService || {} ).serviceViewDetailAttractions || {} )[currentLang] || ''
+                      }
                     },
                     {
                       block: 'list',
-                      items: (attractions.map(item => (item.title[currentLang]))) || [],
-                      mods: {type: 'check', size: 'md'}
-                    },
+                      items: attractions.map( item => item.title[currentLang] ) || [],
+                      mods: { type: 'check', size: 'md' }
+                    }
                   ],
-                  (priceDescription || {})[currentLang] && {
+                  ( priceDescription || {} )[currentLang] && {
                     block: 'heading',
-                    mods: {size: 'xl'},
+                    mods: { size: 'xl' },
                     content: {
-                      html: marked(priceDescription[currentLang]) || '',
-                    },
+                      html: node._marked( priceDescription[currentLang] ) || ''
+                    }
                   },
-                  (price || priceOld) && {
+                  ( price || priceOld ) && {
                     block: 'service',
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
                     title: serviceTitle,
-                    urlBuy: '#buy',
+                    urlBuy: '#buy'
                   },
                   {
                     block: 'page',
                     elem: 'hr'
                   },
-                  (node.data.api.servicesRandom.filter( item => item.title[node.currentLang]).length) > 0 && [
+                  node.data.api.servicesRandom.filter( item => item.title[node.currentLang] ).length > 0 && [
                     {
                       block: 'heading',
-                      mods: {size: 'xl'},
+                      mods: { size: 'xl' },
                       content: {
-                        html: ((node.data.api.settingService || {}).serviceViewDetailSame || {})[currentLang] || ''
-                      },
+                        html: ( ( node.data.api.settingService || {} ).serviceViewDetailSame || {} )[currentLang] || ''
+                      }
                     },
                     {
                       block: 'list',
-                      mods: {view: 'no-style', sm: 'inline'},
-                      content: node.data.api.servicesRandom.map(item => {
-                        return {
-                          elem: 'item',
-                          content: {
-                            block: 'service',
-                            mods: {view: 'list-item-sm'},
-                            service: item
-                          }
+                      mods: { view: 'no-style', sm: 'inline' },
+                      content: node.data.api.servicesRandom.map( item => ( {
+                        elem: 'item',
+                        content: {
+                          block: 'service',
+                          mods: { view: 'list-item-sm' },
+                          service: item
                         }
-                      })
+                      } ) )
                     }
-                  ],
+                  ]
                 ]
               }
             ]
@@ -267,5 +265,5 @@ block('service').mod('view', 'detail')(
         ]
       }
     ]
-  })
+  } )
 );

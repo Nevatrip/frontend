@@ -1,27 +1,28 @@
-block('page')(
-  content()(node => {
+block( 'page' )(
+  content()( node => {
     const serviceBasedData = node.data.api.serviceBasedData;
     const currentLang = node.currentLang = node.data.params.lang;
+
     return [
       {
         block: 'header',
-        logo: urlFor(serviceBasedData.logo.asset._ref).url() || '',
+        logo: node._urlFor( serviceBasedData.logo.asset._ref ).url() || '',
         logoDescription: serviceBasedData.shortDescription[currentLang] || '',
         logoTitle: serviceBasedData.title[currentLang] || '',
-        slogan: serviceBasedData.Slogan[currentLang] || '',
+        slogan: serviceBasedData.Slogan[currentLang] || ''
       },
       {
         block: 'navigation',
-        content: (node.data.api.navigation[0] || {})
+        content: node.data.api.navigation[0] || {}
       },
-      apply('mods'),
+      apply( 'mods' ),
       {
         block: 'page',
         elem: 'spreader'
       },
       {
         block: 'footer',
-        awards: serviceBasedData.awards[currentLang].split('\n') || '',
+        awards: serviceBasedData.awards[currentLang].split( '\n' ) || '',
         mainNavHeading: serviceBasedData.footerCategoryTitle[currentLang] || '',
         mainNav: [
           {
@@ -99,7 +100,7 @@ block('page')(
           {
             name: 'Экскурсии для детей',
             url: '/ekskursii-dlya-detey-spb'
-          },
+          }
         ],
         basicNav: [
           {
@@ -125,12 +126,12 @@ block('page')(
           {
             name: 'Прогулки в&nbsp;Москве',
             url: 'https://moskvatrip.ru/'
-          },
+          }
         ],
         copyright: serviceBasedData.copyright[currentLang] || ''
-      },
+      }
     ]
-  }),
-  addMods()(node => ({route: node.data.view || node.data.page}))
+  } ),
+  addMods()( node => ( { route: node.data.view || node.data.page } ) )
 );
 

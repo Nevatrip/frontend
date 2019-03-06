@@ -1,3 +1,3 @@
-block('logo')(
-  tag()('span')
+block( 'logo' )(
+  tag()( 'span' )
 );

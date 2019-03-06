@@ -1,6 +1,7 @@
-block('service').elem('description')(
-  content()((node, ctx) => {
+block( 'service' ).elem( 'description' )(
+  content()( ( node, ctx ) => {
     const currentLang = node.data.params.lang;
+
     return [
       {
         block: 'list',
@@ -9,60 +10,60 @@ block('service').elem('description')(
           size: 'md'
         },
         content: [
-          ctx.duration && [(((((node.data.api.settingService || {}).serviceDescriptionDuration || {})[currentLang]) || '') + ': '), ctx.duration],
-          ctx.time && [(((((node.data.api.settingService || {}).serviceDescriptionTime || {})[currentLang]) || '') + ': '), ctx.time],
-          (ctx.fromPoint || []).length > 0 && [(((((node.data.api.settingService || {}).serviceDescriptionFromPoint || {})[currentLang]) || '') + ': '),
-            ctx.fromPoint.map((item, index) => (
+          ctx.duration && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionDuration || {} )[currentLang] || '' }: `, ctx.duration],
+          ctx.time && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionTime || {} )[currentLang] || '' }: `, ctx.time],
+          ( ctx.fromPoint || [] ).length > 0 && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionFromPoint || {} )[currentLang] || '' }: `,
+            ctx.fromPoint.map( ( item, index ) =>
               [
                 {
                   block: 'link',
                   content: item.title[node.currentLang],
                   target: '_blank',
-                  url: item.coords ? ('https://www.google.com/maps/search/?api=1&query=' + item.coords.lat + ',' + item.coords.lng) : '',
-                  mods: item.coords ? {pseudo: false} : {pseudo: true}
+                  url: item.coords ? `https://www.google.com/maps/search/?api=1&query=${ item.coords.lat },${ item.coords.lng }` : '',
+                  mods: item.coords ? { pseudo: false } : { pseudo: true }
                 },
-                (ctx.fromPoint.length-1)>index && {
+                ctx.fromPoint.length-1>index && {
                   block: 'text',
                   content: ', '
                 }
               ]
-            ))],
-          ctx.vehicle && [(((((node.data.api.settingService || {}).serviceDescriptionVehicle || {})[currentLang]) || '') + ': '), ctx.vehicle],
-          ctx.excursion.length > 0 && ctx.excursion && [(((((node.data.api.settingService || {}).serviceDescriptionExcursion || {})[currentLang]) || '') + ': '), ctx.excursion.map(lang => ({
+            )],
+          ctx.vehicle && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionVehicle || {} )[currentLang] || '' }: `, ctx.vehicle],
+          ctx.excursion.length > 0 && ctx.excursion && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionExcursion || {} )[currentLang] || '' }: `, ctx.excursion.map( lang => ( {
             block: 'image',
-            mods: {view: 'icon'},
+            mods: { view: 'icon' },
             url: lang.url,
             alt: lang.name[node.currentLang] || '',
-            title: lang.name[node.currentLang] || '',
-          }))],
-          ctx.placeFeatures && [(((((node.data.api.settingService || {}).serviceDescriptionPlaceFeatures || {})[currentLang]) || '') + ': '), ctx.placeFeatures.map(placeFeature => ({
+            title: lang.name[node.currentLang] || ''
+          } ) )],
+          ctx.placeFeatures && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionPlaceFeatures || {} )[currentLang] || '' }: `, ctx.placeFeatures.map( placeFeature => ( {
             block: 'image',
-            mods: {view: 'colored-icon'},
+            mods: { view: 'colored-icon' },
             url: placeFeature.url,
             alt: placeFeature.name[node.currentLang] || '',
-            title: placeFeature.name[node.currentLang] || '',
-          }))],
+            title: placeFeature.name[node.currentLang] || ''
+          } ) )],
           ctx.routeMap && [
             {
               block: 'link',
               url: '#map',
-              content: ((((node.data.api.settingService || {}).serviceDescriptionRouteMap || {})[currentLang]) || '')
+              content: ( ( node.data.api.settingService || {} ).serviceDescriptionRouteMap || {} )[currentLang] || ''
             }
-          ],
-        ].map(item => (item && {
+          ]
+        ].map( item => item && {
           elem: 'item',
           content: [
             {
               block: 'text',
-              mods: {weight: 'bold'},
+              mods: { weight: 'bold' },
               content: item[0]
             },
-            (typeof item[1] === 'string' || item[1] instanceof String)
-              ? {html: marked(item[1] || '')}
-              : (item[1] || '')
+            typeof item[1] === 'string' || item[1] instanceof String ?
+              { html: node._marked( item[1] || '' ) } :
+              item[1] || ''
           ]
-        })),
+        } )
       }
     ]
-  })
+  } )
 );

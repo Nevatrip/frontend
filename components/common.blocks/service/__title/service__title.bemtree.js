@@ -1,7 +1,5 @@
-block('service').elem('title')(
-  content()((node, ctx) => {
-    return {
-      content: ctx.content
-    }
-  })
+block( 'service' ).elem( 'title' )(
+  content()( ( node, ctx ) => ( {
+    content: ctx.content
+  } ) )
 );

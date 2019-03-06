@@ -1,3 +1,3 @@
-block('footer')(
-  tag()('footer'),
+block( 'footer' )(
+  tag()( 'footer' ),
 );

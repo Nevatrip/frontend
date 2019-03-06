@@ -1,8 +1,8 @@
 block( 'page' ).elem( 'section' ).elemMod( 'view', 'test' )
-  .content()( node => [
+  .content()( [
     {
       elem: 'layout',
       elemMods: { width: 'tiny' },
-      content: `I'm test`
+      content: 'I\'m test'
     }
   ] );

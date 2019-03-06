@@ -1,3 +1,3 @@
-block('footer').elem('header')(
-  tag()('header'),
+block( 'footer' ).elem( 'header' )(
+  tag()( 'header' ),
 );

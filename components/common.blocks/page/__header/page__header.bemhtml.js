@@ -1,2 +1,2 @@
 block( 'header' )
-  .tag()('header');
+  .tag()( 'header' );

@@ -8,7 +8,7 @@ module.exports = {
   ],
 
   plugins: {
-    'bemhint-fs-naming': false,
+    'bemhint-fs-naming': true,
     'bemhint-deps-specification': true
   }
 };

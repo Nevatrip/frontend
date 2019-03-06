@@ -61,6 +61,7 @@ app.all( '*', async( req, res, next ) => {
       pathname: req.path,
       query: req.query || {}
     } );
+
     console.timeEnd( 'Route' );
 
     if( route.redirect ) {
@@ -73,7 +74,7 @@ app.all( '*', async( req, res, next ) => {
 
     if( route.page ) {
       console.time( 'Render' );
-      const html = await render( req, res, route);
+      const html = await render( req, res, route );
 
       // const html = await render( req, res, route.page );
       console.timeEnd( 'Render' );
@@ -87,6 +88,7 @@ app.all( '*', async( req, res, next ) => {
     next( error );
   }
 } );
+
 /*
 */
 
@@ -102,6 +104,7 @@ pe.skipPackage( 'express' );
 app.use( ( err, req, res, next ) => {
   console.error( pe.render( err ) );
   res.status( err.status || 500 );
+
   // const html = render( req, res, {}, { page: 'error', api: { error: err } } );
   const html = '<h1>500</h1>';
 

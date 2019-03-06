@@ -1,3 +1,3 @@
-block('filter')(
-  tag()('section'),
+block( 'filter' )(
+  tag()( 'section' ),
 );
