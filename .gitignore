@@ -20,3 +20,4 @@ static/assets/
 .floo
 .flooignore
 pnpm-debug.log
+deploy.gpg
