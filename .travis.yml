@@ -13,4 +13,11 @@ before_install:
   | shasum -a 256 -c -
 - chmod +x git-crypt
 - sudo cp git-crypt /usr/local/bin/
+- ls -la
+- cat .env
 - git-crypt unlock
+- head -n 1 .env
+install:
+- npm i --ignore-scripts
+script:
+- npm t
