@@ -5,7 +5,6 @@ node_modules/
 .zip
 .log
 .swp
-package-lock.json
 shrinkwrap.yaml
 .env
 
