@@ -1,5 +1,5 @@
 block( 'filter' ).elem( 'basic-tags' )(
-  content()( ( node, ctx ) => ( {
+  content()( ( node ) => ( {
     block: 'checkbox-group',
     mix: { block: node.block, elem: node.elem },
     mods: { type: 'button' },
