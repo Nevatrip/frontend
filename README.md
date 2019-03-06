@@ -1,4 +1,4 @@
-# nevatrip-mvp-server
+# nevatrip-mvp-server [![Build Status](https://travis-ci.org/Nevatrip/frontend.svg?branch=master)](https://travis-ci.org/Nevatrip/frontend) / [![Build Status](https://travis-ci.org/Nevatrip/frontend.svg?branch=develop)](https://travis-ci.org/Nevatrip/frontend)
 
 ## Install
 
