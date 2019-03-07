@@ -91,7 +91,7 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                         }
                       ]
                     },
-                    features && features[currentLang] && {
+                    ( features || {} )[currentLang] && {
                       block: 'list',
                       mods: { type: 'check', size: 'sm' },
                       items: features[currentLang].split( '\n' ).map( item => ( {

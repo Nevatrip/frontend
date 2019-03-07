@@ -51,7 +51,7 @@ block( 'service' ).mod( 'view', 'banner' )(
                 },
                 ( features || {} )[currentLang] && {
                   block: 'list',
-                  mods: { type: 'check-in-disk ', size: 'xl' },
+                  mods: { type: 'check-in-disk', size: 'xl' },
                   items: features[currentLang].split( '\n' ).map( item => ( {
                     html: node._marked( item )
                   } ) )

@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  max-width: 1180px;
 }
 @media (max-width: 991px) {
   .footer__content{

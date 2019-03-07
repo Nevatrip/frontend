@@ -9,7 +9,7 @@
     },
     {
       block: 'link',
-      mods: { view: 'button' },
+      mods: {view: 'button'},
     },
     {
       block: 'heading',
@@ -17,7 +17,7 @@
     },
     {
       block: 'list',
-      mods: {type: 'check-in-disk ', size: 'xl'}
+      mods: { type: 'check-in-disk', size: 'xl' },
     },
     {
       block: 'image',
@@ -38,7 +38,7 @@
     {
       block: 'page',
       elem: 'row',
-      mods: { view: 'service-banner' }
+      mods: {view: 'service-banner'}
     }
   ]
 }]
