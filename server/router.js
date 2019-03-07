@@ -4,6 +4,7 @@ const UniversalRouter = require( 'universal-router' );
 const generateUrls = require( 'universal-router/generateUrls' );
 
 const servicesByCategory = require( './routes/servicesByCategory' );
+const servicesByCollection = require( './routes/servicesByCollection' );
 const home = require( './routes/home' );
 const service = require( './routes/service' );
 const error = require( './routes/error' );
@@ -30,6 +31,16 @@ const router = new UniversalRouter(
             path: '/:service',
             name: 'service',
             load: async() => await service
+          }
+        ]
+      },
+      {
+        path: '/:collection',
+        children: [
+          {
+            path: '',
+            name: 'servicesByCollection',
+            load: async() => await servicesByCollection
           }
         ]
       },

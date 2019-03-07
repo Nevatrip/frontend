@@ -6,6 +6,7 @@ const getNav = require( '../request/getNav' );
 const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getServiceCategory = require( '../request/getServiceCategory' );
 const getSettingService = require( '../request/getSettingService' );
+const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 
 // const getServicesRandom = require( '../request/getServicesRandom' );
 
@@ -17,6 +18,7 @@ const action = async( context, params ) => {
   const serviceCategoryFull = await getServiceCategoryByCategoryAlias( serviceCategory, lang );
 
   const navigation = await getNav( lang );
+  const settingServicesCollections = await getSettingServicesCollections();
 
   const serviceBasedData = await getServiceBasedData();
   const settingService = await getSettingService();
@@ -37,7 +39,8 @@ const action = async( context, params ) => {
         serviceCategoryFull,
         serviceBasedData,
         settingService,
-        serviceCategories
+        serviceCategories,
+        settingServicesCollections
       }
     }
   }
@@ -48,7 +51,8 @@ const action = async( context, params ) => {
     api: {
       navigation,
       serviceBasedData,
-      settingService
+      settingService,
+      settingServicesCollections
 
       // servicesRandom,
     }

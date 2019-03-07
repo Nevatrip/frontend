@@ -6,6 +6,7 @@ const getNav = require( '../request/getNav' );
 const getTags = require( '../request/getSettingServiceTags' );
 const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getSettingService = require( '../request/getSettingService' );
+const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 
 const action = async( context, params ) => {
   const bannerAlias = 'testovaya-ekskursiya-1';
@@ -18,6 +19,7 @@ const action = async( context, params ) => {
   const tags = await getTags();
   const serviceBasedData = await getServiceBasedData();
   const settingService = await getSettingService();
+  const settingServicesCollections = await getSettingServicesCollections();
 
   return {
     page: 'index',
@@ -28,7 +30,8 @@ const action = async( context, params ) => {
       navigation,
       tags,
       serviceBasedData,
-      settingService
+      settingService,
+      settingServicesCollections
     }
   }
 };
