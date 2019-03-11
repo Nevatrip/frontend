@@ -31,11 +31,11 @@ const action = async( context, params ) => {
   const settingService = await getSettingService();
   const settingServicesCollections = await getSettingServicesCollections();
 
-  console.log('---------');
-  console.log(params.service);
-  console.log(params.lang);
-  console.log(categoryName);
-  console.log('---------');
+  // console.log('---------');
+  // console.log(params.service);
+  // console.log(params.lang);
+  // console.log(categoryName);
+  // console.log('---------');
 
   if( serviceResponse ) {
     return {
