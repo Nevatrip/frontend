@@ -43,6 +43,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+a{
+  opacity: .7;
+}
+a[href]{
+  opacity: 1;
+}
 a,
 a:hover,
 a:focus,
@@ -58,7 +64,7 @@ a {
   text-decoration: none;
 }
 
-a:hover {
+a[href]:hover {
   text-decoration: underline;
 }
 

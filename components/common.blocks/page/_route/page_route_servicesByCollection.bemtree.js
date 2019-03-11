@@ -1,4 +1,4 @@
-block( 'page' ).mod( 'route', 'servicesByCategory' )(
+block( 'page' ).mod( 'route', 'servicesByCollection' )(
   mods()( node => [
     {
       block: 'title',
@@ -6,7 +6,7 @@ block( 'page' ).mod( 'route', 'servicesByCategory' )(
       url: node._urlFor( node.data.api.serviceCategoryFull.titleImage.asset._ref ).url() || '',
       title: ( ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).title || {} )[node.currentLang] || {} ).name || ''
     },
-    {
+    node.data.api.services && {
       block: 'page',
       elem: 'content',
       content: {
@@ -24,4 +24,3 @@ block( 'page' ).mod( 'route', 'servicesByCategory' )(
     }
   ] ),
 );
-

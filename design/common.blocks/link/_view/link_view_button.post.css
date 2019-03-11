@@ -29,6 +29,10 @@
   text-decoration: none;
 }
 
+.link_view_button[href]:hover{
+  text-decoration: none;
+}
+
 .link_view_button:focus,
 .link_view_button:active {
   background-color: #c2a800;

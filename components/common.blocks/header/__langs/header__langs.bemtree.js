@@ -4,6 +4,7 @@ block( 'header' ).elem( 'langs' )(
 
     const getRoute = page => {
       const routeKey = {
+        servicesByCollection: 'serviceCategoryFull',
         servicesByCategory: 'serviceCategoryFull',
         service: 'service',
         index: 'index'
@@ -13,7 +14,7 @@ block( 'header' ).elem( 'langs' )(
 
       const otherLangs = node.config.langs
         .filter( lang => lang !== currentLang )
-        .map( lang => ( ( response || {} ).title || {} ).hasOwnProperty( lang ) ?
+        .map( lang => ( ( ( response || {} ).title || {} ) ).hasOwnProperty( lang ) ?
           {
             alias: ( response || {} ).title[lang].key.current || null,
             lang
@@ -32,6 +33,9 @@ block( 'header' ).elem( 'langs' )(
           },
           servicesByCategory: {
             category: item.alias || ''
+          },
+          servicesByCollection: {
+            collection: item.alias || ''
           },
           index: {}
         };
