@@ -12,11 +12,11 @@ block( 'page' ).mod( 'route', 'servicesByCategory' )(
       content: {
         block: 'list',
         mods: { view: 'no-style' },
-        content: node.data.api.services.map(item => ({
+        content: node.data.api.services.map( item => ( {
           elem: 'item',
           content: {
             block: 'service',
-            mods: {view: 'list-item-lg'},
+            mods: { view: 'list-item-lg' },
             service: item
           }
         } ) )

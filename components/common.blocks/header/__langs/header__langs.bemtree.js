@@ -14,7 +14,7 @@ block( 'header' ).elem( 'langs' )(
 
       const otherLangs = node.config.langs
         .filter( lang => lang !== currentLang )
-        .map( lang => ( (( response || {} ).title || {} )  ).hasOwnProperty( lang ) ?
+        .map( lang => ( ( ( response || {} ).title || {} ) ).hasOwnProperty( lang ) ?
           {
             alias: ( response || {} ).title[lang].key.current || null,
             lang

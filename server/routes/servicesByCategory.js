@@ -7,14 +7,11 @@ const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getServiceCategory = require( '../request/getServiceCategory' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
-
-// const getServicesRandom = require( '../request/getServicesRandom' );
-
 const getRoutes = require( '../request/getRoutesBySectionAndLang' );
 
 const action = async( context, params ) => {
   const lang = params.lang;
-  const routes = await getRoutes('settingServiceCategory', lang);
+  const routes = await getRoutes( 'settingServiceCategory', lang );
 
   const serviceCategory = params.category;
 
@@ -31,7 +28,7 @@ const action = async( context, params ) => {
 
   // const servicesRandom = await getServicesRandom(lang, 9);
 
-  if(( services.length > 0 ) && (routes.indexOf(params.category)>-1)) {
+  if( services.length > 0 && routes.indexOf( params.category )>-1 ) {
     return {
       page: 'servicesByCategory',
       params,

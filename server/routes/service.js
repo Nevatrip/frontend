@@ -7,7 +7,7 @@ const getServicesRandom = require( '../request/getServicesRandomByCategoryExclud
 const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
-const getServiceCategoryByServiceAlias = require('../request/getServiceCategoryByServiceAlias');
+const getServiceCategoryByServiceAlias = require( '../request/getServiceCategoryByServiceAlias' );
 
 const action = async( context, params ) => {
   const {
@@ -18,7 +18,7 @@ const action = async( context, params ) => {
 
   const tours = await getServices();
 
-  const categoryName = (await getServiceCategoryByServiceAlias( params.service, params.lang )).category.title[params.lang].key.current;
+  const categoryName = ( await getServiceCategoryByServiceAlias( params.service, params.lang ) ).category.title[params.lang].key.current;
 
   const serviceResponse = await getService( service, lang, categoryName );
 

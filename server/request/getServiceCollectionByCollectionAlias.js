@@ -4,5 +4,5 @@ const query = ( collectionName, lang ) => `*[_type=="settingServicesCollections"
 const params = {};
 
 module.exports = async( collectionName, lang ) => await client.fetch( query( collectionName, lang ), params ).then( collection =>
-    collection[0]
+  collection[0]
 );
