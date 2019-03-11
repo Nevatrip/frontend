@@ -14,7 +14,7 @@ const router = new UniversalRouter(
   {
     path: '/',
     name: 'default',
-    action: () => ({ redirect: '/nevatrip/ru' })
+    action: () => ( { redirect: '/nevatrip/ru' } )
   },
   {
     path: '/:project/:lang',
