@@ -4,7 +4,7 @@ block( 'page' ).mod( 'route', 'servicesByCollection' )(
       block: 'title',
       mods: { view: 'xl' },
       url: node._urlFor( node.data.api.serviceCategoryFull.titleImage.asset._ref ).url() || '',
-      title: '123'
+      title: ( ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).title || {} )[node.currentLang] || {} ).name || '',
     },
     node.data.api.services && {
       block: 'page',

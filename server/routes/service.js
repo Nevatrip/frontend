@@ -7,6 +7,7 @@ const getServicesRandom = require( '../request/getServicesRandomByCategoryExclud
 const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
+const getServiceCategoryByServiceAlias = require('../request/getServiceCategoryByServiceAlias');
 
 const action = async( context, params ) => {
   const {
@@ -16,17 +17,25 @@ const action = async( context, params ) => {
   } = params;
 
   const tours = await getServices();
-  const serviceResponse = await getService( service, lang, category );
+
+  const categoryName = (await getServiceCategoryByServiceAlias( params.service, params.lang )).category.title[params.lang].key.current;
+
+  const serviceResponse = await getService( service, lang, categoryName );
 
   const navigation = await getNav( lang );
 
-  const categoryName = ( ( ( ( ( serviceResponse || {} ).category || {} ).title || {} )[lang] || {} ).key || {} ).current || '';
   const excludeID = ( serviceResponse || {} )._id;
   const servicesRandom = await ( categoryName ? getServicesRandom( categoryName, excludeID, lang ) : getServicesRandom( category, '', lang ) );
 
   const serviceBasedData = await getServiceBasedData();
   const settingService = await getSettingService();
   const settingServicesCollections = await getSettingServicesCollections();
+
+  console.log('---------');
+  console.log(params.service);
+  console.log(params.lang);
+  console.log(categoryName);
+  console.log('---------');
 
   if( serviceResponse ) {
     return {

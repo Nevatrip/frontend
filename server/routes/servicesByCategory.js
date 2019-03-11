@@ -10,8 +10,11 @@ const getSettingServicesCollections = require( '../request/getSettingServicesCol
 
 // const getServicesRandom = require( '../request/getServicesRandom' );
 
+const getRoutes = require( '../request/getRoutesBySectionAndLang' );
+
 const action = async( context, params ) => {
   const lang = params.lang;
+  const routes = await getRoutes('settingServiceCategory', lang);
 
   const serviceCategory = params.category;
 
@@ -28,11 +31,12 @@ const action = async( context, params ) => {
 
   // const servicesRandom = await getServicesRandom(lang, 9);
 
-  if( services.length > 0 ) {
+  if(( services.length > 0 ) && (routes.indexOf(params.category)>-1)) {
     return {
       page: 'servicesByCategory',
       params,
       api: {
+        routes,
         services,
         navigation,
         serviceCategory,

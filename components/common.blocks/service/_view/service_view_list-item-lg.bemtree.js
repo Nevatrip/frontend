@@ -8,7 +8,7 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
       features,
       price,
       priceOld,
-      category
+      category,
     } = service;
 
     let titleImageCropped = '';
@@ -31,7 +31,7 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
     }
 
     const linkParamsService = ( ( title[currentLang] || {} ).key || {} ).current || '//';
-    const linkParamsCategory = ( ( ( category || {} ).title || {} )[currentLang] || {} ).key.current || '//';
+    const linkParamsCategory = (( ( ( category || {} ).title || {} )[currentLang] || {} ).key || {}).current || '//';
     const serviceTitle = ( title[currentLang] || {} ).name || '';
 
 

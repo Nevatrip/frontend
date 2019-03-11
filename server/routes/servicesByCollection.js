@@ -5,40 +5,42 @@ const getNav = require( '../request/getNav' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 
-// const getServiceCategoryByCategoryAlias = require( '../request/getServiceCategoryByCategoryAlias' );
+const getServiceCollectionByCollectionAlias = require( '../request/getServiceCollectionByCollectionAlias' );
 // const getServicesByCategory = require( '../request/getServicesByCategory' );
 // const getServiceCategory = require( '../request/getServiceCategory' );
 // const getServicesRandom = require( '../request/getServicesRandom' );
 
+const getRoutes = require( '../request/getRoutesBySectionAndLang' );
+
 const action = async( context, params ) => {
   const lang = params.lang;
+  const routes = await getRoutes('settingServicesCollections', lang);
 
   const serviceBasedData = await getServiceBasedData();
   const navigation = await getNav( lang );
   const settingService = await getSettingService();
   const settingServicesCollections = await getSettingServicesCollections();
 
-  const services = settingServicesCollections.services;
+
 
   const serviceCollection = params.collection;
 
-  // const serviceCategoryFull = await getServiceCategoryByCategoryAlias(serviceCategory, lang);
+  const serviceCategoryFull = await getServiceCollectionByCollectionAlias( params.collection, lang );
 
-  console.log( '↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓' );
-  console.log( serviceCollection );
-  console.log( '↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_' );
 
+  const services = (serviceCategoryFull || {}).services;
 
   // const serviceCategories = await getServiceCategory();
 
 
   // const servicesRandom = await getServicesRandom(lang, 9);
 
-  if( services.length > 0 ) {
+  if(( (services || []).length > 0 ) && (routes.indexOf(params.collection)>-1)) {
     return {
       page: 'servicesByCollection',
       params,
       api: {
+        routes,
         serviceBasedData,
         navigation,
         settingService,
@@ -46,9 +48,9 @@ const action = async( context, params ) => {
 
 
         services,
-        serviceCollection
+        serviceCollection,
 
-        // serviceCategoryFull,
+        serviceCategoryFull,
         // serviceCategories,
       }
     }

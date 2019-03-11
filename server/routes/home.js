@@ -8,6 +8,8 @@ const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 
+
+
 const action = async( context, params ) => {
   const bannerAlias = 'testovaya-ekskursiya-1';
   const lang = params.lang;
@@ -31,7 +33,7 @@ const action = async( context, params ) => {
       tags,
       serviceBasedData,
       settingService,
-      settingServicesCollections
+      settingServicesCollections,
     }
   }
 };
