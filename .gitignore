@@ -21,3 +21,5 @@ static/assets/
 .flooignore
 pnpm-debug.log
 deploy.gpg
+deploy_rsa
+deploy_rsa.pub
