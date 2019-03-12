@@ -6,8 +6,8 @@ RUN apt-get update &&\
 
 RUN apt-get install -y git
 
-ARG NODE_ENV=production
-ARG NODE_VERSION=latest
+ARG NODE_ENV=develop
+ARG NODE_VERSION=10.13.0
 ARG PROJECT_PATH=/opt/app/
 ARG YARN=false
 
