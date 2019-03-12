@@ -1,4 +1,5 @@
 block('cart')(
+  addJs()( true ),
   content()((node, ctx) => {
     return [
       {
