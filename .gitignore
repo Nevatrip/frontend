@@ -23,3 +23,4 @@ pnpm-debug.log
 deploy.gpg
 deploy_rsa
 deploy_rsa.pub
+.docker/data

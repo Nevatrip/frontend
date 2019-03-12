@@ -4,6 +4,8 @@ RUN apt-get update &&\
   apt-get install -y npm &&\
   npm install -g n
 
+RUN apt-get install -y git
+
 ARG NODE_ENV=production
 ARG NODE_VERSION=latest
 ARG PROJECT_PATH=/opt/app/
