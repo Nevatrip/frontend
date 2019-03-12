@@ -12,11 +12,6 @@ const error = require( './routes/error' );
 
 const router = new UniversalRouter(
   {
-    path: '/',
-    name: 'default',
-    action: () => ( { redirect: '/nevatrip/ru' } )
-  },
-  {
     path: '/:project/:lang',
     name: 'root',
     children: [

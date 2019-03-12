@@ -20,7 +20,8 @@
     "prod": "npm run drop-cache && npm run make",
     "watch": "chokidar 'components/**' --initial -c 'enb make && notify -t $HOST -m Built'",
     "lint": "eslint --fix . && bemhint .",
-    "test": "npm run lint"
+    "test": "npm run lint",
+    "docker": "docker-compose -f .docker/docker-compose.yml up --build node nginx"
   },
   "pre-commit": [
     "test"
