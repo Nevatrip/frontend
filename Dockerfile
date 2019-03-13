@@ -1,10 +1,19 @@
-FROM node:8
-WORKDIR /usr/src/app
-COPY package*.json ./
+FROM node:10-alpine
 
-COPY . .
-RUN npm install --ignore-scripts
-RUN npm run prod
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh
 
-EXPOSE 8000
+RUN mkdir -p /home/node/app/node_modules && \
+    chown -R node:node /home/node/app
+
+WORKDIR /home/node/app
+
+USER node
+
+COPY --chown=node:node . .
+
+RUN npm install
+
+EXPOSE 3012
+
 CMD [ "npm", "start" ]
