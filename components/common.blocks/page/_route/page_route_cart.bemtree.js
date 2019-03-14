@@ -1,5 +1,5 @@
 block( 'page' ).mod( 'route', 'cart' )(
-  mods()( node => [
+  mods()( () => [
     {
       block: 'title',
       mods: { view: 'xl' },
@@ -10,7 +10,7 @@ block( 'page' ).mod( 'route', 'cart' )(
       block: 'page',
       elem: 'content',
       content: {
-        block: 'cart',
+        block: 'cart'
       }
     }
   ] ),
