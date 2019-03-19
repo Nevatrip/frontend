@@ -1,6 +1,33 @@
 version: '3.3'
 
 services:
+  build:
+    image: alpine
+
+  nevatrip:
+    image: hello-world
+    environment:
+      - PROJECT: nevatrip
+      - NODE_ENV: develop
+    depends_on:
+      - build
+
+  moskvatrip:
+    image: hello-world
+    environment:
+      - PROJECT: moskvatrip
+      - NODE_ENV: develop
+    depends_on:
+      - build
+
+  busguide:
+    image: hello-world
+    environment:
+      - PROJECT: busguide
+      - NODE_ENV: develop
+    depends_on:
+      - build
+
   node:
     build:
       args:

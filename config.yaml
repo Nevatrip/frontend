@@ -1,0 +1,43 @@
+name: Neva Trip
+build:
+  automake: true
+  livereload: true
+default:
+  langs: [ ru, en, zh ]
+  server:
+    env: develop
+    host: 'http://localhost'
+    static_folder: static
+    cache_ttl: 0
+projects:
+  nevatrip:
+    langs: [ ru, en, zh ]
+    server:
+      env: develop
+      host: 'http://localhost'
+      port: 3012
+      session_secret: Carpe_diem_nevatrip
+      static_folder: static
+      cache_ttl: 0
+    api:
+      id: 39dycnz5
+      dataset: develop
+    logs:
+      level: silent
+    sets:
+      desktop: [ common, desktop, nevatrip ]
+      touch: [ common, touch, nevatrip ]
+  moskvatrip:
+    server:
+      port: 3013
+      session_secret: Carpe_diem_moskvatrip
+    sets:
+      desktop: [ common, desktop, moskvatrip ]
+      touch: [ common, touch, moskvatrip ]
+  busguide:
+    server:
+      port: 3014
+      session_secret: Carpe_diem_busguide
+    sets:
+      desktop: [ common, desktop, busguide ]
+      touch: [ common, touch, busguide ]
