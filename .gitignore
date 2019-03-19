@@ -16,6 +16,7 @@ dist/
 
 static/assets/
 !static/assets/img
+!static/assets/cart
 
 .floo
 .flooignore

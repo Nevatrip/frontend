@@ -6,6 +6,7 @@ const path = require( 'path' );
 const app = require( 'express' )();
 const PrettyError = require( 'pretty-error' );
 const debugHTTP = require( 'debug-http' );
+const bodyParser = require( 'body-parser' );
 
 const config = require( './config.js' );
 const router = require( './router.js' );
@@ -27,7 +28,7 @@ app
   .disable( 'x-powered-by' )
   .enable( 'trust proxy' )
   .use( require( 'compression' )() ) // TODO: Add Brotli / Zopfli compression #2
-  .use( config.__DEV__ ? require( 'tiny-lr' ).middleware( { app, dashboard: true } ) : skip )
+  .use( '/livereload.js', config.__DEV__ ? require( 'tiny-lr' ).middleware( { app, dashboard: false } ) : skip )
   .use( require( 'serve-favicon' )( path.join( config.staticFolder, 'favicon.ico' ) ) )
   .use( require( 'serve-static' )( config.staticFolder ) )
   .use(
@@ -39,12 +40,13 @@ app
       skip,
   )
   .use( require( 'cookie-parser' )() )
-  .use( require( 'body-parser' ).urlencoded( { extended: true } ) )
+  .use( bodyParser.urlencoded( { extended: false } ) )
   .use(
     require( 'express-session' )( {
       resave: true,
       saveUninitialized: true,
-      secret: config.sessionSecret
+      secret: config.sessionSecret,
+      cookie: { secure: true }
     } ),
   )
   .use( config.__DEV__ ? skip : require( 'connect-slashes' )() );
@@ -54,32 +56,26 @@ app
  *
  *****************************************************************************/
 
-app.all( '*', async( req, res, next ) => {
+app.all( '*', async ( req, res, next ) => {
   try {
     console.time( 'Route' );
     const route = await router.resolve( {
       pathname: req.path,
-      query: req.query || {}
+      query: req.query || {},
+      body: req.body,
+      sessionID: req.sessionID,
     } );
-
     console.timeEnd( 'Route' );
 
-    if( route.redirect ) {
-      res.redirect( route.status || 302, route.redirect );
-
-      return;
-    }
-
+    route.redirect && res.redirect( route.status || 302, route.redirect );
     res.status( route.status || 200 );
 
     if( route.page ) {
       console.time( 'Render' );
       const html = await render( req, res, route );
-
-      // const html = await render( req, res, route.page );
       console.timeEnd( 'Render' );
 
-      return res.send( html );//ERROR IS HERE
+      return res.send( html );
     }
 
     return res.json( route );

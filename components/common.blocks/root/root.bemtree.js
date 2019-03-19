@@ -46,8 +46,8 @@ block( 'root' ).replace()( ( node, ctx ) => {
     itemtype: 'http://schema.org/LocalBusiness',
     prefix: 'og: http://ogp.me/ns#',
 
-    styles: { elem: 'css', url: `/assets/css/${ data.page }.${ data.params.project }-${ level }.min.css` },
-    scripts: { elem: 'js', url: `/assets/js/${ data.page }.${ data.params.project }-${ level }.min.js` },
+    styles: [{ elem: 'css', url: `/assets/css/${ data.page }.${ data.params.project }-${ level }.min.css` }],
+    scripts: [{ elem: 'js', url: `/assets/js/${ data.page }.${ data.params.project }-${ level }.min.js` }],
     head: [
       // { elem: 'meta', attrs: { 'http-equiv': 'X-UA-Compatible', content: 'IE=edge' } },
       // { elem: 'meta', attrs: { name: 'viewport', content: 'width=device-width, initial-scale=1, shrink-to-fit=no' } },

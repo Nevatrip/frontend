@@ -1,6 +1,6 @@
 block( 'service' ).elem( 'buy' )(
-  content()( ( node, ctx ) => {
-    const currentLang = node.data.params.lang;
+  content()( ( {data}, ctx ) => {
+    const currentLang = data.params.lang;
 
     return [
       {
@@ -14,13 +14,40 @@ block( 'service' ).elem( 'buy' )(
             content: ctx.price
           },
           {
-            block: 'link',
-            mods: { view: 'button' },
-            content: ( ( node.data.api.settingService || {} ).serviceBuyLink || {} )[currentLang] || '',
-            url: ctx.urlBuy || '',
-            title: `${ ( ( node.data.api.settingService || {} ).serviceBuyLink || {} )[currentLang] || '' } ${ ctx.title || '' }`,
-            to: ctx.route,
-            params: ctx.params
+            tag: 'form',
+            attrs: {
+              method: 'post',
+              action: data.params.urlTo( 'cart', {
+                project: data.params.project,
+                lang: currentLang,
+                ...ctx.params
+              } ),
+            },
+            content: [
+              {
+                tag: 'input',
+                attrs: {
+                  type: 'hidden',
+                  name: 'action',
+                  value: 'add'
+                }
+              },
+              {
+                tag: 'input',
+                attrs: {
+                  type: 'hidden',
+                  name: 'serviceId',
+                  value: data.api.service._id
+                }
+              },
+              {
+                block: 'button',
+                mods: { type: 'submit' },
+                // name: 'session',
+                // val: data.session,
+                text: ( ( data.api.settingService || {} ).serviceBuyLink || {} )[currentLang] || '',
+              }
+            ]
           }
         ]
       },
