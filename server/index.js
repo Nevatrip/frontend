@@ -56,15 +56,16 @@ app
  *
  *****************************************************************************/
 
-app.all( '*', async ( req, res, next ) => {
+app.all( '*', async( req, res, next ) => {
   try {
     console.time( 'Route' );
     const route = await router.resolve( {
       pathname: req.path,
       query: req.query || {},
       body: req.body,
-      sessionID: req.sessionID,
+      sessionID: req.sessionID
     } );
+
     console.timeEnd( 'Route' );
 
     route.redirect && res.redirect( route.status || 302, route.redirect );
@@ -73,6 +74,7 @@ app.all( '*', async ( req, res, next ) => {
     if( route.page ) {
       console.time( 'Render' );
       const html = await render( req, res, route );
+
       console.timeEnd( 'Render' );
 
       return res.send( html );

@@ -1,5 +1,5 @@
 block( 'service' ).elem( 'buy' )(
-  content()( ( {data}, ctx ) => {
+  content()( ( { data }, ctx ) => {
     const currentLang = data.params.lang;
 
     return [
@@ -21,7 +21,7 @@ block( 'service' ).elem( 'buy' )(
                 project: data.params.project,
                 lang: currentLang,
                 ...ctx.params
-              } ),
+              } )
             },
             content: [
               {
@@ -43,9 +43,10 @@ block( 'service' ).elem( 'buy' )(
               {
                 block: 'button',
                 mods: { type: 'submit' },
+
                 // name: 'session',
                 // val: data.session,
-                text: ( ( data.api.settingService || {} ).serviceBuyLink || {} )[currentLang] || '',
+                text: ( ( data.api.settingService || {} ).serviceBuyLink || {} )[currentLang] || ''
               }
             ]
           }
