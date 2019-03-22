@@ -25,3 +25,5 @@ deploy.gpg
 deploy_rsa
 deploy_rsa.pub
 .docker/data
+
+config.*.yaml
