@@ -8,8 +8,8 @@ const PrettyError = require( 'pretty-error' );
 const debugHTTP = require( 'debug-http' );
 const bodyParser = require( 'body-parser' );
 
-const config = require( './config.js' );
-const router = require( './router.js' );
+const config = require( './config' );
+const router = require( './router' );
 const render = require( './render' ).render;
 const rebuild = require( './rebuild' );
 

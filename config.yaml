@@ -15,6 +15,9 @@ projects:
     sets:
       desktop: [ common, desktop ]
       touch: [ common, touch ]
+    api:
+      id: secret
+      dataset: secret
   nevatrip:
     langs: [ ru, en, zh ]
     server:

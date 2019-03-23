@@ -39,8 +39,11 @@
     "@sanity/image-url": "^0.140.0",
     "bem-components": "^6.0.1",
     "bem-core": "^4.3.1",
+    "deepmerge": "^3.2.0",
+    "glob": "^7.1.3",
     "marked": "^0.6.0",
-    "photoswipe": "^4.1.3"
+    "photoswipe": "^4.1.3",
+    "yaml": "^1.4.0"
   },
   "devDependencies": {
     "axios": "^0.18.0",
