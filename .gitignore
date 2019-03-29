@@ -15,8 +15,8 @@ bundles/*/*
 dist/
 
 static/assets/
-!static/assets/img
 !static/assets/cart
+!static/assets/img
 
 .floo
 .flooignore
