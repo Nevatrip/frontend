@@ -121,5 +121,5 @@ if( config.__DEV__ ) {
 isSocket && fs.existsSync( config.port ) && fs.unlinkSync( config.port );
 app.listen( config.port, function() {
   isSocket && fs.chmod( config.port, '0777' );
-  console.log( `Server is now listening on ${ this.address().port }` );
+  console.log( `Server is now listening on ${ config.host }:${ this.address().port }` );
 } );

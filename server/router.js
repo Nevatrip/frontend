@@ -13,7 +13,7 @@ const cart = require( './routes/cart' );
 
 const router = new UniversalRouter(
   {
-    path: '/:project/:lang',
+    path: '/',
     name: 'root',
     children: [
       {

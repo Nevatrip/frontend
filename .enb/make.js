@@ -4,8 +4,8 @@ const fs = require('fs'),
   techs = require('./config/techs'),
   getLevels = require('./config/levels').getLevels,
   SETS = require('./config/levels').SETS,
-  langs = JSON.parse( process.env.LANGS ),
-  __DEV__ = process.env.NODE_ENV.toLowerCase() !== 'production';
+  langs = JSON.parse( process.env.LANGS ) || require('../server/config').langs,
+  __DEV__ = process.env.NODE_ENV.toLowerCase() !== 'production' || require('../server/config').__DEV__;
 
 async function asyncForEach(array, callback) {
   for (let index = 0; index < array.length; index++) {
