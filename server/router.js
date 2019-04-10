@@ -9,6 +9,7 @@ const servicesByCollection = require( './routes/servicesByCollection' );
 const home = require( './routes/home' );
 const service = require( './routes/service' );
 const error = require( './routes/error' );
+const cart = require( './routes/cart' );
 
 const router = new UniversalRouter(
   {
@@ -19,6 +20,11 @@ const router = new UniversalRouter(
         path: '',
         name: 'index',
         load: async() => await home
+      },
+      {
+        path: '/cart',
+        name: 'cart',
+        load: async() => await cart
       },
       {
         path: '/:category',
