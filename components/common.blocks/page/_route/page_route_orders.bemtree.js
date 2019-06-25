@@ -1,8 +1,18 @@
+// block( 'navigation' ).def()( '' );
+
 block( 'page' ).mod( 'route', 'orders' )(
   mods()( node => {
     const orders = node.data.api.orders;
 
     return [
+      {
+        elem: 'content',
+        content: {
+          block: 'heading',
+          mods: { size: 'xl' },
+          content: 'Список заказов'
+        }
+      },
       {
         block: 'table',
         tag: 'table',
