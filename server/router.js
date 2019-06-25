@@ -10,6 +10,7 @@ const home = require( './routes/home' );
 const service = require( './routes/service' );
 const error = require( './routes/error' );
 const cart = require( './routes/cart' );
+const orders = require( './routes/orders' );
 
 const router = new UniversalRouter(
   {
@@ -25,6 +26,21 @@ const router = new UniversalRouter(
         path: '/cart',
         name: 'cart',
         load: async() => await cart
+      },
+      {
+        path: '/admin',
+        children: [
+          {
+            path: '',
+            name: 'admin',
+            load: async() => await error
+          },
+          {
+            path: '/orders',
+            name: 'orders',
+            load: async() => await orders
+          }
+        ]
       },
       {
         path: '/:category',
@@ -69,7 +85,10 @@ const router = new UniversalRouter(
 
       const routes = await getRoutes( 'settingServiceCategory', params.lang );
 
-      if( params.category===undefined || routes.indexOf( params.category ) > -1 ) {
+      if(
+        params.category === undefined ||
+        routes.indexOf( params.category ) > -1
+      ) {
         if( typeof context.route.load === 'function' ) {
           return context.route.load().then( action => action( context, params ) );
         }
@@ -87,7 +106,7 @@ const router = new UniversalRouter(
     //     ? 'Page Not Found'
     //     : 'Oops! Something went wrong:  ' + error
     // }
-  },
+  }
 );
 
 module.exports = router;
