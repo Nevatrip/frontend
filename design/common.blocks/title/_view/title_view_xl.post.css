@@ -4,17 +4,17 @@
   min-height: 383px;
 }
 .title_view_xl .title__name{
-  padding: 31px 21px 37px;
+  padding: 31px 21px;
   font-size: 40.55px;
 }
 
 @media (max-width: 767px) {
   .title_view_xl {
-    padding: 35px 0 45px;
+    padding: 35px 0;
     min-height: 0;
   }
   .title_view_xl .title__name{
-    padding: 22px 15px 28px;
+    padding: 22px 15px;
     font-size: 32px;
   }
 }
