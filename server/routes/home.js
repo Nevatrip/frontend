@@ -7,11 +7,13 @@ const getTags = require( '../request/getSettingServiceTags' );
 const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
+const getSettingMainBanner = require( '../request/getSettingMainBanner' );
 
 
 const action = async( context, params ) => {
-  const bannerAlias = 'testovaya-ekskursiya-1';
   const lang = params.lang;
+  const bannerAlias = ( await getSettingMainBanner( lang ) )[0].alias;
+
 
   const servicesFilter = await getServices();
   const serviceBanner = await getService( bannerAlias, lang );
