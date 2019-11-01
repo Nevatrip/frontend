@@ -3,12 +3,13 @@ const marked = require( 'marked' );
 
 const builder = imageUrlBuilder(
   {
-    projectId: '39dycnz5',
-    dataset: 'develop'
+    projectId: process.env.API_ID,
+    dataset: process.env.API_DATASET
   }
 );
 
 block( 'root' ).replace()( ( node, ctx ) => {
+
   const level = ctx.level || 'desktop';
   const config = node.config = ctx.config;
   const data = node.data = ctx.data;

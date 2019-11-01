@@ -10,7 +10,7 @@ block( 'service' ).elem( 'price-info' )(
 
       if( infoArr[i].startsWith( '$' ) ) {
         const infoString = infoArr[i].slice( 1, this.length );
-        const settingArr = ( node.data.api.settingService || {} ).popup.filter( key => key.popupAliasWrap.popupAlias===infoString );
+        const settingArr = ( ( node.data.api.settingService || {} ).popup || {} ).filter( key => key.popupAliasWrap.popupAlias===infoString );
 
         info = {
           block: 'popup-tip',
