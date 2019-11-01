@@ -7,11 +7,16 @@ const getTags = require( '../request/getSettingServiceTags' );
 const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
+const getSettingMainBanner = require( '../request/getSettingMainBanner' );
+const getSettingTopFeatures = require( '../request/getSettingTopFeatures' );
+const getSettingBottomFeatures = require( '../request/getSettingBottomFeatures' );
 
 
 const action = async( context, params ) => {
-  const bannerAlias = 'testovaya-ekskursiya-1';
   const lang = params.lang;
+  const bannerAlias = ( await getSettingMainBanner( lang ) )[0].alias;
+  const settingTopFeatures = await getSettingTopFeatures( lang );
+  const settingBottomFeatures = await getSettingBottomFeatures( lang );
 
   const servicesFilter = await getServices();
   const serviceBanner = await getService( bannerAlias, lang );
@@ -32,7 +37,9 @@ const action = async( context, params ) => {
       tags,
       serviceBasedData,
       settingService,
-      settingServicesCollections
+      settingServicesCollections,
+      settingTopFeatures,
+      settingBottomFeatures
     }
   }
 };

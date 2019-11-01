@@ -10,6 +10,9 @@
           'item-name',
         ],
       },
+      {
+        block: 'image',
+      }
     ],
   },
 ];
