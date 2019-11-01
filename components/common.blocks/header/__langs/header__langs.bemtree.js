@@ -28,7 +28,7 @@ block( 'header' ).elem( 'langs' )(
       return otherLangs.map( item => {
         const routeParams = {
           service: ( response || {} ).category && {
-            category: response.category.title[item.lang].key.current || '',
+            category: ( ( response.category.title[item.lang] || {} ).key || {} ).current || '',
             service: item.alias || ''
           },
           servicesByCategory: {
