@@ -4,7 +4,7 @@ block( 'page' ).mod( 'route', 'servicesByCategory' )(
       block: 'title',
       mods: { view: 'xl' },
       url: node._urlFor( node.data.api.serviceCategoryFull.titleImage.asset._ref ).url() || '',
-      title: ( ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).title || {} )[node.currentLang] || {} ).name || ''
+      title: ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).titleArticle || {} )[node.currentLang] || ( ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).title || {} )[node.currentLang] || {} ).name || ''
     },
     {
       block: 'page',

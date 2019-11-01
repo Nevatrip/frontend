@@ -16,16 +16,21 @@ block( 'features' )(
           {
             elem: 'item-img',
             content: {
-              html: item.img
+              block: 'image',
+              url: node._urlFor( ( item.img || {} )._ref ).url() || ''
             }
           },
           {
             elem: 'item-name',
-            content: item.name
+            content: {
+              html: item.name || ''
+            }
           },
           {
             elem: 'item-description',
-            content: item.description
+            content: {
+              html: item.description || ''
+            }
           }
         ]
       } ) )

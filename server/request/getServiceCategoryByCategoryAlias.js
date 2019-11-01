@@ -4,7 +4,5 @@ const query = ( categoryName, lang ) => `*[_type=="settingServiceCategory" && ti
 const params = {};
 
 module.exports = async( categoryName, lang ) => await client.fetch( query( categoryName, lang ), params ).then( category =>
-
-// console.log(category);
   category[0]
 );
