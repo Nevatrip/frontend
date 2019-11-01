@@ -6,14 +6,20 @@ RUN apk update && apk upgrade && \
 RUN mkdir -p /home/node/app/node_modules && \
     chown -R node:node /home/node/app
 
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+ENV PATH=$PATH:/home/node/.npm-global/bin
+
 WORKDIR /home/node/app
 
 USER node
 
 COPY --chown=node:node . .
 
-RUN npm install
+RUN npm install -g pm2
+RUN npm install --ignore-scripts
+
+RUN npm run make
 
 EXPOSE 3012
 
-CMD [ "npm", "start" ]
+CMD [ "pm2-runtime", "ecosystem.config.js" ]
