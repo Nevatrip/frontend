@@ -1,7 +1,6 @@
 block( 'service' ).mod( 'view', 'detail' )(
   content()( ( node, { service } ) => {
     const currentLang = node.data.params.lang;
-
     const {
       titleImage,
       title,
@@ -23,7 +22,8 @@ block( 'service' ).mod( 'view', 'detail' )(
       descriptionPrepend,
       prevention,
       advice,
-      pricesDescription
+      pricesDescription,
+      serviceCategory
 
       // time,
     } = service;
@@ -35,13 +35,18 @@ block( 'service' ).mod( 'view', 'detail' )(
         block: 'title',
         mods: { view: 'xl' },
         url: titleImage || '',
-        title: serviceTitle
+        title: serviceTitle || ''
       },
       {
         block: 'page',
         elem: 'content',
         elemMods: { view: 'narrow' },
         content: [
+          {
+            block: 'breadcrumbs',
+            title: serviceTitle || '',
+            category: serviceCategory || ''
+          },
           {
             block: 'page',
             elem: 'row',
@@ -60,13 +65,13 @@ block( 'service' ).mod( 'view', 'detail' )(
                     fromPoint: point,
                     vehicle: ( ( place || {} ).title || {} )[currentLang] || '',
                     excursion: tourLanguage ? tourLanguage.map( item => item && {
-                      url: item.icon.url,
-                      name: item.title
+                      url: ( ( item || {} ).icon || {} ).url || '',
+                      name: ( item || {} ).title || ''
                     } ) : '',
                     routeMap: routeMap || '',
                     placeFeatures: placeFeatures ? placeFeatures.map( item => item && {
-                      url: item.icon.url,
-                      name: item.title
+                      url: ( ( item || {} ).icon || {} ).url || '',
+                      name: ( item || {} ).title || ''
                     } ) : ''
                   }
                 ]
@@ -88,7 +93,7 @@ block( 'service' ).mod( 'view', 'detail' )(
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
-                    title: serviceTitle,
+                    title: serviceTitle || '',
                     urlBuy: '#buy'
                   }
                 ]

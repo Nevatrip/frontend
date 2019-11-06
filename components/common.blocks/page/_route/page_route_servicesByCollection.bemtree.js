@@ -9,18 +9,24 @@ block( 'page' ).mod( 'route', 'servicesByCollection' )(
     node.data.api.services && {
       block: 'page',
       elem: 'content',
-      content: {
-        block: 'list',
-        mods: { view: 'no-style' },
-        content: node.data.api.services.map( item => ( {
-          elem: 'item',
-          content: {
-            block: 'service',
-            mods: { view: 'list-item-lg' },
-            service: item
-          }
-        } ) )
-      }
+      content: [
+        {
+          block: 'breadcrumbs',
+          title: ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).titleArticle || {} )[node.currentLang] || ( ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).title || {} )[node.currentLang] || {} ).name || ''
+        },
+        {
+          block: 'list',
+          mods: { view: 'no-style' },
+          content: node.data.api.services.map( item => ( {
+            elem: 'item',
+            content: {
+              block: 'service',
+              mods: { view: 'list-item-lg' },
+              service: item
+            }
+          } ) )
+        }
+      ]
     }
   ] ),
 );

@@ -29,7 +29,7 @@ block( 'page' )(
           {
             name: ( ( item.title || {} )[node.currentLang] || {} ).name,
             route: 'servicesByCollection',
-            collection: ( ( item.title || {} )[node.currentLang] || {} ).key.current
+            collection: ( ( ( item.title || {} )[node.currentLang] || {} ).key || {} ).current || ''
           }
         ) ),
         basicNav: [

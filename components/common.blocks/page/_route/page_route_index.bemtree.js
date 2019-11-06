@@ -6,10 +6,10 @@ block( 'page' ).mod( 'route', 'index' )(
     const currentLang = node.data.params.lang;
 
     return [
-      {
+      ( node.data.api || {} ).serviceBanner && {
         block: 'service',
         mods: { view: 'banner' },
-        service: node.data.api.serviceBanner
+        service: ( node.data.api || {} ).serviceBanner || ''
       },
       {
         block: 'features',

@@ -59,6 +59,9 @@
     {
       block: 'service',
       elem: 'remark'
+    },
+    {
+      block: 'breadcrumbs'
     }
   ]
 }]
