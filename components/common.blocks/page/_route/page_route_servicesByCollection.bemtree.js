@@ -3,7 +3,7 @@ block( 'page' ).mod( 'route', 'servicesByCollection' )(
     {
       block: 'title',
       mods: { view: 'xl' },
-      url: node._urlFor( node.data.api.serviceCategoryFull.titleImage.asset._ref ).url() || '',
+      url: node._urlFor( ( ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).titleImage || {} ).asset || {} )._ref ).url() || '',
       title: ( ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).title || {} )[node.currentLang] || {} ).name || ''
     },
     node.data.api.services && {

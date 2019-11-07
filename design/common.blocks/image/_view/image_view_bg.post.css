@@ -1,23 +1,15 @@
 .image_view_bg{
-  position: static;
+  position: absolute;
   box-sizing: border-box;
   border: none;
   outline: none;
-  max-width: 100%;
+  height: 100%;
   width: 100%;
-  height: auto;
   display: block;
-  top: initial;
-  left: initial;
-  right: initial;
-  bottom: initial;
-  object-fit: initial;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
   background-color: #dedede;
-  border-radius: 10px;
-}
-@media(max-width: 575px){
-  .image_view_bg{
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-  }
 }
