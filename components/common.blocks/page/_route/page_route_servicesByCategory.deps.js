@@ -12,6 +12,9 @@
       {
         block: 'title',
         mods: {view: 'xl'},
+      },
+      {
+        block: 'breadcrumbs'
       }
     ]
   },
