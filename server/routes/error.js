@@ -13,7 +13,7 @@ const action = async( context, params ) => {
   } = params;
 
   const tours = await getServices();
-  const navigation = await getNav( lang, project );
+  const navigation = await getNav( project, lang );
   const serviceBasedData = await getServiceBasedData();
   const settingService = await getSettingService();
   const settingServicesCollections = await getSettingServicesCollections();

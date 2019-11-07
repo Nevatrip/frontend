@@ -13,6 +13,7 @@ const action = async( context, params ) => {
   const {
     service,
     lang,
+    project,
     category
   } = params;
 
@@ -22,7 +23,7 @@ const action = async( context, params ) => {
 
   const serviceResponse = await getService( service, lang, categoryName );
 
-  const navigation = await getNav( lang );
+  const navigation = await getNav( project, lang );
 
   const excludeID = ( serviceResponse || {} )._id;
   const servicesRandom = await ( categoryName ? getServicesRandom( categoryName, excludeID, lang ) : getServicesRandom( category, '', lang ) );

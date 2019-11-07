@@ -7,10 +7,13 @@ const getSettingServicesCollections = require( '../request/getSettingServicesCol
 const getServiceCollectionByCollectionAlias = require( '../request/getServiceCollectionByCollectionAlias' );
 
 const action = async( context, params ) => {
-  const lang = params.lang;
+  const {
+    lang,
+    project
+  } = params;
   const routes = await getRoutes( 'settingServicesCollections', lang );
   const serviceBasedData = await getServiceBasedData();
-  const navigation = await getNav( lang );
+  const navigation = await getNav( project, lang );
   const settingService = await getSettingService();
   const settingServicesCollections = await getSettingServicesCollections();
   const serviceCollection = params.collection;

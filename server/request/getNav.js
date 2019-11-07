@@ -3,6 +3,6 @@ const client = require( './_request' );
 const query = lang => `*[_type=="settingMenu" && key.current=="header"]{...,menu[]->{"title": title.${ lang }.name,"subTitle": subTitle.${ lang },"alias": title.${ lang }.key.current}}.menu`;
 const params = {};
 
-module.exports = async( lang, project ) => await client( project )
+module.exports = async( project, lang ) => await client( project )
   .fetch( query( lang ), params )
   .then( navigation => navigation );

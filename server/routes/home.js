@@ -13,7 +13,11 @@ const getSettingBottomFeatures = require( '../request/getSettingBottomFeatures' 
 
 
 const action = async( context, params ) => {
-  const lang = params.lang;
+  const {
+    lang,
+    project
+  } = params;
+
   const bannerAlias = ( await getSettingMainBanner( lang ) )[0].alias;
   const settingTopFeatures = await getSettingTopFeatures( lang );
   const settingBottomFeatures = await getSettingBottomFeatures( lang );
@@ -21,11 +25,18 @@ const action = async( context, params ) => {
   const servicesFilter = await getServices();
   const serviceBanner = await getService( bannerAlias, lang );
 
-  const navigation = await getNav( lang );
+  const navigation = await getNav( project, lang );
   const tags = await getTags();
   const serviceBasedData = await getServiceBasedData();
   const settingService = await getSettingService();
   const settingServicesCollections = await getSettingServicesCollections();
+
+
+  console.log( '↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓' );
+  console.log( 'params: ', project );
+  console.log( '______________________________' );
+
+
 
   return {
     page: 'index',
