@@ -10,8 +10,8 @@ const getSettingServicesCollections = require( '../request/getSettingServicesCol
 const getRoutes = require( '../request/getRoutesBySectionAndLang' );
 
 const action = async( context, params ) => {
-  const lang = params.lang;
-  const routes = await getRoutes( 'settingServiceCategory', lang );
+  const { lang, project } = params;
+  const routes = await getRoutes( 'settingServiceCategory', lang, project );
 
   const serviceCategory = params.category;
 

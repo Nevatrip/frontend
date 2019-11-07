@@ -1,14 +1,14 @@
 const imageUrlBuilder = require( '@sanity/image-url' );
 const marked = require( 'marked' );
 
-const builder = imageUrlBuilder(
-  {
-    projectId: process.env.API_ID,
-    dataset: process.env.API_DATASET
-  }
-);
 
 block( 'root' ).replace()( ( node, ctx ) => {
+  const builder = imageUrlBuilder(
+    {
+      projectId: process.env[`API_ID_${ ctx.data.params.project.toUpperCase() }`],
+      dataset: process.env[`API_DATASET_${ ctx.data.params.project.toUpperCase() }`]
+    }
+  );
 
   const level = ctx.level || 'desktop';
   const config = node.config = ctx.config;

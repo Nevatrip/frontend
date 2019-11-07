@@ -16,4 +16,4 @@ const query = ( alias, lang, category ) => {
 }
 const params = {};
 
-module.exports = async( alias, lang, category ) => await client.fetch( query( alias, lang, category ), params ).then( tour => tour[0] );
+module.exports = async( alias, lang, category ) => await client().fetch( query( alias, lang, category ), params ).then( tour => tour[0] );
