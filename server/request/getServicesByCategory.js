@@ -5,4 +5,6 @@ const query = ( categoryName, lang ) => `*[_type == "tour"&&category._ref in *[t
 "category": category->}`;
 const params = {};
 
-module.exports = async( categoryName, lang ) => await client().fetch( query( categoryName, lang ), params ).then( services => services );
+module.exports = async( project, lang, categoryName ) => await client( project )
+  .fetch( query( categoryName, lang ), params )
+  .then( services => services );

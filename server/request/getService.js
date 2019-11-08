@@ -13,7 +13,9 @@ const query = ( alias, lang, category ) => {
     "tourLanguage": tourLanguage[]->{title, "icon": icon.asset->},
     "placeFeatures": placeFeatures[]->{title, "icon": icon.asset->},
     "titleImage": titleImage.asset->{url}.url}`;
-}
+};
 const params = {};
 
-module.exports = async( alias, lang, category ) => await client().fetch( query( alias, lang, category ), params ).then( tour => tour[0] );
+module.exports = async( project, lang, category, alias ) => await client( project )
+  .fetch( query( alias, lang, category ), params )
+  .then( tour => tour[0] );

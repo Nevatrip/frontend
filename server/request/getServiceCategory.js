@@ -3,6 +3,6 @@ const client = require( './_request' );
 const query = '*[_type=="settingServiceCategory"]';
 const params = {};
 
-module.exports = async() => await client().fetch( query, params ).then( category =>
-  category
-);
+module.exports = async( project, lang ) => await client( project, lang )
+  .fetch( query, params )
+  .then( category => category );

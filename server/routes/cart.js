@@ -12,11 +12,11 @@ const action = async( context, params ) => {
     project
   } = params;
 
-  const tours = await getServices();
+  const tours = await getServices( project, lang );
   const navigation = await getNav( project, lang );
-  const serviceBasedData = await getServiceBasedData();
-  const settingService = await getSettingService();
-  const settingServicesCollections = await getSettingServicesCollections();
+  const serviceBasedData = await getServiceBasedData( project, lang );
+  const settingService = await getSettingService( project, lang );
+  const settingServicesCollections = await getSettingServicesCollections( project, lang );
 
   return {
     page: 'cart',

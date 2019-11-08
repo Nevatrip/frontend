@@ -9,21 +9,22 @@ const getServiceCollectionByCollectionAlias = require( '../request/getServiceCol
 const action = async( context, params ) => {
   const {
     lang,
-    project
+    project,
+    collection
   } = params;
-  const routes = await getRoutes( 'settingServicesCollections', lang );
-  const serviceBasedData = await getServiceBasedData();
+  const routes = await getRoutes( 'settingServicesCollections', lang, project );
+  const serviceBasedData = await getServiceBasedData( project, lang );
   const navigation = await getNav( project, lang );
-  const settingService = await getSettingService();
-  const settingServicesCollections = await getSettingServicesCollections();
-  const serviceCollection = params.collection;
-  const serviceCategoryFull = await getServiceCollectionByCollectionAlias( params.collection, lang );
+  const settingService = await getSettingService( project, lang );
+  const settingServicesCollections = await getSettingServicesCollections( project, lang );
+  const serviceCollection = collection;
+  const serviceCategoryFull = await getServiceCollectionByCollectionAlias( collection, lang, project );
   const services = ( serviceCategoryFull || {} ).services;
 
   // const serviceCategories = await getServiceCategory();
   // const servicesRandom = await getServicesRandom(lang, 9);
 
-  if( ( services || [] ).length > 0 && routes.indexOf( params.collection ) > -1 ) {
+  if( ( services || [] ).length > 0 && routes.indexOf( collection ) > -1 ) {
     return {
       page: 'servicesByCollection',
       params,
@@ -41,6 +42,7 @@ const action = async( context, params ) => {
       }
     }
   }
+
   return {
     page: 'error',
     params,

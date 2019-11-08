@@ -12,23 +12,24 @@ const getRoutes = require( '../request/getRoutesBySectionAndLang' );
 const action = async( context, params ) => {
   const {
     lang,
-    project
+    project,
+    category
   } = params;
 
   const routes = await getRoutes( 'settingServiceCategory', lang, project );
-  const serviceCategory = params.category;
-  const serviceCategoryFull = await getServiceCategoryByCategoryAlias( serviceCategory, lang );
+  const serviceCategory = category;
+  const serviceCategoryFull = await getServiceCategoryByCategoryAlias( project, lang, category );
   const navigation = await getNav( project, lang );
-  const settingServicesCollections = await getSettingServicesCollections();
-  const serviceBasedData = await getServiceBasedData();
-  const settingService = await getSettingService();
-  const serviceCategories = await getServiceCategory();
+  const settingServicesCollections = await getSettingServicesCollections( project, lang );
+  const serviceBasedData = await getServiceBasedData( project, lang );
+  const settingService = await getSettingService( project, lang );
+  const serviceCategories = await getServiceCategory( project, lang );
 
-  const services = await getServicesByCategory( serviceCategory, lang );
+  const services = await getServicesByCategory( project, lang, category );
 
   // const servicesRandom = await getServicesRandom(lang, 9);
 
-  if( services.length > 0 && routes.indexOf( params.category )>-1 ) {
+  if( services.length > 0 && routes.indexOf( category ) > -1 ) {
     return {
       page: 'servicesByCategory',
       params,
