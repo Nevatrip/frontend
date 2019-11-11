@@ -8,7 +8,8 @@ block( 'service' ).mod( 'view', 'banner' )(
       features,
       price,
       priceOld,
-      category
+      category,
+      buyLink
     } = service;
 
     const linkParamsService = ( ( title[currentLang] || {} ).key || {} ).current || '//';
@@ -61,17 +62,13 @@ block( 'service' ).mod( 'view', 'banner' )(
                   elem: 'row',
                   elemMods: { view: 'service-banner' },
                   content: [
-                    {
+                    ( buyLink || {} )[currentLang] && {
                       block: 'service',
                       elem: 'buy',
                       price,
                       priceOutside: priceOld,
                       title: serviceTitle,
-                      route: 'service',
-                      params: {
-                        category: linkParamsCategory,
-                        service: linkParamsService
-                      }
+                      urlBuy: buyLink[currentLang]
                     },
                     {
                       block: 'service',

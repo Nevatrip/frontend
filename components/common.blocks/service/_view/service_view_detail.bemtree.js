@@ -23,7 +23,8 @@ block( 'service' ).mod( 'view', 'detail' )(
       prevention,
       advice,
       pricesDescription,
-      serviceCategory
+      serviceCategory,
+      buyLink
 
       // time,
     } = service;
@@ -88,13 +89,13 @@ block( 'service' ).mod( 'view', 'detail' )(
                     pricesDescription: ( pricesDescription || {} )[node.currentLang] || '',
                     prevention: ( prevention || {} )[node.currentLang] || ''
                   },
-                  ( price || priceOld ) && {
+                  ( buyLink || {} )[currentLang] && ( price || priceOld ) && {
                     block: 'service',
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
                     title: serviceTitle || '',
-                    urlBuy: '#buy'
+                    urlBuy: buyLink[currentLang]
                   }
                 ]
               }
@@ -230,13 +231,13 @@ block( 'service' ).mod( 'view', 'detail' )(
                       html: node._marked( priceDescription[currentLang] ) || ''
                     }
                   },
-                  ( price || priceOld ) && {
+                  ( buyLink || {} )[currentLang] && ( price || priceOld ) && {
                     block: 'service',
                     elem: 'buy',
                     price: price || '',
                     priceOutside: priceOld || '',
                     title: serviceTitle,
-                    urlBuy: '#buy'
+                    urlBuy: buyLink[currentLang]
                   },
                   {
                     block: 'page',
