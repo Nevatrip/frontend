@@ -13,29 +13,24 @@ const action = async( context, params ) => {
   const {
     service,
     lang,
+    project,
     category
   } = params;
 
-  const tours = await getServices();
+  const tours = await getServices( project, lang );
 
-  const categoryName = ( await getServiceCategoryByServiceAlias( params.service, params.lang ) ).category.title[params.lang].key.current;
+  const categoryName = ( ( ( ( ( await getServiceCategoryByServiceAlias( project, lang, service ) || {} ).category || {} ).title || {} )[params.lang] || {} ).key || {} ).current;
 
-  const serviceResponse = await getService( service, lang, categoryName );
+  const serviceResponse = await getService( project, lang, categoryName, service );
 
-  const navigation = await getNav( lang );
+  const navigation = await getNav( project, lang );
 
   const excludeID = ( serviceResponse || {} )._id;
-  const servicesRandom = await ( categoryName ? getServicesRandom( categoryName, excludeID, lang ) : getServicesRandom( category, '', lang ) );
+  const servicesRandom = await ( categoryName ? getServicesRandom( project, lang, categoryName, excludeID ) : getServicesRandom( project, lang, category ) );
 
-  const serviceBasedData = await getServiceBasedData();
-  const settingService = await getSettingService();
-  const settingServicesCollections = await getSettingServicesCollections();
-
-  // console.log('---------');
-  // console.log(params.service);
-  // console.log(params.lang);
-  // console.log(categoryName);
-  // console.log('---------');
+  const serviceBasedData = await getServiceBasedData( project, lang );
+  const settingService = await getSettingService( project, lang );
+  const settingServicesCollections = await getSettingServicesCollections( project, lang );
 
   if( serviceResponse ) {
     return {

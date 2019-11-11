@@ -1,10 +1,8 @@
 const sanityClient = require( '@sanity/client' );
 
-const config = require( '../config' );
-
-const client = sanityClient( {
-  projectId: config.apiID,
-  dataset: config.apiDataset,
+const client = ( project = 'nevatrip' ) => sanityClient( {
+  projectId: process.env[`API_ID_${ project.toUpperCase() }`],
+  dataset: process.env[`API_DATASET_${ project.toUpperCase() }`],
   token: '', // or leave blank to be anonymous user
   useCdn: true // `false` if you want to ensure fresh data
 } );

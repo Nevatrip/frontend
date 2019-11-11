@@ -7,13 +7,16 @@ const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 
 const action = async( context, params ) => {
-  const lang = params.lang;
+  const {
+    lang,
+    project
+  } = params;
 
-  const tours = await getServices();
-  const navigation = await getNav( lang );
-  const serviceBasedData = await getServiceBasedData();
-  const settingService = await getSettingService();
-  const settingServicesCollections = await getSettingServicesCollections();
+  const tours = await getServices( project, lang );
+  const navigation = await getNav( project, lang );
+  const serviceBasedData = await getServiceBasedData( project, lang );
+  const settingService = await getSettingService( project, lang );
+  const settingServicesCollections = await getSettingServicesCollections( project, lang );
 
   return {
     page: 'cart',
