@@ -21,7 +21,7 @@ const action = async( context, params ) => {
 
   const categoryName = ( await getServiceCategoryByServiceAlias( project, lang, service ) ).category.title[params.lang].key.current;
 
-  const serviceResponse = await getService( project, lang, service, categoryName );
+  const serviceResponse = await getService( project, lang, categoryName, service );
 
   const navigation = await getNav( project, lang );
 
@@ -31,12 +31,6 @@ const action = async( context, params ) => {
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
-
-  // console.log('---------');
-  // console.log(params.service);
-  // console.log(params.lang);
-  // console.log(categoryName);
-  // console.log('---------');
 
   if( serviceResponse ) {
     return {
