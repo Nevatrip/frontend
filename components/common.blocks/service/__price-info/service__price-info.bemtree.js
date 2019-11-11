@@ -4,18 +4,19 @@ block( 'service' ).elem( 'price-info' )(
     const infoArr = ( ctx.discount || [] )[node.currentLang].split( '||' );
     const infoNewArr = [];
 
-
     for( let i = 0; i < infoArr.length; i++ ) {
       let info;
 
       if( infoArr[i].startsWith( '$' ) ) {
-        const infoString = infoArr[i].slice( 1, this.length );
-        const settingArr = ( ( node.data.api.settingService || {} ).popup || {} ).filter( key => key.popupAliasWrap.popupAlias===infoString );
+        const infoString = infoArr[i].slice( 1, this.length ) || '';
+        const settingArr = ( ( node.data.api.settingService || {} ).popup || {} ).key ?
+          ( ( node.data.api.settingService || {} ).popup || {} ).filter( key => key.popupAliasWrap.popupAlias===infoString ) :
+          '';
 
         info = {
           block: 'popup-tip',
-          title: ( ( settingArr || [] )[0].popupTitle || {} )[node.currentLang],
-          text: ( ( settingArr || [] )[0].popupContent || {} )[node.currentLang]
+          title: ( ( ( settingArr || [] )[0] || [] ).popupTitle || {} )[node.currentLang] || infoString,
+          text: ( ( ( settingArr || [] )[0] || [] ).popupContent || {} )[node.currentLang] || infoString
         };
       } else {
         info = infoArr[i];
