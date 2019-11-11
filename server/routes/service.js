@@ -19,7 +19,7 @@ const action = async( context, params ) => {
 
   const tours = await getServices( project, lang );
 
-  const categoryName = ( await getServiceCategoryByServiceAlias( project, lang, service ) ).category.title[params.lang].key.current;
+  const categoryName = ( ( ( ( ( await getServiceCategoryByServiceAlias( project, lang, service ) || {} ).category || {} ).title || {} )[params.lang] || {} ).key || {} ).current;
 
   const serviceResponse = await getService( project, lang, categoryName, service );
 
