@@ -8,6 +8,9 @@
           'basic-tags'
         ]
       },
+      {
+        block: 'location',
+      },
     ],
   },
 ]
