@@ -9,11 +9,13 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-color: #676767;
+  margin-bottom: 50px;
 }
 
 @media (max-width: 767px) {
   .filter__header-top{
     padding-top: 20px;
     padding-bottom: 25px;
+    margin-bottom: 25px;
   }
 }

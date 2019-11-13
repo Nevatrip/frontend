@@ -1,4 +1,5 @@
 block( 'filter' )(
+  addJs()( true ),
   def()( ( node, ctx ) => {
     // TODO: remove from global node
     node._bg = ctx.bg;
@@ -11,7 +12,8 @@ block( 'filter' )(
   ),
   content()( ( node, ctx ) => [
     {
-      elem: 'header'
+      elem: 'header',
+      basicTags: ctx.basicTags
     },
     {
       elem: 'result',

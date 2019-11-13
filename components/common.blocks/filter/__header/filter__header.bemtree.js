@@ -1,5 +1,5 @@
 block( 'filter' ).elem( 'header' )(
-  content()( node => [
+  content()( ( node, ctx ) => [
     {
       elem: 'header-top',
       content: [
@@ -13,26 +13,28 @@ block( 'filter' ).elem( 'header' )(
           elem: 'content',
           mix: { block: 'page', elem: 'content' },
           content: [
-            {
-              elem: 'heading',
-              content: node._dayHeading
-            },
-            {
-              elem: 'day-tags'
-            },
+            // {
+            //   elem: 'heading',
+            //   content: node._dayHeading
+            // },
+            // {
+            //   elem: 'day-tags'
+            // },
             {
               elem: 'heading',
               content: node._basicHeading
             },
             {
-              elem: 'basic-tags'
+              elem: 'basic-tags',
+              basicTags: ctx.basicTags
             }
           ]
         }
       ]
-    },
-    {
-      elem: 'sorting'
     }
+
+    // {
+    //   elem: 'sorting'
+    // }
   ] )
 );

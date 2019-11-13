@@ -1,10 +1,13 @@
-[{
+[
+  {
     shouldDeps: [
-        {
-            elems: [
-                'header',
-                'result',
-            ]
-        },
-    ]
-}]
+      {
+        elems: [
+          'header',
+          'result',
+          'basic-tags'
+        ]
+      },
+    ],
+  },
+]
