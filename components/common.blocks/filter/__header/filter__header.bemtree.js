@@ -38,7 +38,7 @@ block( 'filter' ).elem( 'header' )(
                 mods: {
                   type: 'checkbox-group'
                 },
-                name: 'filter__basic-tags',
+                name: 'tags',
                 content: {
                   block: 'checkbox-group',
                   mix: { block, elem: 'basic-tags' },

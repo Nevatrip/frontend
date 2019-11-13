@@ -28,7 +28,7 @@ modules.define( 'filter',
       getFormData( queryParams ) {
         console.log( 'queryParams', queryParams );
         return {
-          'filter__basic-tags': queryParams['filter__basic-tags']
+          tags: queryParams.tags || []
         }
       }
     } ) );
