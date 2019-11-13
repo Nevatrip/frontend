@@ -10,6 +10,16 @@
       ]
     },
     {
+      block: 'form',
+      mods: { view: 'filter' },
+    },
+    {
+      block: 'form-field',
+      mods: {
+        type: 'checkbox-group'
+      },
+    },
+    {
       block: 'page',
       elem: 'content'
     },
