@@ -6,8 +6,7 @@ const action = async( context, params ) => {
     project
   } = params;
 
-
-
+  const tags = context.query.tags;
   const tours = await getServicesByTags( project, lang, tags );
 
   return tours;

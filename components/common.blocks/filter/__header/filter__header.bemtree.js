@@ -3,6 +3,7 @@ block( 'filter' ).elem( 'header' )(
     block: 'form',
     mods: { view: 'filter' },
     mix: { block, elem },
+    method: 'get',
     content: [
       {
         elem: 'header',
@@ -21,12 +22,12 @@ block( 'filter' ).elem( 'header' )(
               { block: 'page', elem: 'content' }
             ],
             content: [
-              {
-                block: 'heading',
-                mods: { size: 'xl' },
-                mix: { block, elem: 'heading' },
-                content: _dayHeading
-              },
+              // {
+              //   block: 'heading',
+              //   mods: { size: 'xl' },
+              //   mix: { block, elem: 'heading' },
+              //   content: _dayHeading
+              // },
               {
                 block: 'heading',
                 mods: { size: 'xl' },
@@ -42,6 +43,7 @@ block( 'filter' ).elem( 'header' )(
                 content: {
                   block: 'checkbox-group',
                   mix: { block, elem: 'basic-tags' },
+                  currentLang,
                   mods: { type: 'button' },
                   options: ctx.basicTags ?
                     ctx.basicTags.filter( item => item.title[currentLang] ).map( item => (

@@ -23,10 +23,10 @@ const action = async( context, params ) => {
   const settingBottomFeatures = await getSettingBottomFeatures( project, lang );
 
   const servicesFilter = await getServices( project, lang );
+  const tags = await getTags( project, lang );
   const serviceBanner = await getService( project, lang, '', bannerAlias );
 
   const navigation = await getNav( project, lang );
-  const tags = await getTags( project, lang );
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );

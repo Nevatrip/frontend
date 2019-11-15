@@ -140,7 +140,7 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                 {
                   block: 'page',
                   elem: 'hr',
-                  mods: { size: 'md' }
+                  elemMods: { size: 'md' }
                 }
               ]
             }
