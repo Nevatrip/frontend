@@ -18,17 +18,21 @@ modules.define( 'filter',
             const formData = this.getFormData( queryParams );
 
             this._form.setVal( formData );
-            this._events( this._form ).on( 'change', () => {
-              Location.change( { params: this._form.getVal() } );
-              const queryTags = this._form.getVal().tags.join( '&tags=' );
-              const url = `${ Location._state.url }/api/tags?tags=${ queryTags }`;
+
+            function doFilter( forms ) {
+              Location.change( { params: forms._form.getVal() } );
+              const queryTags = forms._form.getVal().tags.join( '&tags=' );
+              const mainUrl = Location._history.state.path;
+              const url = `${ mainUrl }/api/tags?tags=${ queryTags }`;
 
               $.get( url ).done( response => {
                 const template = BEMHTML.apply( {
                   block: 'filter',
                   elem: 'result',
-                  allServices: response,
-                  currentLang: this.getValue()
+                  allServices: ( response || {} ).services,
+                  lang: ( response || {} ).currentLang,
+                  moreText: ( response || {} ).moreText,
+                  servicePriceOutside: ( response || {} ).servicePriceOutside
                 } );
 
                 bemDom.update(
@@ -36,6 +40,15 @@ modules.define( 'filter',
                   template
                 )
               } )
+            }
+
+            this._events( this._form ).on( 'change', () => {
+              doFilter( this );
+            } );
+            $( document ).ready( () => {
+              if( this._form.getVal().tags.join( '&tags=' ) ) {
+                doFilter( this );
+              }
             } );
           }
         }

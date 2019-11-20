@@ -17,7 +17,11 @@ block( 'filter' )(
     },
     {
       elem: 'result',
-      allServices: ctx.allServices
+      moreText: ctx.moreText,
+      lang: ctx.lang,
+      allServices: ctx.allServices,
+      mainUrl: ctx.mainUrl,
+      servicePriceOutside: ctx.servicePriceOutside
     }
   ] )
 );

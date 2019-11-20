@@ -1,27 +1,16 @@
 block( 'service' ).mod( 'view', 'list-item-lg' )(
   tag()( 'article' ),
-  content()( ( node, { service } ) => {
-    // console.log( '↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓' );
-    // console.log( 'currentLang: ', currentLang );
-    // console.log( '______________________________' );
-
-
-    //const currentLang = node.data.params.lang;
-    const currentLang = 'en';
-
+  content()( ( node, { service, lang, moreText, serviceAlias, servicePriceOutside } ) => {
+    const currentLang = ( ( node.data || {} ).params || {} ).lang || lang;
     const {
-      titleImage,
       title,
       features,
       price,
       priceOld,
-      category
+      mainUrl
     } = service;
-
-    const linkParamsService = ( ( title[currentLang] || {} ).key || {} ).current || '//';
-    const linkParamsCategory = ( ( ( ( category || {} ).title || {} )[currentLang] || {} ).key || {} ).current || '//';
+    const linkParamsService = ( ( title[currentLang] || {} ).key || {} ).current || serviceAlias || '//';
     const serviceTitle = ( title[currentLang] || {} ).name || '';
-
 
     if( linkParamsService !== '//' ) {
       return [
@@ -41,15 +30,12 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                   content: [
                     {
                       block: 'link',
-                      to: 'service',
-                      params: {
-                        category: linkParamsCategory,
-                        service: linkParamsService
-                      },
+                      url: mainUrl,
                       content: {
                         block: 'image',
                         mods: { view: 'bg' },
-                        url: titleImage || '',
+
+                        url: service.serviceImgUrl || '',
                         alt: serviceTitle,
                         title: serviceTitle
                       }
@@ -69,11 +55,7 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                         {
                           block: 'link',
                           mods: { view: 'inherit' },
-                          to: 'service',
-                          params: {
-                            category: linkParamsCategory,
-                            service: linkParamsService
-                          },
+                          url: mainUrl,
                           title: serviceTitle,
                           content: serviceTitle
                         }
@@ -100,14 +82,10 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                         {
                           block: 'link',
                           mods: { view: 'button' },
-                          // content: {
-                          //   html: `${ ( ( node.data.api.settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }&nbsp;&rarr;`
-                          // },
-                          to: 'service',
-                          params: {
-                            category: linkParamsCategory,
-                            service: linkParamsService
+                          content: {
+                            html: `${ moreText ? moreText : ( ( ( ( node.data || {} ).api || {} ).settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }&nbsp;&rarr;`
                           },
+                          url: mainUrl,
                           title: serviceTitle
                         }
                       ]
@@ -115,7 +93,9 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                     priceOld && {
                       block: 'service',
                       elem: 'price-outside',
-                      content: priceOld
+                      content: priceOld,
+                      currentLang,
+                      servicePriceOutside
                     }
                   ]
                 }

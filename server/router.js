@@ -83,7 +83,6 @@ const router = new UniversalRouter(
   {
     async resolveRoute( context, params ) {
       params.urlTo = generateUrls( context.router );
-
       const routes = await getRoutes( 'settingServiceCategory', params.lang, params.project );
 
       if( params.category===undefined || routes.indexOf( params.category ) > -1 ) {
