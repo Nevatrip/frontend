@@ -40,7 +40,6 @@ block( 'page' ).mod( 'route', 'index' )(
         allServices: node.data.api.servicesFilter,
         lang: currentLang,
         moreText: ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang],
-        mainUrl: '/',
         servicePriceOutside: ( ( settingService || {} ).servicePriceOutside || {} )[currentLang] || ''
       },
       {
