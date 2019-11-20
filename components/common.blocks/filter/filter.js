@@ -43,10 +43,12 @@ modules.define( 'filter',
             }
 
             this._events( this._form ).on( 'change', () => {
-              doFilter( this );
+              if( this._form.getVal().tags.join( '&tags=' ).length > 0 ) {
+                doFilter( this );
+              }
             } );
             $( document ).ready( () => {
-              if( this._form.getVal().tags.join( '&tags=' ) ) {
+              if( this._form.getVal().tags.join( '&tags=' ).length > 0 ) {
                 doFilter( this );
               }
             } );
