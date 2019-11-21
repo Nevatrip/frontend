@@ -1,6 +1,7 @@
 block( 'header' ).elem( 'langs' )(
   content()( node => {
     const currentLang = node.data.params.lang;
+    const serviceBasedData = node.data.api.serviceBasedData;
 
     const getRoute = page => {
       const routeKey = {
@@ -25,32 +26,41 @@ block( 'header' ).elem( 'langs' )(
           } );
 
 
-      return otherLangs.map( item => {
-        const routeParams = {
-          service: ( response || {} ).category && {
-            category: ( ( response.category.title[item.lang] || {} ).key || {} ).current || '',
-            service: item.alias || ''
-          },
-          servicesByCategory: {
-            category: item.alias || ''
-          },
-          servicesByCollection: {
-            collection: item.alias || ''
-          },
-          index: {}
-        };
+      return [
+        otherLangs.map( item => {
+        // const routeParams = {
+        //   service: ( response || {} ).category && {
+        //     category: ( ( response.category.title[item.lang] || {} ).key || {} ).current || '',
+        //     service: item.alias || ''
+        //   },
+        //   servicesByCategory: {
+        //     category: item.alias || ''
+        //   },
+        //   servicesByCollection: {
+        //     collection: item.alias || ''
+        //   },
+        //   index: {}
+        // };
 
-        return {
+          return serviceBasedData.langSiteLink[item.lang] && {
+            block: 'link',
+            mix: { block: 'header', elem: 'lang' },
+            content: item.lang,
+            url: serviceBasedData.langSiteLink[item.lang]
+
+            // to: item.root ? 'root' : page,
+            // params: {
+            //   lang: item.lang,
+            //   ...routeParams[page]
+            // }
+          }
+        } ),
+        {
           block: 'link',
           mix: { block: 'header', elem: 'lang' },
-          content: item.lang,
-          to: item.root ? 'root' : page,
-          params: {
-            lang: item.lang,
-            ...routeParams[page]
-          }
+          content: currentLang
         }
-      } )
+      ]
     };
 
     return getRoute( node.data.page )
