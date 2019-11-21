@@ -3,9 +3,9 @@ block( 'footer' ).elem( 'footer' )(
   content()( () => ( {
     elem: 'content',
     content: [
-      {
-        elem: 'basic-nav'
-      },
+      // {
+      //   elem: 'basic-nav'
+      // },
       {
         elem: 'copyright'
       }

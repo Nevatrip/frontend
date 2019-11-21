@@ -1,21 +1,25 @@
 block( 'filter' )(
+  addJs()( true ),
   def()( ( node, ctx ) => {
-    // TODO: remove from global node
     node._bg = ctx.bg;
-    node._dayHeading = ctx.dayHeading;
-    node._dayTags = ctx.dayTags;
-    node._basicHeading = ctx.basicHeading;
     node._sorting = ctx.sorting;
     return applyNext()
   }
   ),
   content()( ( node, ctx ) => [
     {
-      elem: 'header'
+      elem: 'header',
+      basicTags: ctx.basicTags,
+      basicHeading: ctx.basicHeading,
+      dayHeading: ctx.dayHeading
     },
     {
       elem: 'result',
-      allServices: ctx.allServices
+      moreText: ctx.moreText,
+      lang: ctx.lang,
+      allServices: ctx.allServices,
+      mainUrl: ctx.mainUrl,
+      servicePriceOutside: ctx.servicePriceOutside
     }
   ] )
 );

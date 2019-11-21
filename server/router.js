@@ -10,6 +10,8 @@ const home = require( './routes/home' );
 const service = require( './routes/service' );
 const error = require( './routes/error' );
 const cart = require( './routes/cart' );
+const servicesByTags = require( './routes/servicesByTags' );
+
 
 const router = new UniversalRouter(
   {
@@ -25,6 +27,21 @@ const router = new UniversalRouter(
         path: '/cart',
         name: 'cart',
         load: async() => await cart
+      },
+      {
+        path: '/api',
+        children: [
+          {
+            path: '',
+            name: 'api',
+            load: async() => await home
+          },
+          {
+            path: '/tags',
+            name: 'api-tags',
+            load: async() => await servicesByTags
+          }
+        ]
       },
       {
         path: '/:category',
@@ -66,7 +83,6 @@ const router = new UniversalRouter(
   {
     async resolveRoute( context, params ) {
       params.urlTo = generateUrls( context.router );
-
       const routes = await getRoutes( 'settingServiceCategory', params.lang, params.project );
 
       if( params.category===undefined || routes.indexOf( params.category ) > -1 ) {

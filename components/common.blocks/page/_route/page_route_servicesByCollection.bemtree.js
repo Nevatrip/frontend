@@ -22,7 +22,12 @@ block( 'page' ).mod( 'route', 'servicesByCollection' )(
             content: {
               block: 'service',
               mods: { view: 'list-item-lg' },
-              service: item
+              service: item,
+              lang: [node.currentLang],
+              moreText: ( ( node.data.api.settingService || {} ).serviceViewListItemLgMore || {} )[node.currentLang],
+              serviceAlias: ( ( item.title[node.currentLang] || {} ).key || {} ).current || '//',
+              categoryAlias: ( ( ( ( item.category || {} ).title || {} )[node.currentLang] || {} ).key || {} ).current || '//',
+              servicePriceOutside: ( ( node.data.api.settingService || {} ).servicePriceOutside || {} )[node.currentLang] || ''
             }
           } ) )
         }

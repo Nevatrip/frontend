@@ -1,7 +1,6 @@
 block( 'footer' )(
   def()( ( node, ctx ) => {
     node._awards = ctx.awards;
-    node._social = ctx.social;
     node._mainNav = ctx.mainNav;
     node._mainNavHeading = ctx.mainNavHeading;
     node._basicNav = ctx.basicNav;
@@ -9,9 +8,10 @@ block( 'footer' )(
     return applyNext()
   }
   ),
-  content()( [
+  content()( ( node, ctx ) => [
     {
-      elem: 'header'
+      elem: 'header',
+      social: ctx.social
     },
     {
       block: 'page',
@@ -26,7 +26,8 @@ block( 'footer' )(
       elem: 'main'
     },
     {
-      elem: 'footer'
+      elem: 'footer',
+      social: ctx.social
     }
   ] )
 );

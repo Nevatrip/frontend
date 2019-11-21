@@ -1,6 +1,6 @@
 block( 'service' ).elem( 'price-outside' )(
   content()( ( node, ctx ) => {
-    const servicePriceOutside = ( ( node.data.api.settingService || {} ).servicePriceOutside || {} )[node.currentLang].toLowerCase() || '';
+    const servicePriceOutside = ( ( ( ( ( node.data || {} ).api || {} ).settingService || {} ).servicePriceOutside || {} )[node.currentLang || ctx.currentLang] || ctx.servicePriceOutside || '' ).toLowerCase();
     const price = ( ctx.content || {} )[node.currentLang] || ( ctx.content || {} ).ru || '';
 
     return price && {

@@ -24,6 +24,10 @@
     {
       block: 'filter',
       elem: 'neighbors'
+    },
+    {
+      block: 'filter',
+      elem: 'no-result'
     }
   ]
 }]

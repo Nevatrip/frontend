@@ -1,3 +1,1 @@
-block( 'filter' ).elem( 'header' )(
-  tag()( 'header' ),
-);
+block( 'filter' ).elem( 'header' )();

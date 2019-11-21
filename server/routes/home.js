@@ -1,4 +1,5 @@
 'use strict';
+const imageUrlBuilder = require( '@sanity/image-url' );
 
 const getServices = require( '../request/getServices' );
 const getService = require( '../request/getService' );
@@ -10,6 +11,7 @@ const getSettingServicesCollections = require( '../request/getSettingServicesCol
 const getSettingMainBanner = require( '../request/getSettingMainBanner' );
 const getSettingTopFeatures = require( '../request/getSettingTopFeatures' );
 const getSettingBottomFeatures = require( '../request/getSettingBottomFeatures' );
+const getSettingSocials = require( '../request/getSettingSocials' );
 
 
 const action = async( context, params ) => {
@@ -21,15 +23,63 @@ const action = async( context, params ) => {
   const bannerAlias = ( await getSettingMainBanner( project, lang ) )[0].alias;
   const settingTopFeatures = await getSettingTopFeatures( project, lang );
   const settingBottomFeatures = await getSettingBottomFeatures( project, lang );
+  const settingSocials = await getSettingSocials( project, lang );
 
   const servicesFilter = await getServices( project, lang );
+  const tags = await getTags( project, lang );
   const serviceBanner = await getService( project, lang, '', bannerAlias );
 
   const navigation = await getNav( project, lang );
-  const tags = await getTags( project, lang );
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
+
+  const currentLang = lang;
+  const moreText = ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang];
+
+  const builder = imageUrlBuilder(
+    {
+      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
+      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
+    }
+  );
+  params._urlFor = source => builder.image( source );
+
+  servicesFilter && servicesFilter.map( item => {
+    let titleImageCropped = '';
+
+    if( item.titleImage ) {
+      if( item.titleImage.hotspot ) {
+        titleImageCropped = params._urlFor( item.titleImage )
+          .focalPoint( item.titleImage.hotspot.x.toFixed( 2 ), item.titleImage.hotspot.y.toFixed( 2 ) )
+          .fit( 'crop' )
+          .width( 404 )
+          .height( 277 )
+          .url();
+      } else if( item.titleImage ) {
+        titleImageCropped = params._urlFor( item.titleImage )
+          .fit( 'crop' )
+          .width( 404 )
+          .height( 277 )
+          .url();
+      }
+    }
+    const itemParams = {
+      category: ( ( ( ( item.category || {} ).title || {} )[currentLang] || {} ).key || {} ).current || '//',
+      service: ( ( item.title[currentLang] || {} ).key || {} ).current || '//',
+      lang,
+      project
+    }
+
+    item.serviceImgUrl = titleImageCropped;
+    item.mainUrl = params.urlTo( 'service', itemParams );
+
+    return item;
+  } );
+
+  settingSocials && settingSocials.map( item => {
+    item.img = params._urlFor( item.imgSrc ).url();
+  });
 
   return {
     page: 'index',
@@ -43,7 +93,10 @@ const action = async( context, params ) => {
       settingService,
       settingServicesCollections,
       settingTopFeatures,
-      settingBottomFeatures
+      settingBottomFeatures,
+      currentLang,
+      moreText,
+      settingSocials
     }
   }
 };

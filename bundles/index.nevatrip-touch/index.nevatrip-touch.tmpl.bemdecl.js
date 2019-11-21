@@ -1,1 +1,10 @@
-exports.blocks = [];
+exports.blocks = [
+    {
+        "name": "filter",
+        "elems": [
+            {
+                "name": "result"
+            }
+        ]
+    }
+];
