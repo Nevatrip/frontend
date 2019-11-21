@@ -42,7 +42,7 @@ block( 'header' ).elem( 'langs' )(
         //   index: {}
         // };
 
-          return serviceBasedData.langSiteLink[item.lang] && {
+          return ( ( serviceBasedData || {} ).langSiteLink || {} )[item.lang] && {
             block: 'link',
             mix: { block: 'header', elem: 'lang' },
             content: item.lang,

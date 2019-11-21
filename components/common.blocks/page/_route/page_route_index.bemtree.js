@@ -19,7 +19,7 @@ block( 'page' ).mod( 'route', 'index' )(
       {
         block: 'filter',
         bg: '/filter__header.jpg',
-        dayHeading: 'Время суток',
+        dayHeading: ( ( serviceBasedData || {} ).filterDayTimeCaption || {} )[currentLang] || '',
         dayTags: [
           {
             name: 'День',
@@ -34,13 +34,14 @@ block( 'page' ).mod( 'route', 'index' )(
             img: '<svg style="overflow:visible" xmlns="http://www.w3.org/2000/svg" width="22" height="13" viewBox="0 0 22 13"><g fill="none" fill-rule="evenodd"><path d="M0 9.032h14.864v.941H0z"></path><path fill="#FFD84A" d="M14.864 9.503c0-.26-.238-.47-.53-.47H.53c-.291 0-.53.21-.53.47s.239.47.53.47h13.806a.56.56 0 0 0 .374-.137.443.443 0 0 0 .155-.333M1.548 7h5.904C7.754 7 8 6.776 8 6.5S7.754 6 7.452 6H1.548C1.246 6 1 6.224 1 6.5s.246.5.548.5M13 6.5c0-.276-.265-.5-.591-.5h-1.817c-.327 0-.592.224-.592.5s.265.5.592.5h1.817c.326 0 .591-.224.591-.5M8.485 12h-3.97a.509.509 0 0 0-.515.5c0 .275.231.5.515.5h3.97A.509.509 0 0 0 9 12.5c0-.276-.231-.5-.515-.5"></path><path fill="#FFD84A" d="M21.34 9.42a5.406 5.406 0 0 1-4.433-2.96 5.208 5.208 0 0 1-.547-2.337c0-1.094.337-2.147.975-3.045a.535.535 0 0 0 .04-.542.562.562 0 0 0-.46-.308c-3.067-.225-5.9 1.778-6.713 4.668h1.144a5.347 5.347 0 0 1 4.048-3.51l.523-.102-.197.49a6.27 6.27 0 0 0-.453 2.349c0 .986.222 1.933.659 2.813a6.498 6.498 0 0 0 3.842 3.273l.506.16-.41.334a5.427 5.427 0 0 1-5.875.63H12.09A6.527 6.527 0 0 0 16.444 13a6.509 6.509 0 0 0 5.303-2.732.536.536 0 0 0-.407-.848"></path></g></svg>'
           }
         ],
-        basicHeading: 'Параметры прогулки',
+        basicHeading: ( ( serviceBasedData || {} ).filterTagsCaption || {} )[currentLang] || '',
         basicTags: node.data.api.tags,
         sorting: ['По популярности', 'По цене от наименьшей', 'По цене от наибольшей'],
         allServices: node.data.api.servicesFilter,
         lang: currentLang,
-        moreText: ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang],
-        servicePriceOutside: ( ( settingService || {} ).servicePriceOutside || {} )[currentLang] || ''
+        moreText: ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '',
+        servicePriceOutside: ( ( settingService || {} ).servicePriceOutside || {} )[currentLang] || '',
+        filterNoResult: ( ( settingService || {} ).filterNoResult || {} )[currentLang] || ''
       },
       {
         block: 'page',

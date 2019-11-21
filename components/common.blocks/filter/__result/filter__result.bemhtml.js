@@ -26,7 +26,7 @@ block( 'filter' ).elem( 'result' )(
         content: {
           block: 'filter',
           elem: 'no-result',
-          content: 'Нет подходящих экскурсий'
+          content: ctx.filterNoResult
         }
       }
 

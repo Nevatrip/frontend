@@ -32,7 +32,8 @@ modules.define( 'filter',
                   allServices: ( response || {} ).services,
                   lang: ( response || {} ).currentLang,
                   moreText: ( response || {} ).moreText,
-                  servicePriceOutside: ( response || {} ).servicePriceOutside
+                  servicePriceOutside: ( response || {} ).servicePriceOutside,
+                  filterNoResult: ( response || {} ).filterNoResult
                 } );
 
                 bemDom.update(

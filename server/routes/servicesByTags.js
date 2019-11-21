@@ -3,6 +3,7 @@ const imageUrlBuilder = require( '@sanity/image-url' );
 
 const getServicesByTags = require( '../request/getServicesByTags' );
 const getSettingService = require( '../request/getSettingService' );
+const getServiceBasedData = require( '../request/getServiceBasedData' );
 
 const action = async( context, params ) => {
   const {
@@ -13,10 +14,11 @@ const action = async( context, params ) => {
   const tags = context.query.tags;
   const settingService = await getSettingService( project, lang );
   const services = await getServicesByTags( project, lang, tags );
+  const serviceBasedData = await getServiceBasedData( project, lang );
   const currentLang = lang;
   const moreText = ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang];
   const servicePriceOutside = ( ( settingService || {} ).servicePriceOutside || {} )[currentLang];
-
+  const filterNoResult = ( ( serviceBasedData || {} ).filterNoResult || {} )[currentLang];
   const builder = imageUrlBuilder(
     {
       projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
@@ -61,7 +63,8 @@ const action = async( context, params ) => {
     currentLang,
     services,
     moreText,
-    servicePriceOutside
+    servicePriceOutside,
+    filterNoResult
   };
 };
 

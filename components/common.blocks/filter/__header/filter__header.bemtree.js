@@ -1,5 +1,5 @@
 block( 'filter' ).elem( 'header' )(
-  replace()( ( { block, elem, currentLang, _bg, _basicHeading, _dayHeading }, ctx ) => ( {
+  replace()( ( { block, elem, currentLang, _bg }, ctx ) => ( {
     block: 'form',
     mods: { view: 'filter' },
     mix: { block, elem },
@@ -26,13 +26,13 @@ block( 'filter' ).elem( 'header' )(
               //   block: 'heading',
               //   mods: { size: 'xl' },
               //   mix: { block, elem: 'heading' },
-              //   content: _dayHeading
+              //   content: ctx.dayHeading
               // },
               {
                 block: 'heading',
                 mods: { size: 'xl' },
                 mix: { block, elem: 'heading' },
-                content: _basicHeading
+                content: ctx.basicHeading
               },
               {
                 block: 'form-field',

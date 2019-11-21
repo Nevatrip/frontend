@@ -1,11 +1,7 @@
 block( 'filter' )(
   addJs()( true ),
   def()( ( node, ctx ) => {
-    // TODO: remove from global node
     node._bg = ctx.bg;
-    node._dayHeading = ctx.dayHeading;
-    node._dayTags = ctx.dayTags;
-    node._basicHeading = ctx.basicHeading;
     node._sorting = ctx.sorting;
     return applyNext()
   }
@@ -13,7 +9,9 @@ block( 'filter' )(
   content()( ( node, ctx ) => [
     {
       elem: 'header',
-      basicTags: ctx.basicTags
+      basicTags: ctx.basicTags,
+      basicHeading: ctx.basicHeading,
+      dayHeading: ctx.dayHeading
     },
     {
       elem: 'result',
