@@ -11,6 +11,7 @@ const getSettingServicesCollections = require( '../request/getSettingServicesCol
 const getSettingMainBanner = require( '../request/getSettingMainBanner' );
 const getSettingTopFeatures = require( '../request/getSettingTopFeatures' );
 const getSettingBottomFeatures = require( '../request/getSettingBottomFeatures' );
+const getSettingSocials = require( '../request/getSettingSocials' );
 
 
 const action = async( context, params ) => {
@@ -22,6 +23,7 @@ const action = async( context, params ) => {
   const bannerAlias = ( await getSettingMainBanner( project, lang ) )[0].alias;
   const settingTopFeatures = await getSettingTopFeatures( project, lang );
   const settingBottomFeatures = await getSettingBottomFeatures( project, lang );
+  const settingSocials = await getSettingSocials( project, lang );
 
   const servicesFilter = await getServices( project, lang );
   const tags = await getTags( project, lang );
@@ -41,11 +43,11 @@ const action = async( context, params ) => {
       dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
     }
   );
+  params._urlFor = source => builder.image( source );
 
-  servicesFilter.map( item => {
+  servicesFilter && servicesFilter.map( item => {
     let titleImageCropped = '';
 
-    params._urlFor = source => builder.image( source );
     if( item.titleImage ) {
       if( item.titleImage.hotspot ) {
         titleImageCropped = params._urlFor( item.titleImage )
@@ -75,6 +77,10 @@ const action = async( context, params ) => {
     return item;
   } );
 
+  settingSocials && settingSocials.map( item => {
+    item.img = params._urlFor( item.imgSrc ).url();
+  });
+
   return {
     page: 'index',
     params,
@@ -89,7 +95,8 @@ const action = async( context, params ) => {
       settingTopFeatures,
       settingBottomFeatures,
       currentLang,
-      moreText
+      moreText,
+      settingSocials
     }
   }
 };

@@ -9,6 +9,7 @@ const getServiceCategory = require( '../request/getServiceCategory' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 const getRoutes = require( '../request/getRoutesBySectionAndLang' );
+const getSettingSocials = require( '../request/getSettingSocials' );
 
 const action = async( context, params ) => {
   const {
@@ -16,6 +17,14 @@ const action = async( context, params ) => {
     project,
     category
   } = params;
+
+  const builder = imageUrlBuilder(
+    {
+      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
+      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
+    }
+  );
+  params._urlFor = source => builder.image( source );
 
   const routes = await getRoutes( 'settingServiceCategory', lang, project );
   const serviceCategory = category;
@@ -25,18 +34,12 @@ const action = async( context, params ) => {
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingService = await getSettingService( project, lang );
   const serviceCategories = await getServiceCategory( project, lang );
+  const settingSocials = await getSettingSocials( project, lang );
 
   const services = await getServicesByCategory( project, lang, category );
   const currentLang = lang;
   const moreText = ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang];
   const servicePriceOutside = ( ( settingService || {} ).servicePriceOutside || {} )[currentLang];
-
-  const builder = imageUrlBuilder(
-    {
-      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
-      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
-    }
-  );
 
   services.map( item => {
     let titleImageCropped = '';
@@ -71,6 +74,10 @@ const action = async( context, params ) => {
     return item;
   } );
 
+  settingSocials.map( item => {
+    item.img = params._urlFor( item.imgSrc ).url();
+  });
+
   // const servicesRandom = await getServicesRandom(lang, 9);
 
   if( services.length > 0 && routes.indexOf( category ) > -1 ) {
@@ -89,7 +96,8 @@ const action = async( context, params ) => {
         settingServicesCollections,
         currentLang,
         moreText,
-        servicePriceOutside
+        servicePriceOutside,
+        settingSocials
       }
     }
   }
@@ -101,7 +109,8 @@ const action = async( context, params ) => {
       navigation,
       serviceBasedData,
       settingService,
-      settingServicesCollections
+      settingServicesCollections,
+      settingSocials
 
       // servicesRandom,
     }

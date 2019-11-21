@@ -7,6 +7,7 @@ const getRoutes = require( '../request/getRoutesBySectionAndLang' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 const getServiceCollectionByCollectionAlias = require( '../request/getServiceCollectionByCollectionAlias' );
+const getSettingSocials = require( '../request/getSettingSocials' );
 
 const action = async( context, params ) => {
   const {
@@ -14,6 +15,15 @@ const action = async( context, params ) => {
     project,
     collection
   } = params;
+
+  const builder = imageUrlBuilder(
+    {
+      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
+      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
+    }
+  );
+  params._urlFor = source => builder.image( source );
+
   const routes = await getRoutes( 'settingServicesCollections', lang, project );
   const serviceBasedData = await getServiceBasedData( project, lang );
   const navigation = await getNav( project, lang );
@@ -25,18 +35,12 @@ const action = async( context, params ) => {
   const currentLang = lang;
   const moreText = ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang];
   const servicePriceOutside = ( ( settingService || {} ).servicePriceOutside || {} )[currentLang];
+  const settingSocials = await getSettingSocials( project, lang );
 
-  const builder = imageUrlBuilder(
-    {
-      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
-      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
-    }
-  );
 
-  services.map( item => {
+  services && services.map( item => {
     let titleImageCropped = '';
 
-    params._urlFor = source => builder.image( source );
     if( item.titleImage ) {
       if( item.titleImage.hotspot ) {
         titleImageCropped = params._urlFor( item.titleImage )
@@ -66,6 +70,10 @@ const action = async( context, params ) => {
     return item;
   } );
 
+  settingSocials && settingSocials.map( item => {
+    item.img = params._urlFor( item.imgSrc ).url();
+  });
+
   // const serviceCategories = await getServiceCategory();
   // const servicesRandom = await getServicesRandom(lang, 9);
 
@@ -84,7 +92,8 @@ const action = async( context, params ) => {
         serviceCategoryFull,
         currentLang,
         moreText,
-        servicePriceOutside
+        servicePriceOutside,
+        settingSocials
 
         // serviceCategories,
       }
@@ -99,7 +108,8 @@ const action = async( context, params ) => {
       serviceBasedData,
       navigation,
       settingService,
-      settingServicesCollections
+      settingServicesCollections,
+      settingSocials
 
       // servicesRandom,
     }

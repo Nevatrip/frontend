@@ -1,5 +1,5 @@
 block( 'footer' ).elem( 'header' )(
-  content()( () => ( {
+  content()( ( node, ctx ) => ( {
     elem: 'content',
     mix: { block: 'page', elem: 'row', elemMods: { sm: 'column' } },
     content: [
@@ -8,7 +8,8 @@ block( 'footer' ).elem( 'header' )(
       },
       {
         block: 'contacts',
-        mods: { view: 'footer' }
+        mods: { view: 'footer' },
+        social: ctx.social
       }
     ]
   } ) )

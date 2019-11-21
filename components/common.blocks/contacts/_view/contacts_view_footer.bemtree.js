@@ -1,5 +1,5 @@
 block( 'contacts' ).mod( 'view', 'footer' )(
-  content()( node => [
+  content()( ( node, ctx ) => [
     {
       elem: 'email',
       email: node._contacts.email
@@ -12,7 +12,7 @@ block( 'contacts' ).mod( 'view', 'footer' )(
       content: {
         block: 'contacts',
         elem: 'social',
-        social: node._contacts.social
+        social: ctx.social
       }
     }
   ] )

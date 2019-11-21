@@ -1,4 +1,5 @@
 'use strict';
+const imageUrlBuilder = require( '@sanity/image-url' );
 
 const getServices = require( '../request/getServices' );
 const getService = require( '../request/getService' );
@@ -8,6 +9,7 @@ const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 const getServiceCategoryByServiceAlias = require( '../request/getServiceCategoryByServiceAlias' );
+const getSettingSocials = require( '../request/getSettingSocials' );
 
 const action = async( context, params ) => {
   const {
@@ -16,6 +18,14 @@ const action = async( context, params ) => {
     project,
     category
   } = params;
+
+  const builder = imageUrlBuilder(
+    {
+      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
+      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
+    }
+  );
+  params._urlFor = source => builder.image( source );
 
   const tours = await getServices( project, lang );
 
@@ -31,6 +41,11 @@ const action = async( context, params ) => {
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
+  const settingSocials = await getSettingSocials( project, lang );
+
+  settingSocials && settingSocials.map( item => {
+    item.img = params._urlFor( item.imgSrc ).url();
+  });
 
   if( serviceResponse ) {
     return {
@@ -43,7 +58,8 @@ const action = async( context, params ) => {
         servicesRandom,
         serviceBasedData,
         settingService,
-        settingServicesCollections
+        settingServicesCollections,
+        settingSocials
       }
     }
   }
@@ -57,7 +73,8 @@ const action = async( context, params ) => {
       servicesRandom,
       serviceBasedData,
       settingService,
-      settingServicesCollections
+      settingServicesCollections,
+      settingSocials
     }
   }
 };

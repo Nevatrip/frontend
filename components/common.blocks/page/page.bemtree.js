@@ -3,6 +3,7 @@ block( 'page' )(
     const serviceBasedData = node.data.api.serviceBasedData;
     const currentLang = node.currentLang = node.data.params.lang;
     const settingServicesCollections = node.data.api.settingServicesCollections;
+    const settingSocials = node.data.api.settingSocials;
 
     return [
       {
@@ -58,7 +59,8 @@ block( 'page' )(
             url: 'https://moskvatrip.ru/'
           }
         ],
-        copyright: serviceBasedData.copyright[currentLang] || ''
+        copyright: serviceBasedData.copyright[currentLang] || '',
+        social: settingSocials
       }
     ]
   } ),

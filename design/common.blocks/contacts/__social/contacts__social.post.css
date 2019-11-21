@@ -18,3 +18,10 @@
 .contacts__social:visited{
   text-decoration: none;
 }
+.contacts__social .image{
+  max-width: 20px;
+  max-height: 20px;
+  height: auto;
+  width: auto;
+  display: inline-block;
+}
