@@ -12,10 +12,10 @@ const error = require( './routes/error' );
 const cart = require( './routes/cart' );
 const servicesByTags = require( './routes/servicesByTags' );
 
-
 const router = new UniversalRouter(
   {
-    path: '/:project/:lang',
+    //path: '/:project/:lang',
+    path: '',
     name: 'root',
     children: [
       {
@@ -82,6 +82,9 @@ const router = new UniversalRouter(
   },
   {
     async resolveRoute( context, params ) {
+      params.project = params.project || process.env.ROOT_PROJECT;
+      params.lang = params.lang || process.env.ROOT_LANG;
+
       params.urlTo = generateUrls( context.router );
       const routes = await getRoutes( 'settingServiceCategory', params.lang, params.project );
 
