@@ -2,7 +2,7 @@ block( 'logo' ).mod( 'is-link', true )(
   replace()( ( node, ctx ) => ( {
     mix: { block: node.block },
     block: 'link',
-    url: `/${ node.data.params.project }/${ node.data.params.lang }`,
+    to: 'index',
     title: 'На главную',
     content: {
       block: 'logo',

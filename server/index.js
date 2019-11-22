@@ -57,6 +57,7 @@ app
 app.all( '*', async( req, res, next ) => {
   try {
     console.time( 'Route' );
+
     const route = await router.resolve( {
       pathname: req.path,
       query: req.query || {}
@@ -74,9 +75,9 @@ app.all( '*', async( req, res, next ) => {
 
     if( route.page ) {
       console.time( 'Render' );
+
       const html = await render( req, res, route );
 
-      // const html = await render( req, res, route.page );
       console.timeEnd( 'Render' );
 
       return res.send( html );//ERROR IS HERE
