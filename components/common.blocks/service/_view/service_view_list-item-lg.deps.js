@@ -36,7 +36,7 @@
         'row',
         {
           elem: 'hr',
-          mods: {view: 'md'}
+          elemMods: {view: 'md'}
         }
       ]
     },

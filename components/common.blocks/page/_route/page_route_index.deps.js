@@ -25,7 +25,7 @@
       {
         block: 'page',
         elem: 'hr',
-        mods: {size: 'md'}
+        elemMods: {size: 'md'}
       },
       {
         block: 'service',
