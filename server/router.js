@@ -12,59 +12,74 @@ const error = require( './routes/error' );
 const cart = require( './routes/cart' );
 const servicesByTags = require( './routes/servicesByTags' );
 
+const rootPath = process.env.ROOT_PATH;
+const rootProject = process.env.ROOT_PROJECT;
+const rootLang = process.env.ROOT_LANG;
+
 const router = new UniversalRouter(
   {
-    //path: '/:project/:lang',
     path: '',
-    name: 'root',
     children: [
+      ... [rootPath === '' ?
+        {} :
+        {
+          path: '',
+          name: 'root',
+          action: () => ( { redirect: `/${ rootProject }/${ rootLang }` } )
+        }
+      ],
       {
-        path: '',
-        name: 'index',
-        load: async() => await home
-      },
-      {
-        path: '/cart',
-        name: 'cart',
-        load: async() => await cart
-      },
-      {
-        path: '/api',
+        path: rootPath,
         children: [
           {
             path: '',
-            name: 'api',
+            name: 'index',
             load: async() => await home
           },
           {
-            path: '/tags',
-            name: 'api-tags',
-            load: async() => await servicesByTags
-          }
-        ]
-      },
-      {
-        path: '/:category',
-        children: [
-          {
-            path: '',
-            name: 'servicesByCategory',
-            load: async() => await servicesByCategory
+            path: '/cart',
+            name: 'cart',
+            load: async() => await cart
           },
           {
-            path: '/:service',
-            name: 'service',
-            load: async() => await service
-          }
-        ]
-      },
-      {
-        path: '/:collection',
-        children: [
+            path: '/api',
+            children: [
+              {
+                path: '',
+                name: 'api',
+                load: async() => await home
+              },
+              {
+                path: '/tags',
+                name: 'api-tags',
+                load: async() => await servicesByTags
+              }
+            ]
+          },
           {
-            path: '',
-            name: 'servicesByCollection',
-            load: async() => await servicesByCollection
+            path: '/:category',
+            children: [
+              {
+                path: '',
+                name: 'servicesByCategory',
+                load: async() => await servicesByCategory
+              },
+              {
+                path: '/:service',
+                name: 'service',
+                load: async() => await service
+              }
+            ]
+          },
+          {
+            path: '/:collection',
+            children: [
+              {
+                path: '',
+                name: 'servicesByCollection',
+                load: async() => await servicesByCollection
+              }
+            ]
           }
         ]
       },
@@ -82,8 +97,8 @@ const router = new UniversalRouter(
   },
   {
     async resolveRoute( context, params ) {
-      params.project = params.project || process.env.ROOT_PROJECT;
-      params.lang = params.lang || process.env.ROOT_LANG;
+      params.project = params.project || rootProject;
+      params.lang = params.lang || rootLang;
 
       params.urlTo = generateUrls( context.router );
       const routes = await getRoutes( 'settingServiceCategory', params.lang, params.project );
