@@ -21,7 +21,7 @@ block( 'service' ).elem( 'gallery' ).content()( ( node, ctx ) => {
           tag: 'figure',
           attrs: {
             'data-pswp-uid': '1',
-            itemscope: true,
+            itemscope: '',
             itemprop: 'associatedMedia',
             itemtype: 'http://schema.org/ImageObject'
           },
