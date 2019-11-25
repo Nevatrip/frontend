@@ -25,7 +25,7 @@
       {
         block: 'page',
         elem: 'hr',
-        elemMods: {size: 'md'}
+        mods: {size: 'md'}//elemMods doesn't work
       },
       {
         block: 'service',

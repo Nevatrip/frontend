@@ -14,7 +14,7 @@
     {
       block: 'page',
       elem: 'hr',
-      elemMods: { color: 'dark' }
+      mods: { color: 'dark' }//elemMods doesn't work
     },
   ]
 }]

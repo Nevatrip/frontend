@@ -10,10 +10,10 @@
         {elem: 'row', mods: {sm: 'column'}},
         'hr',
         'iframe-container',
-        {elem: 'hr', elemMods: {view: 'short'}},
-        {elem: 'col', elemMods: {view: 'aside'}},
-        {elem: 'col', elemMods: {view: 'main'}},
-        {elem: 'content', elemMods: {view: 'narrow'}},
+        {elem: 'hr', mods: {view: 'short'}},//elemMods doesn't work
+        {elem: 'col', mods: {view: 'aside'}},//elemMods doesn't work
+        {elem: 'col', mods: {view: 'main'}},//elemMods doesn't work
+        {elem: 'content', mods: {view: 'narrow'}},//elemMods doesn't work
         'text',
       ]
     },
