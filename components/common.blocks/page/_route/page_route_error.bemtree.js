@@ -6,8 +6,8 @@ block( 'page' ).mod( 'route', 'error' )(
       {
         block: 'title',
         mods: { view: 'xl' },
-        url: node._urlFor( err.errorImage.asset._ref ).url() || '',
-        title: ( err.errorTitle || {} )[node.currentLang]
+        url: node._urlFor( ( ( ( err || {} ).errorImage || {} ).asset || {} )._ref ).url() || '',
+        title: ( ( err || {} ).errorTitle || {} )[node.currentLang]
       },
       {
         block: 'page',
@@ -24,7 +24,7 @@ block( 'page' ).mod( 'route', 'error' )(
                 elemMods: { view: 'main' },
                 content: [
                   {
-                    html: node._marked( ( err.errorContent || {} )[node.currentLang] )
+                    html: node._marked( ( ( err || {} ).errorContent || {} )[node.currentLang] || '' ) || ''
                   },
                   node.data.api.servicesRandom && {
                     block: 'page',
@@ -47,7 +47,7 @@ block( 'page' ).mod( 'route', 'error' )(
                     elem: 'row',
                     content: {
                       block: 'link',
-                      content: { html: ( err.errorMoreLink || {} )[node.currentLang] },
+                      content: { html: ( ( err || {} ).errorMoreLink || {} )[node.currentLang] || '' },
                       url: `/${ node.data.params.project }/${ node.data.params.lang }`
                     }
                   }
@@ -62,8 +62,8 @@ block( 'page' ).mod( 'route', 'error' )(
                     block: 'page',
                     elem: 'article',
                     elemMods: { type: 'info' },
-                    heading: node._marked( ( err.errorInfoTitle || {} )[node.currentLang] ),
-                    text: node._marked( ( err.errorInfoText || {} )[node.currentLang] )
+                    heading: node._marked( ( ( err || {} ).errorInfoTitle || {} )[node.currentLang] || '' ) || '',
+                    text: node._marked( ( ( err || {} ).errorInfoText || {} )[node.currentLang] || '' ) || ''
                   }
                 ]
               }

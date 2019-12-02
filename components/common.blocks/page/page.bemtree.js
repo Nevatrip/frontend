@@ -8,14 +8,14 @@ block( 'page' )(
     return [
       {
         block: 'header',
-        logo: node._urlFor( serviceBasedData.logo.asset._ref ).url() || '',
-        logoDescription: serviceBasedData.shortDescription[currentLang] || '',
-        logoTitle: serviceBasedData.title[currentLang] || '',
-        slogan: serviceBasedData.Slogan[currentLang] || ''
+        logo: node._urlFor( ( ( ( serviceBasedData || {} ).logo || {} ).asset || {} )._ref ).url() || '',
+        logoDescription: ( ( serviceBasedData || {} ).shortDescription || {} )[currentLang] || '',
+        logoTitle: ( ( serviceBasedData || {} ).title || {} )[currentLang] || '',
+        slogan: ( ( serviceBasedData || {} ).Slogan || {} )[currentLang] || ''
       },
       {
         block: 'navigation',
-        content: node.data.api.navigation[0] || {}
+        content: node.data.api.navigation[0] || []
       },
       apply( 'mods' ),
       {
@@ -24,8 +24,8 @@ block( 'page' )(
       },
       {
         block: 'footer',
-        awards: serviceBasedData.awards[currentLang].split( '\n' ) || '',
-        mainNavHeading: serviceBasedData.footerCategoryTitle[currentLang] || '',
+        awards: ( ( ( serviceBasedData || {} ).awards || {} )[currentLang] || '' ).split( '\n' ) || '',
+        mainNavHeading: ( ( serviceBasedData || {} ).footerCategoryTitle || {} )[currentLang] || '',
         mainNav: settingServicesCollections.map( item => (
           {
             name: ( ( item.title || {} )[node.currentLang] || {} ).name,
@@ -59,7 +59,7 @@ block( 'page' )(
             url: 'https://moskvatrip.ru/'
           }
         ],
-        copyright: serviceBasedData.copyright[currentLang] || '',
+        copyright: ( ( serviceBasedData || {} ).copyright || {} )[currentLang] || '',
         social: settingSocials
       }
     ]

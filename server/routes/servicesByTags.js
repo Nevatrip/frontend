@@ -19,13 +19,14 @@ const action = async( context, params ) => {
   const moreText = ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang];
   const servicePriceOutside = ( ( settingService || {} ).servicePriceOutside || {} )[currentLang];
   const filterNoResult = ( ( serviceBasedData || {} ).filterNoResult || {} )[currentLang];
-  const settingSocials = await getSettingSocials( project, lang );
+
   const builder = imageUrlBuilder(
     {
       projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
       dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
     }
   );
+
   params._urlFor = source => builder.image( source );
 
   services.map( item => {

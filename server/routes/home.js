@@ -20,7 +20,7 @@ const action = async( context, params ) => {
     project
   } = params;
 
-  const bannerAlias = ( await getSettingMainBanner( project, lang ) )[0].alias;
+  const bannerAlias = ( ( await getSettingMainBanner( project, lang ) )[0] || {} ).alias;
   const settingTopFeatures = await getSettingTopFeatures( project, lang );
   const settingBottomFeatures = await getSettingBottomFeatures( project, lang );
   const settingSocials = await getSettingSocials( project, lang );

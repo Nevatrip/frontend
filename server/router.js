@@ -16,24 +16,34 @@ const rootPath = process.env.ROOT_PATH;
 const rootProject = process.env.ROOT_PROJECT;
 const rootLang = process.env.ROOT_LANG;
 
+const routeRedirect = () => {
+  if( rootPath==='' ) {
+    if( rootProject==='prahatrip' ) {
+      return `/${ rootLang }`
+    }
+    return ''
+  }
+  return `/${ rootProject }/${ rootLang }`
+}
+
 const router = new UniversalRouter(
   {
     path: '',
     children: [
-      ... [rootPath === '' ?
-        {} :
+      ... [
         {
           path: '',
           name: 'root',
-          action: () => ( { redirect: `/${ rootProject }/${ rootLang }` } )
+          action: () => ( { redirect: routeRedirect() } )
         }
       ],
       {
-        path: rootPath,
+        path: rootProject==='prahatrip' && rootPath === '' ? '/:lang' : rootPath,
         children: [
           {
             path: '',
             name: 'index',
+            action: () => ( { redirect: '/' } ),
             load: async() => await home
           },
           {
@@ -99,7 +109,6 @@ const router = new UniversalRouter(
     async resolveRoute( context, params ) {
       params.project = params.project || rootProject;
       params.lang = params.lang || rootLang;
-
       params.urlTo = generateUrls( context.router );
       const routes = await getRoutes( 'settingServiceCategory', params.lang, params.project );
 

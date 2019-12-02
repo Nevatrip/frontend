@@ -50,8 +50,8 @@ block( 'page' ).mod( 'route', 'index' )(
           {
             block: 'title',
             mods: { view: 'sm' },
-            url: node._urlFor( serviceBasedData.articleImage.asset._ref ).url() || '',
-            title: serviceBasedData.articleTitle[currentLang] || ''
+            url: node._urlFor( ( ( ( serviceBasedData || {} ).articleImage || {} ).asset || {} )._ref ).url() || '',
+            title: ( ( serviceBasedData || {} ).articleTitle || {} )[currentLang] || ''
           },
           {
             block: 'features',
@@ -67,7 +67,7 @@ block( 'page' ).mod( 'route', 'index' )(
             elem: 'content',
             elemMods: { view: 'narrow' },
             content: {
-              html: serviceBasedData.articleContent[currentLang] || ''
+              html: ( ( serviceBasedData || {} ).articleContent || {} )[currentLang] || ''
             }
           },
           {
