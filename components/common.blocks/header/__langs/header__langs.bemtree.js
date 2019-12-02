@@ -12,7 +12,6 @@ block( 'header' ).elem( 'langs' )(
       };
 
       const response = ( node.data.api || {} )[routeKey[page]];
-
       const otherLangs = node.config.langs
         .filter( lang => lang !== currentLang )
         .map( lang => ( ( ( response || {} ).title || {} ) ).hasOwnProperty( lang ) ?
@@ -55,7 +54,7 @@ block( 'header' ).elem( 'langs' )(
             // }
           }
         } ),
-        {
+        node.config.langs.indexOf( currentLang ) !== -1 && {
           block: 'link',
           mix: { block: 'header', elem: 'lang' },
           content: currentLang
