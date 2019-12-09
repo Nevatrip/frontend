@@ -2,21 +2,18 @@
 const imageUrlBuilder = require( '@sanity/image-url' );
 
 const getServices = require( '../request/getServices' );
-const getService = require( '../request/getService' );
 const getNav = require( '../request/getNav' );
-const getServicesRandom = require( '../request/getServicesRandomByCategoryExcludeID' );
 const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
-const getServiceCategoryByServiceAlias = require( '../request/getServiceCategoryByServiceAlias' );
 const getSettingSocials = require( '../request/getSettingSocials' );
+const getSettingBlog = require( '../request/getSettingBlog' );
+const getBlogByNumber = require( '../request/getBlogByNumber' );
 
 const action = async( context, params ) => {
   const {
-    service,
     lang,
-    project,
-    category
+    project
   } = params;
 
   const builder = imageUrlBuilder(
@@ -29,53 +26,42 @@ const action = async( context, params ) => {
   params._urlFor = source => builder.image( source );
 
   const tours = await getServices( project, lang );
-
-  const categoryName = ( ( ( ( ( await getServiceCategoryByServiceAlias( project, lang, service ) || {} ).category || {} ).title || {} )[params.lang] || {} ).key || {} ).current;
-
-  const serviceResponse = await getService( project, lang, categoryName, service );
-
   const navigation = await getNav( project, lang );
-
-  const excludeID = ( serviceResponse || {} )._id;
-  const servicesRandom = await ( categoryName ? getServicesRandom( project, lang, categoryName, excludeID ) : getServicesRandom( project, lang, category ) );
-
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
   const settingSocials = await getSettingSocials( project, lang );
+  const settingBlog = ( await getSettingBlog( project, lang ) )[0];
+  const theLatestBlog = await getBlogByNumber( project, lang, 0 );
 
   settingSocials && settingSocials.map( item => {
     item.img = params._urlFor( item.imgSrc ).url();
   } );
 
-  if( serviceResponse ) {
-    return {
-      page: 'service',
-      params,
-      api: {
-        tours,
-        service: serviceResponse,
-        navigation,
-        servicesRandom,
-        serviceBasedData,
-        settingService,
-        settingServicesCollections,
-        settingSocials
-      }
-    }
+  if( ( settingBlog || {} ).image ) {
+    settingBlog.imageUrl = params._urlFor( settingBlog.image ).url()
   }
+  if( ( settingBlog || {} ).logo ) {
+    settingBlog.logoUrl = params._urlFor( settingBlog.logo ).url()
+  }
+
+  if( ( theLatestBlog || {} ).img ) {
+    theLatestBlog.imgUrl = params._urlFor( theLatestBlog.img ).url()
+  }
+
   return {
-    page: 'error',
+    page: 'blog',
     params,
     reason: context.reason,
     api: {
       tours,
       navigation,
-      servicesRandom,
       serviceBasedData,
-      settingService,
       settingServicesCollections,
-      settingSocials
+      settingService,
+      settingSocials,
+      settingBlog,
+      theLatestBlog
     }
   }
 };

@@ -31,6 +31,9 @@ block( 'service' ).mod( 'view', 'detail' )(
 
     const serviceTitle = ( title[currentLang] || {} ).name || '';
 
+    console.log( 'titleImage: ', titleImage );
+
+
     return [
       {
         block: 'title',

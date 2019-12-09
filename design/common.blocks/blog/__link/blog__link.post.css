@@ -1,0 +1,13 @@
+.blog__link,
+.blog__link:hover,
+.blog__link:active,
+.blog__link:focus,
+.blog__link:visited,
+.blog__link.active {
+  color: inherit;
+  text-decoration: none;
+}
+.blog__link {
+  opacity: 1;
+  transition: opacity .5s ease;
+}

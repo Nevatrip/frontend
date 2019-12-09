@@ -1,0 +1,8 @@
+.title_view_blog {
+  background: none;
+}
+.title_view_blog .heading.title__name {
+  background: none;
+  text-align: center;
+  margin: 10px 0 30px;
+}

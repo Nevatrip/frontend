@@ -1,0 +1,17 @@
+.title__logo {
+  position: absolute;
+  box-sizing: border-box;
+  border-radius: 100px;
+  width: 160px;
+  height: 160px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid #fff;
+  bottom: -82px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  background-color: #fff;
+  user-select: none;
+}
