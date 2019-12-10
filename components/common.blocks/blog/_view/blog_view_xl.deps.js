@@ -10,7 +10,7 @@
     {
       block: 'blog',
       elem: 'p',
-      elemMods: { view: ['date' ,'text', 'more'] }
+      mods: { view: ['date' ,'text', 'more'] }
     }
   ]
 }]

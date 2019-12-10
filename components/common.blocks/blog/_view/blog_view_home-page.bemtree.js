@@ -21,12 +21,13 @@ block( 'blog' ).mod( 'view', 'home-page' )(
             elem: 'social',
             settingSocials: ctx.settingSocials
           },
-          ( ( ctx.settingBlog || {} ).sectionsCaption || {} )[currentLang] && {
-            block: 'heading',
-            mods: { size: 'xl' },
-            mix: { block: 'blog', elem: 'heading' },
-            content: ctx.settingBlog.sectionsCaption[currentLang]
-          },
+
+          // ( ( ctx.settingBlog || {} ).sectionsCaption || {} )[currentLang] && {
+          //   block: 'heading',
+          //   mods: { size: 'xl' },
+          //   mix: { block: 'blog', elem: 'heading' },
+          //   content: ctx.settingBlog.sectionsCaption[currentLang]
+          // },
           ( ( ctx.settingBlog || {} ).blogsCaption || {} )[currentLang] && {
             block: 'heading',
             mods: { size: 'xl' },
@@ -41,7 +42,39 @@ block( 'blog' ).mod( 'view', 'home-page' )(
                 block: 'blog',
                 mods: { view: 'xl' },
                 content: ctx.theLatestBlog
-              }
+              },
+              ( ( ctx.settingBlog || {} ).subscribeCaption || {} )[currentLang] && ( ( ctx.settingBlog || {} ).subscribeCode || {} )[currentLang] && {
+                block: 'heading',
+                mods: { size: 'xl' },
+                mix: { block: 'blog', elem: 'heading' },
+                content: ctx.settingBlog.subscribeCaption[currentLang]
+              },
+              ( ( ctx.settingBlog || {} ).subscribeCode || {} )[currentLang] && {
+                block: 'blog',
+                elem: 'subscribe-code',
+                content: {
+                  html: ctx.settingBlog.subscribeCode[currentLang]
+                }
+              },
+              ctx.blogOffset.map( item => item !== ctx.currentLang && {
+                block: 'blog',
+                mods: { view: 'sm' },
+                content: item
+              } )
+
+              // ( ( ctx.settingBlog || {} ).blogsMore || {} )[currentLang] && {
+              //   block: 'blog',
+              //   elem: 'more',
+              //   content: {
+              //     html: ctx.settingBlog.blogsMore[currentLang]
+              //   }
+              // },
+              // ( ( ctx.settingBlog || {} ).blogsHint || {} )[currentLang] && {
+              //   block: 'heading',
+              //   mods: { size: 'xl' },
+              //   mix: { block: 'blog', elem: 'heading' },
+              //   content: ctx.settingBlog.blogsHint[currentLang]
+              // },
             ]
           }
         ]

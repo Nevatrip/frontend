@@ -1,5 +1,6 @@
 'use strict';
 const imageUrlBuilder = require( '@sanity/image-url' );
+const moment = require( 'moment' );
 
 const getServices = require( '../request/getServices' );
 const getNav = require( '../request/getNav' );
@@ -9,6 +10,7 @@ const getSettingServicesCollections = require( '../request/getSettingServicesCol
 const getSettingSocials = require( '../request/getSettingSocials' );
 const getSettingBlog = require( '../request/getSettingBlog' );
 const getBlogByNumber = require( '../request/getBlogByNumber' );
+const getBlogByOffset = require( '../request/getBlogByOffset' );
 
 const action = async( context, params ) => {
   const {
@@ -33,6 +35,9 @@ const action = async( context, params ) => {
   const settingSocials = await getSettingSocials( project, lang );
   const settingBlog = ( await getSettingBlog( project, lang ) )[0];
   const theLatestBlog = await getBlogByNumber( project, lang, 0 );
+  const blogOffset = await getBlogByOffset( project, lang, 1, 30 );
+
+  moment.locale( lang );
 
   settingSocials && settingSocials.map( item => {
     item.img = params._urlFor( item.imgSrc ).url();
@@ -44,10 +49,27 @@ const action = async( context, params ) => {
   if( ( settingBlog || {} ).logo ) {
     settingBlog.logoUrl = params._urlFor( settingBlog.logo ).url()
   }
-
   if( ( theLatestBlog || {} ).img ) {
     theLatestBlog.imgUrl = params._urlFor( theLatestBlog.img ).url()
   }
+  if( ( theLatestBlog || {} ).textSrc ) {
+    theLatestBlog.text = `${ theLatestBlog.textSrc.slice( 0, 400 ) }...`;
+  }
+  if( ( theLatestBlog || {} ).dateSrc ) {
+    theLatestBlog.date = moment( theLatestBlog.dateSrc ).format( 'LL' );
+  }
+
+  blogOffset && blogOffset.map( item => {
+    if( ( item || {} ).img ) {
+      item.imgUrl = params._urlFor( item.img ).url()
+    }
+    if( ( item || {} ).textSrc ) {
+      item.text = `${ item.textSrc.slice( 0, 300 ) }...`;
+    }
+    if( ( item || {} ).dateSrc ) {
+      item.date = moment( item.dateSrc ).format( 'LL' );
+    }
+  } );
 
   return {
     page: 'blog',
@@ -61,7 +83,8 @@ const action = async( context, params ) => {
       settingService,
       settingSocials,
       settingBlog,
-      theLatestBlog
+      theLatestBlog,
+      blogOffset
     }
   }
 };

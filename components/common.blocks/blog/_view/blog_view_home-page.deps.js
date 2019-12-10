@@ -11,7 +11,7 @@
     },
     {
       block: 'blog',
-      elems: ['social', 'heading', 'flex-col']
+      elems: [ 'social', 'heading', 'flex-col', 'subscribe-code' ]
     },
     {
       block: 'heading',
@@ -19,7 +19,7 @@
     },
     {
       block: 'blog',
-      mods: { view: 'xl' }
+      mods: { view: [ 'xl', 'sm'] }
     }
   ]
 }]

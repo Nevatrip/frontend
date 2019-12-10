@@ -7,12 +7,12 @@
   background-position: center;
   background-color: #c7c7c7;
 }
-.blog_view_lg .blog__img {
+.blog_view_xl .blog__img {
   margin-bottom: 0;
   height: 280px;
 }
 @media (max-width: 991px){
-  .blog_view_lg .blog__img{
+  .blog_view_xl .blog__img{
     margin-bottom: 1em;
   }
 }
