@@ -7,8 +7,9 @@ block( 'breadcrumbs' )(
         elem: 'item',
         content: [
           {
-            elem: 'link',
-            url: `/${ node.data.params.project }/${ node.data.params.lang }`,
+            block: 'link',
+            mix: { block: 'breadcrumbs', elem: 'link' },
+            to: 'index',
             content: {
               block: 'breadcrumbs',
               elem: 'name',
@@ -21,19 +22,23 @@ block( 'breadcrumbs' )(
           }
         ]
       },
-      node.data.params.category && node.data.params.service && {
+      ctx.category && {
         html: '&nbsp;/ '
       },
-      node.data.params.category && node.data.params.service && {
+      ctx.category && ctx.categoryName && ctx.categoryTo && {
         elem: 'item',
         content: [
           {
-            elem: 'link',
-            url: `/${ node.data.params.project }/${ node.data.params.lang }/${ node.data.params.category }`,
+            block: 'link',
+            mix: { block: 'breadcrumbs', elem: 'link' },
+            to: ctx.categoryTo,
+            params: {
+              category: ctx.category
+            },
             content: {
               block: 'breadcrumbs',
               elem: 'name',
-              content: ( ( ( ( ( node.data.api || {} ).service || {} ).category || {} ).title || {} )[currentLang] || {} ).name || ''
+              content: ctx.categoryName
             }
           },
           {

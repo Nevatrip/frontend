@@ -1,0 +1,3 @@
+block( 'blog' )(
+  tag()( 'section' ),
+);

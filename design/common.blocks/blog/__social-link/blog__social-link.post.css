@@ -1,0 +1,22 @@
+.blog__social-link,
+.blog__social-link:hover,
+.blog__social-link:active,
+.blog__social-link:focus,
+.blog__social-link:visited,
+.blog__social-link.active {
+  color: #fff;
+  text-decoration: none;
+}
+.blog__social-link {
+  margin: 0 3px 3px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 32px;
+  border-radius: 32px;
+  font-size: 18px;
+  opacity: 1;
+  transition: opacity .3s ease;
+  background-color: #312d2d;
+}

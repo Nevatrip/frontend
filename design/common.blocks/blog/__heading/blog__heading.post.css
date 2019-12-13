@@ -1,0 +1,16 @@
+.blog__heading {
+  margin: 10px 0 30px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  clear: both;
+  float: none;
+  font-weight: 100;
+  line-height: 1.2;
+  font-size: 41px;
+}
+@media (max-width:991px){
+  .blog__heading {
+    font-size: 32px;
+  }
+}

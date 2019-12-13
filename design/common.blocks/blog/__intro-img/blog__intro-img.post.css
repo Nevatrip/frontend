@@ -1,0 +1,10 @@
+.blog__intro-img {
+  position: relative;
+  margin: 0 0 40px;
+  height: 50vh;
+  min-height: 100px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  /* background-attachment: fixed; */
+}

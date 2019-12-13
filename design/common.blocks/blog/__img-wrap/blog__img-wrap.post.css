@@ -1,0 +1,15 @@
+.blog__img-wrap {
+   width: 58.6%;
+   padding-right: 15px;
+   box-sizing: border-box;
+ }
+.blog_view_sm .blog__img-wrap {
+  width: 100%;
+  padding-right: 0;
+}
+@media (max-width: 991px){
+  .blog__img-wrap{
+    width: 100%;
+    padding-right: 0;
+  }
+}

@@ -1,0 +1,15 @@
+.blog__content{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 41.4%;
+  padding-left: 15px;
+  padding-bottom: 30px;
+  box-sizing: border-box;
+}
+@media (max-width: 991px) {
+  .blog__content {
+    width: 100%;
+    padding-left: 0;
+  }
+}

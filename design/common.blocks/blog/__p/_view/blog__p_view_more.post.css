@@ -1,0 +1,10 @@
+.blog__p_view_more{
+  display: inline-block;
+  text-transform: lowercase;
+  font-weight: 600;
+  color: #2b85b2;
+  text-decoration: underline;
+}
+.blog__p_view_more:hover{
+  text-decoration: none;
+}

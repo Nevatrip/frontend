@@ -1,0 +1,11 @@
+.title__blog-container{
+  position: relative;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+
+  height: 40vh;
+  margin-bottom: 82px;
+  min-height: 100px;
+}

@@ -23,7 +23,6 @@ block( 'service' ).mod( 'view', 'detail' )(
       prevention,
       advice,
       pricesDescription,
-      serviceCategory,
       buyLink
 
       // time,
@@ -46,7 +45,9 @@ block( 'service' ).mod( 'view', 'detail' )(
           {
             block: 'breadcrumbs',
             title: serviceTitle || '',
-            category: serviceCategory || ''
+            category: ( ( ( ( service.category || {} ).title || {} )[currentLang] || {} ).key || {} ).current || '',
+            categoryTo: 'servicesByCategory',
+            categoryName: ( ( ( service.category || {} ).title || {} )[currentLang] || {} ).name || ''
           },
           {
             block: 'page',

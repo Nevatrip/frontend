@@ -14,6 +14,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
   const config = node.config = ctx.config;
   const data = node.data = ctx.data;
   const serviceBasedData = node.data.api.serviceBasedData;
+  const currentLang = node.data.params.lang;
 
   node._marked = marked;
   node._urlFor = source => builder.image( source );
@@ -34,6 +35,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
     favicon: '/favicon.ico',
     itemtype: 'http://schema.org/LocalBusiness',
     prefix: 'og: http://ogp.me/ns#',
+    lang: currentLang,
 
     styles: { elem: 'css', url: `/assets/css/${ data.page }.${ data.params.project }-${ level }.min.css` },
     scripts: { elem: 'js', url: `/assets/js/${ data.page }.${ data.params.project }-${ level }.min.js` },

@@ -25,6 +25,7 @@ const action = async( context, params ) => {
       dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
     }
   );
+
   params._urlFor = source => builder.image( source );
 
   const tours = await getServices( project, lang );
@@ -45,7 +46,7 @@ const action = async( context, params ) => {
 
   settingSocials && settingSocials.map( item => {
     item.img = params._urlFor( item.imgSrc ).url();
-  });
+  } );
 
   if( serviceResponse ) {
     return {

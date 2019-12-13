@@ -1,0 +1,18 @@
+.blog__img {
+  display: block;
+  margin-bottom: 1em;
+  height: 200px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: #c7c7c7;
+}
+.blog_view_xl .blog__img {
+  margin-bottom: 0;
+  height: 280px;
+}
+@media (max-width: 991px){
+  .blog_view_xl .blog__img{
+    margin-bottom: 1em;
+  }
+}
