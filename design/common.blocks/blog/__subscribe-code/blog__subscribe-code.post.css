@@ -170,6 +170,15 @@
   box-shadow: none;
   box-sizing: border-box;
 }
+.blog__aside-item .blog__subscribe-code{
+  margin-bottom: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+.blog__aside-item .blog__subscribe-code .subscribe-form-item__btn--btn-submit,
+.blog__aside-item .blog__subscribe-code .btn_new {
+  width: 100%;
+}
 @media (max-width:442px){
   .blog__subscribe-code form{
     flex-direction:column;

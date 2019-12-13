@@ -1,0 +1,28 @@
+.blog__aside-item{
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.blog__aside-item .contacts__social,
+.blog__aside-item .contacts__social:hover,
+.blog__aside-item .contacts__social:active,
+.blog__aside-item .contacts__social:focus,
+.blog__aside-item .contacts__social:visited,
+.blog__aside-item .contacts__social.active{
+  color: #fff;
+  text-decoration: none;
+}
+.blog__aside-item .contacts__social{
+  margin: 0 3px 3px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 32px;
+  width: 32px;
+  border-radius: 32px;
+  font-size: 18px;
+  opacity: 1;
+  transition: opacity .3s ease;
+  background-color: #312d2d;
+}
+

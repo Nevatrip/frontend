@@ -2,17 +2,21 @@
 const imageUrlBuilder = require( '@sanity/image-url' );
 const moment = require( 'moment' );
 
+const getServices = require( '../request/getServices' );
 const getNav = require( '../request/getNav' );
+const getServicesRandom = require( '../request/getServicesRandomByCategoryExcludeID' );
 const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 const getSettingSocials = require( '../request/getSettingSocials' );
 const getSettingBlog = require( '../request/getSettingBlog' );
-const getBlogByNumber = require( '../request/getBlogByNumber' );
 const getBlogByOffset = require( '../request/getBlogByOffset' );
+const getBlogByAlias = require( '../request/getBlogByAlias' );
+const getNumberRandomBlogs = require( '../request/getNumberRandomBlogs' );
 
 const action = async( context, params ) => {
   const {
+    blogDetail,
     lang,
     project
   } = params;
@@ -26,13 +30,16 @@ const action = async( context, params ) => {
 
   params._urlFor = source => builder.image( source );
 
+  const tours = await getServices( project, lang );
   const navigation = await getNav( project, lang );
+
+  const servicesRandom = await getServicesRandom( project, lang );
+
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
   const settingSocials = await getSettingSocials( project, lang );
   const settingBlog = ( await getSettingBlog( project, lang ) )[0];
-  const theLatestBlog = await getBlogByNumber( project, lang, 0 );
   const blogOffset = await getBlogByOffset( project, lang, 1, 30 );
 
   moment.locale( lang );
@@ -48,16 +55,6 @@ const action = async( context, params ) => {
     settingBlog.logoUrl = params._urlFor( settingBlog.logo ).url()
   }
 
-  if( ( theLatestBlog || {} ).img ) {
-    theLatestBlog.imgUrl = params._urlFor( theLatestBlog.img ).url()
-  }
-  if( ( theLatestBlog || {} ).textSrc ) {
-    theLatestBlog.text = `${ theLatestBlog.textSrc.slice( 0, 400 ) }...`;
-  }
-  if( ( theLatestBlog || {} ).dateSrc ) {
-    theLatestBlog.date = moment( theLatestBlog.dateSrc ).format( 'LL' );
-  }
-
   blogOffset && blogOffset.map( item => {
     if( ( item || {} ).img ) {
       item.imgUrl = params._urlFor( item.img ).url()
@@ -70,19 +67,45 @@ const action = async( context, params ) => {
     }
   } );
 
+  const blogResponse = await getBlogByAlias( project, lang, blogDetail );
+  const excludeAlias = blogResponse[0].title[lang].key.current;
+  const tenRandomBlogs = await getNumberRandomBlogs( project, lang, 10, excludeAlias );
+
+  if( blogResponse.length ) {
+    if( ( blogResponse[0] || {} ).titleImage ) {
+      blogResponse[0].imgUrl = params._urlFor( blogResponse[0].titleImage ).url()
+    }
+
+    return {
+      page: 'blogDetail',
+      params,
+      reason: context.reason,
+      api: {
+        tours,
+        navigation,
+        serviceBasedData,
+        settingServicesCollections,
+        settingService,
+        settingSocials,
+        settingBlog,
+        blogOffset,
+        blog: blogResponse[0],
+        tenRandomBlogs
+      }
+    }
+  }
   return {
-    page: 'blog',
+    page: 'error',
     params,
     reason: context.reason,
     api: {
+      tours,
       navigation,
+      servicesRandom,
       serviceBasedData,
-      settingServicesCollections,
       settingService,
-      settingSocials,
-      settingBlog,
-      theLatestBlog,
-      blogOffset
+      settingServicesCollections,
+      settingSocials
     }
   }
 };

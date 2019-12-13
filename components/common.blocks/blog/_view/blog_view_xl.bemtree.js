@@ -8,8 +8,12 @@ block( 'blog' ).mod( 'view', 'xl' )(
         content: {
           block: 'link',
           mix: [{ block: 'blog', elem: 'link' }, { block: 'blog', elem: 'img' }],
-          url: ctx.content.imgUrl,
-          attrs: { style: `;background-image: url(${ ctx.content.imgUrl });` }
+          attrs: { style: `;background-image: url(${ ctx.content.imgUrl });` },
+          to: 'service',
+          params: {
+            category: 'blog',
+            service: ctx.content.alias
+          }
         }
       },
       {
@@ -41,6 +45,11 @@ block( 'blog' ).mod( 'view', 'xl' )(
               mix: { block: 'blog', elem: 'more' },
               content: {
                 html: `${ ( ( node.data.api.settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }&nbsp;&rarr;`
+              },
+              to: 'service',
+              params: {
+                category: 'blog',
+                service: ctx.content.alias
               }
             }
           }

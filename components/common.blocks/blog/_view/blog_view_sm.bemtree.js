@@ -2,15 +2,18 @@ block( 'blog' ).mod( 'view', 'sm' )(
   content()( ( node, ctx ) => {
     const currentLang = node.data.params.lang;
 
-    console.log( 'ctx.content.date: ', ctx.content.date );
     return [
       {
         elem: 'img-wrap',
         content: {
           block: 'link',
           mix: [{ block: 'blog', elem: 'link' }, { block: 'blog', elem: 'img' }],
-          url: ctx.content.imgUrl,
-          attrs: { style: `;background-image: url(${ ctx.content.imgUrl });` }
+          attrs: { style: `;background-image: url(${ ctx.content.imgUrl });` },
+          to: 'service',
+          params: {
+            category: 'blog',
+            service: ctx.content.alias
+          }
         }
       },
       ctx.content.date && {
@@ -23,7 +26,12 @@ block( 'blog' ).mod( 'view', 'sm' )(
         content: {
           block: 'link',
           mix: { block: 'blog', elem: 'link' },
-          content: ctx.content.h1
+          content: ctx.content.h1,
+          to: 'service',
+          params: {
+            category: 'blog',
+            service: ctx.content.alias
+          }
         }
       },
       ctx.content.text && {
@@ -39,6 +47,11 @@ block( 'blog' ).mod( 'view', 'sm' )(
           mix: { block: 'blog', elem: 'more' },
           content: {
             html: `${ ( ( node.data.api.settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }&nbsp;&rarr;`
+          },
+          to: 'service',
+          params: {
+            category: 'blog',
+            service: ctx.content.alias
           }
         }
       }

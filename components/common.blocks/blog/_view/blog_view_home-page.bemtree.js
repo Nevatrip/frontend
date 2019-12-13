@@ -56,7 +56,7 @@ block( 'blog' ).mod( 'view', 'home-page' )(
                   html: ctx.settingBlog.subscribeCode[currentLang]
                 }
               },
-              ctx.blogOffset.map( item => item !== ctx.currentLang && {
+              ctx.blogOffset.map( item => item.alias && {
                 block: 'blog',
                 mods: { view: 'sm' },
                 content: item

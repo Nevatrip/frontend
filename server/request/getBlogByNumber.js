@@ -1,11 +1,17 @@
 const client = require( './_request' );
 
-const query = ( lang, number ) => `*[_type == "blog"] | order(_createdAt desc) [${ number }]{
-"img": previewImage,
-"h1": title.${ lang }.name,
-"textSrc": description.${ lang },
-"alias": title.${ lang }.key,
-"dateSrc": _createdAt}`;
+const query = ( lang, number ) => {
+  const key = `title.${ lang }`;
+
+  return `*[_type == "blog" && defined(${ key })] | order(_createdAt desc) [${ number }]{
+        "img": previewImage,
+        "h1": title.${ lang }.name,
+        "textSrc": content.${ lang },
+        "alias": title.${ lang }.key.current,
+        "dateSrc": _createdAt}`;
+}
+
+
 const params = {};
 
 module.exports = async( project, lang, number ) => await client( project )
