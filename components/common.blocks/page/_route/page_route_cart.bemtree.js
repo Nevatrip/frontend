@@ -1,16 +1,15 @@
 block( 'page' ).mod( 'route', 'cart' )(
   mods()( () => [
     {
-      block: 'title',
-      mods: { view: 'xl' },
-      url: '',
-      title: 'Корзина'
-    },
-    {
-      block: 'page',
-      elem: 'content',
+      block: 'cart',
+      elem: 'wrapper',
       content: {
-        block: 'cart'
+        block: 'page',
+        elem: 'content',
+        elemMods: { view: 'cart' },
+        content: {
+          block: 'cart'
+        }
       }
     }
   ] ),

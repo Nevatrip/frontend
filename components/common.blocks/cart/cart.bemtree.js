@@ -3,7 +3,9 @@ block( 'cart' )(
   content()( () => [
     {
       block: 'text',
-      content: 'Я - корзина!'
+      content: 'Я - корзина!',
+      sessionId: '',
+      productId: ''
     }
   ] )
 );

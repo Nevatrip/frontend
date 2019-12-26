@@ -5,8 +5,15 @@
         block: 'cart',
       },
       {
+        block: 'cart',
+        elem: 'wrapper'
+      },
+      {
         block: 'page',
-        elem: 'content'
+        elem: 'content',
+        mods: {
+          view: 'cart'
+        }
       },
       {
         block: 'title',
