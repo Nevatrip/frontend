@@ -1,0 +1,13 @@
+.cart__wrapper{
+  box-sizing: border-box;
+  position: relative;
+  padding: 10px 0 30px;
+  background: #393c45 url(https://nevatrip.ru/assets/img/email/successbg.jpg) no-repeat center /cover;
+  height: 100%;
+  width: 100%;
+  min-height: 50vh;
+}
+
+.cart__wrapper + .page__spreader + .footer{
+  margin-top: 0;
+}
