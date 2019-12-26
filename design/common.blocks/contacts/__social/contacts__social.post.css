@@ -19,9 +19,7 @@
   text-decoration: none;
 }
 .contacts__social .image{
-  max-width: 20px;
-  max-height: 20px;
-  height: auto;
-  width: auto;
+  width: 20px;
+  height: 20px;
   display: inline-block;
 }

@@ -31,14 +31,10 @@ const action = async( context, params ) => {
   const tours = await getServices( project, lang );
 
   const categoryName = ( ( ( ( ( await getServiceCategoryByServiceAlias( project, lang, service ) || {} ).category || {} ).title || {} )[params.lang] || {} ).key || {} ).current;
-
   const serviceResponse = await getService( project, lang, categoryName, service );
-
   const navigation = await getNav( project, lang );
-
   const excludeID = ( serviceResponse || {} )._id;
   const servicesRandom = await ( categoryName ? getServicesRandom( project, lang, categoryName, excludeID ) : getServicesRandom( project, lang, category ) );
-
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
@@ -49,6 +45,21 @@ const action = async( context, params ) => {
   } );
 
   if( serviceResponse ) {
+    //meta, og
+    const meta = {
+      title: ( ( ( serviceResponse || {} ).titleLong || {} )[lang] || '' ).name || ( ( ( serviceResponse || {} ).title || {} )[lang] || '' ).name || '',
+      description: ( ( serviceResponse || {} ).descriptionMeta || {} )[lang] || '',
+      image: params._urlFor( ( serviceResponse || {} ).titleImage || '' ).fit( 'crop' )
+        .width( 1200 )
+        .height( 620 )
+        .url() || '',
+      type: 'website',
+      url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
+      width: '1200',
+      height: '620',
+      card: 'summary_large_image'
+    }
+
     return {
       page: 'service',
       params,
@@ -60,10 +71,27 @@ const action = async( context, params ) => {
         serviceBasedData,
         settingService,
         settingServicesCollections,
-        settingSocials
+        settingSocials,
+        meta
       }
     }
   }
+
+  //meta, og
+  const meta = {
+    title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
+    description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
+    image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+      .width( 280 )
+      .height( 280 )
+      .url() || '',
+    type: 'website',
+    url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
+    width: '280',
+    height: '280',
+    card: 'summary'
+  }
+
   return {
     page: 'error',
     params,
@@ -75,7 +103,8 @@ const action = async( context, params ) => {
       serviceBasedData,
       settingService,
       settingServicesCollections,
-      settingSocials
+      settingSocials,
+      meta
     }
   }
 };

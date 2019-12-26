@@ -20,6 +20,9 @@
       mods: { type: 'check-in-disk', size: 'xl' },
     },
     {
+      block: 'image'
+    },
+    {
       block: 'image',
       mods: {view: 'bg'}
     },

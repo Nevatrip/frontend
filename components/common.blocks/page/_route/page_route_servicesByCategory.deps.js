@@ -15,6 +15,10 @@
       },
       {
         block: 'breadcrumbs'
+      },
+      {
+        block: 'page',
+        elem: 'text'
       }
     ]
   },

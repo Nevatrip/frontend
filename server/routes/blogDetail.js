@@ -76,6 +76,21 @@ const action = async( context, params ) => {
       blogResponse[0].imgUrl = params._urlFor( blogResponse[0].titleImage ).url()
     }
 
+    //meta, og
+    const meta = {
+      title: ( ( ( blogResponse[0] || {} ).titleLong || {} )[lang] || '' ).name || ( ( ( blogResponse[0] || {} ).title || {} )[lang] || '' ).name || '',
+      description: ( ( blogResponse[0] || {} ).descriptionMeta || {} )[lang] || '',
+      image: params._urlFor( ( blogResponse[0] || {} ).titleImage || '' ).fit( 'crop' )
+        .width( 1200 )
+        .height( 620 )
+        .url() || '',
+      type: 'website',
+      url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
+      width: '1200',
+      height: '620',
+      card: 'summary_large_image'
+    }
+
     return {
       page: 'blogDetail',
       params,
@@ -90,10 +105,27 @@ const action = async( context, params ) => {
         settingBlog,
         blogOffset,
         blog: blogResponse[0],
-        tenRandomBlogs
+        tenRandomBlogs,
+        meta
       }
     }
   }
+
+  //meta, og
+  const meta = {
+    title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
+    description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
+    image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+      .width( 280 )
+      .height( 280 )
+      .url() || '',
+    type: 'website',
+    url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
+    width: '280',
+    height: '280',
+    card: 'summary'
+  }
+
   return {
     page: 'error',
     params,
@@ -105,7 +137,8 @@ const action = async( context, params ) => {
       serviceBasedData,
       settingService,
       settingServicesCollections,
-      settingSocials
+      settingSocials,
+      meta
     }
   }
 };

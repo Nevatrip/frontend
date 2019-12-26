@@ -30,6 +30,13 @@ block( 'page' ).mod( 'route', 'servicesByCategory' )(
               servicePriceOutside: ( ( node.data.api.settingService || {} ).servicePriceOutside || {} )[node.currentLang] || ''
             }
           } ) )
+        },
+        {
+          block: 'page',
+          elem: 'text',
+          content: {
+            html: ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).description || {} )[node.currentLang] || ''
+          }
         }
       ]
     }
