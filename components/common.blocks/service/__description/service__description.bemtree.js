@@ -29,19 +29,30 @@ block( 'service' ).elem( 'description' )(
               ]
             )],
           ctx.vehicle && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionVehicle || {} )[currentLang] || '' }: `, ctx.vehicle],
-          ctx.excursion.length > 0 && ctx.excursion && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionExcursion || {} )[currentLang] || '' }: `, ctx.excursion.map( lang => ( {
-            block: 'image',
-            mods: { view: 'icon' },
-            url: lang.url,
-            alt: lang.name[node.currentLang] || '',
-            title: lang.name[node.currentLang] || ''
-          } ) )],
+          ctx.excursion.length > 0 && ctx.excursion && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionExcursion || {} )[currentLang] || '' }: `, ctx.excursion.map( lang => (
+            {
+              block: 'popup-tip',
+              mods: { view: 'icon' },
+              text: lang.name[node.currentLang] || '',
+              title: {
+                block: 'image',
+                mods: { view: 'icon' },
+                url: lang.url,
+                alt: lang.name[node.currentLang] || '',
+                title: lang.name[node.currentLang] || ''
+              }
+            } ) )],
           ctx.placeFeatures && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionPlaceFeatures || {} )[currentLang] || '' }: `, ctx.placeFeatures.map( placeFeature => ( {
-            block: 'image',
-            mods: { view: 'colored-icon' },
-            url: placeFeature.url,
-            alt: placeFeature.name[node.currentLang] || '',
-            title: placeFeature.name[node.currentLang] || ''
+            block: 'popup-tip',
+            mods: { view: 'icon' },
+            text: placeFeature.name[node.currentLang] || '',
+            title: {
+              block: 'image',
+              mods: { view: 'colored-icon' },
+              url: placeFeature.url,
+              alt: placeFeature.name[node.currentLang] || '',
+              title: placeFeature.name[node.currentLang] || ''
+            }
           } ) )],
           ctx.routeMap && [
             {

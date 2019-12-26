@@ -28,9 +28,25 @@ const action = async( context, params ) => {
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
   const settingSocials = await getSettingSocials( project, lang );
+
   settingSocials && settingSocials.map( item => {
     item.img = params._urlFor( item.imgSrc ).url();
-  });
+  } );
+
+  //meta, og
+  const meta = {
+    title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
+    description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
+    image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+      .width( 280 )
+      .height( 280 )
+      .url() || '',
+    type: 'website',
+    url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
+    width: '280',
+    height: '280',
+    card: 'summary'
+  }
 
   return {
     page: 'cart',
@@ -42,7 +58,8 @@ const action = async( context, params ) => {
       serviceBasedData,
       settingServicesCollections,
       settingService,
-      settingSocials
+      settingSocials,
+      meta
     }
   }
 };

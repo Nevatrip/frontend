@@ -14,6 +14,10 @@
     },
     {
       block: 'image'
+    },
+    {
+      block: 'popup-tip',
+      mods: {view: 'icon'}
     }
   ],
 }];

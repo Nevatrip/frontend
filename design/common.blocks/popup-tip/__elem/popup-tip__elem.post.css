@@ -11,3 +11,12 @@
 .popup-tip__elem:hover{
   background-image: linear-gradient(to right, transparent 40%, transparent 40%);
 }
+
+.popup-tip.popup-tip_view_icon .popup-tip__elem{
+  color: inherit;
+  background-image: none;
+}
+
+.popup-tip.popup-tip_view_icon .popup-tip__elem:hover{
+  background-image: none;
+}

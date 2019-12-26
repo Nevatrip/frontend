@@ -70,6 +70,20 @@ const action = async( context, params ) => {
     }
   } );
 
+  const meta = {
+    title: ( ( settingBlog || {} ).heading || {} )[lang] || '',
+    description: ( ( settingBlog || {} ).intro || {} )[lang] || '',
+    image: params._urlFor( ( settingBlog || {} ).image || '' ).fit( 'crop' )
+      .width( 1200 )
+      .height( 620 )
+      .url() || '',
+    type: 'website',
+    url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
+    width: '1200',
+    height: '620',
+    card: 'summary_large_image'
+  }
+
   return {
     page: 'blog',
     params,
@@ -82,7 +96,8 @@ const action = async( context, params ) => {
       settingSocials,
       settingBlog,
       theLatestBlog,
-      blogOffset
+      blogOffset,
+      meta
     }
   }
 };

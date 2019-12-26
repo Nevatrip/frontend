@@ -7,10 +7,13 @@ block( 'page' ).mod( 'route', 'index' )(
     const currentLang = node.data.params.lang;
 
     return [
-      ( node.data.api || {} ).serviceBanner && {
+      {
         block: 'service',
         mods: { view: 'banner' },
-        service: ( node.data.api || {} ).serviceBanner || ''
+        service: ( node.data.api || {} ).serviceBanner,
+        bannerImg: ( ( node.data.api || {} ).bannerFull || {} ).img || '',
+        bannerLink: ( ( node.data.api || {} ).bannerFull || {} ).link || '',
+        bannerTitle: ( ( node.data.api || {} ).bannerFull || {} ).title || ''
       },
       {
         block: 'features',

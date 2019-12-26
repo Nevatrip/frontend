@@ -20,7 +20,8 @@ const action = async( context, params ) => {
     project
   } = params;
 
-  const bannerAlias = ( ( await getSettingMainBanner( project, lang ) )[0] || {} ).alias;
+  const bannerFull = ( await getSettingMainBanner( project, lang ) )[0] || {};
+  const bannerAlias = bannerFull.alias;
   const settingTopFeatures = await getSettingTopFeatures( project, lang );
   const settingBottomFeatures = await getSettingBottomFeatures( project, lang );
   const settingSocials = await getSettingSocials( project, lang );
@@ -43,6 +44,12 @@ const action = async( context, params ) => {
       dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
     }
   );
+
+  console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
+  console.log( 'bannerFull: ', bannerFull );
+  
+  console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
+  
   params._urlFor = source => builder.image( source );
 
   servicesFilter && servicesFilter.map( item => {
@@ -79,7 +86,26 @@ const action = async( context, params ) => {
 
   settingSocials && settingSocials.map( item => {
     item.img = params._urlFor( item.imgSrc ).url();
-  });
+  } );
+
+  if( bannerFull.image ) {
+    bannerFull.img = params._urlFor( bannerFull.image ).url();
+  }
+
+  //meta, og
+  const meta = {
+    title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
+    description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
+    image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+      .width( 280 )
+      .height( 280 )
+      .url() || '',
+    type: 'website',
+    url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
+    width: '280',
+    height: '280',
+    card: 'summary'
+  }
 
   return {
     page: 'index',
@@ -96,7 +122,9 @@ const action = async( context, params ) => {
       settingBottomFeatures,
       currentLang,
       moreText,
-      settingSocials
+      settingSocials,
+      meta,
+      bannerFull
     }
   }
 };
