@@ -56,9 +56,10 @@ block( 'service' ).elem( 'description' )(
           } ) )],
           ctx.routeMap && [
             {
-              block: 'link',
-              url: '#map',
-              content: ( ( node.data.api.settingService || {} ).serviceDescriptionRouteMap || {} )[currentLang] || ''
+              block: 'button',
+              mods: { view: 'plain', action: 'map' },
+              text: ( ( node.data.api.settingService || {} ).serviceDescriptionRouteMap || {} )[currentLang] || '',
+              js: { hello: 'world' }
             }
           ]
         ].map( item => item && {

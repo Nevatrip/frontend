@@ -13,6 +13,7 @@ const cart = require( './routes/cart' );
 const servicesByTags = require( './routes/servicesByTags' );
 const blog = require( './routes/blog' );
 const blogDetail = require( './routes/blogDetail' );
+const article = require( './routes/article' );
 
 const rootPath = process.env.ROOT_PATH;
 const rootProject = process.env.ROOT_PROJECT;
@@ -59,7 +60,7 @@ const router = new UniversalRouter(
               {
                 path: '',
                 name: 'blog',
-                load: async() => await blog,
+                load: async() => await blog
               },
               {
                 path: '/:blogDetail',
@@ -99,6 +100,16 @@ const router = new UniversalRouter(
             ]
           },
           {
+            path: '/:article',
+            children: [
+              {
+                path: '',
+                name: 'article',
+                load: async() => await article
+              }
+            ]
+          },
+          {
             path: '/:collection',
             children: [
               {
@@ -129,6 +140,11 @@ const router = new UniversalRouter(
       params.urlTo = generateUrls( context.router );
       const routes = await getRoutes( 'settingServiceCategory', params.lang, params.project );
 
+      console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
+      console.log( 'params: ', params );
+
+      console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
+
       if( params.category===undefined || routes.indexOf( params.category ) > -1 ) {
         if( typeof context.route.load === 'function' ) {
           return context.route.load().then( action => action( context, params ) );
@@ -137,7 +153,7 @@ const router = new UniversalRouter(
           return context.route.action( context, params );
         }
       }
-      return undefined;
+      return undefined
     }
 
     // errorHandler(error, context) {

@@ -61,6 +61,10 @@ block( 'page' )(
         ],
         copyright: ( ( serviceBasedData || {} ).copyright || {} )[currentLang] || '',
         social: settingSocials
+      },
+      {
+        block: 'page',
+        elem: 'modal'
       }
     ]
   } ),

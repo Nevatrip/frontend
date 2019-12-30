@@ -24,6 +24,7 @@ const action = async( context, params ) => {
       dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
     }
   );
+
   params._urlFor = source => builder.image( source );
 
   const routes = await getRoutes( 'settingServiceCategory', lang, project );
@@ -80,75 +81,75 @@ const action = async( context, params ) => {
 
   // const servicesRandom = await getServicesRandom(lang, 9);
 
-  //if( services.length > 0 && routes.indexOf( category ) > -1 ) {
+  if( services.length > 0 && routes.indexOf( category ) > -1 ) {
+    //meta, og
+    const meta = {
+      title: ( ( ( serviceCategoryFull || {} ).titleLong || {} )[lang] || '' ).name || ( ( ( serviceCategoryFull || {} ).title || {} )[lang] || '' ).name || '',
+      description: ( ( serviceCategoryFull || {} ).descriptionMeta || {} )[lang] || ( ( serviceCategoryFull || {} ).subTitle || {} )[lang] || '',
+      image: params._urlFor( ( ( ( serviceCategoryFull || {} ).titleImage || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+        .width( 1200 )
+        .height( 620 )
+        .url() || '',
+      type: 'website',
+      url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
+      width: '1200',
+      height: '620',
+      card: 'summary_large_image'
+    }
+
+    return {
+      page: 'servicesByCategory',
+      params,
+      api: {
+        routes,
+        services,
+        navigation,
+        serviceCategory,
+        serviceCategoryFull,
+        serviceBasedData,
+        settingService,
+        serviceCategories,
+        settingServicesCollections,
+        currentLang,
+        moreText,
+        servicePriceOutside,
+        settingSocials,
+        meta
+      }
+    }
+
+  }
+
   //meta, og
   const meta = {
-    title: ( ( ( serviceCategoryFull || {} ).titleLong || {} )[lang] || '' ).name || ( ( ( serviceCategoryFull || {} ).title || {} )[lang] || '' ).name || '',
-    description: ( ( serviceCategoryFull || {} ).descriptionMeta || {} )[lang] || ( ( serviceCategoryFull || {} ).subTitle || {} )[lang] || '',
-    image: params._urlFor( ( ( ( serviceCategoryFull || {} ).titleImage || {} ).asset || {} )._ref || '' ).fit( 'crop' )
-      .width( 1200 )
-      .height( 620 )
+    title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
+    description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
+    image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+      .width( 280 )
+      .height( 280 )
       .url() || '',
     type: 'website',
     url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
-    width: '1200',
-    height: '620',
-    card: 'summary_large_image'
+    width: '280',
+    height: '280',
+    card: 'summary'
   }
 
   return {
-    page: 'servicesByCategory',
+    page: 'error',
     params,
+    reason: context.reason,
     api: {
-      routes,
-      services,
       navigation,
-      serviceCategory,
-      serviceCategoryFull,
       serviceBasedData,
       settingService,
-      serviceCategories,
       settingServicesCollections,
-      currentLang,
-      moreText,
-      servicePriceOutside,
       settingSocials,
       meta
+
+      // servicesRandom,
     }
   }
-
-  //}
-
-  //meta, og
-  // const meta = {
-  //   title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
-  //   description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
-  //   image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
-  //     .width( 280 )
-  //     .height( 280 )
-  //     .url() || '',
-  //   type: 'website',
-  //   url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
-  //   width: '280',
-  //   height: '280',
-  //   card: 'summary'
-  // }
-  //
-  // return {
-  //   page: 'error',
-  //   params,
-  //   reason: context.reason,
-  //   api: {
-  //     navigation,
-  //     serviceBasedData,
-  //     settingService,
-  //     settingServicesCollections,
-  //     settingSocials,
-  //     meta
-  //
-  //     // servicesRandom,
-  //   }
-  // }
 };
 
 module.exports = action;

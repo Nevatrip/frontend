@@ -77,76 +77,75 @@ const action = async( context, params ) => {
   // const serviceCategories = await getServiceCategory();
   // const servicesRandom = await getServicesRandom(lang, 9);
 
-  //if( ( services || [] ).length > 0 && routes.indexOf( collection ) > -1 ) {
+  if( ( services || [] ).length > 0 && routes.indexOf( collection ) > -1 ) {
+    //meta, og
+    const meta = {
+      title: ( ( ( serviceCategoryFull || {} ).titleLong || {} )[lang] || '' ).name || ( ( ( serviceCategoryFull || {} ).title || {} )[lang] || '' ).name || '',
+      description: ( ( serviceCategoryFull || {} ).descriptionMeta || {} )[lang] || ( ( serviceCategoryFull || {} ).subTitle || {} )[lang] || '',
+      image: params._urlFor( ( ( ( serviceCategoryFull || {} ).titleImage || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+        .width( 1200 )
+        .height( 620 )
+        .url() || '',
+      type: 'website',
+      url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
+      width: '1200',
+      height: '620',
+      card: 'summary_large_image'
+    }
+
+    return {
+      page: 'servicesByCollection',
+      params,
+      api: {
+        routes,
+        serviceBasedData,
+        navigation,
+        settingService,
+        settingServicesCollections,
+        services,
+        serviceCollection,
+        serviceCategoryFull,
+        currentLang,
+        moreText,
+        servicePriceOutside,
+        settingSocials,
+        meta
+
+        // serviceCategories,
+      }
+    }
+  }
+
   //meta, og
   const meta = {
-    title: ( ( ( serviceCategoryFull || {} ).titleLong || {} )[lang] || '' ).name || ( ( ( serviceCategoryFull || {} ).title || {} )[lang] || '' ).name || '',
-    description: ( ( serviceCategoryFull || {} ).descriptionMeta || {} )[lang] || ( ( serviceCategoryFull || {} ).subTitle || {} )[lang] || '',
-    image: params._urlFor( ( ( ( serviceCategoryFull || {} ).titleImage || {} ).asset || {} )._ref || '' ).fit( 'crop' )
-      .width( 1200 )
-      .height( 620 )
+    title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
+    description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
+    image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+      .width( 280 )
+      .height( 280 )
       .url() || '',
     type: 'website',
     url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
-    width: '1200',
-    height: '620',
-    card: 'summary_large_image'
+    width: '280',
+    height: '280',
+    card: 'summary'
   }
 
   return {
-    page: 'servicesByCollection',
+    page: 'error',
     params,
+    reason: context.reason,
     api: {
-      routes,
       serviceBasedData,
       navigation,
       settingService,
       settingServicesCollections,
-      services,
-      serviceCollection,
-      serviceCategoryFull,
-      currentLang,
-      moreText,
-      servicePriceOutside,
       settingSocials,
       meta
 
-      // serviceCategories,
+      // servicesRandom,
     }
   }
-
-  //}
-
-  //meta, og
-  // const meta = {
-  //   title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
-  //   description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
-  //   image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
-  //     .width( 280 )
-  //     .height( 280 )
-  //     .url() || '',
-  //   type: 'website',
-  //   url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
-  //   width: '280',
-  //   height: '280',
-  //   card: 'summary'
-  // }
-  //
-  // return {
-  //   page: 'error',
-  //   params,
-  //   reason: context.reason,
-  //   api: {
-  //     serviceBasedData,
-  //     navigation,
-  //     settingService,
-  //     settingServicesCollections,
-  //     settingSocials,
-  //     meta
-  //
-  //     // servicesRandom,
-  //   }
-  // }
 };
 
 module.exports = action;

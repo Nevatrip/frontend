@@ -18,6 +18,10 @@
     {
       block: 'popup-tip',
       mods: {view: 'icon'}
+    },
+    {
+      block: 'button',
+      mods: { view: 'plain', action: 'map' }
     }
   ],
 }];

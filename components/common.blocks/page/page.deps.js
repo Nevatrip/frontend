@@ -9,6 +9,10 @@
           'footer',
         ],
       },
+      {
+        block: 'page',
+        elem: 'modal'
+      }
     ],
   },
 ];
