@@ -32,7 +32,7 @@ block( 'service' ).elem( 'description' )(
           ctx.excursion.length > 0 && ctx.excursion && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionExcursion || {} )[currentLang] || '' }: `, ctx.excursion.map( lang => (
             {
               block: 'popup-tip',
-              mods: { view: 'icon' },
+              mods: { view: 'icon', popup: 1 },
               text: lang.name[node.currentLang] || '',
               title: {
                 block: 'image',
@@ -44,7 +44,7 @@ block( 'service' ).elem( 'description' )(
             } ) )],
           ctx.placeFeatures && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionPlaceFeatures || {} )[currentLang] || '' }: `, ctx.placeFeatures.map( placeFeature => ( {
             block: 'popup-tip',
-            mods: { view: 'icon' },
+            mods: { view: 'icon', popup: 1 },
             text: placeFeature.name[node.currentLang] || '',
             title: {
               block: 'image',
@@ -56,10 +56,9 @@ block( 'service' ).elem( 'description' )(
           } ) )],
           ctx.routeMap && [
             {
-              block: 'button',
-              mods: { view: 'plain', action: 'map' },
-              text: ( ( node.data.api.settingService || {} ).serviceDescriptionRouteMap || {} )[currentLang] || '',
-              js: { hello: 'world' }
+              block: 'link',
+              url: '#map',
+              content: ( ( node.data.api.settingService || {} ).serviceDescriptionRouteMap || {} )[currentLang] || ''
             }
           ]
         ].map( item => item && {

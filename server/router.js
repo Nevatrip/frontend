@@ -140,11 +140,6 @@ const router = new UniversalRouter(
       params.urlTo = generateUrls( context.router );
       const routes = await getRoutes( 'settingServiceCategory', params.lang, params.project );
 
-      console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
-      console.log( 'params: ', params );
-
-      console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
-
       if( params.category===undefined || routes.indexOf( params.category ) > -1 ) {
         if( typeof context.route.load === 'function' ) {
           return context.route.load().then( action => action( context, params ) );

@@ -1,5 +1,16 @@
-[{
+[
+  {
+  tech: 'js',
   shouldDeps: [
-    'text'
-  ],
-}];
+    {
+      block: 'cart',
+      elem: 'content',
+      tech: 'bemhtml'
+    },
+    {
+      block: 'cart',
+      elem: 'form'
+    }
+  ]
+}
+]

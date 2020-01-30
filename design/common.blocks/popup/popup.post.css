@@ -12,7 +12,7 @@
   max-width: 200px;
   text-align: center;
 }
-.popup.popup_js_inited {
+.popup.popup_js_inited:not(.modal) {
   display: block
 }
 

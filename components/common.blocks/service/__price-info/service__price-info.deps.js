@@ -5,7 +5,8 @@
       mods: {type: 'disk', size: 'md'}
     },
     {
-      block: 'popup-tip'
+      block: 'popup-tip',
+      mods: {popup: 1}
     }
   ],
 }];

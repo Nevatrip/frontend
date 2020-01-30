@@ -1,16 +1,31 @@
-modules.define( 'cart', ['i-bem-dom'], function( provide, bemDom ) {
-  provide( bemDom.declBlock( this.name, {
-    onSetMod: {
-      js: {
-        inited() {
-          console.log( '↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓_↓↓' );
-          console.log( '123' );
-          console.log( '↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_↑↑_' );
-          this.on( 'hover', () => {
-            this._elem( 'content' ).toggleMod( 'visible' )
-          } );
+modules.define( 'cart',
+  [
+    'i-bem-dom',
+    'form',
+    'location',
+    'uri__querystring',
+    'jquery',
+    'BEMHTML'
+  ],
+  function( provide, bemDom, Form, Location, Querystring, $, BEMHTML ) {
+    provide( bemDom.declBlock( this.name, {
+      onSetMod: {
+        js: {
+          inited() {
+            //this._form = this.findChildBlock( Form );
+
+            console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
+            console.log( 'this: ', this );
+
+            console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
+          }
+        },
+        _getDefaultParams() {
+          return {
+            param1: 'val1',
+            param2: 'val2'
+          }
         }
       }
-    }
-  } ) );
-} );
+    } ) );
+  } );

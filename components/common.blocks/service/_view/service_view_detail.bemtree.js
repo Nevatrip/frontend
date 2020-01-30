@@ -28,6 +28,11 @@ block( 'service' ).mod( 'view', 'detail' )(
       // time,
     } = service;
 
+    console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
+    console.log( 'attractions: ', attractions );
+
+    console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
+
     const serviceTitle = ( title[currentLang] || {} ).name || '';
 
     return [
@@ -221,7 +226,33 @@ block( 'service' ).mod( 'view', 'detail' )(
                     },
                     {
                       block: 'list',
-                      items: attractions.map( item => item.title[currentLang] ) || [],
+                      items: attractions.map( item => ( {
+                        block: 'button',
+                        mods: { action: 'modal', type: 'link' },
+                        text: item.title[currentLang],
+                        js: {
+                          content: [
+                            {
+                              block: 'modal',
+                              elem: 'close'
+                            },
+                            item.title && {
+                              content: item.title[currentLang]
+                            },
+                            item.image && {
+                              content: item.image
+                            },
+                            item.phone && {
+                              content: item.phone
+                            },
+                            item.coords && {
+                              content: item.coords
+                            }
+                          ]
+                        },
+                        type: 'link'
+
+                      } ) ),
                       mods: { type: 'check', size: 'md' }
                     }
                   ],

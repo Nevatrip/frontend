@@ -17,11 +17,11 @@
     },
     {
       block: 'popup-tip',
-      mods: {view: 'icon'}
+      mods: {view: 'icon', popup: 1}
     },
     {
       block: 'button',
-      mods: { view: 'plain', action: 'map' }
+      mods: { view: 'plain', action: 'map', type: 'link' }
     }
   ],
 }];

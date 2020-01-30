@@ -15,6 +15,7 @@ block( 'service' ).elem( 'price-info' )(
 
         info = {
           block: 'popup-tip',
+          mods: { popup: 1 },
           title: ( ( ( settingArr || [] )[0] || [] ).popupTitle || {} )[node.currentLang] || infoString,
           text: ( ( ( settingArr || [] )[0] || [] ).popupContent || {} )[node.currentLang] || infoString
         };

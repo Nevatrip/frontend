@@ -62,6 +62,14 @@
     },
     {
       block: 'breadcrumbs'
+    },
+    {
+      block: 'button',
+      mods: { action: 'modal', type: 'link' },
+    },
+    {
+      block: 'modal',
+      elem: 'close'
     }
   ]
 }]
