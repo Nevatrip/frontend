@@ -1,7 +1,9 @@
 block( 'service' ).mod( 'view', 'detail' )(
   content()( ( node, { service } ) => {
     const currentLang = node.data.params.lang;
+
     const {
+      _id: id,
       titleImage,
       title,
       price,
@@ -90,13 +92,18 @@ block( 'service' ).mod( 'view', 'detail' )(
                     pricesDescription: ( pricesDescription || {} )[node.currentLang] || '',
                     prevention: ( prevention || {} )[node.currentLang] || ''
                   },
-                  ( buyLink || {} )[currentLang] && ( price || priceOld ) && {
+
+                  // TODO: отвязаться от urlBuy — вынести как отдельный метод/модификатор
+
+                  price && {
                     block: 'service',
                     elem: 'buy',
-                    price: price || '',
+                    id,
+                    price,
                     priceOutside: priceOld || '',
-                    title: serviceTitle || '',
-                    urlBuy: buyLink[currentLang]
+                    title: serviceTitle || ''
+
+                    // urlBuy: buyLink[currentLang]
                   }
                 ]
               }

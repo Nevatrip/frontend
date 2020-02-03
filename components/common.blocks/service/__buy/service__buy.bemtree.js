@@ -1,32 +1,48 @@
 block( 'service' ).elem( 'buy' )(
-  content()( ( node, ctx ) => {
-    const currentLang = node.data.params.lang;
+  content()( ( {
+    data: {
+      params: {
+        lang: currentLang
+      },
+      api: {
+        settingService
+      },
+      session
+    }
+  }, {
+    id,
+    price,
+    title = '',
+    priceOutside
+
+    // urlBuy,
+    // route,
+    // params,
+  } ) => {
+    const content = ( ( settingService || {} ).serviceBuyLink || {} )[currentLang] || '';
 
     return [
       {
         block: 'page',
         elem: 'row',
         content: [
-          ctx.price && {
+          price && {
             block: 'service',
             elem: 'price',
             elemMods: { view: 'md' },
-            content: ctx.price
+            content: price
           },
           {
-            block: 'link',
-            mods: { view: 'button' },
-            content: ( ( node.data.api.settingService || {} ).serviceBuyLink || {} )[currentLang] || '',
-            url: ctx.urlBuy || '',
-            title: `${ ( ( node.data.api.settingService || {} ).serviceBuyLink || {} )[currentLang] || '' } ${ ctx.title || '' }`,
-            to: ctx.route,
-            params: ctx.params
+            block: 'form',
+            mods: { view: 'add-to-cart' },
+            currentLang,
+            id, session, title, content
           }
         ]
       },
-      ctx.priceOutside && {
+      priceOutside && {
         elem: 'price-outside',
-        content: ctx.priceOutside
+        content: priceOutside
       }
     ]
   } ),
