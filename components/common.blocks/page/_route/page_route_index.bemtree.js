@@ -8,6 +8,17 @@ block( 'page' ).mod( 'route', 'index' )(
 
     return [
       {
+        block: 'schema',
+        mod: { type: 'organization' },
+        legalName: 'legalName',
+        description: 'description',
+        logo: 'logo',
+        email: 'email',
+        telephone: 'telephone',
+        address: 'address',
+        aggregateRating: 'aggregateRating'
+      },
+      {
         block: 'service',
         mods: { view: 'banner' },
         service: ( node.data.api || {} ).serviceBanner,

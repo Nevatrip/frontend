@@ -45,11 +45,6 @@ const action = async( context, params ) => {
     }
   );
 
-  console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
-  console.log( 'bannerFull: ', bannerFull );
-  
-  console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
-  
   params._urlFor = source => builder.image( source );
 
   servicesFilter && servicesFilter.map( item => {
