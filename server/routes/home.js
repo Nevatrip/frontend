@@ -45,11 +45,6 @@ const action = async( context, params ) => {
     }
   );
 
-  console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
-  console.log( 'bannerFull: ', bannerFull );
-  
-  console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
-  
   params._urlFor = source => builder.image( source );
 
   servicesFilter && servicesFilter.map( item => {
@@ -84,7 +79,7 @@ const action = async( context, params ) => {
     return item;
   } );
 
-  settingSocials && settingSocials.map( item => {
+  settingSocials && settingSocials.forEach( item => {
     item.img = params._urlFor( item.imgSrc ).url();
   } );
 
