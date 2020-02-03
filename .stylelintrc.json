@@ -8,8 +8,8 @@
     "color-hex-length": "short",
     "color-named": "never",
     "selector-no-qualifying-type": true,
-    "selector-no-id": true,
-    "selector-no-attribute": true,
+    "selector-max-id": 0,
+    "selector-max-attribute": 0,
     "selector-combinator-space-after": "always",
     "selector-attribute-quotes": "always",
     "selector-attribute-operator-space-before": "always",
@@ -22,13 +22,8 @@
     "declaration-empty-line-before": [
       "always",
       {
-        "except": [
-          "first-nested"
-        ],
-        "ignore": [
-          "after-declaration",
-          "after-comment"
-        ]
+        "except": ["first-nested"],
+        "ignore": ["after-declaration", "after-comment"]
       }
     ],
     "property-no-vendor-prefix": true,
@@ -53,5 +48,5 @@
     "media-feature-colon-space-before": "never",
     "media-feature-colon-space-after": "always"
   },
-  "ignoreFiles": [ "**/*.js", "**/*.json" ]
+  "ignoreFiles": ["**/*.js", "**/*.json"]
 }
