@@ -40,7 +40,7 @@ const router = new UniversalRouter(
         }
       ],
       {
-        path: rootProject==='prahatrip' && rootPath === '' ? '/:lang' : rootPath,
+        path: rootProject === 'prahatrip' && rootPath === '' ? '/:lang' : rootPath,
         children: [
           {
             path: '',
@@ -59,7 +59,7 @@ const router = new UniversalRouter(
               {
                 path: '',
                 name: 'blog',
-                load: async() => await blog,
+                load: async() => await blog
               },
               {
                 path: '/:blogDetail',
