@@ -6,7 +6,7 @@
     },
     {
       block: 'schema',
-      mods: { type: 'organization' },
+      mods: { type: 'product' },
     }
   ]
 }]

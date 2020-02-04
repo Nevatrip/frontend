@@ -1,22 +1,23 @@
 block( 'page' ).mod( 'route', 'service' )(
   mods()( node => {
-    const serviceBasedData = node.data.api.serviceBasedData;
     const currentLang = node.data.params.lang;
+    const service = node.data.api.service;
+    const serviceBasedData = node.data.api.serviceBasedData;
 
     return [
       {
         block: 'schema',
-        mods: { type: 'organization' },
-        name: ( serviceBasedData.title || {} )[currentLang] || '',
-        description: ( serviceBasedData.shortDescription || {} )[currentLang] || '',
-        logo: node._urlFor( ( ( ( serviceBasedData || {} ).logo || {} ).asset || {} )._ref ).url() || '',
-        email: ( serviceBasedData.email || {} )[currentLang] || '',
-        telephone: ( serviceBasedData.tel || {} )[currentLang] || ''
+        mods: { type: 'product' },
+        name: ( ( ( service || {} ).title || {} )[currentLang] || {} ).name || '',
+        description: ( ( service || {} ).descriptionMeta || {} )[currentLang] || '',
+        image: service.titleImage || '',
+        price: service.price || '',
+        priceCurrency: serviceBasedData.priceCurrency || '' //Валюта (в 3-х буквенном формате ISO 4217 ) цены предложения. ( RUB, EUR, ... )
       },
       {
         block: 'service',
         mods: { view: 'detail' },
-        service: node.data.api.service
+        service
       }
     ]
   } ),
