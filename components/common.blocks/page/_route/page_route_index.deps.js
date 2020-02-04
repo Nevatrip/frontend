@@ -33,7 +33,7 @@
       },
       {
         block: 'schema',
-        mod: { type: 'organization' },
+        mods: { type: 'organization' },
       }
     ],
   },

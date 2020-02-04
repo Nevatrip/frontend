@@ -9,14 +9,12 @@ block( 'page' ).mod( 'route', 'index' )(
     return [
       {
         block: 'schema',
-        mod: { type: 'organization' },
-        legalName: 'legalName',
-        description: 'description',
-        logo: 'logo',
-        email: 'email',
-        telephone: 'telephone',
-        address: 'address',
-        aggregateRating: 'aggregateRating'
+        mods: { type: 'organization' },
+        name: ( serviceBasedData.title || {} )[currentLang] || '',
+        description: ( serviceBasedData.shortDescription || {} )[currentLang] || '',
+        logo: node._urlFor( ( ( ( serviceBasedData || {} ).logo || {} ).asset || {} )._ref ).url() || '',
+        email: ( serviceBasedData.email || {} )[currentLang] || '',
+        telephone: ( serviceBasedData.tel || {} )[currentLang] || ''
       },
       {
         block: 'service',
