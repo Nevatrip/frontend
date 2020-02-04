@@ -7,7 +7,7 @@
       },
       {
         block: 'schema',
-        mods: { type: 'organization' },
+        mods: { type: 'blog-posting' },
       }
     ]
   },
