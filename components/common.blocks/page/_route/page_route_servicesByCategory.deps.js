@@ -19,6 +19,10 @@
       {
         block: 'page',
         elem: 'text'
+      },
+      {
+        block: 'schema',
+        mods: { type: 'organization' },
       }
     ]
   },
