@@ -24,6 +24,7 @@ const action = async( context, params ) => {
       dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
     }
   );
+
   params._urlFor = source => builder.image( source );
 
   const routes = await getRoutes( 'settingServiceCategory', lang, project );

@@ -17,28 +17,35 @@ const blogDetail = require( './routes/blogDetail' );
 const rootPath = process.env.ROOT_PATH;
 const rootProject = process.env.ROOT_PROJECT;
 const rootLang = process.env.ROOT_LANG;
-const langsArr = process.env.LANGS;
 
-//const routeRedirect = () => `/${ rootProject }/${ rootLang }`;
+const routeRedirect = () => {
+  if( rootPath==='' ) {
+    if( rootProject==='prahatrip' ) {
+      return `/${ rootLang }`
+    }
+    return ''
+  }
+  return `/${ rootProject }/${ rootLang }`
+}
 
-const router = new UniversalRouter(
+const _router = new UniversalRouter(
   {
     path: '',
     children: [
-      // ... [
-      //   {
-      //     path: '',
-      //     name: 'root',
-      //     action: () => ( { redirect: routeRedirect() } )
-      //   }
-      // ],
+      ... [
+        {
+          path: '',
+          name: 'root',
+          action: () => ( { redirect: routeRedirect() } )
+        }
+      ],
       {
-        path: rootPath,
-        name: 'root',
+        path: rootProject==='prahatrip' && rootPath === '' ? '/:lang' : rootPath,
         children: [
           {
             path: '',
             name: 'index',
+            action: () => ( { redirect: '/' } ),
             load: async() => await home
           },
           {
@@ -52,7 +59,7 @@ const router = new UniversalRouter(
               {
                 path: '',
                 name: 'blog',
-                load: async() => await blog
+                load: async() => await blog,
               },
               {
                 path: '/:blogDetail',
@@ -122,17 +129,14 @@ const router = new UniversalRouter(
       params.urlTo = generateUrls( context.router );
       const routes = await getRoutes( 'settingServiceCategory', params.lang, params.project );
 
-      if( langsArr.indexOf( params.lang )!== -1 ) {
-        if( params.category===undefined || routes.indexOf( params.category ) > -1 ) {
-          if( typeof context.route.load === 'function' ) {
-            return context.route.load().then( action => action( context, params ) );
-          }
-          if( typeof context.route.action === 'function' ) {
-            return context.route.action( context, params );
-          }
+      if( params.category===undefined || routes.indexOf( params.category ) > -1 ) {
+        if( typeof context.route.load === 'function' ) {
+          return context.route.load().then( action => action( context, params ) );
+        }
+        if( typeof context.route.action === 'function' ) {
+          return context.route.action( context, params );
         }
       }
-
       return undefined;
     }
 
@@ -146,4 +150,4 @@ const router = new UniversalRouter(
   },
 );
 
-module.exports = router;
+module.exports = _router;
