@@ -13,6 +13,7 @@ const cart = require( './routes/cart' );
 const servicesByTags = require( './routes/servicesByTags' );
 const blog = require( './routes/blog' );
 const blogDetail = require( './routes/blogDetail' );
+const article = require( './routes/article' );
 
 const rootPath = process.env.ROOT_PATH;
 const rootProject = process.env.ROOT_PROJECT;
@@ -88,6 +89,16 @@ const router = new UniversalRouter(
                 path: '/:service',
                 name: 'service',
                 load: async() => await service
+              }
+            ]
+          },
+          {
+            path: '/:article',
+            children: [
+              {
+                path: '',
+                name: 'article',
+                load: async() => await article
               }
             ]
           },
