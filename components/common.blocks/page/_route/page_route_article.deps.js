@@ -8,6 +8,10 @@
       {
         block: 'page',
         elem: 'content'
+      },
+      {
+        block: 'schema',
+        mods: { type: 'organization' },
       }
     ]
   },

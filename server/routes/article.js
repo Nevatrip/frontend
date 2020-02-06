@@ -38,7 +38,6 @@ const action = async( context, params ) => {
   // const servicesRandom = await getServicesRandom(lang, 9);
 
   if( articleRequest.length > 0 ) {
-
     if( articleRequest[0].titleImage ) {
       articleRequest[0].img = params._urlFor( articleRequest[0].titleImage.asset ).url();
     }
@@ -75,19 +74,19 @@ const action = async( context, params ) => {
   }
 
   //meta, og
-  const meta = {
-    title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
-    description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
-    image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
-      .width( 280 )
-      .height( 280 )
-      .url() || '',
-    type: 'website',
-    url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
-    width: '280',
-    height: '280',
-    card: 'summary'
-  }
+  // const meta = {
+  //   title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
+  //   description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
+  //   image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+  //     .width( 280 )
+  //     .height( 280 )
+  //     .url() || '',
+  //   type: 'website',
+  //   url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
+  //   width: '280',
+  //   height: '280',
+  //   card: 'summary'
+  // }
 
   // return {
   //   page: 'error',
