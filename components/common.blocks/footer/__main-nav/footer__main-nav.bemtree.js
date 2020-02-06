@@ -7,10 +7,10 @@ block( 'footer' ).elem( 'main-nav' )(
       {
         mix: { block: 'footer', elem: 'main-nav-link' },
         block: 'link',
-        content: item.name,
-        to: item.route,
+        content: ( item || {} ).name || '',
+        to: ( item || {} ).route || '',
         params: {
-          collection: item.collection
+          collection: ( item || {} ).collection || ''
         }
       }
     ]
