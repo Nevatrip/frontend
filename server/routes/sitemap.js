@@ -8,9 +8,13 @@ const getSettingSocials = require( '../request/getSettingSocials' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 const getSettingService = require( '../request/getSettingService' );
 const getServicesByCategory = require( '../request/getServicesByCategory' );
-
-//sitemap
 const getServiceCategory = require( '../request/getServiceCategory' );
+
+const asyncForEach = async( array, callback ) => {
+  for( let index = 0; index < array.length; index++ ) {
+    await callback( array[index], index, array )
+  }
+}
 
 const action = async( context, params ) => {
   const {
@@ -41,6 +45,7 @@ const action = async( context, params ) => {
   ];
   const serviceCategory = await getServiceCategory( project, lang );
 
+
   // const catArr = [];
   // serviceCategory.map( item =>
   //   catArr.push(
@@ -58,34 +63,22 @@ const action = async( context, params ) => {
   // );
 
   const catArr = [];
-  const functionWithPromise = item =>
-    Promise.resolve(
-      catArr.push(
-        {
-          title: item.title[lang].name,
-          to: 'servicesByCategory',
-          params: {
-            category: item.title[lang].key.current
-          },
-          inner: ( async() => {
-            await getServicesByCategory( project, lang, item.title[lang].key.current )
-          } )()
-        }
-      )
-    );
+  const promises = [];
 
-
-  const anAsyncFunction = async item => functionWithPromise( item );
-  const getData = async() => Promise.all( serviceCategory.map( item => anAsyncFunction( item ) ) );
-
-  getData().then( data => {
-    console.log( data )
+  await asyncForEach( serviceCategory, async item => {
+    catArr.push(
+      {
+        title: item.title[lang].name,
+        to: 'servicesByCategory',
+        params: {
+          category: item.title[lang].key.current
+        },
+        inner: await getServicesByCategory( project, lang, item.title[lang].key.current )
+      }
+    )
   } );
 
-  console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
-  console.log( 'catArr: ', catArr );
-  
-  console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
+  console.log( 'catArr', catArr );
 
   //+getCategory
 
@@ -100,7 +93,7 @@ const action = async( context, params ) => {
   //articles
 
 
-  settingSocials.map( item => {
+  settingSocials.forEach( item => {
     item.img = params._urlFor( item.imgSrc ).url();
   } );
 
