@@ -1,15 +1,11 @@
 block( 'page' ).mod( 'route', 'cart' )(
-  mods()( () => [
+  mods()( ( { data: { session } } ) => [
     {
       block: 'cart',
-      elem: 'wrapper',
-      content: {
-        block: 'page',
-        elem: 'content',
-        elemMods: { view: 'cart' },
-        content: {
-          block: 'cart'
-        }
+      attrs: {
+        id: 'root',
+        lang: 'en',
+        'data-session': 'test-test-test' || session
       }
     }
   ] ),

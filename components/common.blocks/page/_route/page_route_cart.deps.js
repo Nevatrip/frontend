@@ -5,10 +5,6 @@
         block: 'cart',
       },
       {
-        block: 'cart',
-        elem: 'wrapper'
-      },
-      {
         block: 'page',
         elem: 'content',
         mods: {
