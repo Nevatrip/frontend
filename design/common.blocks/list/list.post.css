@@ -1,4 +1,4 @@
-block(list) {
+.list {
   box-sizing: border-box;
   position: relative;
   display: block;
@@ -8,4 +8,7 @@ block(list) {
   padding: 0;
   list-style-type: disc;
   list-style-position: inside
+}
+.list .list{
+  margin-top: 7px;
 }
