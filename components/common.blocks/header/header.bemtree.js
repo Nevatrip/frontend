@@ -6,13 +6,13 @@ block( 'header' )(
       content: [
         {
           block: 'logo',
-          mods: { 'is-link': node.data.page !== 'index' },
+          mods: { 'is-link': ( ( node || {} ).data || {} ).page !== 'index' },
           logo: ctx.logo,
           logoTitle: ctx.logoTitle
         },
         {
           elem: 'slogan',
-          elemMods: { 'is-heading': node.data.page === 'index' },
+          elemMods: { 'is-heading': ( ( node|| {} ).data||{} ).page === 'index' },
           slogan: ctx.slogan
         },
         {

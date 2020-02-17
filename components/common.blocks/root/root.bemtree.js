@@ -3,6 +3,26 @@ const marked = require( 'marked' );
 
 
 block( 'root' ).replace()( ( node, ctx ) => {
+  const doctype = ( ( ctx || {} ).data || {} ).doctype || 'html5';
+
+  if( doctype === 'xml' ) {
+    console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
+    console.log( '1: ', 1 );
+
+    console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
+    if( ctx.context ) return ctx.context;
+    return {
+      block: 'page',
+      version: '1.0',
+      doctype: 'xml',
+      encoding: 'UTF-8'
+    };
+  }
+  console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
+  console.log( '2: ', 2 );
+
+  console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
+
   const builder = imageUrlBuilder(
     {
       projectId: process.env[`API_ID_${ ctx.data.params.project.toUpperCase() }`],
@@ -26,6 +46,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
   };
 
   const meta = node.data.api.meta || {};
+
   // const og = meta.og || {};
 
   if( ctx.context ) return ctx.context;
@@ -72,7 +93,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
       ( ( serviceBasedData || {} ).title || {} )[currentLang] && { elem: 'meta', attrs: { name: 'apple-mobile-web-app-title', content: serviceBasedData.title[currentLang] } },
       ( ( serviceBasedData || {} ).title || {} )[currentLang] && { elem: 'meta', attrs: { name: 'application-name', content: serviceBasedData.title[currentLang] } },
       ( ( serviceBasedData || {} ).title || {} )[currentLang] && { elem: 'meta', attrs: { property: 'og:site_name', content: serviceBasedData.title[currentLang] } },
-      ( ( serviceBasedData || {} ).Country || {} )[currentLang] && { elem: 'meta', attrs: { property: 'og:locale', content: `${ currentLang }_${ serviceBasedData.Country[currentLang] }` } },
+      ( ( serviceBasedData || {} ).Country || {} )[currentLang] && { elem: 'meta', attrs: { property: 'og:locale', content: `${ currentLang }_${ serviceBasedData.Country[currentLang] }` } }
     ]
 
     // mods: { route: node.data.view || node.data.page, js: true }
