@@ -89,7 +89,7 @@ const action = async( context, params ) => {
 
   //meta, og
   const meta = {
-    title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
+    title: ( ( serviceBasedData || {} ).titleMeta || {} )[lang] || '',
     description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
     image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
       .width( 280 )

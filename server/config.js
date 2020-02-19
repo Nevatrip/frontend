@@ -9,7 +9,7 @@ module.exports = {
   cacheTTL: parseInt( process.env.CACHE_TTL, 10 ),
   api: process.env.API,
   automake: !!process.env.AUTOMAKE,
-  livereload: !!process.env.LIVERELOAD,
+  //livereload: !!process.env.LIVERELOAD,
   logLevel: process.env.LOG_LEVEL.toLowerCase(),
   langs: JSON.parse( process.env.LANGS )
 };

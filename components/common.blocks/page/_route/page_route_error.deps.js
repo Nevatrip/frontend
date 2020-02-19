@@ -31,5 +31,9 @@
       },
     },
     'link',
+    {
+      block: 'schema',
+      mods: { type: 'organization' },
+    }
   ]
 }]

@@ -14,6 +14,10 @@
       {
         block: 'title',
         mods: {view: 'xl'},
+      },
+      {
+        block: 'schema',
+        mods: { type: 'organization' },
       }
     ]
   },

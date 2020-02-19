@@ -26,39 +26,15 @@ block( 'page' )(
         block: 'footer',
         awards: ( ( ( serviceBasedData || {} ).awards || {} )[currentLang] || '' ).split( '\n' ) || '',
         mainNavHeading: ( ( serviceBasedData || {} ).footerCategoryTitle || {} )[currentLang] || '',
-        mainNav: settingServicesCollections.map( item => (
-          {
-            name: ( ( item.title || {} )[node.currentLang] || {} ).name,
-            route: 'servicesByCollection',
-            collection: ( ( ( item.title || {} )[node.currentLang] || {} ).key || {} ).current || ''
+        mainNav: settingServicesCollections.map( item => {
+          if( ( item.title || {} )[node.currentLang] ){
+            return {
+              name: ( ( item.title || {} )[node.currentLang] || {} ).name,
+              route: 'servicesByCollection',
+              collection: ( ( ( item.title || {} )[node.currentLang] || {} ).key || {} ).current || ''
+            }
           }
-        ) ),
-        basicNav: [
-          {
-            name: 'О&nbsp;нас',
-            url: '/about'
-          },
-          {
-            name: 'Оферта',
-            url: '/oferta'
-          },
-          {
-            name: 'Сотрудничество',
-            url: '/sotrudnichestvo'
-          },
-          {
-            name: 'Наш Блог',
-            url: '/blog'
-          },
-          {
-            name: 'Личный кабинет',
-            url: '/partner'
-          },
-          {
-            name: 'Прогулки в&nbsp;Москве',
-            url: 'https://moskvatrip.ru/'
-          }
-        ],
+        } ),
         copyright: ( ( serviceBasedData || {} ).copyright || {} )[currentLang] || '',
         social: settingSocials
       }

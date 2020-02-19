@@ -31,6 +31,10 @@
         block: 'service',
         mods: {view: 'banner'},
       },
+      {
+        block: 'schema',
+        mods: { type: 'organization' },
+      }
     ],
   },
 ];

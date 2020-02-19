@@ -1,0 +1,10 @@
+.schema {
+  box-sizing: border-box;
+  overflow: hidden;
+  display: block;
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
