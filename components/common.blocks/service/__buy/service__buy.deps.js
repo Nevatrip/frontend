@@ -16,8 +16,8 @@
       elem: 'row',
     },
     {
-      block: 'link',
-      mods: {view: 'button'}
+      block: 'form',
+      mods: { view: 'add-to-cart' }
     },
   ]
 }]

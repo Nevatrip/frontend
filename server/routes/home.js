@@ -79,7 +79,7 @@ const action = async( context, params ) => {
     return item;
   } );
 
-  settingSocials && settingSocials.map( item => {
+  settingSocials && settingSocials.forEach( item => {
     item.img = params._urlFor( item.imgSrc ).url();
   } );
 

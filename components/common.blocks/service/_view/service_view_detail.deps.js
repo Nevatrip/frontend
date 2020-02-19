@@ -1,6 +1,18 @@
 [{
   shouldDeps: [
     {
+      elems: [
+        'gallery',
+        'image',
+        'title',
+        'description',
+        'price-info',
+        'buy',
+        'gallery',
+        'advice'
+      ]
+    },
+    {
       block: 'service',
       mods: {view: 'list-item-sm'}
     },
@@ -20,18 +32,6 @@
     {
       block: 'heading',
       mods: { size: ['xl', 'm'] }
-    },
-    {
-      elems: [
-        'gallery',
-        'image',
-        'title',
-        'description',
-        'price-info',
-        'buy',
-        'gallery',
-        'advice'
-      ]
     },
     {
       block: 'title',

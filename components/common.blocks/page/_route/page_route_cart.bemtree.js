@@ -1,29 +1,11 @@
 block( 'page' ).mod( 'route', 'cart' )(
-  mods()( node => {
-    const serviceBasedData = node.data.api.serviceBasedData;
-    const currentLang = node.data.params.lang;
-
-    return [
-      {
-        block: 'schema',
-        mods: { type: 'organization' },
-        name: ( serviceBasedData.title || {} )[currentLang] || '',
-        description: ( serviceBasedData.shortDescription || {} )[currentLang] || '',
-        logo: node._urlFor( ( ( ( serviceBasedData || {} ).logo || {} ).asset || {} )._ref ).url() || '',
-        email: ( serviceBasedData.email || {} )[currentLang] || '',
-        telephone: ( serviceBasedData.tel || {} )[currentLang] || ''
-      },
-      {
-        block: 'cart',
-        elem: 'wrapper',
-        content: {
-          block: 'page',
-          elem: 'content',
-          elemMods: { view: 'cart' },
-          content: {
-            block: 'cart'
-          }
-        }
+  mods()( ( { data: { session } } ) => [
+    {
+      block: 'cart',
+      attrs: {
+        id: 'root',
+        lang: 'en',
+        'data-session': 'test-test-test' || session
       }
     ]
   } ),

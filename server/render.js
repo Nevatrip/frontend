@@ -61,7 +61,8 @@ const render = ( req, res, data = {}, context ) => {
       ...data,
 
       // user,
-      url: req._parsedUrl
+      url: req._parsedUrl,
+      session: req.session.id
     }
   };
 
