@@ -35,7 +35,6 @@ block( 'service' ).elem( 'buy' )(
           {
             block: 'form',
             mods: { view: 'add-to-cart' },
-            currentLang,
             id, session, title, content
           }
         ]

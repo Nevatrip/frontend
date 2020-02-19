@@ -1,8 +1,8 @@
 block( 'form' ).mod( 'view', 'add-to-cart' )( {
-  extend: ( node, ctx ) => ( {
-    'ctx.action': `/${ ctx.currentLang }/cart`,
-    'ctx.method': 'get'
-  } ),
+  extend: {
+    'ctx.action': '/cart',
+    'ctx.method': 'post'
+  },
   content: ( node, { id, session, title, content } ) => [
     {
       block: 'form-field',

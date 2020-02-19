@@ -1,4 +1,3 @@
-'use strict';
 const imageUrlBuilder = require( '@sanity/image-url' );
 
 const getServices = require( '../request/getServices' );
