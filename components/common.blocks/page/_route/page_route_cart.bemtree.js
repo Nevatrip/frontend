@@ -7,7 +7,7 @@ block( 'page' ).mod( 'route', 'cart' )(
         lang: 'en',
         'data-session': 'test-test-test' || session
       }
-    ]
-  } ),
+    }
+  ] ),
 );
 
