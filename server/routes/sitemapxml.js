@@ -1,10 +1,8 @@
 'use strict';
 
-const getSettingService = require( '../request/getSettingService' );
 const getServicesByCategory = require( '../request/getServicesByCategory' );
 const getServiceCategory = require( '../request/getServiceCategory' );
 const getServiceCollection = require( '../request/getSettingServicesCollections' );
-const getSettingBlog = require( '../request/getSettingBlog' );
 const getBlogArticles = require( '../request/getBlogArticles' );
 const getArticles = require( '../request/getArticles' );
 
@@ -16,19 +14,20 @@ const asyncForEach = async( array, callback ) => {
 
 const action = async( context, params ) => {
   const {
-    lang,
-    project
+    project,
+    lang
   } = params;
 
-  const settingService = await getSettingService( project, lang );
   const articles = await getArticles( project, lang );
-  const settingBlog = ( await getSettingBlog( project, lang ) )[0];
 
   //главная(ые) страница(цы)
   const mainArr = [
     {
-      title: ( settingService.serviceMainPage || {} )[lang] || '',
-      to: 'index'
+      to: 'index',
+      params: {
+        project,
+        lang
+      }
     }
   ];
 
@@ -41,23 +40,29 @@ const action = async( context, params ) => {
     const inners = await getServicesByCategory( project, lang, ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current );
 
     catArr.push(
+
       {
-        title: ( ( ( item || '' ).title || '' )[lang] || '' ).name || '',
         to: 'servicesByCategory',
         params: {
+          project,
+          lang,
           category: ( ( ( ( item || '' ).title || '' )[lang] || '' ).key || '' ).current || ''
-        },
-        inner: inners.map( serv => (
-          {
-            title: ( ( ( serv || {} ).title || {} )[lang] || {} ).name || '',
-            to: 'service',
-            params: {
-              category: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || '',
-              service: ( ( ( ( serv || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
-            }
-          }
-        ) )
+        }
+      },
+    )
+
+
+    inners.forEach( serv =>
+      catArr.push( {
+        to: 'service',
+        params: {
+          project,
+          lang,
+          category: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || '',
+          service: ( ( ( ( serv || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
+        }
       }
+      )
     )
   } );
 
@@ -68,9 +73,10 @@ const action = async( context, params ) => {
   serviceСollection.forEach( item => {
     colArr.push(
       {
-        title: ( ( ( item || {} ).title || {} )[lang] || {} ).name || '',
         to: 'servicesByCollection',
         params: {
+          project,
+          lang,
           collection: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
         }
       }
@@ -83,20 +89,25 @@ const action = async( context, params ) => {
 
   blogArr.push(
     {
-      title: ( ( settingBlog || {} ).heading || {} )[lang] || '',
       to: 'blog',
-      inner: blogInners.map( blogArt => (
-        {
-          title: ( blogArt || {} ).h1 || '',
-          to: 'service',
-          params: {
-            category: 'blog',
-            service: ( blogArt || {} ).alias || ''
-          }
-        }
-      ) )
+      params: {
+        project,
+        lang
+      }
     }
   );
+
+  blogInners.forEach( blogArt =>
+    blogArr.push( {
+      to: 'service',
+      params: {
+        project,
+        lang,
+        category: 'blog',
+        service: ( blogArt || {} ).alias || ''
+      }
+    } )
+  )
 
   //articles
   const artArr = [];
@@ -104,9 +115,10 @@ const action = async( context, params ) => {
   articles.forEach( item => {
     artArr.push(
       {
-        title: ( ( ( item || {} ).title || {} )[lang] || {} ).name || '',
         to: 'article',
         params: {
+          project,
+          lang,
           article: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
         }
       }

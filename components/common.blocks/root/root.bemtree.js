@@ -5,24 +5,6 @@ const marked = require( 'marked' );
 block( 'root' ).replace()( ( node, ctx ) => {
   const doctype = ( ( ctx || {} ).data || {} ).doctype || 'html5';
 
-  if( doctype === 'xml' ) {
-    console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
-    console.log( '1: ', 1 );
-
-    console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
-    if( ctx.context ) return ctx.context;
-    return {
-      block: 'page',
-      version: '1.0',
-      doctype: 'xml',
-      encoding: 'UTF-8'
-    };
-  }
-  console.log( '∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞' );
-  console.log( '2: ', 2 );
-
-  console.log( 'ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ' );
-
   const builder = imageUrlBuilder(
     {
       projectId: process.env[`API_ID_${ ctx.data.params.project.toUpperCase() }`],
@@ -32,7 +14,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
 
   const level = ctx.level || 'desktop';
 
-  const config = node.config = ctx.config;//used on the others pages
+  const config = node.config = ctx.config;//used on the others pages do not remove
   const data = node.data = ctx.data;
   const serviceBasedData = node.data.api.serviceBasedData;
   const currentLang = node.data.params.lang;
@@ -41,8 +23,8 @@ block( 'root' ).replace()( ( node, ctx ) => {
   node._urlFor = source => builder.image( source );
 
   node._contacts = {
-    tel: serviceBasedData.tel || '',
-    email: serviceBasedData.email || ''
+    tel: ( serviceBasedData || {} ).tel || '',
+    email: ( serviceBasedData || {} ).email || ''
   };
 
   const meta = node.data.api.meta || {};
@@ -50,6 +32,31 @@ block( 'root' ).replace()( ( node, ctx ) => {
   // const og = meta.og || {};
 
   if( ctx.context ) return ctx.context;
+
+  if( doctype === 'xml' ) {
+    if( ctx.context ) return ctx.context;
+    const sitemapArr = node.data.api.sitemapArr;
+
+    return [
+      {
+        block: 'urlset',
+        content: sitemapArr.map( page => [
+          page.to && {
+            elem: 'url',
+            content: [
+              {
+                elem: 'loc',
+                content: node.data.params.urlTo( page.to || 'index', page.params || {
+                  project: ( ( node.data || {} ).params || {} ).project || '',
+                  lang: ( ( node.data || {} ).params || {} ).lang || ''
+                } )
+              }
+            ]
+          }
+        ] )
+      }
+    ]
+  }
 
   return {
     block: 'page',
