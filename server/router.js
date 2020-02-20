@@ -13,6 +13,9 @@ const cart = require( './routes/cart' );
 const servicesByTags = require( './routes/servicesByTags' );
 const blog = require( './routes/blog' );
 const blogDetail = require( './routes/blogDetail' );
+const article = require( './routes/article' );
+const sitemap = require( './routes/sitemap' );
+const sitemapxml = require( './routes/sitemapxml' );
 
 const rootPath = process.env.ROOT_PATH;
 const rootProject = process.env.ROOT_PROJECT;
@@ -45,6 +48,16 @@ const router = new UniversalRouter(
             path: '/cart',
             name: 'cart',
             load: async() => await cart
+          },
+          {
+            path: '/sitemap',
+            name: 'sitemap',
+            load: async() => await sitemap
+          },
+          {
+            path: '/sitemap.xml',
+            name: 'sitemapxml',
+            load: async() => await sitemapxml
           },
           {
             path: '/blog',
@@ -88,6 +101,16 @@ const router = new UniversalRouter(
                 path: '/:service',
                 name: 'service',
                 load: async() => await service
+              }
+            ]
+          },
+          {
+            path: '/:article',
+            children: [
+              {
+                path: '',
+                name: 'article',
+                load: async() => await article
               }
             ]
           },
