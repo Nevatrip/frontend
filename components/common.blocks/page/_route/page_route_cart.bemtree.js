@@ -5,7 +5,7 @@ block( 'page' ).mod( 'route', 'cart' )(
       attrs: {
         id: 'root',
         lang: 'en',
-        'data-session': 'test-test-test' || session
+        'data-session': session
       }
     }
   ] ),

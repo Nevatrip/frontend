@@ -1,8 +1,9 @@
 block( 'form' ).mod( 'view', 'add-to-cart' )( {
-  extend: {
+  extend: node => ( {
     'ctx.action': '/cart',
-    'ctx.method': 'post'
-  },
+    'ctx.method': 'post',
+    'ctx.api': node.config.api
+  } ),
   content: ( node, { id, session, title, content } ) => [
     {
       block: 'form-field',
