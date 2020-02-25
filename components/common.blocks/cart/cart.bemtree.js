@@ -1,6 +1,6 @@
 const fs = require( 'fs' );
 
-const runtimeMain = fs.readFileSync( './static/assets/cart/static/js/runtime-main.js' ).toString();
+// const runtimeMain = fs.readFileSync( './static/assets/cart/static/js/runtime-main.js' ).toString();
 
 block( 'page' ).content()( () => [
   applyNext(),
