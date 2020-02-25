@@ -1,6 +1,5 @@
 block( 'service' ).mod( 'view', 'detail' )(
-  content()( ( node, { service } ) => {
-    const currentLang = node.data.params.lang;
+  content()( ( node, { service, currency, currentLang } ) => {
 
     const {
       _id: id,
@@ -89,8 +88,9 @@ block( 'service' ).mod( 'view', 'detail' )(
                     block: 'service',
                     elem: 'price-info',
                     discount: sale || '',
-                    pricesDescription: ( pricesDescription || {} )[node.currentLang] || '',
-                    prevention: ( prevention || {} )[node.currentLang] || ''
+                    pricesDescription: ( pricesDescription || {} )[currentLang] || '',
+                    prevention: ( prevention || {} )[currentLang] || '',
+                    lang: [currentLang]
                   },
 
                   // TODO: отвязаться от urlBuy — вынести как отдельный метод/модификатор
@@ -99,8 +99,8 @@ block( 'service' ).mod( 'view', 'detail' )(
                     block: 'service',
                     elem: 'buy',
                     id,
-                    price,
-                    priceOutside: priceOld || '',
+                    price: `${ price } ${ currency }`,
+                    priceOutside: `${ priceOld } ${ currency }`,
                     title: serviceTitle || ''
 
                     // urlBuy: buyLink[currentLang]
@@ -251,7 +251,7 @@ block( 'service' ).mod( 'view', 'detail' )(
                     block: 'page',
                     elem: 'hr'
                   },
-                  node.data.api.servicesRandom.filter( item => item.title[node.currentLang] ).length > 0 && [
+                  node.data.api.servicesRandom.filter( item => item.title[currentLang] ).length > 0 && [
                     {
                       block: 'heading',
                       mods: { size: 'xl' },

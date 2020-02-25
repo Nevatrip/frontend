@@ -1,6 +1,6 @@
 block( 'service' ).mod( 'view', 'list-item-lg' )(
   tag()( 'article' ),
-  content()( ( node, { service, lang, moreText, serviceAlias, servicePriceOutside } ) => {
+  content()( ( node, { service, lang, moreText, serviceAlias, servicePriceOutside, currency } ) => {
     const currentLang = ( ( node.data || {} ).params || {} ).lang || lang;
     const {
       title,
@@ -77,7 +77,7 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                           block: 'service',
                           elem: 'price',
                           elemMods: { view: 'sm' },
-                          content: price
+                          content: `${ price }&nbsp;${ currency }`
                         },
                         {
                           block: 'link',
@@ -93,7 +93,7 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                     priceOld && {
                       block: 'service',
                       elem: 'price-outside',
-                      content: priceOld,
+                      content: `${ priceOld } ${ currency }`,
                       currentLang,
                       servicePriceOutside
                     }

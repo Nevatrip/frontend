@@ -1,7 +1,6 @@
 const imageUrlBuilder = require( '@sanity/image-url' );
 const marked = require( 'marked' );
 
-
 block( 'root' ).replace()( ( node, ctx ) => {
   const doctype = ( ( ctx || {} ).data || {} ).doctype || 'html5';
 

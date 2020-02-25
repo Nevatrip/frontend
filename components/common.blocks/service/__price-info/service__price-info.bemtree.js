@@ -1,7 +1,7 @@
 block( 'service' ).elem( 'price-info' )(
-  match( node => !node.ctx.discount[node.currentLang] ).def()( '' ),
   content()( ( node, ctx ) => {
-    const infoArr = ( ctx.discount || [] )[node.currentLang].split( '||' );
+    const currentLang = ctx.lang;
+    const infoArr = ( ctx.discount || [] )[currentLang] ? ctx.discount[currentLang].split( '||' ) : [];
     const infoNewArr = [];
 
     for( let i = 0; i < infoArr.length; i++ ) {
@@ -15,8 +15,8 @@ block( 'service' ).elem( 'price-info' )(
 
         info = {
           block: 'popup-tip',
-          title: ( ( ( settingArr || [] )[0] || [] ).popupTitle || {} )[node.currentLang] || infoString,
-          text: ( ( ( settingArr || [] )[0] || [] ).popupContent || {} )[node.currentLang] || infoString
+          title: ( ( ( settingArr || [] )[0] || [] ).popupTitle || {} )[currentLang] || infoString,
+          text: ( ( ( settingArr || [] )[0] || [] ).popupContent || {} )[currentLang] || infoString
         };
       } else {
         info = infoArr[i];
@@ -25,12 +25,12 @@ block( 'service' ).elem( 'price-info' )(
     }
 
     return [
-      ctx.discount[node.currentLang] && {
+      ctx.discount[currentLang] && {
         block: 'list',
         mods: { type: 'disk', size: 'md' },
         content: [
           ctx.pricesDescription && ['', { html: node._marked( ctx.pricesDescription ) }],
-          infoNewArr.length>0 && infoNewArr[0].length>0 ? [`${ ( ( node.data.api.settingService || {} ).servicePriceInfo || {} )[node.currentLang] || '' }: `, infoNewArr] : false,
+          infoNewArr.length>0 && infoNewArr[0].length>0 ? [`${ ( ( node.data.api.settingService || {} ).servicePriceInfo || {} )[currentLang] || '' }: `, infoNewArr] : false,
           ctx.prevention && ['', { html: node._marked( ctx.prevention ) }]
         ].map( item => item && {
           elem: 'item',
