@@ -20,12 +20,12 @@ function evalFile( filename ) {
   return require( filename );
 }
 
-function getTemplates( project = 'nevatrip', bundleName = 'index', level ) {
+function getTemplates( project = 'nevatrip', bundleName = 'index', level, lang ) {
   const pathToBundle = path.resolve( 'bundles', `${ bundleName }.${ project }-${ level }` );
 
   return {
-    BEMTREE: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ project }-${ level }.ru.bemtree.js` ) ).BEMTREE,
-    BEMHTML: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ project }-${ level }.ru.bemhtml.js` ) ).BEMHTML
+    BEMTREE: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ project }-${ level }.${ lang }.bemtree.js` ) ).BEMTREE,
+    BEMHTML: evalFile( path.resolve( pathToBundle, `${ bundleName }.${ project }-${ level }.${ lang }.bemhtml.js` ) ).BEMHTML
   };
 }
 
@@ -55,7 +55,7 @@ const render = ( req, res, data = {}, context ) => {
     level,
     block: 'root',
     project: data.params.project || 'nevatrip',
-    lang: data.params.lang || 'ru',
+    lang: data.params.lang,
     config,
     data: {
       ...data,
@@ -66,7 +66,8 @@ const render = ( req, res, data = {}, context ) => {
     }
   };
 
-  const templates = getTemplates( data.params.project, data.page, level );
+
+  const templates = getTemplates( data.params.project, data.page, level, data.params.lang );
 
   let bemjson;
 
