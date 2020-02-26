@@ -19,7 +19,8 @@ block( 'filter' )(
       lang: ctx.lang,
       allServices: ctx.allServices,
       mainUrl: ctx.mainUrl,
-      servicePriceOutside: ctx.servicePriceOutside
+      servicePriceOutside: ctx.servicePriceOutside,
+      currency: ctx.currency
     }
   ] )
 );

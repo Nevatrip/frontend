@@ -5,6 +5,7 @@ block( 'page' ).mod( 'route', 'index' )(
     const settingBottomFeatures = node.data.api.settingBottomFeatures;
     const settingService = node.data.api.settingService;
     const currentLang = node.data.params.lang;
+    const currency = ( ( serviceBasedData || {} ).currency || {} )[currentLang] || '';
 
     return [
       {
@@ -22,7 +23,8 @@ block( 'page' ).mod( 'route', 'index' )(
         service: ( node.data.api || {} ).serviceBanner,
         bannerImg: ( ( node.data.api || {} ).bannerFull || {} ).img || '',
         bannerLink: ( ( node.data.api || {} ).bannerFull || {} ).link || '',
-        bannerTitle: ( ( node.data.api || {} ).bannerFull || {} ).title || ''
+        bannerTitle: ( ( node.data.api || {} ).bannerFull || {} ).title || '',
+        currency
       },
       {
         block: 'features',
@@ -53,7 +55,8 @@ block( 'page' ).mod( 'route', 'index' )(
         lang: currentLang,
         moreText: ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '',
         servicePriceOutside: ( ( settingService || {} ).servicePriceOutside || {} )[currentLang] || '',
-        filterNoResult: ( ( settingService || {} ).filterNoResult || {} )[currentLang] || ''
+        filterNoResult: ( ( settingService || {} ).filterNoResult || {} )[currentLang] || '',
+        currency
       },
       {
         block: 'page',
@@ -79,7 +82,7 @@ block( 'page' ).mod( 'route', 'index' )(
             elem: 'content',
             elemMods: { view: 'narrow' },
             content: {
-              html: ( ( serviceBasedData || {} ).articleContent || {} )[currentLang] || ''
+              html: node._marked( ( ( serviceBasedData || {} ).articleContent || {} )[currentLang] || '' )
             }
           },
           {

@@ -16,7 +16,8 @@ block( 'filter' ).elem( 'result' )(
             moreText: ctx.moreText,
             serviceAlias: ( ( item.title[ctx.lang] || {} ).key || {} ).current || '//',
             categoryAlias: ( ( ( ( item.category || {} ).title || {} )[ctx.lang] || {} ).key || {} ).current || '//',
-            servicePriceOutside: ctx.servicePriceOutside
+            servicePriceOutside: ctx.servicePriceOutside,
+            currency: ctx.currency
           }
         } ) )
       },

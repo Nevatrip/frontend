@@ -2,6 +2,7 @@ block( 'page' ).mod( 'route', 'servicesByCollection' )(
   mods()( node => {
     const serviceBasedData = node.data.api.serviceBasedData;
     const currentLang = node.data.params.lang;
+    const currency = ( ( serviceBasedData || {} ).currency || {} )[currentLang] || '';
 
     return [
       {
@@ -40,7 +41,8 @@ block( 'page' ).mod( 'route', 'servicesByCollection' )(
                 moreText: ( ( node.data.api.settingService || {} ).serviceViewListItemLgMore || {} )[node.currentLang],
                 serviceAlias: ( ( item.title[node.currentLang] || {} ).key || {} ).current || '//',
                 categoryAlias: ( ( ( ( item.category || {} ).title || {} )[node.currentLang] || {} ).key || {} ).current || '//',
-                servicePriceOutside: ( ( node.data.api.settingService || {} ).servicePriceOutside || {} )[node.currentLang] || ''
+                servicePriceOutside: ( ( node.data.api.settingService || {} ).servicePriceOutside || {} )[node.currentLang] || '',
+                currency
               }
             } ) )
           },
@@ -48,7 +50,7 @@ block( 'page' ).mod( 'route', 'servicesByCollection' )(
             block: 'page',
             elem: 'text',
             content: {
-              html: ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).description || {} )[node.currentLang] || ''
+              html: node._marked( ( ( ( node.data.api || {} ).serviceCategoryFull || {} ).description || {} )[node.currentLang] || '' )
             }
           }
         ]

@@ -31,7 +31,7 @@ block( 'title' ).mod( 'view', 'blog' )(
           block: 'title',
           elem: 'intro',
           content: {
-            html: ctx.intro || ''
+            html: node._marked( ctx.intro || '' )
           }
         }
       ]
