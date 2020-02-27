@@ -15,11 +15,6 @@ USER node
 
 COPY --chown=node:node . .
 
-RUN npm install -g pm2
 RUN npm install --ignore-scripts
 
-RUN npm run make
-
-EXPOSE 3012
-
-CMD [ "pm2-runtime", "ecosystem.config.js" ]
+CMD [ "node" ]
