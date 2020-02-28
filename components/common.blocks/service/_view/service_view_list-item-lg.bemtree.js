@@ -1,6 +1,7 @@
 block( 'service' ).mod( 'view', 'list-item-lg' )(
   content()( ( node, { service } ) => {
     const currentLang = node.data.params.lang;
+    const currency = ( ( node.data.api.serviceBasedData || {} ).currency || {} )[currentLang] || '';
 
     const {
       titleImage,
@@ -107,7 +108,9 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                           block: 'service',
                           elem: 'price',
                           elemMods: { view: 'sm' },
-                          content: price
+                          content: {
+                            html: `${ price }&nbsp;${ currency }`
+                          }
                         },
                         {
                           block: 'link',
@@ -127,7 +130,7 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                     priceOld && {
                       block: 'service',
                       elem: 'price-outside',
-                      content: priceOld
+                      content: { html: `${ priceOld }&nbsp;${ currency }` }
                     }
                   ]
                 }

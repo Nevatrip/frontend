@@ -1,14 +1,14 @@
 block( 'link' )(
-  match( ( node, { to } ) => to ).def()( ( { data: { params: { project, lang, urlTo }, url: _url } }, ctx ) => {
+  match( ( node, { to } ) => to ).def()( ( { data }, ctx ) => {
     try {
       const params = {
-        project,
-        lang,
-        ...ctx.params
+        project: ( ( data || {} ).params || {} ).project || '',
+        lang: ( ( data || {} ).params || {} ).lang || '',
+        ...( ctx || {} ).params
       };
-      const url = urlTo( ctx.to, params );
+      const url = ( ( data || {} ).params || {} ).urlTo( ctx.to, params );
 
-      ctx.url = url === _url.pathname ? '' : url;
+      ctx.url = url === ( ( data || {} ).url || {} ).pathname ? '' : url;
     } catch( err ) {
       console.error( err );
     }

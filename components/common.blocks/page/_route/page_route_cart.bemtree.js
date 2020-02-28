@@ -1,11 +1,11 @@
 block( 'page' ).mod( 'route', 'cart' )(
-  mods()( ( { data: { session } } ) => [
+  mods()( ( { data: { session, params: { lang } } } ) => [
     {
       block: 'cart',
       attrs: {
         id: 'root',
-        lang: 'en',
-        'data-session': 'test-test-test' || session
+        lang,
+        'data-session': session
       }
     }
   ] ),

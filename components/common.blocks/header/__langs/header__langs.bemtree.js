@@ -1,7 +1,7 @@
 block( 'header' ).elem( 'langs' )(
   content()( node => {
-    const currentLang = node.data.params.lang;
-    const serviceBasedData = node.data.api.serviceBasedData;
+    const currentLang = ( ( ( node || {} ).data || {} ).params || {} ).lang || '';
+    const serviceBasedData = ( ( ( node || {} ).data || {} ).api || {} ).serviceBasedData || {};
 
     const getRoute = page => {
       const routeKey = {
@@ -11,8 +11,8 @@ block( 'header' ).elem( 'langs' )(
         index: 'index'
       };
 
-      const response = ( node.data.api || {} )[routeKey[page]];
-      const otherLangs = node.config.langs
+      const response = ( ( ( node || {} ).data || {} ).api || {} )[routeKey[page]];
+      const otherLangs = ( ( node || {} ).config || {} ).langs
         .filter( lang => lang !== currentLang )
         .map( lang => ( ( ( response || {} ).title || {} ) ).hasOwnProperty( lang ) ?
           {

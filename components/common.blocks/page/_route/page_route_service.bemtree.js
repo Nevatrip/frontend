@@ -3,6 +3,7 @@ block( 'page' ).mod( 'route', 'service' )(
     const currentLang = node.data.params.lang;
     const service = node.data.api.service;
     const serviceBasedData = node.data.api.serviceBasedData;
+    const currency = ( ( serviceBasedData || {} ).currency || {} )[currentLang] || '';
 
     return [
       {
@@ -17,7 +18,9 @@ block( 'page' ).mod( 'route', 'service' )(
       {
         block: 'service',
         mods: { view: 'detail' },
-        service
+        service,
+        currency,
+        currentLang
       }
     ]
   } ),

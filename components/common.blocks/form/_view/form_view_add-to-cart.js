@@ -4,6 +4,7 @@ modules.define( 'form', ['jquery', 'button'], ( provide, $, Button, Form ) => {
       js: {
         inited() {
           this.__base.apply( this, arguments );
+          this._api = this.params.api;
 
           this._events().on( 'success', event => {
             console.log( 'event', event );
@@ -27,7 +28,7 @@ modules.define( 'form', ['jquery', 'button'], ( provide, $, Button, Form ) => {
 
         $.ajax( {
           type: 'POST',
-          url: `https://api.nevatrip.ru/shoppingCarts/${ val.session }/products`,
+          url: `${ this._api }/shoppingCarts/${ val.session }/products`,
           data: JSON.stringify( { productId: val.product } ),
           contentType: 'application/json; charset=utf-8'
         } ).done( data => {
@@ -39,7 +40,6 @@ modules.define( 'form', ['jquery', 'button'], ( provide, $, Button, Form ) => {
           console.log( 'err', err );
         } );
       }
-
     }
   } ) );
 } );
