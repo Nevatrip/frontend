@@ -28,13 +28,10 @@ const router = new UniversalRouter(
   {
     path: '',
     children: [
-      // ... [
-      //   {
-      //     path: '',
-      //     name: 'root',
-      //     action: () => ( { redirect: routeRedirect() } )
-      //   }
-      // ],
+      {
+        path: '',
+        action: () => ( { redirect: `/${ rootLang }` } )
+      },
       {
         path: rootPath,
         name: 'root',
