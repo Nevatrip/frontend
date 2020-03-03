@@ -19,6 +19,7 @@ const action = async( context, params ) => {
   const moreText = ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang];
   const servicePriceOutside = ( ( settingService || {} ).servicePriceOutside || {} )[currentLang];
   const filterNoResult = ( ( serviceBasedData || {} ).filterNoResult || {} )[currentLang];
+  const currency = ( ( serviceBasedData || {} ).currency || {} )[currentLang] || '';
 
   const builder = imageUrlBuilder(
     {
@@ -67,7 +68,8 @@ const action = async( context, params ) => {
     services,
     moreText,
     servicePriceOutside,
-    filterNoResult
+    filterNoResult,
+    currency
   };
 };
 
