@@ -93,27 +93,30 @@ const action = async( context, params ) => {
     card: 'summary_large_image'
   }
 
-  return {
-    page: 'servicesByCollection',
-    params,
-    api: {
-      routes,
-      serviceBasedData,
-      navigation,
-      settingService,
-      settingServicesCollections,
-      services,
-      serviceCollection,
-      serviceCategoryFull,
-      currentLang,
-      moreText,
-      servicePriceOutside,
-      settingSocials,
-      meta
+  if( serviceCategoryFull ) {
+    return {
+      page: 'servicesByCollection',
+      params,
+      api: {
+        routes,
+        serviceBasedData,
+        navigation,
+        settingService,
+        settingServicesCollections,
+        services,
+        serviceCollection,
+        serviceCategoryFull,
+        currentLang,
+        moreText,
+        servicePriceOutside,
+        settingSocials,
+        meta
 
-      // serviceCategories,
+        // serviceCategories,
+      }
     }
   }
+
 
   //}
 
