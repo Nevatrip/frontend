@@ -7,7 +7,7 @@ module.exports = {
   sessionSecret: process.env.SESSION_SECRET,
   levels: JSON.parse( process.env.LEVELS ),
   cacheTTL: parseInt( process.env.CACHE_TTL, 10 ),
-  api: process.env.API,
+  api: process.env.SERVER_URL,
   automake: !!process.env.AUTOMAKE,
   livereload: !!process.env.LIVERELOAD,
   logLevel: process.env.LOG_LEVEL.toLowerCase(),
