@@ -16,7 +16,7 @@ block( 'header' ).elem( 'langs' )(
         .filter( lang => lang !== currentLang )
         .map( lang => ( ( ( response || {} ).title || {} ) ).hasOwnProperty( lang ) ?
           {
-            alias: ( response || {} ).title[lang].key.current || null,
+            alias: ( ( ( ( response || {} ).title || {} )[lang] || {} ).key || {} ).current || null,
             lang
           } :
           {
@@ -45,7 +45,7 @@ block( 'header' ).elem( 'langs' )(
             block: 'link',
             mix: { block: 'header', elem: 'lang' },
             content: item.lang,
-            url: serviceBasedData.langSiteLink[item.lang]
+            url: ( ( serviceBasedData || {} ).langSiteLink || {} )[item.lang]
 
             // to: item.root ? 'root' : page,
             // params: {
