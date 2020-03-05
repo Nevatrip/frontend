@@ -46,7 +46,7 @@ block( 'service' ).mod( 'view', 'detail' )(
         content: [
           {
             block: 'breadcrumbs',
-            title: breadcrumb[currentLang] || serviceTitle || '',
+            title: ( breadcrumb || {} )[currentLang] || serviceTitle || '',
             category: ( ( ( ( service.category || {} ).title || {} )[currentLang] || {} ).key || {} ).current || '',
             categoryTo: 'servicesByCategory',
             categoryName: ( ( ( service.category || {} ).title || {} )[currentLang] || {} ).name || ''
