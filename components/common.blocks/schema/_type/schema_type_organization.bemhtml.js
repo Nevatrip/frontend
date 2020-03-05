@@ -1,6 +1,8 @@
 block( 'schema' ).mod( 'type', 'organization' )(
-  attrs()( () => ( {
-    itemscope: true,
-    itemtype: 'http://schema.org/Organization'
-  } ) ),
+  {
+    addAttrs: {
+      itemscope: true,
+      itemtype: 'http://schema.org/Organization'
+    },
+  }
 );
