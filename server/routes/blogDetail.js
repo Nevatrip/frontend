@@ -62,8 +62,8 @@ const action = async( context, params ) => {
     if( ( item || {} ).textSrc ) {
       item.text = `${ item.textSrc.slice( 0, 300 ) }...`;
     }
-    if( ( item || {} ).dateSrc ) {
-      item.date = moment( item.dateSrc ).format( 'LL' );
+    if( ( item || {} ).dateSrc || ( item || {} ).realDate ) {
+      item.date = moment( item.dateSrc || item.realDate ).format( 'LL' );
     }
   } );
 

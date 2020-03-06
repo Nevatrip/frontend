@@ -33,7 +33,8 @@ modules.define( 'filter',
                   lang: ( response || {} ).currentLang,
                   moreText: ( response || {} ).moreText,
                   servicePriceOutside: ( response || {} ).servicePriceOutside,
-                  filterNoResult: ( response || {} ).filterNoResult
+                  filterNoResult: ( response || {} ).filterNoResult,
+                  currency: ( response || {} ).currency
                 } );
 
                 bemDom.update(

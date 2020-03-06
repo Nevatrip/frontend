@@ -3,6 +3,7 @@ block( 'service' ).mod( 'view', 'detail' )(
 
     const {
       _id: id,
+      breadcrumb,
       titleImage,
       title,
       price,
@@ -45,7 +46,7 @@ block( 'service' ).mod( 'view', 'detail' )(
         content: [
           {
             block: 'breadcrumbs',
-            title: serviceTitle || '',
+            title: ( breadcrumb || {} )[currentLang] || serviceTitle || '',
             category: ( ( ( ( service.category || {} ).title || {} )[currentLang] || {} ).key || {} ).current || '',
             categoryTo: 'servicesByCategory',
             categoryName: ( ( ( service.category || {} ).title || {} )[currentLang] || {} ).name || ''

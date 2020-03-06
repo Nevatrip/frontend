@@ -54,8 +54,8 @@ const action = async( context, params ) => {
   if( ( theLatestBlog || {} ).textSrc ) {
     theLatestBlog.text = `${ theLatestBlog.textSrc.slice( 0, 400 ) }...`;
   }
-  if( ( theLatestBlog || {} ).dateSrc ) {
-    theLatestBlog.date = moment( theLatestBlog.dateSrc ).format( 'LL' );
+  if( ( theLatestBlog || {} ).dateSrc || ( theLatestBlog || {} ).realDate ) {
+    theLatestBlog.date = moment( theLatestBlog.dateSrc || ( theLatestBlog || {} ).realDate ).format( 'LL' );
   }
 
   blogOffset && blogOffset.map( item => {
@@ -65,8 +65,8 @@ const action = async( context, params ) => {
     if( ( item || {} ).textSrc ) {
       item.text = `${ item.textSrc.slice( 0, 300 ) }...`;
     }
-    if( ( item || {} ).dateSrc ) {
-      item.date = moment( item.dateSrc ).format( 'LL' );
+    if( ( item || {} ).dateSrc || ( item || {} ).realDate ) {
+      item.date = moment( item.dateSrc || ( item || {} ).realDate ).format( 'LL' );
     }
   } );
 
