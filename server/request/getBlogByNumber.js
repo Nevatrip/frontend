@@ -8,9 +8,9 @@ const query = ( lang, number ) => {
         "h1": title.${ lang }.name,
         "textSrc": content.${ lang },
         "alias": title.${ lang }.key.current,
-        "dateSrc": _createdAt}`;
-}
-
+        "realDate": _createdAt,
+        "dateSrc": releaseDate}`;
+};
 
 const params = {};
 
