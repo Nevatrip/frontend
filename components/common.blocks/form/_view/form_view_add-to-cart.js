@@ -28,7 +28,7 @@ modules.define( 'form', ['jquery', 'button'], ( provide, $, Button, Form ) => {
 
         $.ajax( {
           type: 'POST',
-          url: `${ this._api }/shoppingCarts/${ val.session }/products`,
+          url: `//${ this._api }/shoppingCarts/${ val.session }/products`,
           data: JSON.stringify( { productId: val.product } ),
           contentType: 'application/json; charset=utf-8'
         } ).done( data => {

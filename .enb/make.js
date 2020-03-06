@@ -25,7 +25,7 @@ module.exports = async (config) => {
 
   await asyncForEach( platforms, async (platform) => {
     levels[platform] = getLevels(platform);
-    !__DEV__ || levels[platform].push({ path: path.join('components', 'development.blocks'), check: true });
+    if (__DEV__) levels[platform].push({ path: path.join('components', 'development.blocks'), check: true });
 
     // Build bundles from declaration
     await config.nodes(`bundles/*.${platform}`, (nodeConfig) => {
