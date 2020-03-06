@@ -8,8 +8,10 @@ const query = ( lang, start, end ) => {
         "h1": title.${ lang }.name,
         "textSrc": content.${ lang },
         "alias": title.${ lang }.key.current,
-        "dateSrc": _createdAt}`;
-}
+        "realDate": _createdAt,
+        "dateSrc": releaseDate}`;
+};
+
 const params = {};
 
 module.exports = async( project, lang, start, end ) => await client( project )
