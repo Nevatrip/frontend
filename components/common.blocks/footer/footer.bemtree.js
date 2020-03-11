@@ -8,12 +8,6 @@ block( 'footer' )(
     _counters: ctx.counters
   } ) ),
   content()( ( node, ctx ) => {
-    const arrayOfCounters = [];
-
-    for( const key in ctx.counters ) {
-      arrayOfCounters.push( ctx.counters[key] );
-    }
-
     return [
       {
         elem: 'header',
@@ -37,7 +31,7 @@ block( 'footer' )(
       },
       {
         elem: 'counters',
-        counters: arrayOfCounters
+        counters: Object.values( ctx.counters )
       }
     ]
   } )
