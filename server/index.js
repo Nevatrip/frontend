@@ -27,7 +27,7 @@ app
   .disable( 'x-powered-by' )
   .enable( 'trust proxy' )
   .use( require( 'compression' )() ) // TODO: Add Brotli / Zopfli compression #2
-  .use( __DEV__ && livereload ? require( 'tiny-lr' ).middleware( { app, dashboard: true } ) : skip )
+  //.use( __DEV__ && livereload ? require( 'tiny-lr' ).middleware( { app, dashboard: true } ) : skip )
   .use( require( 'serve-favicon' )( path.join( staticFolder, 'favicon.ico' ) ) )
   .use( require( 'serve-static' )( staticFolder ) )
   .use( require( 'cookie-parser' )() )
