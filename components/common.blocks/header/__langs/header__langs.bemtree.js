@@ -2,6 +2,9 @@ block( 'header' ).elem( 'langs' )(
   content()( node => {
     const currentLang = ( ( ( node || {} ).data || {} ).params || {} ).lang || '';
     const serviceBasedData = ( ( ( node || {} ).data || {} ).api || {} ).serviceBasedData || {};
+    const langs = ( serviceBasedData || {} ).langSiteLink;
+
+    delete langs._type;
 
     const getRoute = page => {
       const routeKey = {
@@ -12,7 +15,7 @@ block( 'header' ).elem( 'langs' )(
       };
 
       const response = ( ( ( node || {} ).data || {} ).api || {} )[routeKey[page]];
-      const otherLangs = ( ( node || {} ).config || {} ).langs
+      const otherLangs = Object.keys( langs )
         .filter( lang => lang !== currentLang )
         .map( lang => ( ( ( response || {} ).title || {} ) ).hasOwnProperty( lang ) ?
           {
