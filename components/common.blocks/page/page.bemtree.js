@@ -4,6 +4,7 @@ block( 'page' )(
     const currentLang = ( node || {} ).currentLang = ( ( ( node || {} ).data || {} ).params || {} ).lang || '';
     const settingServicesCollections = ( ( ( node || {} ).data || {} ).api || {} ).settingServicesCollections || [];
     const settingSocials = ( ( ( node || {} ).data||{} ).api || {} ).settingSocials || {};
+    const counters = serviceBasedData.counters;
 
     return [
       {
@@ -36,7 +37,8 @@ block( 'page' )(
           }
         } ),
         copyright: ( ( serviceBasedData || {} ).copyright || {} )[currentLang] || '',
-        social: settingSocials
+        social: settingSocials,
+        counters
       }
     ]
   } ),

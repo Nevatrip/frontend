@@ -9,6 +9,7 @@
         'footer',
         'awards',
         'address',
+        'counters',
       ]
     },
     {
