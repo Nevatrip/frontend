@@ -1,10 +1,11 @@
 block( 'page' )(
-  content()( node => {
+  content()( (node, ctx) => {
     const serviceBasedData = ( ( ( node || {} ).data|| {} ).api || {} ).serviceBasedData || {};
     const currentLang = ( node || {} ).currentLang = ( ( ( node || {} ).data || {} ).params || {} ).lang || '';
     const settingServicesCollections = ( ( ( node || {} ).data || {} ).api || {} ).settingServicesCollections || [];
     const settingSocials = ( ( ( node || {} ).data||{} ).api || {} ).settingSocials || {};
     const counters = serviceBasedData.counters;
+    const navFooter = node.data.api.footerNavigation;
 
     return [
       {
@@ -38,7 +39,8 @@ block( 'page' )(
         } ),
         copyright: ( ( serviceBasedData || {} ).copyright || {} )[currentLang] || '',
         social: settingSocials,
-        counters
+        counters,
+        navFooter
       }
     ]
   } ),

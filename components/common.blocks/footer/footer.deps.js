@@ -10,6 +10,7 @@
         'awards',
         'address',
         'counters',
+        'navFooter'
       ]
     },
     {
