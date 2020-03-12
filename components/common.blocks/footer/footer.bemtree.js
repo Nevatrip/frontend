@@ -28,10 +28,7 @@ block( 'footer' )(
       },
       {
         elem: 'footer',
-        social: ctx.social
-      },
-      {
-        elem: 'navFooter',
+        social: ctx.social,
         navFooter: ctx.navFooter
       },
       {
