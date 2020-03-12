@@ -13,6 +13,7 @@ const getSettingBlog = require( '../request/getSettingBlog' );
 const getBlogByOffset = require( '../request/getBlogByOffset' );
 const getBlogByAlias = require( '../request/getBlogByAlias' );
 const getNumberRandomBlogs = require( '../request/getNumberRandomBlogs' );
+const getNavFooter = require( '../request/getNavFooter' );
 
 const action = async( context, params ) => {
   const {
@@ -32,9 +33,8 @@ const action = async( context, params ) => {
 
   const tours = await getServices( project, lang );
   const navigation = await getNav( project, lang );
-
+  const footerNavigation = await getNavFooter( project, lang );
   const servicesRandom = await getServicesRandom( project, lang );
-
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
@@ -98,6 +98,7 @@ const action = async( context, params ) => {
       api: {
         tours,
         navigation,
+        footerNavigation,
         serviceBasedData,
         settingServicesCollections,
         settingService,

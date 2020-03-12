@@ -10,6 +10,7 @@ const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 const getServiceCategoryByServiceAlias = require( '../request/getServiceCategoryByServiceAlias' );
 const getSettingSocials = require( '../request/getSettingSocials' );
+const getNavFooter = require( '../request/getNavFooter' );
 
 const action = async( context, params ) => {
   const {
@@ -33,6 +34,7 @@ const action = async( context, params ) => {
   const categoryName = ( ( ( ( ( await getServiceCategoryByServiceAlias( project, lang, service ) || {} ).category || {} ).title || {} )[params.lang] || {} ).key || {} ).current;
   const serviceResponse = await getService( project, lang, categoryName, service );
   const navigation = await getNav( project, lang );
+  const footerNavigation = await getNavFooter( project, lang );
   const excludeID = ( serviceResponse || {} )._id;
   const servicesRandom = await ( categoryName ? getServicesRandom( project, lang, categoryName, excludeID ) : getServicesRandom( project, lang, category ) );
   const serviceBasedData = await getServiceBasedData( project, lang );
@@ -99,6 +101,7 @@ const action = async( context, params ) => {
     api: {
       tours,
       navigation,
+      footerNavigation,
       servicesRandom,
       serviceBasedData,
       settingService,

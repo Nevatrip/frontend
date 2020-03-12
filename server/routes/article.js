@@ -7,6 +7,7 @@ const getRoutes = require( '../request/getRoutesBySectionAndLang' );
 const getSettingSocials = require( '../request/getSettingSocials' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 const getArticleByAlias = require('../request/getArticleByAlias');
+const getNavFooter = require( '../request/getNavFooter' );
 
 const action = async( context, params ) => {
   const {
@@ -26,6 +27,7 @@ const action = async( context, params ) => {
 
   const routes = await getRoutes( 'article', lang, project );
   const navigation = await getNav( project, lang );
+  const footerNavigation = await getNavFooter( project, lang );
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingSocials = await getSettingSocials( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
@@ -64,6 +66,7 @@ const action = async( context, params ) => {
       api: {
         routes,
         navigation,
+        footerNavigation,
         serviceBasedData,
         settingSocials,
         settingServicesCollections,

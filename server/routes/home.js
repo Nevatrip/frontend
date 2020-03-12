@@ -12,7 +12,7 @@ const getSettingMainBanner = require( '../request/getSettingMainBanner' );
 const getSettingTopFeatures = require( '../request/getSettingTopFeatures' );
 const getSettingBottomFeatures = require( '../request/getSettingBottomFeatures' );
 const getSettingSocials = require( '../request/getSettingSocials' );
-
+const getNavFooter = require( '../request/getNavFooter' );
 
 const action = async( context, params ) => {
   const {
@@ -25,12 +25,11 @@ const action = async( context, params ) => {
   const settingTopFeatures = await getSettingTopFeatures( project, lang );
   const settingBottomFeatures = await getSettingBottomFeatures( project, lang );
   const settingSocials = await getSettingSocials( project, lang );
-
   const servicesFilter = await getServices( project, lang );
   const tags = await getTags( project, lang );
   const serviceBanner = await getService( project, lang, '', bannerAlias );
-
   const navigation = await getNav( project, lang );
+  const footerNavigation = await getNavFooter( project, lang );
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
@@ -71,7 +70,7 @@ const action = async( context, params ) => {
       service: ( ( item.title[currentLang] || {} ).key || {} ).current || '//',
       lang,
       project
-    }
+    };
 
     item.serviceImgUrl = titleImageCropped;
     item.mainUrl = params.urlTo( 'service', itemParams );
@@ -100,7 +99,7 @@ const action = async( context, params ) => {
     width: '280',
     height: '280',
     card: 'summary'
-  }
+  };
 
   return {
     page: 'index',
@@ -109,6 +108,7 @@ const action = async( context, params ) => {
       servicesFilter,
       serviceBanner,
       navigation,
+      footerNavigation,
       tags,
       serviceBasedData,
       settingService,

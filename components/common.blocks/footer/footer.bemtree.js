@@ -5,7 +5,8 @@ block( 'footer' )(
     _mainNavHeading: ctx.mainNavHeading,
     _basicNav: ctx.basicNav,
     _copyright: ctx.copyright,
-    _counters: ctx.counters
+    _counters: ctx.counters,
+    _navFooter: ctx.navFooter
   } ) ),
   content()( ( node, ctx ) => {
     return [
@@ -27,7 +28,8 @@ block( 'footer' )(
       },
       {
         elem: 'footer',
-        social: ctx.social
+        social: ctx.social,
+        navFooter: ctx.navFooter
       },
       {
         elem: 'counters',

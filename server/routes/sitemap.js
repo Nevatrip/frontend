@@ -13,13 +13,13 @@ const getServiceCollection = require( '../request/getSettingServicesCollections'
 const getSettingBlog = require( '../request/getSettingBlog' );
 const getBlogArticles = require( '../request/getBlogArticles' );
 const getArticles = require( '../request/getArticles' );
-
+const getNavFooter = require( '../request/getNavFooter' );
 
 const asyncForEach = async( array, callback ) => {
   for( let index = 0; index < array.length; index++ ) {
     await callback( array[index], index, array )
   }
-}
+};
 
 const action = async( context, params ) => {
   const {
@@ -38,6 +38,7 @@ const action = async( context, params ) => {
 
   const routes = await getRoutes( 'sitemap', lang, project );
   const navigation = await getNav( project, lang );
+  const footerNavigation = await getNavFooter( project, lang );
   const serviceBasedData = await getServiceBasedData( project, lang );
   const settingSocials = await getSettingSocials( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
@@ -157,7 +158,7 @@ const action = async( context, params ) => {
     width: '1200',
     height: '620',
     card: 'summary_large_image'
-  }
+  };
 
   return {
     page: 'sitemap',
@@ -165,6 +166,7 @@ const action = async( context, params ) => {
     api: {
       routes,
       navigation,
+      footerNavigation,
       serviceBasedData,
       settingSocials,
       settingServicesCollections,

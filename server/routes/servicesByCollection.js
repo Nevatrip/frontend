@@ -8,6 +8,7 @@ const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 const getServiceCollectionByCollectionAlias = require( '../request/getServiceCollectionByCollectionAlias' );
 const getSettingSocials = require( '../request/getSettingSocials' );
+const getNavFooter = require( '../request/getNavFooter' );
 
 const action = async( context, params ) => {
   const {
@@ -28,6 +29,7 @@ const action = async( context, params ) => {
   const routes = await getRoutes( 'settingServicesCollections', lang, project );
   const serviceBasedData = await getServiceBasedData( project, lang );
   const navigation = await getNav( project, lang );
+  const footerNavigation = await getNavFooter( project, lang );
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
   const serviceCollection = collection;
@@ -101,6 +103,7 @@ const action = async( context, params ) => {
         routes,
         serviceBasedData,
         navigation,
+        footerNavigation,
         settingService,
         settingServicesCollections,
         services,
