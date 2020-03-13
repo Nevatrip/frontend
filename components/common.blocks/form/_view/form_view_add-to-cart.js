@@ -1,45 +1,50 @@
-modules.define( 'form', ['jquery', 'button'], ( provide, $, Button, Form ) => {
-  provide( Form.declMod( { modName: 'view', modVal: 'add-to-cart' }, {
+modules.define('form', ['jquery', 'button'], (provide, $, Button, Form) => {
+  provide(Form.declMod({ modName: 'view', modVal: 'add-to-cart' }, {
     onSetMod: {
       js: {
         inited() {
-          this.__base.apply( this, arguments );
+          this.__base.apply(this, arguments);
           this._api = this.params.api;
 
-          this._events().on( 'success', event => {
-            console.log( 'event', event );
+          this._events().on('success', event => {
+            console.log('event', event);
 
             // event.target.domElem[0].submit();
-          } );
+          });
 
           this._redirect = this.domElem[0].action;
-          this._submit = this.findChildBlock( { block: Button, modName: 'type', modVal: 'submit' } );
+          this._submit = this.findChildBlock({ block: Button, modName: 'type', modVal: 'submit' });
           this._added = false;
         }
       }
     },
-    _onSubmit( e ) {
+    _onSubmit(e) {
       e.preventDefault();
 
-      if( this._added ) {
+      if (this._added) {
         window.location.href = this._redirect;
       } else {
         const val = this.getVal();
 
-        $.ajax( {
-          type: 'POST',
-          url: `//${ this._api }/shoppingCarts/${ val.session }/products`,
-          data: JSON.stringify( { productId: val.product } ),
+        $.ajax({
+          type: 'PUT',
+          url: `//${this._api}/shoppingCarts/${val.session}`,
+          data: JSON.stringify({
+            sessionId: val.session,
+            created: new Date(),
+            updated: new Date(),
+            products: [{ productId: val.product }],
+            user: {},
+          }),
           contentType: 'application/json; charset=utf-8'
-        } ).done( data => {
-          console.log( 'data', data );
+        }).done(data => {
           this._added = true;
-          this._submit.setText( 'Добавлено 👌' );
+          // this._submit.setText( 'Добавлено 👌' );
           window.location.href = this._redirect;
-        } ).fail( err => {
-          console.log( 'err', err );
-        } );
+        }).fail(err => {
+          console.log('err', err);
+        });
       }
     }
-  } ) );
-} );
+  }));
+});
