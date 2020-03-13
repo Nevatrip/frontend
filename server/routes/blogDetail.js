@@ -134,6 +134,7 @@ const action = async( context, params ) => {
     api: {
       tours,
       navigation,
+      footerNavigation,
       servicesRandom,
       serviceBasedData,
       settingService,

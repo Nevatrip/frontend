@@ -69,6 +69,7 @@ const action = async( context, params ) => {
         tours,
         service: serviceResponse,
         navigation,
+        footerNavigation,
         servicesRandom,
         serviceBasedData,
         settingService,

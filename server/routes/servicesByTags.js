@@ -55,7 +55,7 @@ const action = async( context, params ) => {
       service: ( ( item.title[currentLang] || {} ).key || {} ).current || '//',
       lang,
       project
-    }
+    };
 
     item.serviceImgUrl = titleImageCropped;
     item.mainUrl = params.urlTo( 'service', itemParams );

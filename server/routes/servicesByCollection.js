@@ -64,7 +64,7 @@ const action = async( context, params ) => {
       service: ( ( item.title[currentLang] || {} ).key || {} ).current || '//',
       lang,
       project
-    }
+    };
 
     item.serviceImgUrl = titleImageCropped;
     item.mainUrl = params.urlTo( 'service', itemParams );
@@ -93,7 +93,7 @@ const action = async( context, params ) => {
     width: '1200',
     height: '620',
     card: 'summary_large_image'
-  }
+  };
 
   if( serviceCategoryFull ) {
     return {
