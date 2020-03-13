@@ -48,7 +48,7 @@ const action = async( context, params ) => {
     width: '280',
     height: '280',
     card: 'summary'
-  }
+  };
 
   return {
     page: 'cart',
