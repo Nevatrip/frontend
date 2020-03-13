@@ -84,7 +84,7 @@ const action = async( context, params ) => {
     width: '1200',
     height: '620',
     card: 'summary_large_image'
-  }
+  };
 
   return {
     page: 'blog',

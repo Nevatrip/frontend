@@ -9,7 +9,7 @@ block( 'blog' ).mod( 'view', 'home-page' )(
         imageUrl: ( ctx.settingBlog || {} ).imageUrl,
         logoUrl: ( ctx.settingBlog || {} ).logoUrl,
         title: ( ( ctx.settingBlog || {} ).heading || {} )[currentLang],
-        intro: ( ( ctx.settingBlog || {} ).intro || {} )[currentLang] || ''
+        intro: node._marked(( ( ctx.settingBlog || {} ).intro || {} )[currentLang] || '')
       },
       {
         block: 'page',
