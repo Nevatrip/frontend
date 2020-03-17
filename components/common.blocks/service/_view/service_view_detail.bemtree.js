@@ -101,10 +101,10 @@ block( 'service' ).mod( 'view', 'detail' )(
                     block: 'service',
                     elem: 'buy',
                     id,
-                    noDirectionBtn: node.data.api.settingService.noDirectionBtn[currentLang],
                     price: `${ price } ${ currency }`,
                     priceOutside: `${ priceOld } ${ currency }`,
                     title: serviceTitle || '',
+                    noDirectionBtn: node.data.api.settingService.noDirectionBtn[currentLang],
                     fullSchedule: fullSchedule.length !== 0
 
                     // urlBuy: buyLink[currentLang]
@@ -247,11 +247,12 @@ block( 'service' ).mod( 'view', 'detail' )(
                   price && { // на странице 2 кнопки купить не забываем про вторую
                     block: 'service',
                     elem: 'buy',
-                    urlBuy: buyLink[currentLang],
                     id,
                     price: `${ price } ${ currency }`,
                     priceOutside: `${ priceOld } ${ currency }`,
-                    title: serviceTitle || ''
+                    title: serviceTitle || '',
+                    noDirectionBtn: node.data.api.settingService.noDirectionBtn[currentLang],
+                    fullSchedule: fullSchedule.length !== 0
 
                     // urlBuy: buyLink[currentLang]
                   },

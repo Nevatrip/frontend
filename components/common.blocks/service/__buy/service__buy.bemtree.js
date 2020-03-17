@@ -34,7 +34,7 @@ block( 'service' ).elem( 'buy' )(
             elemMods: { view: 'md' },
             content: price
           },
-          {
+          fullSchedule && {
             block: 'form',
             mods: { view: 'add-to-cart' },
             id,
@@ -43,6 +43,9 @@ block( 'service' ).elem( 'buy' )(
             content,
             noDirectionBtn,
             fullSchedule
+          } || {
+            elem: 'text',
+            content: noDirectionBtn
           }
         ]
       },

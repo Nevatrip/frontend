@@ -4,7 +4,7 @@ block( 'form' ).mod( 'view', 'add-to-cart' )( {
     'ctx.method': 'post',
     'ctx.api': node.config.api
   } ),
-  content: ( node, { id, session, title, content, noDirectionBtn, fullSchedule } ) => [
+  content: ( node, { id, session, title, content } ) => [
     {
       block: 'form-field',
       mods: { type: 'hidden' },
@@ -21,7 +21,7 @@ block( 'form' ).mod( 'view', 'add-to-cart' )( {
       block: 'button',
       mods: { type: 'submit' },
       title: title || content,
-      text: fullSchedule ? content : noDirectionBtn
+      text: content
     }
   ]
 } )
