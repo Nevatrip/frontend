@@ -83,7 +83,7 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                           block: 'link',
                           mods: { view: 'button' },
                           content: {
-                            html: `${ moreText ? moreText : ( ( ( ( node.data || {} ).api || {} ).settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }&nbsp;&rarr;`
+                            html: `${ moreText ? moreText : ( ( ( ( node.data || {} ).api || {} ).settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }`
                           },
                           url: mainUrl,
                           title: serviceTitle

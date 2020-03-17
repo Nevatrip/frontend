@@ -6,7 +6,7 @@ block( 'service' ).elem( 'more' )(
       block: 'link',
       mix: { block: node.block, elem: node.elem },
       content: {
-        html: `${ ( ( node.data.api.settingService || {} ).serviceMoreLink || {} )[currentLang] || '' }&nbsp;&rarr;`
+        html: `${ ( ( node.data.api.settingService || {} ).serviceMoreLink || {} )[currentLang] || '' }`
       },
       to: ctx.route,
       params: ctx.params,

@@ -6,7 +6,7 @@ const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getRoutes = require( '../request/getRoutesBySectionAndLang' );
 const getSettingSocials = require( '../request/getSettingSocials' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
-const getArticleByAlias = require('../request/getArticleByAlias');
+const getArticleByAlias = require( '../request/getArticleByAlias' );
 const getNavFooter = require( '../request/getNavFooter' );
 
 const action = async( context, params ) => {
