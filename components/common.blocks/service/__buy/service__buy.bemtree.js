@@ -13,7 +13,9 @@ block( 'service' ).elem( 'buy' )(
     id,
     price,
     title = '',
-    priceOutside
+    priceOutside,
+    noDirectionBtn,
+    fullSchedule
 
     // urlBuy,
     // route,
@@ -32,13 +34,19 @@ block( 'service' ).elem( 'buy' )(
             elemMods: { view: 'md' },
             content: price
           },
-          {
+          fullSchedule && {
             block: 'form',
             mods: { view: 'add-to-cart' },
             id,
             session,
             title,
-            content
+            content,
+            noDirectionBtn,
+            fullSchedule
+          } || {
+            block: 'service',
+            elem: 'text',
+            content: noDirectionBtn
           }
         ]
       },

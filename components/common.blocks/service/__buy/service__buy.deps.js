@@ -5,6 +5,7 @@
       elems: [
         'price',
         'price-outside',
+        "text"
       ]
     },
     {
