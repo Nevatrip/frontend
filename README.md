@@ -1,10 +1,10 @@
-# nevatrip-mvp-server [![Build Status](https://travis-ci.org/Nevatrip/frontend.svg?branch=master)](https://travis-ci.org/Nevatrip/frontend) / [![Build Status](https://travis-ci.org/Nevatrip/frontend.svg?branch=develop)](https://travis-ci.org/Nevatrip/frontend)
+# Frontend ![CI](https://github.com/Nevatrip/frontend/workflows/CI/badge.svg)
 
 ## Install
 
 ```bash
-git clone git@github.com/realetive/nevatrip-mvp-server.git
-cd nevatrip-mvp-server
+git clone git@github.com:Nevatrip/frontend.git
+cd frontend
 ```
 
 Repository use [git-crypt](https://github.com/AGWA/git-crypt), so you can uncrypt security files (if your GPG key added to repository):
@@ -22,7 +22,7 @@ cp .env.example .env
 and install dependencies:
 
 ```bash
-npm install
+npm install --ignore-scripts
 ```
 
 ### Environment variables
@@ -69,5 +69,5 @@ docker build --no-cache . -t frontend
 2. Run container
 
 ```bash
-docker run -ti --rm -p 8000:3012 frontend
+docker run -ti --rm -p 3012:3012 frontend
 ```
