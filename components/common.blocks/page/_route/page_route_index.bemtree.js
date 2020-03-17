@@ -31,6 +31,11 @@ block( 'page' ).mod( 'route', 'index' )(
         features: settingTopFeatures
       },
       {
+        block: 'page',
+        elem: 'hr',
+        elemMods: { size: 'md' }
+      },
+      {
         block: 'filter',
         bg: '/filter__header.jpg',
         dayHeading: ( ( serviceBasedData || {} ).filterDayTimeCaption || {} )[currentLang] || '',
@@ -62,17 +67,17 @@ block( 'page' ).mod( 'route', 'index' )(
         block: 'page',
         elem: 'article',
         content: [
-          {
+          ( ( ( serviceBasedData || {} ).articleImage || {} ).asset || {} )._ref && ( ( serviceBasedData || {} ).articleTitle || {} )[currentLang] && {
             block: 'title',
             mods: { view: 'sm' },
             url: node._urlFor( ( ( ( serviceBasedData || {} ).articleImage || {} ).asset || {} )._ref ).url() || '',
             title: ( ( serviceBasedData || {} ).articleTitle || {} )[currentLang] || ''
           },
-          {
+          settingBottomFeatures && {
             block: 'features',
             features: settingBottomFeatures
           },
-          {
+          settingBottomFeatures && {
             block: 'page',
             elem: 'hr',
             elemMods: { size: 'md' }

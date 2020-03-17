@@ -7,12 +7,12 @@ block( 'filter' )(
   }
   ),
   content()( ( node, ctx ) => [
-    {
-      elem: 'header',
-      basicTags: ctx.basicTags,
-      basicHeading: ctx.basicHeading,
-      dayHeading: ctx.dayHeading
-    },
+    // {
+    //   elem: 'header',
+    //   basicTags: ctx.basicTags,
+    //   basicHeading: ctx.basicHeading,
+    //   dayHeading: ctx.dayHeading
+    // },
     {
       elem: 'result',
       moreText: ctx.moreText,

@@ -8,3 +8,8 @@
   max-width: 67px;
   margin-bottom: 4px;
 }
+@media (max-width: 575px) {
+  .features__item-img{
+    max-width: 43px;
+  }
+}

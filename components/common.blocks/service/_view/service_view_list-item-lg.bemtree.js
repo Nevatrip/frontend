@@ -116,7 +116,7 @@ block( 'service' ).mod( 'view', 'list-item-lg' )(
                           block: 'link',
                           mods: { view: 'button' },
                           content: {
-                            html: `${ ( ( node.data.api.settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }&nbsp;&rarr;`
+                            html: `${ ( ( node.data.api.settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }`
                           },
                           to: 'service',
                           params: {

@@ -24,7 +24,7 @@ block( 'page' ).mod( 'route', 'article' )(
         block: 'page',
         elem: 'content',
         content: {
-          html: ( article.content || {} )[currentLang] || ''
+          html: node._marked( ( article.content || {} )[currentLang] || '' )
         }
       }
     ]
