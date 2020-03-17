@@ -44,6 +44,7 @@ block( 'service' ).elem( 'buy' )(
             noDirectionBtn,
             fullSchedule
           } || {
+            block: 'service',
             elem: 'text',
             content: noDirectionBtn
           }

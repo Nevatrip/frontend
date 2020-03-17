@@ -9,7 +9,8 @@
         'price-info',
         'buy',
         'gallery',
-        'advice'
+        'advice',
+        "text"
       ]
     },
     {
