@@ -13,7 +13,9 @@ block( 'service' ).elem( 'buy' )(
     id,
     price,
     title = '',
-    priceOutside
+    priceOutside,
+    noDirectionBtn,
+    fullSchedule
 
     // urlBuy,
     // route,
@@ -38,7 +40,9 @@ block( 'service' ).elem( 'buy' )(
             id,
             session,
             title,
-            content
+            content,
+            noDirectionBtn,
+            fullSchedule
           }
         ]
       },

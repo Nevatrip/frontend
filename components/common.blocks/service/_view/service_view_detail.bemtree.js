@@ -31,6 +31,7 @@ block( 'service' ).mod( 'view', 'detail' )(
     } = service;
 
     const serviceTitle = ( title[currentLang] || {} ).name || '';
+    const fullSchedule = (( service.directions || [] )[0] || {}).schedule || [];
 
     return [
       {
@@ -100,9 +101,11 @@ block( 'service' ).mod( 'view', 'detail' )(
                     block: 'service',
                     elem: 'buy',
                     id,
+                    noDirectionBtn: node.data.api.settingService.noDirectionBtn[currentLang],
                     price: `${ price } ${ currency }`,
                     priceOutside: `${ priceOld } ${ currency }`,
-                    title: serviceTitle || ''
+                    title: serviceTitle || '',
+                    fullSchedule: fullSchedule.length !== 0
 
                     // urlBuy: buyLink[currentLang]
                   }
@@ -246,7 +249,7 @@ block( 'service' ).mod( 'view', 'detail' )(
                     price: price || '',
                     priceOutside: priceOld || '',
                     title: serviceTitle,
-                    urlBuy: buyLink[currentLang]
+                    urlBuy: buyLink[currentLang],
                   },
                   {
                     block: 'page',
