@@ -44,7 +44,7 @@ block( 'blog' ).mod( 'view', 'xl' )(
               block: 'link',
               mix: { block: 'blog', elem: 'more' },
               content: {
-                html: `${ ( ( node.data.api.settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }&nbsp;&rarr;`
+                html: `${ ( ( node.data.api.settingService || {} ).serviceViewListItemLgMore || {} )[currentLang] || '' }`
               },
               to: 'service',
               params: {

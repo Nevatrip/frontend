@@ -96,7 +96,7 @@ block( 'service' ).mod( 'view', 'detail' )(
 
                   // TODO: отвязаться от urlBuy — вынести как отдельный метод/модификатор
 
-                  price && {
+                  price && { // на странице 2 кнопки купить не забываем про вторую
                     block: 'service',
                     elem: 'buy',
                     id,
@@ -196,7 +196,8 @@ block( 'service' ).mod( 'view', 'detail' )(
                       },
                       {
                         html: node._marked( advice[currentLang] ) || ''
-                      }]
+                      }
+                    ]
                   }
                 ]
               },
@@ -240,13 +241,15 @@ block( 'service' ).mod( 'view', 'detail' )(
                       html: node._marked( priceDescription[currentLang] ) || ''
                     }
                   },
-                  ( buyLink || {} )[currentLang] && ( price || priceOld ) && {
+                  price && { // на странице 2 кнопки купить не забываем про вторую
                     block: 'service',
                     elem: 'buy',
-                    price: price || '',
-                    priceOutside: priceOld || '',
-                    title: serviceTitle,
-                    urlBuy: buyLink[currentLang]
+                    id,
+                    price: `${ price } ${ currency }`,
+                    priceOutside: `${ priceOld } ${ currency }`,
+                    title: serviceTitle || ''
+
+                    // urlBuy: buyLink[currentLang]
                   },
                   {
                     block: 'page',

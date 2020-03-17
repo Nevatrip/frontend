@@ -42,7 +42,7 @@ block( 'service' ).elem( 'description' )(
                 title: lang.name[node.currentLang] || ''
               }
             } ) )],
-          ctx.placeFeatures && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionPlaceFeatures || {} )[currentLang] || '' }: `, ctx.placeFeatures.map( placeFeature => ( {
+          ( ctx.placeFeatures || [] ).length>0 && [`${ ( ( node.data.api.settingService || {} ).serviceDescriptionPlaceFeatures || {} )[currentLang] || '' }: `, ctx.placeFeatures.map( placeFeature => ( {
             block: 'popup-tip',
             mods: { view: 'icon' },
             text: placeFeature.name[node.currentLang] || '',

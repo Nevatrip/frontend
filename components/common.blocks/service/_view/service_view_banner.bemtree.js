@@ -94,10 +94,16 @@ block( 'service' ).mod( 'view', 'banner' )(
         block: 'link',
         url: bannerLink,
         title: bannerTitle,
+        attrs: {
+          style: `background-image: url(${ bannerImg }); background-position: center center; background-size: cover; display: block; min-height: 60vh;`
+        },
         content: {
           block: 'image',
           alt: bannerTitle,
-          url: bannerImg
+          url: bannerImg,
+          attrs: {
+            style: 'opacity: 0;'
+          }
         }
       }
     }
