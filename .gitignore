@@ -9,8 +9,10 @@ shrinkwrap.yaml
 
 .enb/tmp/
 
+!bundles/*/*.bemdecl.js
 bundles/*/*
 !bundles/*/*.bemdecl.js
+bundles/*/*.tmpl.bemdecl.js
 
 dist/
 
