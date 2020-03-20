@@ -5,6 +5,7 @@ block( 'page' ).mod( 'route', 'cart' )(
       attrs: {
         id: 'root',
         lang,
+        translate: 'no',
         'data-session': session
       }
     }
