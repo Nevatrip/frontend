@@ -25,3 +25,4 @@ deploy_rsa
 deploy_rsa.pub
 .docker/data
 remove-gpg-user.sh
+.env
