@@ -14,7 +14,7 @@ block( 'service' ).elem( 'buy' )(
     price,
     title = '',
     priceOutside,
-    noDirectionBtn,
+    noDirectionBtn = '',
     fullSchedule
 
     // urlBuy,
