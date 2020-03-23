@@ -1,6 +1,6 @@
 const client = require( './_request' );
 
-const query = `*[_type == "tour"&&!("deleted" in status)&&!("hidden" in status)]{
+const query = `*[_type == "tour"&&!("deleted" in status)&&!("hidden" in status)] | order(tourPriority) {
 ...,
 "category": category->}`;
 const params = {};

@@ -31,7 +31,7 @@ const query = tags => {
   }
   const tagsString = tagsArr.join( '&&' );
 
-  return `*[ _type == "tour"&&(${ tagsString })&&!("deleted" in status)&&!("hidden" in status)]{ ...,"category":category->,"tags": tags[]->}`
+  return `*[ _type == "tour"&&(${ tagsString })&&!("deleted" in status)&&!("hidden" in status)] | order(tourPriority) { ...,"category":category->,"tags": tags[]->}`
 };
 const params = {};
 

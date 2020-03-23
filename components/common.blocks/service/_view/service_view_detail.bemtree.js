@@ -104,7 +104,7 @@ block( 'service' ).mod( 'view', 'detail' )(
                     price: `${ price } ${ currency }`,
                     priceOutside: `${ priceOld } ${ currency }`,
                     title: serviceTitle || '',
-                    noDirectionBtn: node.data.api.settingService.noDirectionBtn[currentLang],
+                    noDirectionBtn: ( ( node.data.api.settingService || {} ).noDirectionBtn || {} )[currentLang],
                     fullSchedule: fullSchedule.length !== 0
 
                     // urlBuy: buyLink[currentLang]
@@ -251,7 +251,7 @@ block( 'service' ).mod( 'view', 'detail' )(
                     price: `${ price } ${ currency }`,
                     priceOutside: `${ priceOld } ${ currency }`,
                     title: serviceTitle || '',
-                    noDirectionBtn: node.data.api.settingService.noDirectionBtn[currentLang],
+                    noDirectionBtn: ( ( node.data.api.settingService || {} ).noDirectionBtn || {} )[currentLang],
                     fullSchedule: fullSchedule.length !== 0
 
                     // urlBuy: buyLink[currentLang]
