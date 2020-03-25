@@ -3,7 +3,8 @@ block( 'breadcrumbs' ).elem( 'item' )(
   attrs()( () => (
     {
       itemscope: '',
-      itemtype: 'http://schema.org/ListItem'
+      itemtype: 'http://schema.org/ListItem',
+      itemprop: 'itemListElement'
     } )
   ),
 )
