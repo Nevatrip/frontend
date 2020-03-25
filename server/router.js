@@ -16,6 +16,7 @@ const blogDetail = require( './routes/blogDetail' );
 const article = require( './routes/article' );
 const sitemap = require( './routes/sitemap' );
 const sitemapxml = require( './routes/sitemapxml' );
+const robotstxt = require( './routes/robotstxt' );
 
 const rootPath = process.env.ROOT_PATH;
 const rootProject = process.env.ROOT_PROJECT;
@@ -55,6 +56,11 @@ const router = new UniversalRouter(
             path: '/sitemap.xml',
             name: 'sitemapxml',
             load: async() => await sitemapxml
+          },
+          {
+            path: '/robots.txt',
+            name: 'robotstxt',
+            load: async() => await robotstxt
           },
           {
             path: '/blog',
