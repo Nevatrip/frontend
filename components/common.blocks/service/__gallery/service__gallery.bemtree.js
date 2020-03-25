@@ -45,13 +45,13 @@ block( 'service' ).elem( 'gallery' ).content()( ( node, ctx ) => {
                 url: node._urlFor( item.asset._ref ).fit( 'crop' ).width( 133 )
                   .height( 133 )
                   .url(),
-                alt: ( item.description || {} )[currentLang] || '',
+                alt: ( item.description || {} )[currentLang] || ctx.alt || '',
                 mods: { width: 'available' },
                 mix: { block: 'gallery', elem: 'thumbnail' },
                 attrs: {
                   itemprop: 'thumbnail'
                 },
-                title: ( item.description || {} )[currentLang] || ''
+                title: ( item.description || {} )[currentLang] || ctx.alt || ''
               }
             },
             {
@@ -61,7 +61,7 @@ block( 'service' ).elem( 'gallery' ).content()( ( node, ctx ) => {
               attrs: {
                 itemprop: 'caption description'
               },
-              content: ( item.description || {} )[currentLang] || ''
+              content: ( item.description || {} )[currentLang] || ctx.alt || ''
             }
           ]
         } ) )

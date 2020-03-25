@@ -220,7 +220,8 @@ block( 'service' ).mod( 'view', 'detail' )(
                     {
                       block: 'service',
                       elem: 'gallery',
-                      photos: gallery
+                      photos: gallery,
+                      alt: serviceTitle || ''
                     }
                   ],
                   ( attractions || {} ).length > 0 && [
