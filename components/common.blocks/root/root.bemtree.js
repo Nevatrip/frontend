@@ -77,6 +77,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
       { elem: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' } },
       { elem: 'link', attrs: { rel: 'manifest', href: '/manifest.json' } },
       { elem: 'link', attrs: { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#309acd' } },
+      { elem: 'link', attrs: { rel: 'canonical', href: ( ( serviceBasedData || {} ).langSiteLink[currentLang].replace( /\s/g, '' ) + ctx.data.url.path ).replace( /\/{2,}/g, '/' ) } },
       { elem: 'meta', attrs: { name: 'msapplication-TileColor', content: '#309acd' } },
       { elem: 'meta', attrs: { name: 'theme-color', content: '#309acd' } },
 
@@ -100,6 +101,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
       ( ( serviceBasedData || {} ).title || {} )[currentLang] && { elem: 'meta', attrs: { name: 'application-name', content: serviceBasedData.title[currentLang] } },
       ( ( serviceBasedData || {} ).title || {} )[currentLang] && { elem: 'meta', attrs: { property: 'og:site_name', content: serviceBasedData.title[currentLang] } },
       ( ( serviceBasedData || {} ).Country || {} )[currentLang] && { elem: 'meta', attrs: { property: 'og:locale', content: `${ currentLang }_${ serviceBasedData.Country[currentLang] }` } }
+
     ]
 
     // mods: { route: node.data.view || node.data.page, js: true }
