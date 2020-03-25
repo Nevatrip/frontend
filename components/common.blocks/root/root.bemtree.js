@@ -15,8 +15,8 @@ block( 'root' ).replace()( ( node, ctx ) => {
 
   const config = node.config = ctx.config;//used on the others pages do not remove
   const data = node.data = ctx.data;
-  const serviceBasedData = node.data.api.serviceBasedData;
-  const currentLang = node.data.params.lang;
+  const serviceBasedData = ( ( node.data || {} ).api || {} ).serviceBasedData;
+  const currentLang = ( ( node.data || {} ).params || {} ).lang;
 
   node._marked = marked;
   node._urlFor = source => builder.image( source );
@@ -26,7 +26,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
     email: ( serviceBasedData || {} ).email || ''
   };
 
-  const meta = node.data.api.meta || {};
+  const meta = ( ( node.data || {} ).api || {} ).meta || {};
 
   // const og = meta.og || {};
 
@@ -55,6 +55,10 @@ block( 'root' ).replace()( ( node, ctx ) => {
         ] )
       }
     ]
+  }
+
+  if( doctype === 'txt' ) {
+    return node.data.content
   }
 
   return {
