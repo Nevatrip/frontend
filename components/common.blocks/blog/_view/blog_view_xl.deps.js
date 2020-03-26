@@ -2,7 +2,7 @@
   shouldDeps: [
     {
       block: 'blog',
-      elems: [ 'img-wrap', 'content', 'link', 'img', 'p', 'h1', 'more' ],
+      elems: [ 'img-wrap', 'content', 'link', 'img', 'p', 'h1', 'more', 'text' ],
     },
     {
       block: 'link'
