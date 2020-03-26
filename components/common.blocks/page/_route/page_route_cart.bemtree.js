@@ -9,12 +9,12 @@ block( 'page' ).mod( 'route', 'cart' )(
     // },
     {
       block: 'cart',
+      mix: { block: 'notranslate' },
       attrs: {
         id: 'root',
         lang,
         'data-session': session
-      },
-      // mix: { block: 'notranslate' }
+      }
     }
   ] ),
 );
