@@ -35,9 +35,10 @@ block( 'blog' ).mod( 'view', 'sm' )(
         }
       },
       ctx.content.text && {
-        elem: 'p',
-        elemMods: { view: 'text' },
-        content: ctx.content.text
+        elem: 'text',
+        content: {
+          html: node._marked( ( ctx.content || '' ).text ) || ''
+        }
       },
       {
         elem: 'p',
