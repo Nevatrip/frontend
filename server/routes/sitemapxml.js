@@ -5,6 +5,7 @@ const getServiceCategory = require( '../request/getServiceCategory' );
 const getServiceCollection = require( '../request/getSettingServicesCollections' );
 const getBlogArticles = require( '../request/getBlogArticles' );
 const getArticles = require( '../request/getArticles' );
+const getServiceBasedData = require( '../request/getServiceBasedData' );
 
 const asyncForEach = async( array, callback ) => {
   for( let index = 0; index < array.length; index++ ) {
@@ -17,6 +18,10 @@ const action = async( context, params ) => {
     project,
     lang
   } = params;
+
+  const serviceBasedData = await getServiceBasedData( project, lang );
+  const link = ( serviceBasedData || {} ).langSiteLink[lang].replace( /\s/g, '' );
+  const site = link.charAt( link.length-1 ) === '/' ? link.substring( 0, link.length-1 ) : link;
 
   const articles = await getArticles( project, lang );
 
@@ -39,31 +44,30 @@ const action = async( context, params ) => {
   await asyncForEach( serviceCategory, async item => {
     const inners = await getServicesByCategory( project, lang, ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current );
 
-    catArr.push(
-
-      {
-        to: 'servicesByCategory',
-        params: {
-          project,
-          lang,
-          category: ( ( ( ( item || '' ).title || '' )[lang] || '' ).key || '' ).current || ''
-        }
-      },
-    )
-
-
-    inners.forEach( serv =>
-      catArr.push( {
-        to: 'service',
-        params: {
-          project,
-          lang,
-          category: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || '',
-          service: ( ( ( ( serv || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
-        }
-      }
+    if( ( ( ( ( item || '' ).title || '' )[lang] || '' ).key || '' ).current ) {
+      catArr.push(
+        {
+          to: 'servicesByCategory',
+          params: {
+            project,
+            lang,
+            category: ( ( ( ( item || '' ).title || '' )[lang] || '' ).key || '' ).current || ''
+          }
+        },
       )
-    )
+
+      inners.forEach( serv =>
+        catArr.push( {
+          to: 'service',
+          params: {
+            project,
+            lang,
+            category: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || '',
+            service: ( ( ( ( serv || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
+          }
+        } )
+      )
+    }
   } );
 
   //коллекции
@@ -71,17 +75,20 @@ const action = async( context, params ) => {
   const colArr = [];
 
   serviceСollection.forEach( item => {
-    colArr.push(
-      {
-        to: 'servicesByCollection',
-        params: {
-          project,
-          lang,
-          collection: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
+    if( ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current ) {
+      colArr.push(
+        {
+          to: 'servicesByCollection',
+          params: {
+            project,
+            lang,
+            collection: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
+          }
         }
-      }
-    )
+      )
+    }
   } );
+
 
   //блог
   const blogArr = [];
@@ -132,7 +139,8 @@ const action = async( context, params ) => {
     doctype: 'xml',
     params,
     api: {
-      sitemapArr
+      sitemapArr,
+      site
     }
   }
 };

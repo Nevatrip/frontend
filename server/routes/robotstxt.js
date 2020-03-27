@@ -10,7 +10,10 @@ const action = async( context, params ) => {
 
   const serviceBasedData = await getServiceBasedData( project, lang );
 
-  const sitemap = ( ( serviceBasedData || {} ).langSiteLink[lang].replace( /\s/g, '' ) + 'sitemap' ).replace( /\/{2,}/g, '/' )
+  const link = ( serviceBasedData || {} ).langSiteLink[lang].replace( /\s/g, '' );
+  const site = link.charAt( link.length-1 ) === '/' ? link.substring( 0, link.length-1 ) : link;
+
+  const sitemap = `${ site }/sitemap`;
 
   const content = "User-agent: *\n" +
                   "Disallow: /cgi-bin\n" +
