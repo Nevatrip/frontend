@@ -45,10 +45,10 @@ block( 'root' ).replace()( ( node, ctx ) => {
             content: [
               {
                 elem: 'loc',
-                content: node.data.params.urlTo( page.to || 'index', page.params || {
+                content: ( node.data.api.site + ( ( node.data || {} ).params || {} ).urlTo( page.to || 'index', page.params || {
                   project: ( ( node.data || {} ).params || {} ).project || '',
                   lang: ( ( node.data || {} ).params || {} ).lang || ''
-                } )
+                } ) )
               }
             ]
           }
