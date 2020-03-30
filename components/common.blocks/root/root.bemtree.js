@@ -45,10 +45,10 @@ block( 'root' ).replace()( ( node, ctx ) => {
             content: [
               {
                 elem: 'loc',
-                content: ( node.data.api.site + ( ( node.data || {} ).params || {} ).urlTo( page.to || 'index', page.params || {
+                content: node.data.api.site + ( ( node.data || {} ).params || {} ).urlTo( page.to || 'index', page.params || {
                   project: ( ( node.data || {} ).params || {} ).project || '',
                   lang: ( ( node.data || {} ).params || {} ).lang || ''
-                } ) )
+                } )
               }
             ]
           }
@@ -81,7 +81,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
       { elem: 'link', attrs: { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16x16.png' } },
       { elem: 'link', attrs: { rel: 'manifest', href: '/manifest.json' } },
       { elem: 'link', attrs: { rel: 'mask-icon', href: '/safari-pinned-tab.svg', color: '#309acd' } },
-      { elem: 'link', attrs: { rel: 'canonical', href: `/${ ctx.data.url.path }`.replace( /\/{2,}/g, '/' ) } },} },
+      { elem: 'link', attrs: { rel: 'canonical', href: ctx.data.url.path } },
       { elem: 'meta', attrs: { name: 'msapplication-TileColor', content: '#309acd' } },
       { elem: 'meta', attrs: { name: 'theme-color', content: '#309acd' } },
 
