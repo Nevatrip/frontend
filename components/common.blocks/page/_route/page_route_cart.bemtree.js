@@ -1,5 +1,5 @@
 block( 'page' ).mod( 'route', 'cart' )(
-  mods()( ( { data: { session, params: { lang } } } ) => [
+  mods()( ( { data: { session, params: { lang }, api } } ) => [
     // {
     //   tag: 'meta',
     //   attrs: {
@@ -13,7 +13,8 @@ block( 'page' ).mod( 'route', 'cart' )(
       attrs: {
         id: 'root',
         lang,
-        'data-session': session
+        'data-session': session,
+        style: `background-image: url(${api.cartBg})`,
       }
     }
   ] ),
