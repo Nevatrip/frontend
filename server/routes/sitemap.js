@@ -61,9 +61,9 @@ const action = async( context, params ) => {
 
   //сервисы внутри категорий
   await asyncForEach( serviceCategory, async item => {
-    const inners = await getServicesByCategory(project, lang, ((((item || {}).title || {})[lang] || {}).key || {}).current);
-
     if( ( ( ( ( item || '' ).title || '' )[lang] || '' ).key || '' ).current ) {
+      const inners = await getServicesByCategory(project, lang, ((((item || {}).title || {})[lang] || {}).key || {}).current);
+
       catArr.push(
         {
           title: (((item || '').title || '')[lang] || '').name || '',
