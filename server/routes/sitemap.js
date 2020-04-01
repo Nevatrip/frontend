@@ -112,16 +112,20 @@ const action = async( context, params ) => {
     {
       title: ( ( settingBlog || {} ).heading || {} )[lang] || '',
       to: 'blog',
-      inner: blogInners.map( blogArt => (
-        {
-          title: ( blogArt || {} ).h1 || '',
-          to: 'service',
-          params: {
-            category: 'blog',
-            service: ( blogArt || {} ).alias || ''
-          }
+      inner: blogInners.map( blogArt => {
+        if( ( ( ( ( blogArt || {} ).title || {} )[lang] || {} ).key || {} ).current ) {
+          return (
+            {
+              title: (blogArt || {}).h1 || '',
+              to: 'service',
+              params: {
+                category: 'blog',
+                service: (blogArt || {}).alias || ''
+              }
+            }
+          )
         }
-      ) )
+      } )
     }
   );
 
