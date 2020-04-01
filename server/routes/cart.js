@@ -6,6 +6,7 @@ const getServiceBasedData = require( '../request/getServiceBasedData' );
 const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 const getSettingSocials = require( '../request/getSettingSocials' );
+const getSettingCart = require( '../request/getSettingCart' );
 const getNavFooter = require( '../request/getNavFooter' );
 
 const action = async( context, params ) => {
@@ -30,6 +31,7 @@ const action = async( context, params ) => {
   const settingService = await getSettingService( project, lang );
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
   const settingSocials = await getSettingSocials( project, lang );
+  const settingCart = await getSettingCart( project, lang );
 
   settingSocials && settingSocials.map( item => {
     item.img = params._urlFor( item.imgSrc ).url();
@@ -62,7 +64,8 @@ const action = async( context, params ) => {
       settingServicesCollections,
       settingService,
       settingSocials,
-      meta
+      meta,
+      cartBg: params._urlFor( ( ( ( settingCart || {} ).cartBackground || {} ).asset || {} )._ref || '' ).fit( 'crop' ),
     }
   }
 };
