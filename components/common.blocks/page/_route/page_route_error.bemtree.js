@@ -59,7 +59,7 @@ block( 'page' ).mod( 'route', 'error' )(
                     content: {
                       block: 'link',
                       content: { html: ( ( err || {} ).errorMoreLink || {} )[node.currentLang] || '' },
-                      url: `/${ node.data.params.project }/${ node.data.params.lang }`
+                      url: `/`
                     }
                   }
                 ]
