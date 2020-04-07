@@ -104,16 +104,19 @@ const action = async( context, params ) => {
     }
   );
 
-  blogInners.forEach( blogArt =>
-    blogArr.push( {
-      to: 'service',
-      params: {
-        project,
-        lang,
-        category: 'blog',
-        service: ( blogArt || {} ).alias || ''
+  blogInners.forEach( blogArt => {
+      if ( ( ( ( ( blogArt || {} ).title || {} )[lang] || {} ).key || {} ).current ) {
+        return blogArr.push({
+          to: 'service',
+          params: {
+            project,
+            lang,
+            category: 'blog',
+            service: (blogArt || {}).alias || ''
+          }
+        })
       }
-    } )
+    }
   )
 
   //articles

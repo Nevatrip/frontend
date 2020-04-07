@@ -21,38 +21,41 @@ block( 'navigation' )(
         ctx.content && {
           block: 'navigation',
           elem: 'content',
-          content: ctx.content.map( item => ( {
-            elem: 'item',
-            content: [
-              {
-                block: 'link',
-                mix: { block: 'navigation', elem: 'link' },
-                to: 'servicesByCategory',
-                params: {
-                  category: item.alias
-                },
+          content: ctx.content.map( item => {
+            if ((item && {}).alias) {
+              return {
+                elem: 'item',
                 content: [
-                  item.title && {
-                    block: 'navigation',
-                    elem: 'title',
-                    content: {
-                      html: item.title
-                    }
-                  },
-                  item.subTitle && {
-                    block: 'navigation',
-                    elem: 'subtitle',
-                    content: {
-                      html: item.subTitle
-                    }
+                  {
+                    block: 'link',
+                    mix: {block: 'navigation', elem: 'link'},
+                    to: 'servicesByCategory',
+                    params: {
+                      category: item.alias
+                    },
+                    content: [
+                      item.title && {
+                        block: 'navigation',
+                        elem: 'title',
+                        content: {
+                          html: item.title
+                        }
+                      },
+                      item.subTitle && {
+                        block: 'navigation',
+                        elem: 'subtitle',
+                        content: {
+                          html: item.subTitle
+                        }
+                      }
+                    ]
                   }
                 ]
               }
-            ]
-          } ) )
+            }
+          })
         }
       ]
     }
-
   ] )
 );

@@ -46,6 +46,7 @@ const action = async( context, params ) => {
   const articles = await getArticles( project, lang );
   const settingBlog = ( await getSettingBlog( project, lang ) )[0];
 
+
   //главная(ые) страница(цы)
   const mainArr = [
     {
@@ -60,27 +61,29 @@ const action = async( context, params ) => {
 
   //сервисы внутри категорий
   await asyncForEach( serviceCategory, async item => {
-    const inners = await getServicesByCategory( project, lang, ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current );
+    if( ( ( ( ( item || '' ).title || '' )[lang] || '' ).key || '' ).current ) {
+      const inners = await getServicesByCategory(project, lang, ((((item || {}).title || {})[lang] || {}).key || {}).current);
 
-    catArr.push(
-      {
-        title: ( ( ( item || '' ).title || '' )[lang] || '' ).name || '',
-        to: 'servicesByCategory',
-        params: {
-          category: ( ( ( ( item || '' ).title || '' )[lang] || '' ).key || '' ).current || ''
-        },
-        inner: inners.map( serv => (
-          {
-            title: ( ( ( serv || {} ).title || {} )[lang] || {} ).name || '',
-            to: 'service',
-            params: {
-              category: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || '',
-              service: ( ( ( ( serv || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
+      catArr.push(
+        {
+          title: (((item || '').title || '')[lang] || '').name || '',
+          to: 'servicesByCategory',
+          params: {
+            category: ((((item || '').title || '')[lang] || '').key || '').current || ''
+          },
+          inner: inners.map(serv => (
+            {
+              title: (((serv || {}).title || {})[lang] || {}).name || '',
+              to: 'service',
+              params: {
+                category: ((((item || {}).title || {})[lang] || {}).key || {}).current || '',
+                service: ((((serv || {}).title || {})[lang] || {}).key || {}).current || ''
+              }
             }
-          }
-        ) )
-      }
-    )
+          ))
+        }
+      )
+    }
   } );
 
   //коллекции
@@ -88,15 +91,17 @@ const action = async( context, params ) => {
   const colArr = [];
 
   serviceСollection.forEach( item => {
-    colArr.push(
-      {
-        title: ( ( ( item || {} ).title || {} )[lang] || {} ).name || '',
-        to: 'servicesByCollection',
-        params: {
-          collection: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
+    if( ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current ) {
+      colArr.push(
+        {
+          title: (((item || {}).title || {})[lang] || {}).name || '',
+          to: 'servicesByCollection',
+          params: {
+            collection: ((((item || {}).title || {})[lang] || {}).key || {}).current || ''
+          }
         }
-      }
-    )
+      )
+    }
   } );
 
   //блог
@@ -107,16 +112,20 @@ const action = async( context, params ) => {
     {
       title: ( ( settingBlog || {} ).heading || {} )[lang] || '',
       to: 'blog',
-      inner: blogInners.map( blogArt => (
-        {
-          title: ( blogArt || {} ).h1 || '',
-          to: 'service',
-          params: {
-            category: 'blog',
-            service: ( blogArt || {} ).alias || ''
-          }
+      inner: blogInners.map( blogArt => {
+        if( ( ( ( ( blogArt || {} ).title || {} )[lang] || {} ).key || {} ).current ) {
+          return (
+            {
+              title: (blogArt || {}).h1 || '',
+              to: 'service',
+              params: {
+                category: 'blog',
+                service: (blogArt || {}).alias || ''
+              }
+            }
+          )
         }
-      ) )
+      } )
     }
   );
 
@@ -124,15 +133,17 @@ const action = async( context, params ) => {
   const artArr = [];
 
   articles.forEach( item => {
-    artArr.push(
-      {
-        title: ( ( ( item || {} ).title || {} )[lang] || {} ).name || '',
-        to: 'article',
-        params: {
-          article: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
+    if( ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current ) {
+      artArr.push(
+        {
+          title: (((item || {}).title || {})[lang] || {}).name || '',
+          to: 'article',
+          params: {
+            article: ((((item || {}).title || {})[lang] || {}).key || {}).current || ''
+          }
         }
-      }
-    )
+      )
+    }
   } );
 
   const sitemapArr = mainArr.concat( catArr, colArr, blogArr, artArr );
