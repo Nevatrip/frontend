@@ -9,6 +9,9 @@ block( 'breadcrumbs' )(
           {
             block: 'link',
             mix: { block: 'breadcrumbs', elem: 'link' },
+            attrs: {
+              itemprop: 'item'
+            },
             to: 'index',
             content: {
               block: 'breadcrumbs',
@@ -32,6 +35,9 @@ block( 'breadcrumbs' )(
             block: 'link',
             mix: { block: 'breadcrumbs', elem: 'link' },
             to: ctx.categoryTo,
+            attrs: {
+              itemprop: 'item'
+            },
             params: {
               category: ctx.category
             },
@@ -52,9 +58,11 @@ block( 'breadcrumbs' )(
       },
       {
         elem: 'item',
+        elemMods: { property: 'no-attrs' },
         content: [
           {
             elem: 'name',
+            elemMods: { property: 'no-attrs' },
             content: ctx.title
           }
         ]

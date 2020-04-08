@@ -22,13 +22,13 @@ block( 'navigation' )(
           block: 'navigation',
           elem: 'content',
           content: ctx.content.map( item => {
-            if ((item && {}).alias) {
+            if( item.alias ) {
               return {
                 elem: 'item',
                 content: [
                   {
                     block: 'link',
-                    mix: {block: 'navigation', elem: 'link'},
+                    mix: { block: 'navigation', elem: 'link' },
                     to: 'servicesByCategory',
                     params: {
                       category: item.alias
@@ -53,7 +53,7 @@ block( 'navigation' )(
                 ]
               }
             }
-          })
+          } )
         }
       ]
     }
