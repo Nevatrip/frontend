@@ -225,8 +225,8 @@ rules:
   - last
   space-before-blocks: 2
   space-before-function-paren:
-  - 2
-  - never
+  - error
+  - always
   space-in-parens:
   - error
   - always
