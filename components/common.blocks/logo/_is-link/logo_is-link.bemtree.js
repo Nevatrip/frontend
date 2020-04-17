@@ -4,11 +4,21 @@ block( 'logo' ).mod( 'is-link', true )(
     block: 'link',
     to: 'index',
     title: 'На главную',
-    content: {
-      block: 'logo',
-      elem: 'image',
-      logo: ctx.logo,
-      logoTitle: ctx.logoTitle
-    }
+    content: [
+      {
+        block: 'logo',
+        elem: 'image',
+        elemMods: { view: 'lg' },
+        logo: ctx.logo,
+        logoTitle: ctx.logoTitle
+      },
+      {
+        block: 'logo',
+        elem: 'image',
+        elemMods: { view: 'sm' },
+        logo: ctx.logoSm || ctx.logo,
+        logoTitle: ctx.logoTitle
+      }
+    ]
   } ) ),
 );
