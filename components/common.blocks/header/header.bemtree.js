@@ -8,6 +8,7 @@ block( 'header' )(
           block: 'logo',
           mods: { 'is-link': ( ( node || {} ).data || {} ).page !== 'index' },
           logo: ctx.logo,
+          logoSm: ctx.logoSm,
           logoTitle: ctx.logoTitle
         },
         {
