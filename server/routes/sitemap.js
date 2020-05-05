@@ -62,25 +62,25 @@ const action = async( context, params ) => {
   //сервисы внутри категорий
   await asyncForEach( serviceCategory, async item => {
     if( ( ( ( ( item || '' ).title || '' )[lang] || '' ).key || '' ).current ) {
-      const inners = await getServicesByCategory(project, lang, ((((item || {}).title || {})[lang] || {}).key || {}).current);
+      const inners = await getServicesByCategory( project, lang, ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current );
 
       catArr.push(
         {
-          title: (((item || '').title || '')[lang] || '').name || '',
+          title: ( ( ( item || '' ).title || '' )[lang] || '' ).name || '',
           to: 'servicesByCategory',
           params: {
-            category: ((((item || '').title || '')[lang] || '').key || '').current || ''
+            category: ( ( ( ( item || '' ).title || '' )[lang] || '' ).key || '' ).current || ''
           },
-          inner: inners.map(serv => (
+          inner: inners.map( serv => (
             {
-              title: (((serv || {}).title || {})[lang] || {}).name || '',
+              title: ( ( ( serv || {} ).title || {} )[lang] || {} ).name || '',
               to: 'service',
               params: {
-                category: ((((item || {}).title || {})[lang] || {}).key || {}).current || '',
-                service: ((((serv || {}).title || {})[lang] || {}).key || {}).current || ''
+                category: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || '',
+                service: ( ( ( ( serv || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
               }
             }
-          ))
+          ) )
         }
       )
     }
@@ -94,10 +94,10 @@ const action = async( context, params ) => {
     if( ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current ) {
       colArr.push(
         {
-          title: (((item || {}).title || {})[lang] || {}).name || '',
+          title: ( ( ( item || {} ).title || {} )[lang] || {} ).name || '',
           to: 'servicesByCollection',
           params: {
-            collection: ((((item || {}).title || {})[lang] || {}).key || {}).current || ''
+            collection: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
           }
         }
       )
@@ -108,38 +108,38 @@ const action = async( context, params ) => {
   const blogArr = [];
   const blogInners = await getBlogArticles( project, lang );
 
+
   blogArr.push(
     {
       title: ( ( settingBlog || {} ).heading || {} )[lang] || '',
       to: 'blog',
-      inner: blogInners.map( blogArt => {
-        if( ( ( ( ( blogArt || {} ).title || {} )[lang] || {} ).key || {} ).current ) {
-          return (
-            {
-              title: (blogArt || {}).h1 || '',
-              to: 'service',
-              params: {
-                category: 'blog',
-                service: (blogArt || {}).alias || ''
-              }
-            }
-          )
+      inner: blogInners.map( blogArt => (
+        {
+          title: ( blogArt || {} ).h1 || '',
+          to: 'service',
+          params: {
+            project,
+            lang,
+            category: 'blog',
+            service: ( blogArt || {} ).alias || ''
+          }
         }
-      } )
+      ) )
     }
   );
 
   //articles
   const artArr = [];
+  const reservedArticles = ['blog'];
 
   articles.forEach( item => {
-    if( ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current ) {
+    if( ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current && reservedArticles.indexOf( item.title[lang].key.current ) === -1 ) {
       artArr.push(
         {
-          title: (((item || {}).title || {})[lang] || {}).name || '',
+          title: item.title[lang].name || '',
           to: 'article',
           params: {
-            article: ((((item || {}).title || {})[lang] || {}).key || {}).current || ''
+            article: item.title[lang].key.current
           }
         }
       )
