@@ -53,7 +53,7 @@ block( 'page' ).mod( 'route', 'sitemap' )(
                         size: 'md'
                       },
                       content: page.inner.map( inner => [
-                        {
+                        inner.to && {
                           block: 'list',
                           elem: 'item',
                           content: {
