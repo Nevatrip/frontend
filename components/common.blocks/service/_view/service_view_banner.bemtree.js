@@ -1,5 +1,5 @@
 block( 'service' ).mod( 'view', 'banner' )(
-  content()( ( node, { service, bannerLink, bannerImg, bannerTitle } ) => {
+  content()( ( node, { service, bannerLink, bannerImg, bannerTitle, bannerImgSm } ) => {
     const currentLang = node.data.params.lang;
 
     if( service ) {
@@ -90,24 +90,48 @@ block( 'service' ).mod( 'view', 'banner' )(
         ]
       }
     } else {
-      return {
-        block: 'link',
-        url: bannerLink,
-        title: bannerTitle,
-        attrs: {
-          style: `background-image: url(${ bannerImg }); background-position: center center; background-size: cover; display: block; min-height: 60vh;`
-        },
-        content: {
-          block: 'image',
-          alt: bannerTitle,
-          url: bannerImg,
+      return [
+        {
+          block: 'link',
+          mix: { block: 'service', elem: 'banner', elemMods: { view: 'lg' } },
+          url: bannerLink,
+          title: bannerTitle,
           attrs: {
-            style: 'opacity: 0;'
+            style: `background-image: url(${ bannerImg });`
+          },
+          content: {
+            block: 'image',
+            alt: bannerTitle,
+            url: bannerImg,
+            attrs: {
+              style: 'position: relative;\n' +
+                '    display: block;\n' +
+                '    max-width: 100%;\n' +
+                '    margin: 0 auto;'
+            }
+          }
+        },
+        {
+          block: 'link',
+          mix: { block: 'service', elem: 'banner', elemMods: { view: 'sm' } },
+          url: bannerLink,
+          title: bannerTitle,
+          attrs: {
+            style: `background-image: url(${ bannerImgSm });`
+          },
+          content: {
+            block: 'image',
+            alt: bannerTitle,
+            url: bannerImgSm,
+            attrs: {
+              style: 'position: relative;\n' +
+                '    display: block;\n' +
+                '    max-width: 100%;\n' +
+                '    margin: 0 auto;'
+            }
           }
         }
-      }
+      ]
     }
-
-
   } ),
 );

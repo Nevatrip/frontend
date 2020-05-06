@@ -3,9 +3,6 @@
   box-sizing: border-box;
   margin: 0 0 28px;
 }
-.service_view_banner>.link{
-  display: block;
-}
 .service_view_banner>.link>.image{
   display: block;
   width: 100%;
