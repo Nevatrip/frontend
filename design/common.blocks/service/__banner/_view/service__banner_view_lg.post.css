@@ -1,0 +1,8 @@
+.service__banner_view_lg{
+  display: block;
+}
+@media (max-width: 767px) {
+  .service__banner_view_lg{
+    display: none;
+  }
+}

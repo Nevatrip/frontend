@@ -86,6 +86,10 @@ const action = async( context, params ) => {
     bannerFull.img = params._urlFor( bannerFull.image ).url();
   }
 
+  if( bannerFull.imageSm ) {
+    bannerFull.imgSm = params._urlFor( bannerFull.imageSm ).url();
+  }
+
   //meta, og
   const meta = {
     title: ( ( serviceBasedData || {} ).titleMeta || {} )[lang] || '',
