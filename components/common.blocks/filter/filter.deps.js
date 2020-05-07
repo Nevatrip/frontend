@@ -13,7 +13,7 @@
       },
     ],
   },{
-  tech: 'js',
+  //tech: 'js',
   shouldDeps: [
     {
       block: 'filter',
