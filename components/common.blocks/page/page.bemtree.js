@@ -41,7 +41,8 @@ block( 'page' )(
         copyright: ( ( serviceBasedData || {} ).copyright || {} )[currentLang] || '',
         social: settingSocials,
         counters,
-        navFooter
+        navFooter,
+        currentLang
       }
     ]
   } ),

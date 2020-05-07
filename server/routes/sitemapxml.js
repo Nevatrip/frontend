@@ -123,7 +123,7 @@ const action = async( context, params ) => {
   const reservedArticles = ['blog'];
 
   articles.forEach( item => {
-    if( ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current && reservedArticles.indexOf( item.title[lang].key.current ) === -1 ) {
+    if( ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current && reservedArticles.indexOf( item.title[lang].key.current ) === -1  && ( ( ( item || {} ).anchor || {} )[lang] || '' ).replace( /\s/g, '' ).length === 0 ) {
       artArr.push(
         {
           to: 'article',
