@@ -1,13 +1,17 @@
 .footer__copyright{
   font-size: 12.7px;
   line-height: 0.8;
-  margin: 0 auto;
-  margin-top: 20px;
   color: #626262;
-  width: 100%;
-  text-align: center;
+  text-align: right;
 }
 
+@media(max-width: 991px){
+  .footer__copyright{
+    width: 100%;
+    text-align: center;
+    margin: 20px auto 0;
+  }
+}
 @media (max-width: 575px) {
   .footer__copyright {
     font-size: 9px;
