@@ -67,6 +67,7 @@ block( 'page' ).mod( 'route', 'index' )(
       {
         block: 'page',
         elem: 'article',
+        attrs: { id: 'about' },
         content: [
           ( ( ( serviceBasedData || {} ).articleImage || {} ).asset || {} )._ref && ( ( serviceBasedData || {} ).articleTitle || {} )[currentLang] && {
             block: 'title',
