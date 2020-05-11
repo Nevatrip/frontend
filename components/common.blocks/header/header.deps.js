@@ -5,6 +5,7 @@
         { elem: 'slogan'},
         'langs',
         'contacts',
+        'hashtag',
       ]
     },
     {
