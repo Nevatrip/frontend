@@ -7,7 +7,7 @@ modules.define( 'header__hashtag', [
     onSetMod: {
       js: {
         inited() {
-          const button = this.findChildBlock( Button );
+          const button = this._elem( 'show-modal' ).findMixedBlock( Button );
           const modal = this.findChildBlock( Modal );
 
           this._domEvents( button ).on( 'click', () => {
