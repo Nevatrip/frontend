@@ -79,7 +79,7 @@ const action = async ( context, params ) => {
   }
 
   if( bannerFull.imageSm ) {
-    bannerFull.imgSm = params._urlFor( bannerFull.imageSm ).url();
+    bannerFull.imgSm = pathToImage( bannerFull.imageSm ).url();
   }
 
   //meta, og

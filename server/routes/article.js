@@ -33,6 +33,10 @@ const action = async( context, params ) => {
   const settingServicesCollections = await getSettingServicesCollections( project, lang );
   const articleRequest = await getArticleByAlias( project, lang, article );
 
+  console.log('∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞');
+  console.log('navigation: ', navigation);
+  console.log('ˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆˆ');
+
   settingSocials.map( item => {
     item.img = params._urlFor( item.imgSrc ).url();
   } );
