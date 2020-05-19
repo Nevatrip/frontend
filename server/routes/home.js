@@ -20,19 +20,35 @@ const action = async ( context, params ) => {
     project
   } = params;
 
-  const bannerFull = ( await getSettingMainBanner( project, lang ) )[0] || {};
+  const [
+    settingTopFeatures,
+    settingBottomFeatures,
+    settingSocials,
+    servicesFilter,
+    tags,
+    navigation,
+    footerNavigation,
+    serviceBasedData,
+    settingService,
+    settingServicesCollections
+  ] = await Promise.all(
+    [
+      getSettingTopFeatures( project, lang ),
+      getSettingBottomFeatures( project, lang ),
+      getSettingSocials( project, lang ),
+      getServices( project, lang ),
+      getTags( project, lang ),
+      getNav( project, lang ),
+      getNavFooter( project, lang ),
+      getServiceBasedData( project, lang ),
+      getSettingService( project, lang ),
+      getSettingServicesCollections( project, lang )
+    ]
+  )
+
+  const bannerFull = await getSettingMainBanner( project, lang );
   const bannerAlias = bannerFull.alias;
-  const settingTopFeatures = await getSettingTopFeatures( project, lang );
-  const settingBottomFeatures = await getSettingBottomFeatures( project, lang );
-  const settingSocials = await getSettingSocials( project, lang );
-  const servicesFilter = await getServices( project, lang );
-  const tags = await getTags( project, lang );
   const serviceBanner = await getService( project, lang, '', bannerAlias );
-  const navigation = await getNav( project, lang );
-  const footerNavigation = await getNavFooter( project, lang );
-  const serviceBasedData = await getServiceBasedData( project, lang );
-  const settingService = await getSettingService( project, lang );
-  const settingServicesCollections = await getSettingServicesCollections( project, lang );
 
   const currentLang = lang;
   const moreText = ( ( settingService || {} ).serviceViewListItemLgMore || {} )[currentLang];

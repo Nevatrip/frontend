@@ -7,13 +7,13 @@ const getBlogArticles = require( '../request/getBlogArticles' );
 const getArticles = require( '../request/getArticles' );
 const getServiceBasedData = require( '../request/getServiceBasedData' );
 
-const asyncForEach = async( array, callback ) => {
+const asyncForEach = async ( array, callback ) => {
   for( let index = 0; index < array.length; index++ ) {
     await callback( array[index], index, array )
   }
 };
 
-const action = async( context, params ) => {
+const action = async ( context, params ) => {
   const {
     project,
     lang

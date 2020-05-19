@@ -1,4 +1,4 @@
-const client = require( './_request' );
+const client = require( './__request' );
 
 const query = ( lang, alias ) => {
   const key = `title.${ lang }.key.current`;
@@ -6,8 +6,4 @@ const query = ( lang, alias ) => {
   return `*[${ key } == "${ alias }" && !("deleted" in status)]{...}`;
 };
 
-const params = {};
-
-module.exports = async( project, lang, alias ) => await client( project )
-  .fetch( query( lang, alias ), params )
-  .then( blog => blog );
+module.exports = async ( project, lang, alias ) => await client( query( lang, alias ) );

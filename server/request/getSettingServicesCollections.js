@@ -1,8 +1,8 @@
-const client = require( './_request' );
+const client = require( './__request' );
 
-const query = '*[_type=="settingServicesCollections"]{services[]->,...}';
-const params = {};
+const query = () => '*[_type=="settingServicesCollections"]' +
+  '{' +
+    'services[]->,...' +
+  '}';
 
-module.exports = async( project, lang ) => await client( project, lang )
-  .fetch( query, params )
-  .then( settingServicesCollections => settingServicesCollections );
+module.exports = async () => await client( query(), true, 7*24*60*60*1000 );

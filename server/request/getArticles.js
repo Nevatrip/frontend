@@ -1,8 +1,5 @@
-const client = require( './_request' );
+const client = require( './__request' );
 
-const query = '*[_type=="page"]';
-const params = {};
+const query = () => '*[_type=="page"]';
 
-module.exports = async( project, lang ) => await client( project, lang )
-  .fetch( query, params )
-  .then( article => article );
+module.exports = async () => await client( query() );

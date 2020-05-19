@@ -1,8 +1,11 @@
-const client = require( './_request' );
+const client = require( './__request' );
 
-const query = lang => `*[_type == "settingBottomFeatures"]{settingBottomFeatures[]->, "description": description.${ lang }, "img": icon.asset, "name": title.${ lang }}`;
-const params = {};
+const query = lang => '*[_type == "settingBottomFeatures"]' +
+  '{' +
+    'settingBottomFeatures[]->,' +
+    `"description": description.${ lang },` +
+    '"img": icon.asset,' +
+    `"name": title.${ lang }` +
+  '}';
 
-module.exports = async( project, lang ) => await client( project )
-  .fetch( query( lang ), params )
-  .then( features => features );
+module.exports = async ( project, lang ) => await client( query( lang ) );
