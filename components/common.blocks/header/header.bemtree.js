@@ -16,7 +16,8 @@ block( 'header' )(
           elemMods: { 'is-heading': ( ( node|| {} ).data||{} ).page === 'index' },
           slogan: ctx.slogan
         },
-        { elem: 'hashtag' },
+
+        // { elem: 'hashtag' },
         {
           elem: 'langs'
         },

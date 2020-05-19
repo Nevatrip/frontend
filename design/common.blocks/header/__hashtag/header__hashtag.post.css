@@ -1,3 +1,30 @@
-block(header).elem(hashtag) {
-  
+.header__hashtag {
+  position: relative;
+  display: block;
+  margin: 0 29px;
+}
+
+.header__hashtag  .header__show-modal.button{
+  display: block;
+  transform: scale(1);
+  transition: all .3s ease;
+}
+.header__hashtag  .header__show-modal.button:hover{
+  transform: scale(1.05);
+}
+.header__hashtag  .header__show-modal.button,
+.header__hashtag  .header__show-modal.button:hover,
+.header__hashtag  .header__show-modal.button:active,
+.header__hashtag  .header__show-modal.button:focus,
+.header__hashtag  .header__show-modal.button:visited,
+.header__hashtag  .header__show-modal.button:focus:active{
+  background-color: transparent;
+  border-color: transparent;
+  outline: none;
+  box-shadow: none;
+}
+
+.header__hashtag  .header__show-modal svg{
+  display: block;
+  width: 157px;
 }
