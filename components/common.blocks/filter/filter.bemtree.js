@@ -1,5 +1,6 @@
 block( 'filter' )(
-  addJs()( true ),
+  //addJs()( true ),
+
   def()( ( node, ctx ) => {
     node._bg = ctx.bg;
     node._sorting = ctx.sorting;

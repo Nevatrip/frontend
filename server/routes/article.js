@@ -39,7 +39,7 @@ const action = async( context, params ) => {
 
   // const servicesRandom = await getServicesRandom(lang, 9);
 
-  if( articleRequest.length > 0 ) {
+  if( articleRequest.length > 0 && ( ( ( articleRequest[0] || {} ).anchor || {} )[lang] || '' ).replace( /\s/g, '' ).length === 0 ) {
     if( articleRequest[0].titleImage ) {
       articleRequest[0].img = params._urlFor( articleRequest[0].titleImage.asset ).url();
     }

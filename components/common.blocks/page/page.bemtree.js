@@ -11,6 +11,7 @@ block( 'page' )(
       {
         block: 'header',
         logo: ( node || '' )._urlFor( ( ( ( serviceBasedData || {} ).logo || {} ).asset || {} )._ref ).url() || '',
+        logoSm: ( node || '' )._urlFor( ( ( ( ( serviceBasedData || {} ).logoSm || {} )[currentLang] || {} ).asset || {} )._ref ).url() || '',
         logoDescription: ( ( serviceBasedData || {} ).shortDescription || {} )[currentLang] || '',
         logoTitle: ( ( serviceBasedData || {} ).title || {} )[currentLang] || '',
         slogan: ( ( serviceBasedData || {} ).Slogan || {} )[currentLang] || ''
@@ -40,7 +41,8 @@ block( 'page' )(
         copyright: ( ( serviceBasedData || {} ).copyright || {} )[currentLang] || '',
         social: settingSocials,
         counters,
-        navFooter
+        navFooter,
+        currentLang
       }
     ]
   } ),

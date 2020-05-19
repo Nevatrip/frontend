@@ -1,7 +1,3 @@
-.block(footer).elem(footer-nav) {
-  width: 100%;
-}
-
 block(footer).elem(nav-list) {
   margin: 0;
   padding: 0;
@@ -13,8 +9,7 @@ block(footer).elem(nav-list) {
 
 block(footer).elem(nav-item) {
   display: inline-block;
-  padding-left: 6px;
-  padding-right: 6px;
+  margin-right: 12px;
 }
 
 block(footer).elem(nav-link) {
@@ -30,5 +25,15 @@ block(footer).elem(nav-link) {
   &:focus {
      color: #bfbfbf;
      outline: 0;
+  }
+}
+
+@media(max-width: 991px){
+  block(footer).elem(nav-item){
+    margin-right: 6px;
+    margin-left: 6px;
+  }
+  block(footer).elem(footer-nav) {
+    width: 100%;
   }
 }

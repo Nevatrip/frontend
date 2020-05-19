@@ -22,6 +22,7 @@ block( 'page' ).mod( 'route', 'index' )(
         mods: { view: 'banner' },
         service: ( node.data.api || {} ).serviceBanner,
         bannerImg: ( ( node.data.api || {} ).bannerFull || {} ).img || '',
+        bannerImgSm: ( ( node.data.api || {} ).bannerFull || {} ).imgSm || '',
         bannerLink: ( ( node.data.api || {} ).bannerFull || {} ).link || '',
         bannerTitle: ( ( node.data.api || {} ).bannerFull || {} ).title || '',
         currency
@@ -66,6 +67,7 @@ block( 'page' ).mod( 'route', 'index' )(
       {
         block: 'page',
         elem: 'article',
+        attrs: { id: 'about' },
         content: [
           ( ( ( serviceBasedData || {} ).articleImage || {} ).asset || {} )._ref && ( ( serviceBasedData || {} ).articleTitle || {} )[currentLang] && {
             block: 'title',

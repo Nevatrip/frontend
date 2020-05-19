@@ -94,6 +94,7 @@ const action = async( context, params ) => {
   const blogArr = [];
   const blogInners = await getBlogArticles( project, lang );
 
+
   blogArr.push(
     {
       to: 'blog',
@@ -104,38 +105,39 @@ const action = async( context, params ) => {
     }
   );
 
-  blogInners.forEach( blogArt => {
-      if ( ( ( ( ( blogArt || {} ).title || {} )[lang] || {} ).key || {} ).current ) {
-        return blogArr.push({
-          to: 'service',
-          params: {
-            project,
-            lang,
-            category: 'blog',
-            service: (blogArt || {}).alias || ''
-          }
-        })
+  const blogInnersArr = blogInners.map( blogArt => (
+    {
+      title: ( blogArt || {} ).h1 || '',
+      to: 'service',
+      params: {
+        project,
+        lang,
+        category: 'blog',
+        service: ( blogArt || {} ).alias || ''
       }
     }
-  )
+  ) )
 
   //articles
   const artArr = [];
+  const reservedArticles = ['blog'];
 
   articles.forEach( item => {
-    artArr.push(
-      {
-        to: 'article',
-        params: {
-          project,
-          lang,
-          article: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
+    if( ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current && reservedArticles.indexOf( item.title[lang].key.current ) === -1  && ( ( ( item || {} ).anchor || {} )[lang] || '' ).replace( /\s/g, '' ).length === 0 ) {
+      artArr.push(
+        {
+          to: 'article',
+          params: {
+            project,
+            lang,
+            article: ( ( ( ( item || {} ).title || {} )[lang] || {} ).key || {} ).current || ''
+          }
         }
-      }
-    )
+      )
+    }
   } );
 
-  const sitemapArr = mainArr.concat( catArr, colArr, blogArr, artArr );
+  const sitemapArr = mainArr.concat( catArr, colArr, blogArr, artArr, blogInnersArr );
 
   return {
     page: 'sitemapxml',

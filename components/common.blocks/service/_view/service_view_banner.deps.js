@@ -42,6 +42,11 @@
       block: 'page',
       elem: 'row',
       mods: {view: 'service-banner'}
+    },
+    {
+      block: 'service',
+      elem: 'banner',
+      mods: { view: ['sm','lg'] }
     }
   ]
 }]
