@@ -1,5 +1,4 @@
 'use strict';
-const imageUrlBuilder = require( '@sanity/image-url' );
 
 const getNav = require( '../request/getNav' );
 const getServiceBasedData = require( '../request/getServiceBasedData' );
@@ -14,6 +13,7 @@ const getSettingBlog = require( '../request/getSettingBlog' );
 const getBlogArticles = require( '../request/getBlogArticles' );
 const getArticles = require( '../request/getArticles' );
 const getNavFooter = require( '../request/getNavFooter' );
+const pathToImage = require( '../request/_imageBuilder' );
 
 const asyncForEach = async( array, callback ) => {
   for( let index = 0; index < array.length; index++ ) {
@@ -21,31 +21,35 @@ const asyncForEach = async( array, callback ) => {
   }
 };
 
-const action = async( context, params ) => {
+const action = async ( context, params ) => {
   const {
     lang,
     project
   } = params;
 
-  const builder = imageUrlBuilder(
-    {
-      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
-      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
-    }
-  );
-
-  params._urlFor = source => builder.image( source );
-
-  const routes = await getRoutes( 'sitemap', lang, project );
-  const navigation = await getNav( project, lang );
-  const footerNavigation = await getNavFooter( project, lang );
-  const serviceBasedData = await getServiceBasedData( project, lang );
-  const settingSocials = await getSettingSocials( project, lang );
-  const settingServicesCollections = await getSettingServicesCollections( project, lang );
-  const settingService = await getSettingService( project, lang );
-  const articles = await getArticles( project, lang );
-  const settingBlog = ( await getSettingBlog( project, lang ) )[0];
-
+  const [
+    routes,
+    navigation,
+    footerNavigation,
+    serviceBasedData,
+    settingSocials,
+    settingServicesCollections,
+    settingService,
+    articles,
+    settingBlog
+  ] = await Promise.all(
+    [
+      getRoutes( 'sitemap', lang, project ),
+      getNav( project, lang ),
+      getNavFooter( project, lang ),
+      getServiceBasedData( project, lang ),
+      getSettingSocials( project, lang ),
+      getSettingServicesCollections( project, lang ),
+      getSettingService( project, lang ),
+      getArticles( project, lang ),
+      getSettingBlog( project, lang )
+    ]
+  )
 
   //главная(ые) страница(цы)
   const mainArr = [
@@ -149,18 +153,16 @@ const action = async( context, params ) => {
   const sitemapArr = mainArr.concat( catArr, colArr, blogArr, artArr );
 
   settingSocials.forEach( item => {
-    item.img = params._urlFor( item.imgSrc ).url();
+    item.img = pathToImage( item.imgSrc ).url();
   } );
 
-  // const servicesRandom = await getServicesRandom(lang, 9);
-
-  const sitemapImg = params._urlFor( ( ( serviceBasedData.sitemap || {} ).sitemapImage || {} ).asset ).url();
+  const sitemapImg = pathToImage( ( ( serviceBasedData.sitemap || {} ).sitemapImage || {} ).asset ).url();
 
   //meta, og
   const meta = {
     title: ( ( ( serviceBasedData || {} ).sitemap || {} ).sitemapTitle || {} )[lang] || '',
     description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
-    image: params._urlFor( ( ( ( serviceBasedData.sitemap || {} ).sitemapImage || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+    image: pathToImage( ( ( ( serviceBasedData.sitemap || {} ).sitemapImage || {} ).asset || {} )._ref || '' ).fit( 'crop' )
       .width( 1200 )
       .height( 620 )
       .url() || '',
@@ -187,36 +189,6 @@ const action = async( context, params ) => {
       sitemapArr
     }
   }
-
-  //meta, og
-  // const meta = {
-  //   title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
-  //   description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
-  //   image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
-  //     .width( 280 )
-  //     .height( 280 )
-  //     .url() || '',
-  //   type: 'website',
-  //   url: ( ( serviceBasedData || {} ).langSiteLink || {} )[lang],
-  //   width: '280',
-  //   height: '280',
-  //   card: 'summary'
-  // }
-
-  // return {
-  //   page: 'error',
-  //   params,
-  //   reason: context.reason,
-  //   api: {
-  //     navigation,
-  //     serviceBasedData,
-  //     settingSocials,
-  //     settingServicesCollections,
-  //     meta
-  //
-  //     // servicesRandom,
-  //   }
-  // }
 };
 
 module.exports = action;

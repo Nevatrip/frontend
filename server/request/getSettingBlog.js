@@ -1,8 +1,5 @@
-const client = require( './_request' );
+const client = require( './__request' );
 
 const query = () => '*[_type == "settingBlog"]{...}';
-const params = {};
 
-module.exports = async( project, lang ) => await client( project )
-  .fetch( query( lang ), params )
-  .then( settingBlog => settingBlog );
+module.exports = async ( project, lang ) => ( await client( query( lang ), true, 7*24*60*60*1000 ) )[0];

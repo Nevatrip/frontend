@@ -1,8 +1,5 @@
-const client = require( './_request' );
+const client = require( './__request' );
 
-const query = '*[_type=="settingServiceCategory"]';
-const params = {};
+const query = () => '*[_type=="settingServiceCategory"]';
 
-module.exports = async( project, lang ) => await client( project, lang )
-  .fetch( query, params )
-  .then( category => category );
+module.exports = async () => await client( query() );

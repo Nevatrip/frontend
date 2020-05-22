@@ -1,8 +1,11 @@
-const client = require( './_request' );
+const client = require( './__request' );
 
-const query = lang => `*[_type == "settingSocials"]{settingSocials[]->, "url": link.${ lang }, "imgSrc": icon.asset, "name": title.${ lang }}`;
-const params = {};
+const query = lang => '*[_type=="settingSocials"]' +
+  '{' +
+    'settingSocials[]->,' +
+    `"url":link.${ lang },` +
+    '"imgSrc":icon.asset,' +
+    `"name":title.${ lang }` +
+  '}';
 
-module.exports = async( project, lang ) => await client( project )
-  .fetch( query( lang ), params )
-  .then( socials => socials );
+module.exports = async ( project, lang ) => await client( query( lang ), true, 7*24*60*60*1000 );
