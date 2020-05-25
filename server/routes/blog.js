@@ -1,5 +1,4 @@
 'use strict';
-const imageUrlBuilder = require( '@sanity/image-url' );
 const moment = require( 'moment' );
 
 const getNav = require( '../request/getNav' );
@@ -11,47 +10,53 @@ const getSettingBlog = require( '../request/getSettingBlog' );
 const getBlogByNumber = require( '../request/getBlogByNumber' );
 const getBlogByOffset = require( '../request/getBlogByOffset' );
 const getNavFooter = require( '../request/getNavFooter' );
+const pathToImage = require( '../request/_imageBuilder' );
 
-const action = async( context, params ) => {
+const action = async ( context, params ) => {
   const {
     lang,
     project
   } = params;
 
-  const builder = imageUrlBuilder(
-    {
-      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
-      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
-    }
+  const [
+    navigation,
+    footerNavigation,
+    serviceBasedData,
+    settingService,
+    settingServicesCollections,
+    settingSocials,
+    settingBlog,
+    theLatestBlog,
+    blogOffset
+  ] = await Promise.all(
+    [
+      getNav( project, lang ),
+      getNavFooter( project, lang ),
+      getServiceBasedData( project, lang ),
+      getSettingService( project, lang ),
+      getSettingServicesCollections( project, lang ),
+      getSettingSocials( project, lang ),
+      getSettingBlog( project, lang ),
+      getBlogByNumber( project, lang, 0 ),
+      getBlogByOffset( project, lang, 1, 30 )
+    ]
   );
-
-  params._urlFor = source => builder.image( source );
-
-  const navigation = await getNav( project, lang );
-  const footerNavigation = await getNavFooter( project, lang );
-  const serviceBasedData = await getServiceBasedData( project, lang );
-  const settingService = await getSettingService( project, lang );
-  const settingServicesCollections = await getSettingServicesCollections( project, lang );
-  const settingSocials = await getSettingSocials( project, lang );
-  const settingBlog = ( await getSettingBlog( project, lang ) )[0];
-  const theLatestBlog = await getBlogByNumber( project, lang, 0 );
-  const blogOffset = await getBlogByOffset( project, lang, 1, 30 );
 
   moment.locale( lang );
 
-  settingSocials && settingSocials.map( item => {
-    item.img = params._urlFor( item.imgSrc ).url();
+  settingSocials && settingSocials.forEach( item => {
+    item.img = pathToImage( item.imgSrc ).url();
   } );
 
   if( ( settingBlog || {} ).image ) {
-    settingBlog.imageUrl = params._urlFor( settingBlog.image ).url()
+    settingBlog.imageUrl = pathToImage( settingBlog.image ).url()
   }
   if( ( settingBlog || {} ).logo ) {
-    settingBlog.logoUrl = params._urlFor( settingBlog.logo ).url()
+    settingBlog.logoUrl = pathToImage( settingBlog.logo ).url()
   }
 
   if( ( theLatestBlog || {} ).img ) {
-    theLatestBlog.imgUrl = params._urlFor( theLatestBlog.img ).url()
+    theLatestBlog.imgUrl = pathToImage( theLatestBlog.img ).url()
   }
   if( ( theLatestBlog || {} ).textSrc ) {
     theLatestBlog.text = `${ theLatestBlog.textSrc.slice( 0, 400 ) }...`;
@@ -60,9 +65,9 @@ const action = async( context, params ) => {
     theLatestBlog.date = moment( theLatestBlog.dateSrc || ( theLatestBlog || {} ).realDate ).format( 'LL' );
   }
 
-  blogOffset && blogOffset.map( item => {
+  blogOffset && blogOffset.forEach( item => {
     if( ( item || {} ).img ) {
-      item.imgUrl = params._urlFor( item.img ).url()
+      item.imgUrl = pathToImage( item.img ).url()
     }
     if( ( item || {} ).textSrc ) {
       item.text = `${ item.textSrc.slice( 0, 300 ) }...`;
@@ -75,7 +80,7 @@ const action = async( context, params ) => {
   const meta = {
     title: ( ( settingBlog || {} ).heading || {} )[lang] || '',
     description: ( ( settingBlog || {} ).intro || {} )[lang] || '',
-    image: params._urlFor( ( settingBlog || {} ).image || '' ).fit( 'crop' )
+    image: pathToImage( ( settingBlog || {} ).image || '' ).fit( 'crop' )
       .width( 1200 )
       .height( 620 )
       .url() || '',

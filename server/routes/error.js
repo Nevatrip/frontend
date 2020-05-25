@@ -1,5 +1,4 @@
 'use strict';
-const imageUrlBuilder = require( '@sanity/image-url' );
 
 const getServices = require( '../request/getServices' );
 const getNav = require( '../request/getNav' );
@@ -8,39 +7,43 @@ const getSettingService = require( '../request/getSettingService' );
 const getSettingServicesCollections = require( '../request/getSettingServicesCollections' );
 const getSettingSocials = require( '../request/getSettingSocials' );
 const getNavFooter = require( '../request/getNavFooter' );
+const pathToImage = require( '../request/_imageBuilder' );
 
-const action = async( context, params ) => {
+const action = async ( context, params ) => {
   const {
     lang,
     project
   } = params;
 
-  const builder = imageUrlBuilder(
-    {
-      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
-      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
-    }
-  );
+  const [
+    tours,
+    navigation,
+    footerNavigation,
+    serviceBasedData,
+    settingService,
+    settingServicesCollections,
+    settingSocials
+  ] = await Promise.all(
+    [
+      getServices( project, lang ),
+      getNav( project, lang ),
+      getNavFooter( project, lang ),
+      getServiceBasedData( project, lang ),
+      getSettingService( project, lang ),
+      getSettingServicesCollections( project, lang ),
+      getSettingSocials( project, lang )
+    ]
+  )
 
-  params._urlFor = source => builder.image( source );
-
-  const tours = await getServices( project, lang );
-  const navigation = await getNav( project, lang );
-  const footerNavigation = await getNavFooter( project, lang );
-  const serviceBasedData = await getServiceBasedData( project, lang );
-  const settingService = await getSettingService( project, lang );
-  const settingServicesCollections = await getSettingServicesCollections( project, lang );
-  const settingSocials = await getSettingSocials( project, lang );
-
-  settingSocials && settingSocials.map( item => {
-    item.img = params._urlFor( item.imgSrc ).url();
+  settingSocials && settingSocials.forEach( item => {
+    item.img = pathToImage( item.imgSrc ).url();
   } );
 
   //meta, og
   const meta = {
     title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
     description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
-    image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+    image: pathToImage( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
       .width( 280 )
       .height( 280 )
       .url() || '',

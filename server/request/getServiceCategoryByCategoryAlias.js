@@ -1,8 +1,12 @@
-const client = require( './_request' );
+const client = require( './__request' );
 
-const query = ( categoryName, lang ) => `*[_type=="settingServiceCategory" && title.${ lang }.key.current=="${ categoryName }"]{...}`;
-const params = {};
+const query = ( categoryName, lang ) => '*' +
+  '[' +
+    '_type=="settingServiceCategory" ' +
+    ` && title.${ lang }.key.current=="${ categoryName }"` +
+  ']' +
+  '{' +
+    '...' +
+  '}';
 
-module.exports = async( project, lang, categoryName ) => await client( project )
-  .fetch( query( categoryName, lang ), params )
-  .then( category => category[0] );
+module.exports = async ( project, lang, categoryName ) => ( await client( query( categoryName, lang ) ) )[0];

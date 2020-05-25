@@ -1,8 +1,5 @@
-const client = require( './_request' );
+const client = require( './__request' );
 
-const query = '*[_type=="settingServiceTag"]';
-const params = {};
+const query = () => '*[_type=="settingServiceTag"]';
 
-module.exports = async( project, lang ) => await client( project, lang )
-  .fetch( query, params )
-  .then( tags => tags );
+module.exports = async () => await client( query() );

@@ -1,6 +1,5 @@
 block( 'service' ).mod( 'view', 'detail' )(
   content()( ( node, { service, currency, currentLang } ) => {
-
     const {
       _id: id,
       breadcrumb,
@@ -31,7 +30,7 @@ block( 'service' ).mod( 'view', 'detail' )(
     } = service;
 
     const serviceTitle = ( title[currentLang] || {} ).name || '';
-    const fullSchedule = (( service.directions || [] )[0] || {}).schedule || [];
+    const fullSchedule = ( ( service.directions || [] )[0] || {} ).schedule || [];
 
     return [
       {
@@ -210,7 +209,7 @@ block( 'service' ).mod( 'view', 'detail' )(
                 elem: 'col',
                 elemMods: { view: 'aside' },
                 content: [
-                  gallery && [
+                  gallery && gallery.length>0 && [
                     {
                       block: 'heading',
                       mods: { size: 'xl' },

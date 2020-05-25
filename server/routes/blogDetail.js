@@ -1,5 +1,4 @@
 'use strict';
-const imageUrlBuilder = require( '@sanity/image-url' );
 const moment = require( 'moment' );
 
 const getServices = require( '../request/getServices' );
@@ -14,50 +13,57 @@ const getBlogByOffset = require( '../request/getBlogByOffset' );
 const getBlogByAlias = require( '../request/getBlogByAlias' );
 const getNumberRandomBlogs = require( '../request/getNumberRandomBlogs' );
 const getNavFooter = require( '../request/getNavFooter' );
+const pathToImage = require( '../request/_imageBuilder' );
 
-const action = async( context, params ) => {
+const action = async ( context, params ) => {
   const {
     blogDetail,
     lang,
     project
   } = params;
 
-  const builder = imageUrlBuilder(
-    {
-      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
-      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
-    }
-  );
-
-  params._urlFor = source => builder.image( source );
-
-  const tours = await getServices( project, lang );
-  const navigation = await getNav( project, lang );
-  const footerNavigation = await getNavFooter( project, lang );
-  const servicesRandom = await getServicesRandom( project, lang );
-  const serviceBasedData = await getServiceBasedData( project, lang );
-  const settingService = await getSettingService( project, lang );
-  const settingServicesCollections = await getSettingServicesCollections( project, lang );
-  const settingSocials = await getSettingSocials( project, lang );
-  const settingBlog = ( await getSettingBlog( project, lang ) )[0];
-  const blogOffset = await getBlogByOffset( project, lang, 1, 30 );
+  const [
+    tours,
+    navigation,
+    footerNavigation,
+    servicesRandom,
+    serviceBasedData,
+    settingService,
+    settingServicesCollections,
+    settingSocials,
+    settingBlog,
+    blogOffset
+  ] = await Promise.all(
+    [
+      getServices( project, lang ),
+      getNav( project, lang ),
+      getNavFooter( project, lang ),
+      getServicesRandom( project, lang ),
+      getServiceBasedData( project, lang ),
+      getSettingService( project, lang ),
+      getSettingServicesCollections( project, lang ),
+      getSettingSocials( project, lang ),
+      getSettingBlog( project, lang ),
+      getBlogByOffset( project, lang, 1, 30 )
+    ]
+  )
 
   moment.locale( lang );
 
-  settingSocials && settingSocials.map( item => {
-    item.img = params._urlFor( item.imgSrc ).url();
+  settingSocials && settingSocials.forEach( item => {
+    item.img = pathToImage( item.imgSrc ).url();
   } );
 
   if( ( settingBlog || {} ).image ) {
-    settingBlog.imageUrl = params._urlFor( settingBlog.image ).url()
+    settingBlog.imageUrl = pathToImage( settingBlog.image ).url()
   }
   if( ( settingBlog || {} ).logo ) {
-    settingBlog.logoUrl = params._urlFor( settingBlog.logo ).url()
+    settingBlog.logoUrl = pathToImage( settingBlog.logo ).url()
   }
 
-  blogOffset && blogOffset.map( item => {
+  blogOffset && blogOffset.forEach( item => {
     if( ( item || {} ).img ) {
-      item.imgUrl = params._urlFor( item.img ).url()
+      item.imgUrl = pathToImage( item.img ).url()
     }
     if( ( item || {} ).textSrc ) {
       item.text = `${ item.textSrc.slice( 0, 300 ) }...`;
@@ -73,14 +79,14 @@ const action = async( context, params ) => {
 
   if( blogResponse.length ) {
     if( ( blogResponse[0] || {} ).titleImage ) {
-      blogResponse[0].imgUrl = params._urlFor( blogResponse[0].titleImage ).url()
+      blogResponse[0].imgUrl = pathToImage( blogResponse[0].titleImage ).url()
     }
 
     //meta, og
     const meta = {
       title: ( ( ( blogResponse[0] || {} ).titleLong || {} )[lang] || '' ).name || ( ( ( blogResponse[0] || {} ).title || {} )[lang] || '' ).name || '',
       description: ( ( blogResponse[0] || {} ).descriptionMeta || {} )[lang] || '',
-      image: params._urlFor( ( blogResponse[0] || {} ).titleImage || '' ).fit( 'crop' )
+      image: pathToImage( ( blogResponse[0] || {} ).titleImage || '' ).fit( 'crop' )
         .width( 1200 )
         .height( 620 )
         .url() || '',
@@ -116,7 +122,7 @@ const action = async( context, params ) => {
   const meta = {
     title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
     description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
-    image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+    image: pathToImage( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
       .width( 280 )
       .height( 280 )
       .url() || '',

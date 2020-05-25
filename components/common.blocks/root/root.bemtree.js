@@ -1,25 +1,17 @@
-const imageUrlBuilder = require( '@sanity/image-url' );
 const marked = require( 'marked' );
+
+const pathToImage = require( '../../server/request/_imageBuilder' );
 
 block( 'root' ).replace()( ( node, ctx ) => {
   const doctype = ( ( ctx || {} ).data || {} ).doctype || 'html5';
-
-  const builder = imageUrlBuilder(
-    {
-      projectId: process.env[`API_ID_${ ctx.data.params.project.toUpperCase() }`],
-      dataset: process.env[`API_DATASET_${ ctx.data.params.project.toUpperCase() }`]
-    }
-  );
-
   const level = ctx.level || 'desktop';
-
   const config = node.config = ctx.config;//used on the others pages do not remove
   const data = node.data = ctx.data;
   const serviceBasedData = ( ( node.data || {} ).api || {} ).serviceBasedData;
   const currentLang = ( ( node.data || {} ).params || {} ).lang;
 
   node._marked = marked;
-  node._urlFor = source => builder.image( source );
+  node._urlFor = pathToImage;
 
   node._contacts = {
     tel: ( serviceBasedData || {} ).tel || '',
@@ -86,7 +78,6 @@ block( 'root' ).replace()( ( node, ctx ) => {
       { elem: 'meta', attrs: { name: 'theme-color', content: '#309acd' } },
 
       // meta
-
       ( meta || {} ).description && { elem: 'meta', attrs: { name: 'description', content: meta.description } },
       ( meta || {} ).type && { elem: 'meta', attrs: { property: 'og:type', content: meta.type } },
       ( meta || {} ).url && { elem: 'meta', attrs: { property: 'og:url', content: meta.url } },

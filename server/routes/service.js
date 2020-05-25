@@ -1,5 +1,4 @@
 'use strict';
-const imageUrlBuilder = require( '@sanity/image-url' );
 
 const getServices = require( '../request/getServices' );
 const getService = require( '../request/getService' );
@@ -11,8 +10,9 @@ const getSettingServicesCollections = require( '../request/getSettingServicesCol
 const getServiceCategoryByServiceAlias = require( '../request/getServiceCategoryByServiceAlias' );
 const getSettingSocials = require( '../request/getSettingSocials' );
 const getNavFooter = require( '../request/getNavFooter' );
+const pathToImage = require( '../request/_imageBuilder' );
 
-const action = async( context, params ) => {
+const action = async ( context, params ) => {
   const {
     service,
     lang,
@@ -20,30 +20,33 @@ const action = async( context, params ) => {
     category
   } = params;
 
-  const builder = imageUrlBuilder(
-    {
-      projectId: process.env[`API_ID_${ params.project.toUpperCase() }`],
-      dataset: process.env[`API_DATASET_${ params.project.toUpperCase() }`]
-    }
-  );
-
-  params._urlFor = source => builder.image( source );
-
   const tours = await getServices( project, lang );
+
+  const [
+    navigation,
+    footerNavigation,
+    serviceBasedData,
+    settingService,
+    settingServicesCollections,
+    settingSocials
+  ] = await Promise.all(
+    [
+      getNav( project, lang ),
+      getNavFooter( project, lang ),
+      getServiceBasedData( project, lang ),
+      getSettingService( project, lang ),
+      getSettingServicesCollections( project, lang ),
+      getSettingSocials( project, lang )
+    ]
+  )
 
   const categoryName = ( ( ( ( ( await getServiceCategoryByServiceAlias( project, lang, service ) || {} ).category || {} ).title || {} )[params.lang] || {} ).key || {} ).current;
   const serviceResponse = await getService( project, lang, categoryName, service );
-  const navigation = await getNav( project, lang );
-  const footerNavigation = await getNavFooter( project, lang );
   const excludeID = ( serviceResponse || {} )._id;
   const servicesRandom = await ( categoryName ? getServicesRandom( project, lang, categoryName, excludeID ) : getServicesRandom( project, lang, category ) );
-  const serviceBasedData = await getServiceBasedData( project, lang );
-  const settingService = await getSettingService( project, lang );
-  const settingServicesCollections = await getSettingServicesCollections( project, lang );
-  const settingSocials = await getSettingSocials( project, lang );
 
-  settingSocials && settingSocials.map( item => {
-    item.img = params._urlFor( item.imgSrc ).url();
+  settingSocials && settingSocials.forEach( item => {
+    item.img = pathToImage( item.imgSrc ).url();
   } );
 
   if( serviceResponse ) {
@@ -51,7 +54,7 @@ const action = async( context, params ) => {
     const meta = {
       title: ( ( ( serviceResponse || {} ).titleLong || {} )[lang] || '' ).name || ( ( ( serviceResponse || {} ).title || {} )[lang] || '' ).name || '',
       description: ( ( serviceResponse || {} ).descriptionMeta || {} )[lang] || '',
-      image: params._urlFor( ( serviceResponse || {} ).titleImage || '' ).fit( 'crop' )
+      image: pathToImage( ( serviceResponse || {} ).titleImage || '' ).fit( 'crop' )
         .width( 1200 )
         .height( 620 )
         .url() || '',
@@ -84,7 +87,7 @@ const action = async( context, params ) => {
   const meta = {
     title: ( ( serviceBasedData || {} ).title || {} )[lang] || '',
     description: ( ( serviceBasedData || {} ).shortDescription || {} )[lang] || '',
-    image: params._urlFor( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
+    image: pathToImage( ( ( ( serviceBasedData || {} ).favicon || {} ).asset || {} )._ref || '' ).fit( 'crop' )
       .width( 280 )
       .height( 280 )
       .url() || '',

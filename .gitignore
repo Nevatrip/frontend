@@ -18,6 +18,7 @@ dist/
 
 static/assets/
 !static/assets/img
+static/cache/
 
 .floo
 .flooignore
