@@ -1,14 +1,10 @@
 const axios = require( 'axios' );
 
 const client = ( query, cache = true, ttl = 4*60*60*1000 ) => {
-  const url = `https://api.test.prahatrip.cz/sanity?query=${ encodeURIComponent( query ) }&cache=${ cache }&ttl=${ ttl }`;
+  const api = process.env.REACT_APP_API_URL;
+  const url = `${ api }/sanity?query=${ encodeURIComponent( query ) }&cache=${ cache }&ttl=${ ttl }`;
 
-  //console.log( 'url: ', url );
-
-  return axios( url ).then( response => {
-    //console.log( 'response.data: ', response.data );
-    return response.data
-  } )
+  return axios( url ).then( response => response.data )
 };
 
 module.exports = client;
