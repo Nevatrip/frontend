@@ -17,6 +17,7 @@ const article = require( './routes/article' );
 const sitemap = require( './routes/sitemap' );
 const sitemapxml = require( './routes/sitemapxml' );
 const robotstxt = require( './routes/robotstxt' );
+const upoladImages = require( './routes/upoladImages' );
 
 const rootPath = process.env.ROOT_PATH;
 const rootProject = process.env.ROOT_PROJECT;
@@ -89,6 +90,11 @@ const router = new UniversalRouter(
                 path: '/tags',
                 name: 'api-tags',
                 load: async() => await servicesByTags
+              },
+              {
+                path: '/upoladImages',
+                name: 'api-upoladImages',
+                load: async() => await upoladImages
               }
             ]
           },
