@@ -10,8 +10,6 @@ block( 'root' ).replace()( ( node, ctx ) => {
   const serviceBasedData = ( ( node.data || {} ).api || {} ).serviceBasedData;
   const currentLang = ( ( node.data || {} ).params || {} ).lang;
 
-  console.log( `serviceBasedData`, serviceBasedData.counters );
-
   node._marked = marked;
   node._urlFor = pathToImage;
 
@@ -99,7 +97,7 @@ block( 'root' ).replace()( ( node, ctx ) => {
       ( ( serviceBasedData || {} ).title || {} )[currentLang] && { elem: 'meta', attrs: { property: 'og:site_name', content: serviceBasedData.title[currentLang] } },
       ( ( serviceBasedData || {} ).Country || {} )[currentLang] && { elem: 'meta', attrs: { property: 'og:locale', content: `${ currentLang }_${ serviceBasedData.Country[currentLang] }` } },
 
-      ( ( serviceBasedData || {} ).counters.metatags || {} )[currentLang] && { html: ( ( serviceBasedData || {} ).metatags || {} )[currentLang] }, // metatags
+      ( ( serviceBasedData || {} ).counters.metatags || {} )[currentLang] && { html: ( ( serviceBasedData || {} ).counters.metatags || {} )[currentLang] } // metatags
     ]
 
     // mods: { route: node.data.view || node.data.page, js: true }
