@@ -95,8 +95,9 @@ block( 'root' ).replace()( ( node, ctx ) => {
       ( ( serviceBasedData || {} ).title || {} )[currentLang] && { elem: 'meta', attrs: { name: 'apple-mobile-web-app-title', content: serviceBasedData.title[currentLang] } },
       ( ( serviceBasedData || {} ).title || {} )[currentLang] && { elem: 'meta', attrs: { name: 'application-name', content: serviceBasedData.title[currentLang] } },
       ( ( serviceBasedData || {} ).title || {} )[currentLang] && { elem: 'meta', attrs: { property: 'og:site_name', content: serviceBasedData.title[currentLang] } },
-      ( ( serviceBasedData || {} ).Country || {} )[currentLang] && { elem: 'meta', attrs: { property: 'og:locale', content: `${ currentLang }_${ serviceBasedData.Country[currentLang] }` } }
+      ( ( serviceBasedData || {} ).Country || {} )[currentLang] && { elem: 'meta', attrs: { property: 'og:locale', content: `${ currentLang }_${ serviceBasedData.Country[currentLang] }` } },
 
+      ( ( serviceBasedData || {} ).metatags || {} )[currentLang] && { html: ( ( serviceBasedData || {} ).metatags || {} )[currentLang] }, // metatags
     ]
 
     // mods: { route: node.data.view || node.data.page, js: true }
