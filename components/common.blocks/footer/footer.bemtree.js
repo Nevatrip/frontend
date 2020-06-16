@@ -33,7 +33,7 @@ block( 'footer' )(
       },
       {
         elem: 'counters',
-        counters: Object.values( ctx.counters )
+        counters: Object.values( ( ctx || {} ).counters || {} )
       }
     ]
   } )
