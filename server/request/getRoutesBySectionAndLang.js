@@ -7,5 +7,5 @@ const query = ( section, lang ) => `*[defined(title.${ lang }.key.current)&&(_ty
   '}';
 
 module.exports = async ( section, lang ) => (
-  await client( query( section, lang ), true, 7*24*60*60*1000 ) ).map( item => item.title
+  await client( query( section, lang ), false, 7*24*60*60*1000 ) ).map( item => item.title
 );

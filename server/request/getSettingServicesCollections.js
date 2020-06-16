@@ -5,4 +5,4 @@ const query = () => '*[_type=="settingServicesCollections"]' +
     'services[]->,...' +
   '}';
 
-module.exports = async () => await client( query(), true, 7*24*60*60*1000 );
+module.exports = async () => await client( query(), false, 7*24*60*60*1000 );

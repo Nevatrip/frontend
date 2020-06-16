@@ -10,4 +10,4 @@ const query = lang => '*[_type=="settingMenu" && key.current=="header"]' +
     '}' +
   '}.menu';
 
-module.exports = async ( project, lang ) => await client( query( lang ), true, 7*24*60*60*1000 );
+module.exports = async ( project, lang ) => await client( query( lang ), false, 7*24*60*60*1000 );
