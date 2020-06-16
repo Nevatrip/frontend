@@ -61,13 +61,13 @@ const action = async ( context, params ) => {
   } );
 
   //настойки блога
-  allImagesArray.push( pathToImage( settingBlog.image ).url() );
-  allImagesArray.push( pathToImage( settingBlog.logo ).url() );
+  ( settingBlog || {} ).image && allImagesArray.push( pathToImage( settingBlog.image ).url() );
+  ( settingBlog || {} ).logo && allImagesArray.push( pathToImage( settingBlog.logo ).url() );
 
   //logo
-  allImagesArray.push( pathToImage( serviceBasedData.logo ).url() );
-  allImagesArray.push( pathToImage( serviceBasedData.logoSm[lang] ).url() );
-  allImagesArray.push( pathToImage( serviceBasedData.articleImage ).url() );
+  ( serviceBasedData || {} ).logo && allImagesArray.push( pathToImage( serviceBasedData.logo ).url() );
+  ( ( serviceBasedData || {} ).logoSm || {} )[lang] && allImagesArray.push( pathToImage( serviceBasedData.logoSm[lang] ).url() );
+  ( serviceBasedData || {} ).articleImage && allImagesArray.push( pathToImage( serviceBasedData.articleImage ).url() );
 
   //превью блогов
   blogArticles && blogArticles.forEach( item => {
