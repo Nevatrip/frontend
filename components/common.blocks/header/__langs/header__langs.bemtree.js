@@ -2,7 +2,7 @@ block( 'header' ).elem( 'langs' )(
   content()( node => {
     const currentLang = ( ( ( node || {} ).data || {} ).params || {} ).lang || '';
     const serviceBasedData = ( ( ( node || {} ).data || {} ).api || {} ).serviceBasedData || {};
-    const langs = ( serviceBasedData || {} ).langSiteLink;
+    const langs = ( serviceBasedData || {} ).langSiteLink || {};
 
     delete langs._type;
 
