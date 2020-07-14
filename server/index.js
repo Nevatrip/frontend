@@ -63,6 +63,10 @@ app.all( '*', async( req, res, next ) => {
       return;
     }
 
+    if( route.doctype ) {
+      res.contentType( route.doctype )
+    }
+
     res.status( route.status || 200 );
 
     if( route.page ) {
