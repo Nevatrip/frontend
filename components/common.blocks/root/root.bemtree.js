@@ -41,6 +41,18 @@ block( 'root' ).replace()( ( node, ctx ) => {
                   project: ( ( node.data || {} ).params || {} ).project || '',
                   lang: ( ( node.data || {} ).params || {} ).lang || ''
                 } )
+              },
+              {
+                tag: 'lastmod',
+                content: '2020-07-20T16:48:23+03:00'
+              },
+              {
+                tag: 'changefreq',
+                content: 'monthly'
+              },
+              {
+                tag: 'priority',
+                content: '0.25'
               }
             ]
           }
