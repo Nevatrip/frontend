@@ -23,6 +23,9 @@ block( 'header' )(
         },
         {
           elem: 'contacts'
+        },
+        {
+          elem: 'whatsapp'
         }
       ]
     }
