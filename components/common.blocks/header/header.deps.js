@@ -6,6 +6,7 @@
         'langs',
         'contacts',
         'hashtag',
+        'whatsapp',
       ]
     },
     {
